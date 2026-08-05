@@ -13,7 +13,7 @@ const L = isEn
       summary: "Summary",
       skills: "Core Technical Skills",
       exp: "Professional Experience",
-      rnd: "Selected Independent R&D",
+      rnd: "Systems Built Independently",
       edu: "Education",
       foot: "References and detailed case studies available on request."
     }
@@ -21,7 +21,7 @@ const L = isEn
       summary: "핵심 역량",
       skills: "보유 기술",
       exp: "경력 사항",
-      rnd: "독립 연구개발",
+      rnd: "직접 구현한 시스템",
       edu: "학력",
       foot: "상세 사례와 실측 자료는 요청 시 제공합니다."
     };

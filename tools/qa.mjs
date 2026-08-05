@@ -41,7 +41,7 @@ async function run(name, ctxOpts, shots) {
     sceneReady: document.getElementById("scene")?.classList.contains("ready"),
     h1: document.querySelector("h1")?.textContent?.trim().slice(0, 40)
   }));
-  const expect = { stats: 4, layers: 5, cards: 12, tl: 5, sgroups: 7, slist: 5, contact: 3 };
+  const expect = { stats: 4, layers: 5, cards: 12, tl: 6, sgroups: 7, slist: 5, contact: 3 };
   for (const [k, v] of Object.entries(expect)) {
     counts[k] === v ? ok(`${k} = ${v}`) : bad(`${k} = ${counts[k]} (기대 ${v})`);
   }
@@ -205,7 +205,7 @@ async function runTech(name, ctxOpts) {
   await page.waitForTimeout(1400);
 
   const cards = await page.locator("#techboard a.pcard").count();
-  cards === 126 ? ok(`카드 ${cards}개`) : bad(`카드 ${cards}개 (기대 126)`);
+  cards === 127 ? ok(`카드 ${cards}개`) : bad(`카드 ${cards}개 (기대 127)`);
   const fams = await page.locator("#techboard .fam").count();
   fams === 11 ? ok(`분류 ${fams}개`) : bad(`분류 ${fams}개 (기대 11)`);
 

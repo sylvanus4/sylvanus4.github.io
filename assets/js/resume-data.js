@@ -209,18 +209,35 @@ export const ko = {
           ]
         }
       ]
+    },
+    {
+      org: "비전 스타트업",
+      period: "2007.01 ~ 2008.08",
+      role: "소프트웨어 엔지니어",
+      where: "서울",
+      intro:
+        "영상 처리와 패턴 인식으로 커리어를 시작했습니다. 여기서 다룬 문제들이 이후 이미지 검색으로 이어졌습니다.",
+      projects: [
+        {
+          name: "영상 처리 · 패턴 인식 모듈",
+          bullets: [
+            "카메라 입력에서 특징을 추출하고 매칭하는 비전 모듈을 C++로 구현",
+            "영상 전처리와 인식 정확도 개선을 반복하며 컴퓨터 비전 기본기를 축적"
+          ]
+        }
+      ]
     }
   ],
 
   rnd: {
     intro:
-      "가설을 세우고 실험을 돌린 뒤 결과를 미화하지 않고 적습니다. 실험 기록 49편 가운데 동작하는 구현으로 완성한 사례가 32건입니다.",
+      "비전, 신호 처리, 최적화, 추천처럼 제가 오래 다뤄 온 영역을 에이전트로 더 넓게 확장하며 직접 구현합니다. 무엇을 재야 답이 나오는지 이미 알기 때문에 논문을 읽는 자리에서 곧바로 실측 가능한 구현으로 넘어갑니다. 저장소 127개를 만들어 운영하며 그중 32건은 측정값이 붙은 완성 구현입니다.",
     groups: [
       {
         name: "최적화 · 스케줄링",
         items: [
           "근무표가 안 풀리는 이유를 제약 완화 트레이드오프로 정량화하는 인력 스케줄링 엔진",
-          "증원 전에 시프트 구조부터 재설계해 인력 배치 문제를 해결하는 접근",
+          "증원 없이 시프트 구조 재설계만으로 SLA를 끌어올린 인력 배치 최적화 엔진",
           "이동거리와 연속 원정 일수를 함께 최소화하는 다목적 일정 최적화",
           "배차 최적화로 동일 라이더 수에서 배달 처리량을 증대",
           "배정 · 편성 문제 3건에서 실현 가능성을 감이 아닌 증명으로 확인하는 검증 엔진",
@@ -243,8 +260,8 @@ export const ko = {
           "부서별로 흩어진 엑셀을 표준 ETL로 통합해 경영 현황 조회를 반나절에서 즉시로 단축",
           "결품과 악성재고를 동시에 줄이는 수요예측 기반 재고 최적화",
           "제안 골든타임을 놓치지 않는 영업 인텔리전스 레이더",
-          "추천 AI 도입 전에 인기순 정렬 대비 실제 개선폭을 먼저 검증하는 판정 프레임",
-          "의미는 맞지만 갈 수 없는 가게를 추천하는 오류를 잡는 로컬 커머스 시맨틱 ID 설계"
+          "인기순 대조군을 세워 추천 모델의 실제 개선폭을 재는 GPU 벤치마크 하네스",
+          "위치 정보를 넣어 도달 불가능한 매장 추천을 걸러내는 로컬 커머스 시맨틱 ID 인덱서"
         ]
       },
       {
@@ -256,14 +273,16 @@ export const ko = {
         ]
       },
       {
-        name: "언어 · 문서 · 에이전트",
+        name: "에이전트 · 자동화 하네스",
         items: [
           "견적 · 발주 수기입력을 자동화해 담당자는 예외 건만 처리하는 문서 자동화",
           "반복 문의는 AI가 처리하고 사람은 진짜 상담에 집중하는 AI 상담 에이전트",
           "20년 베테랑의 노하우를 질문 한 번으로 꺼내는 RAG 지식 자산화",
           "제품 정보만 넣으면 채널별 홍보영상과 온라인 존재감을 자동으로 만드는 마케팅 자동화",
           "\"부산 출장 준비해줘\" 한마디로 앱 여러 개를 대신 실행하는 대화형 에이전트 오케스트레이션",
-          "백지 도면에서 비판 가능한 초안까지 열 분 만에 도달하는 설계 자동화 폐루프"
+          "백지 도면에서 비판 가능한 초안까지 열 분 만에 도달하는 설계 자동화 폐루프",
+        "스킬 1,600여 개를 BM25와 임베딩 하이브리드로 라우팅하는 에이전트 하네스",
+        "무인 스케줄 파이프라인 13종을 운영하며 실패를 회고로 되먹여 모델 등급을 자동 조정"
         ]
       },
       {
@@ -489,12 +508,29 @@ export const en = {
           ]
         }
       ]
+    },
+    {
+      org: "Vision Startup",
+      period: "Jan 2007 ~ Aug 2008",
+      role: "Software Engineer",
+      where: "Seoul, South Korea",
+      intro:
+        "Began my career in image processing and pattern recognition, the groundwork for later image search systems.",
+      projects: [
+        {
+          name: "Image processing and pattern recognition modules",
+          bullets: [
+            "Implemented C++ vision modules that extracted and matched features from camera input",
+            "Iterated on preprocessing and recognition accuracy, building the computer vision fundamentals used later at Daum"
+          ]
+        }
+      ]
     }
   ],
 
   rnd: {
     intro:
-      "Runs hypothesis-driven experiments and reports results without polishing them. Of 49 experiment write-ups, 32 became working implementations.",
+      "Extends long-held domains, computer vision, signal processing, combinatorial optimization, and recommendation, through agent-driven development. Knowing the field is what makes the speed possible: I know which measurement settles the question, so a paper becomes a measured implementation rather than a summary. Owns and operates 127 repositories, 32 of them completed implementations with measured results.",
     groups: [
       {
         name: "Optimization & Scheduling",
@@ -536,7 +572,7 @@ export const en = {
         ]
       },
       {
-        name: "Language, Documents & Agents",
+        name: "Agents & Automation Harness",
         items: [
           "Document automation that lets staff review only exceptions instead of manually keying quotes and purchase orders",
           "AI support agent that handles repetitive inquiries so staff focus on real conversations",

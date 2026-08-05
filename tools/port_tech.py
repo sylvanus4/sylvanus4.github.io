@@ -9,11 +9,13 @@
 재실행하면 소스 변경분이 그대로 반영된다.
 """
 
+import json
 import re
 from pathlib import Path
 
 SRC = Path.home() / "thaki/2icorp-work/site"
 DST = Path(__file__).resolve().parents[1]
+EXTRA_JSON = DST / "assets/tech-extra.json"
 
 # 이식 대상 클래스. 내 사이트와 이름이 겹치는 것(wrap/section/btn/eyebrow/nav/brand)은 뺀다.
 OWN = ("pcard", "pboard", "fam", "famnav", "techsearch", "techboard", "reveal")
@@ -163,8 +165,70 @@ PATCH = """
 """
 
 
+def card_html(c: dict) -> str:
+    """원본 카드와 같은 구조로 찍는다. 클래스가 다르면 스타일이 안 먹는다."""
+    slug = c["repo"].replace("/", "__")
+    tags = "".join(f"<span>{t}</span>" for t in c.get("tags", []))
+    return (
+        f'\n      <a class="pcard reveal" href="{c["url"]}" data-cat="{c["fam"].replace("tech-", "")}"'
+        f' data-q="{c.get("q", "")} {c["repo"]} {c["title"]}" target="_blank" rel="noopener">\n'
+        f'        <div class="pcard__thumb"><img src="tech/thumb/{slug}.png" alt="" loading="lazy"'
+        f' width="880" height="495"></div>\n'
+        f'        <div class="pcard__body">\n'
+        f'          <div class="pcard__meta">'
+        f'<span class="pcard__cat">{"비공개" if c.get("private") else "공개"}</span>'
+        f'<span class="pcard__rt">{c["lang"]}</span>'
+        f'<span class="pcard__date">{c["date"]}</span></div>\n'
+        f'          <h3 class="pcard__title">{c["title"]}</h3>\n'
+        f'          <p class="pcard__excerpt">{c["excerpt"]}</p>\n'
+        f'          <div class="pcard__tags"><span>{c["repo"]}</span>{tags}'
+        f'<span class="pcard__go">GitHub →</span></div>\n'
+        f'        </div>\n'
+        f'      </a>'
+    )
+
+
+def apply_extra(body: str) -> str:
+    """내 저장소를 덧붙이고, 회사 화법으로 남은 문장을 고치고, 개수를 다시 센다."""
+    if not EXTRA_JSON.exists():
+        return body
+    cfg = json.loads(EXTRA_JSON.read_text(encoding="utf-8"))
+
+    for old, new in cfg.get("rewrite", []):
+        if old not in body:
+            print(f"  ⚠ rewrite 대상 없음: {old[:34]}…")
+        body = body.replace(old, new)
+
+    # 계열별로 카드를 그 섹션 pboard 끝에 넣는다
+    for c in cfg.get("cards", []):
+        sec = re.search(
+            rf'(<section class="fam" id="{c["fam"]}".*?<div class="pboard">)(.*?)(\s*</div>\s*</section>)',
+            body, re.S,
+        )
+        if not sec:
+            print(f'  ⚠ 계열 없음: {c["fam"]}')
+            continue
+        body = body[: sec.start()] + sec.group(1) + sec.group(2) + card_html(c) + sec.group(3) + body[sec.end():]
+
+    for fam, label in cfg.get("rename", {}).items():
+        body = re.sub(
+            rf'(<h2 class="fam__t" id="techt-{fam.replace("tech-", "")}">)[^<]*',
+            rf"\g<1>{label}", body,
+        )
+        body = re.sub(rf'(<a class="famnav__chip" href="#{fam}">)[^<]*', rf"\g<1>{label}", body)
+
+    # 개수 재계산 (원본 숫자를 그대로 두면 카드 수와 어긋난다)
+    for m in re.finditer(r'<section class="fam" id="(tech-[a-z]+)".*?</section>', body, re.S):
+        fam, block = m.group(1), m.group(0)
+        n = len(re.findall(r'class="pcard[ "]', block))
+        body = body.replace(block, re.sub(r'(<span class="fam__n">)\d+개', rf"\g<1>{n}개", block))
+        body = re.sub(rf'(<a class="famnav__chip" href="#{fam}">[^<]*<span class="famnav__n">)\d+',
+                      rf"\g<1>{n}", body)
+    return body
+
+
 def main() -> None:
-    body = take_main()
+    body = apply_extra(take_main())
     css = BRIDGE + take_css() + PATCH
     (DST / "assets/css/tech.css").write_text(css, encoding="utf-8")
     (DST / "assets/tech-body.html").write_text(body, encoding="utf-8")
