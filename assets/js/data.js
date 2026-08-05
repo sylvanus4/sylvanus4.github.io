@@ -13,7 +13,7 @@ export const profile = {
     "모델 하나를 튜닝하는 일에서 멈추지 않습니다. 그 모델이 돌아갈 학습·추론 인프라, " +
     "그 위에 얹을 클라우드 플랫폼, 사용자가 실제로 쓰는 제품까지 직접 만듭니다.",
   photo: { webp: "assets/img/profile-960.webp", jpg: "assets/img/profile-960.jpg", alt: "한효정 프로필 사진" },
-  location: "경기도 성남시 분당구",
+  location: "서울시 송파구 잠실동",
   email: "hyojunguy@gmail.com",
   /* 전화번호는 공개 레포에 두지 않는다. 필요하면 메일로 요청받는다. */
   education: "연세대학교 컴퓨터과학과 석사 · 2007",
