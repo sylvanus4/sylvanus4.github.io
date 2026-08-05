@@ -1,7 +1,10 @@
 /* 기술 카탈로그 페이지. 본문은 tools/port_tech.py 가 만든 조각을 그대로 주입한다.
    여기서 하는 일은 검색 필터와 카운트뿐이다. */
 
+import { wireBurger } from "./main-nav.js";
+
 const board = document.getElementById("techboard");
+wireBurger();
 
 async function load() {
   try {

@@ -14,9 +14,11 @@
 
   /* --- ink --- */
   --fg:          oklch(95% 0.008 265);
-  --fg-2:        oklch(80% 0.012 265);
-  --fg-3:        oklch(64% 0.014 265);
-  --fg-4:        oklch(50% 0.016 265);
+  --fg-2:        oklch(82% 0.012 265);
+  /* fg-3 · fg-4 는 작은 메타 텍스트에 쓰인다. 4.5:1 을 넘겨야 해서
+     원래 값(64% · 50%)에서 올렸다. 감사에서 3.2~3.4 로 걸렸다. */
+  --fg-3:        oklch(71% 0.014 265);
+  --fg-4:        oklch(61% 0.016 265);
 
   /* --- line --- */
   --line:        oklch(30% 0.02 265);
@@ -252,7 +254,99 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   background: var(--cy-dim);
   transform: translateY(-1px);
 }
-@media (max-width: 900px) { .nav-links { display: none; } }
+/* ---------- 모바일 내비 ----------
+   좁은 화면에서 링크를 그냥 숨기면 카탈로그와 이력서로 갈 방법이 사라진다.
+   버튼 하나로 여는 disclosure 패널을 둔다. */
+.nav-burger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line-bright);
+  border-radius: 999px;
+  color: var(--fg);
+  transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+.nav-burger:hover { border-color: var(--cy); background: var(--cy-dim); }
+.nav-burger span {
+  display: block;
+  width: 15px;
+  height: 1.5px;
+  background: currentColor;
+  position: relative;
+  transition: background var(--dur) var(--ease);
+}
+.nav-burger span::before, .nav-burger span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 15px;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform var(--dur) var(--ease);
+}
+.nav-burger span::before { top: -5px; }
+.nav-burger span::after { top: 5px; }
+.nav.open .nav-burger span { background: transparent; }
+.nav.open .nav-burger span::before { transform: translateY(5px) rotate(45deg); }
+.nav.open .nav-burger span::after { transform: translateY(-5px) rotate(-45deg); }
+
+@media (max-width: 980px) {
+  .nav-burger { display: inline-flex; }
+  .nav-cta { display: none; }
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0.5rem var(--gutter) 1.1rem;
+    /* 부모 .nav 에 backdrop-filter 가 걸려 있어 여기서 반투명을 쓰면 본문이 비친다.
+       메뉴는 읽혀야 하는 표면이므로 불투명 배경을 쓴다. */
+    background: var(--bg);
+    border-bottom: 1px solid var(--line-soft);
+    box-shadow: 0 22px 44px oklch(6% 0.02 265 / 0.6);
+    max-height: calc(100svh - 62px);
+    overflow-y: auto;
+    display: none;
+  }
+  .nav.open .nav-links { display: flex; }
+  /* 메뉴가 열리면 본문을 눌러 시선을 뺏기지 않게 한다 */
+  .nav.open::after {
+    content: "";
+    position: fixed;
+    inset: 62px 0 0;
+    background: oklch(8% 0.02 265 / 0.55);
+    z-index: -1;
+  }
+  .nav-links a {
+    font-size: 1rem;
+    padding: 0.85rem 0.4rem;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .nav-links a:last-child { border-bottom: 0; }
+}
+
+/* 키보드 사용자가 내비를 건너뛸 수 있게 */
+.skip {
+  position: absolute;
+  left: 0.6rem;
+  top: -100px;
+  z-index: 100;
+  background: var(--cy);
+  color: oklch(15% 0.03 220);
+  font-weight: 650;
+  padding: 0.7rem 1.1rem;
+  border-radius: var(--radius);
+  transition: top 180ms var(--ease);
+}
+.skip:focus { top: 0.6rem; }
 
 /* ---------- hero ---------- */
 .hero {
@@ -648,7 +742,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .sitem:hover { background: var(--bg-2); }
 .sitem-org { font-family: var(--mono); font-size: var(--t-2xs); letter-spacing: 0.1em; color: var(--fg-4); padding-top: 0.3rem; text-transform: uppercase; }
-.sitem h4 { font-size: 1.03rem; font-weight: 600; letter-spacing: -0.018em; }
+.sitem h3 { font-size: 1.03rem; font-weight: 600; letter-spacing: -0.018em; }
 .sitem p { margin-top: 0.32rem; color: var(--fg-3); font-size: 0.93rem; }
 @media (max-width: 620px) { .sitem { grid-template-columns: 1fr; gap: 0.4rem; } }
 
@@ -656,7 +750,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .sgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 1px; background: var(--line-soft); border: 1px solid var(--line-soft); border-radius: var(--radius-lg); overflow: hidden; }
 .sgroup { background: var(--bg-2); padding: 1.5rem; transition: background var(--dur) var(--ease); }
 .sgroup:hover { background: var(--bg-3); }
-.sgroup h4 {
+.sgroup h3 {
   font-size: var(--t-sm);
   font-weight: 650;
   letter-spacing: -0.01em;
@@ -668,7 +762,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   flex-wrap: wrap;
 }
 /* Metis / Maxis / Paxis 같은 제품 배지 */
-.sgroup h4 b {
+.sgroup h3 b {
   font-family: var(--mono);
   font-size: var(--t-2xs);
   letter-spacing: 0.1em;

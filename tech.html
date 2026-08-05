@@ -27,12 +27,13 @@
 <body>
 <div class="scene-fallback" aria-hidden="true"></div>
 
+<a class="skip" href="#main">본문으로 건너뛰기</a>
 <div class="page">
 
   <header class="nav">
     <div class="nav-in">
       <a class="brand" href="./">한효정 <span>Hyojung Han</span></a>
-      <nav class="nav-links" aria-label="주요 섹션">
+      <nav class="nav-links" id="navlinks" aria-label="주요 섹션">
         <a href="./#stack">스택</a>
         <a href="./#work">작업</a>
         <a href="./#career">이력</a>
@@ -41,11 +42,12 @@
         <a href="tech.html" class="on" aria-current="page">카탈로그</a>
         <a href="resume.html">이력서</a>
       </nav>
+      <button class="nav-burger" type="button" aria-expanded="false" aria-controls="navlinks" aria-label="메뉴 열기"><span></span></button>
       <a class="nav-cta" href="./#contact" data-magnet>연락하기</a>
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <section class="section" style="padding-top:clamp(6.5rem,4rem+7vw,10rem)">
       <div class="wrap">
         <div class="head">

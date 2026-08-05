@@ -1,6 +1,7 @@
 /* 페이지 조립 + 인터랙션.
    three.js 는 동적 import 로만 부른다. CDN 이 죽어도 페이지는 그대로 뜬다. */
 
+import { wireBurger } from "./main-nav.js";
 import { profile, stats, layers, work, timeline, strategy, research, stack, contact } from "./data.js";
 
 const $ = (s, r = document) => r.querySelector(s);
@@ -155,7 +156,7 @@ function renderResearch() {
       (s) => `
     <div class="sitem rv">
       <div class="sitem-org">${s.org}</div>
-      <div><h4>${s.title}</h4><p>${s.note}</p></div>
+      <div><h3>${s.title}</h3><p>${s.note}</p></div>
     </div>`
     )
     .join("");
@@ -166,7 +167,7 @@ function renderStack() {
     .map(
       (g) => `
     <div class="sgroup rv">
-      <h4>${g.group}${g.note ? `<b>${g.note}</b>` : ""}</h4>
+      <h3>${g.group}${g.note ? `<b>${g.note}</b>` : ""}</h3>
       <ul>${g.items.map((i) => `<li>${i}</li>`).join("")}</ul>
     </div>`
     )
@@ -355,6 +356,7 @@ function boot() {
   wireCards();
   wireCursor();
   wireNav();
+  wireBurger();
   wireScene();
 
   document.body.dataset.ready = "1";
