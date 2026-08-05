@@ -41,7 +41,7 @@ async function run(name, ctxOpts, shots) {
     sceneReady: document.getElementById("scene")?.classList.contains("ready"),
     h1: document.querySelector("h1")?.textContent?.trim().slice(0, 40)
   }));
-  const expect = { stats: 4, layers: 5, cards: 11, tl: 5, sgroups: 6, slist: 5, contact: 3 };
+  const expect = { stats: 4, layers: 5, cards: 12, tl: 5, sgroups: 7, slist: 5, contact: 3 };
   for (const [k, v] of Object.entries(expect)) {
     counts[k] === v ? ok(`${k} = ${v}`) : bad(`${k} = ${counts[k]} (기대 ${v})`);
   }
@@ -96,6 +96,34 @@ async function run(name, ctxOpts, shots) {
     ? ok(`본문 대비 ${contrast.ratio}:1`)
     : bad(`본문 대비 ${contrast.ratio}:1 (4.5 미만) — ${contrast.who}`);
 
+  /* --- 이미지 비율 왜곡 ---
+     height 속성이 프레젠테이션 힌트로 남으면 aspect-ratio 가 무시돼 사진이 늘어난다.
+     개수 검사만으로는 절대 안 잡힌다. 실제 렌더 박스와 원본 비율을 대조한다. */
+  const warped = await page.evaluate(() =>
+    [...document.images]
+      .filter((i) => i.naturalWidth && i.getBoundingClientRect().width > 8)
+      .map((i) => {
+        const r = i.getBoundingClientRect();
+        const want = i.naturalWidth / i.naturalHeight;
+        const got = r.width / r.height;
+        return { src: i.currentSrc.split("/").pop(), off: Math.abs(got / want - 1), got: got.toFixed(2) };
+      })
+      .filter((x) => x.off > 0.06)
+  );
+  warped.length === 0
+    ? ok("이미지 비율 정상")
+    : bad(`이미지 비율 왜곡: ${warped.map((w) => `${w.src}(${w.got})`).join(", ")}`);
+
+  /* --- 첫 화면에 핵심 정보가 보이는가 (채용담당자 3분 룰) --- */
+  const fold = await page.evaluate(() => {
+    const h1 = document.querySelector(".hero h1");
+    const r = h1?.getBoundingClientRect();
+    return r ? { top: Math.round(r.top), bottom: Math.round(r.bottom), vh: innerHeight } : null;
+  });
+  fold && fold.bottom > 0 && fold.bottom < fold.vh
+    ? ok(`히어로 제목 첫 화면 노출 (${fold.top}~${fold.bottom} / ${fold.vh})`)
+    : bad(`히어로 제목이 첫 화면 밖 (${JSON.stringify(fold)})`);
+
   // --- 터치 타깃 44px ---
   const tiny = await page.evaluate(() =>
     [...document.querySelectorAll("a.btn, button, .nav-cta")]
@@ -132,11 +160,79 @@ await run("desktop", { viewport: { width: 1512, height: 950 }, deviceScaleFactor
   { name: "5-contact", at: 99000 }
 ]);
 
+await run("laptop", { viewport: { width: 1280, height: 800 }, deviceScaleFactor: 2 }, [
+  { name: "1-hero" },
+  { name: "2-work", at: 2600 }
+]);
+
+// 태블릿 3종: 세로 iPad mini / iPad Pro 11 / 가로 iPad Pro
+await run("tablet-768", { viewport: { width: 768, height: 1024 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true }, [
+  { name: "1-hero" },
+  { name: "2-stack", at: 1300 },
+  { name: "3-work", at: 3000 }
+]);
+
+await run("tablet-834", { viewport: { width: 834, height: 1194 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true }, [
+  { name: "1-hero" },
+  { name: "2-work", at: 3000 }
+]);
+
+await run("tablet-1024", { viewport: { width: 1024, height: 768 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true }, [
+  { name: "1-hero" },
+  { name: "2-work", at: 2600 }
+]);
+
 await run("mobile", { ...devices["iPhone 14 Pro"] }, [
   { name: "1-hero" },
   { name: "2-stack", at: 1400 },
   { name: "3-work", at: 3200 }
 ]);
+
+await run("mobile-small", { viewport: { width: 320, height: 640 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true }, [
+  { name: "1-hero" }
+]);
+
+/* ---- 카탈로그 페이지 ---- */
+async function runTech(name, ctxOpts) {
+  const ctx = await browser.newContext(ctxOpts);
+  const page = await ctx.newPage();
+  const errors = [];
+  page.on("console", (m) => { if (m.type() === "error") errors.push(m.text()); });
+  page.on("pageerror", (e) => errors.push("pageerror: " + e.message));
+
+  console.log(`\n[tech/${name}]`);
+  await page.goto(`${BASE}/tech.html`, { waitUntil: "networkidle", timeout: 45000 });
+  await page.waitForTimeout(1400);
+
+  const cards = await page.locator("#techboard a.pcard").count();
+  cards === 126 ? ok(`카드 ${cards}개`) : bad(`카드 ${cards}개 (기대 126)`);
+  const fams = await page.locator("#techboard .fam").count();
+  fams === 11 ? ok(`분류 ${fams}개`) : bad(`분류 ${fams}개 (기대 11)`);
+
+  errors.length ? bad(`콘솔 에러: ${errors.slice(0, 2).join(" | ")}`) : ok("콘솔 에러 0");
+
+  const of = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+  of <= 1 ? ok("가로 오버플로 없음") : bad(`가로 오버플로 ${of}px`);
+
+  // 검색 필터 실동작
+  await page.fill("#techq", "양자화");
+  await page.waitForTimeout(400);
+  const shown = await page.evaluate(() => [...document.querySelectorAll("#techboard a.pcard")].filter((c) => !c.hidden).length);
+  shown > 0 && shown < 126 ? ok(`검색 필터 동작 (${shown}개)`) : bad(`검색 필터 이상 (${shown}개)`);
+  await page.fill("#techq", "");
+  await page.waitForTimeout(300);
+
+  await page.screenshot({ path: `${OUT}/tech-${name}.png` });
+  await page.evaluate(() => document.querySelector("#techboard .fam")?.scrollIntoView());
+  await page.waitForTimeout(700);
+  await page.screenshot({ path: `${OUT}/tech-${name}-cards.png` });
+  ok("shot");
+  await ctx.close();
+}
+
+await runTech("desktop", { viewport: { width: 1512, height: 950 }, deviceScaleFactor: 2 });
+await runTech("tablet", { viewport: { width: 768, height: 1024 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
+await runTech("mobile", { ...devices["iPhone 14 Pro"] });
 
 await browser.close();
 

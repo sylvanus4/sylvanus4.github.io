@@ -12,6 +12,7 @@ export const profile = {
   sub:
     "모델 하나를 튜닝하는 일에서 멈추지 않습니다. 그 모델이 돌아갈 학습·추론 인프라, " +
     "그 위에 얹을 클라우드 플랫폼, 사용자가 실제로 쓰는 제품까지 직접 만듭니다.",
+  photo: { webp: "assets/img/profile-960.webp", jpg: "assets/img/profile-960.jpg", alt: "한효정 프로필 사진" },
   location: "경기도 성남시 분당구",
   email: "hyojunguy@gmail.com",
   /* 전화번호는 공개 레포에 두지 않는다. 필요하면 메일로 요청받는다. */
@@ -21,7 +22,7 @@ export const profile = {
 
 export const stats = [
   { value: "19", unit: "년", label: "2007년부터 공백 없이" },
-  { value: "4", unit: "개사", label: "Daum · 삼성 · Toss · ThakiCloud" },
+  { value: "2,260", unit: "편", label: "3개 언어 기술 블로그 운영" },
   { value: "49", unit: "편", label: "직접 돌린 실험 기록" },
   { value: "32", unit: "건", label: "동작하는 구현 사례" }
 ];
@@ -47,8 +48,9 @@ export const layers = [
     line: "여러 팀이 함께 쓰는 판을 깝니다",
     body:
       "삼성 사내 클라우드에 Kubernetes 기반 ML 플랫폼을 올려 모델 배포 시간을 며칠에서 몇 시간으로 줄였습니다. " +
-      "지금은 ThakiCloud에서 추론·학습·에이전트 플랫폼 세 축을 설계합니다.",
-    keys: ["Kubernetes", "멀티테넌시", "GPU 스케줄링", "GitOps"]
+      "지금은 ThakiCloud에서 추론(Metis), 학습(Maxis), 에이전트(Paxis) 세 축을 설계합니다. " +
+      "에이전트 쪽은 하네스와 루프, 그래프를 직접 엔지니어링합니다.",
+    keys: ["Kubernetes", "멀티테넌시", "GPU 스케줄링", "에이전트 하네스", "GitOps"]
   },
   {
     id: "infra",
@@ -57,9 +59,9 @@ export const layers = [
     title: "학습 · 추론 인프라",
     line: "모델이 실제로 돌아가게 만듭니다",
     body:
-      "파인튜닝 파이프라인과 서빙 스택을 직접 깔고 튜닝합니다. 양자화와 프루닝으로 모바일에 얹고, " +
-      "GPU 위에서는 배치와 스케줄링을 손봐 처리량을 끌어올립니다.",
-    keys: ["vLLM 서빙", "SFT · DPO · GRPO", "양자화 · 프루닝", "CUDA"]
+      "파인튜닝 파이프라인과 서빙 스택을 직접 깔고 튜닝합니다. NVFP4와 W4A16으로 양자화하고 MoE를 압축해 " +
+      "같은 GPU에서 더 많이 돌립니다. 음성과 영상 모델도 같은 방식으로 얹습니다.",
+    keys: ["vLLM · Dynamo", "SFT · DPO · GRPO", "NVFP4 양자화", "TTS · STT · VLM", "CUDA"]
   },
   {
     id: "model",
@@ -103,6 +105,31 @@ export const work = [
       "세 제품의 로드맵과 아키텍처를 직접 설계하고 구현까지 관여하고 있습니다. 기획과 코드 사이에 통역이 필요 없습니다.",
     stack: ["Kubernetes", "vLLM", "Kueue", "ArgoCD", "Go", "React"],
     tags: ["플랫폼", "인프라", "리딩"],
+    featured: true
+  },
+  {
+    id: "thaki-blog",
+    era: "2024 — 현재",
+    org: "ThakiCloud",
+    title: "기술 블로그 운영과 다국어 발행 파이프라인",
+    summary: "한국어, 영어, 아랍어로 2,260편을 발행하는 기술 블로그를 세우고 직접 운영합니다.",
+    problem:
+      "플랫폼 제품은 기술적 신뢰가 쌓여야 팔립니다. 그런데 기술 글을 사람 손으로만 쓰면 주 한두 편이 한계라 " +
+      "검색 유입도 브랜드도 좀처럼 쌓이지 않습니다.",
+    approach:
+      "Jekyll 기반 블로그를 세우고 초안 생성부터 사실 검증, 번역, 도식화, 배포까지 파이프라인으로 묶었습니다. " +
+      "LLMOps, 에이전트 운영, 연구 리뷰, 튜토리얼 등 11개 카테고리로 나누고 품질 게이트를 코드로 강제했습니다.",
+    result:
+      "2024년 5월부터 지금까지 2,260편을 발행했습니다. 한국어 1,055편, 영어 647편, 아랍어 558편으로 " +
+      "세 언어를 같은 품질 기준으로 유지하고 있습니다.",
+    metrics: [
+      { k: "누적 발행", v: "2,260편" },
+      { k: "언어", v: "한국어 · 영어 · 아랍어" },
+      { k: "카테고리", v: "11개" }
+    ],
+    stack: ["Jekyll", "GitHub Actions", "LLM 파이프라인", "다국어 i18n", "SEO"],
+    tags: ["콘텐츠", "자동화", "운영"],
+    link: { label: "블로그 열기", url: "https://thakicloud.com/tech-blog" },
     featured: true
   },
   {
@@ -391,30 +418,62 @@ export const research = {
   link: { label: "실험 기록 보기", url: "https://2icorp.github.io/papers.html" }
 };
 
+/* 지금 실제로 손대고 있는 것 위주로. 오래된 목록을 관성으로 남겨두지 않는다.
+   앞의 네 그룹이 현재 주력(에이전트 하네스 · 학습 · 서빙 · 멀티모달)이다. */
 export const stack = [
   {
+    group: "에이전트 하네스 · 오케스트레이션",
+    note: "Paxis",
+    items: [
+      "하네스 엔지니어링", "루프 엔지니어링", "그래프 엔지니어링", "MCP 툴 연동",
+      "스킬 라우팅 · 검색증강", "LangGraph", "Human-in-the-Loop 승인", "정책 · 감사 추적",
+      "결정론 검증 게이트", "멀티에이전트 합의"
+    ]
+  },
+  {
+    group: "학습 · 파인튜닝 · 증류",
+    note: "Maxis",
+    items: [
+      "SFT", "CPT", "DPO", "GRPO", "GKD", "LoRA · QLoRA", "지식 증류",
+      "FSDP · DDP", "TRL", "Unsloth", "MLflow", "평가셋 · 회귀 테스트"
+    ]
+  },
+  {
+    group: "추론 · 서빙 · 압축",
+    note: "Metis",
+    items: [
+      "vLLM", "NVIDIA Dynamo", "LMCache", "Prefill-Decode 분리", "NVFP4 · W4A16",
+      "LLM Compressor", "MoE 압축 · 프루닝", "Scale-to-Zero", "KServe", "모델 라우팅"
+    ]
+  },
+  {
+    group: "음성 · 비전 · 생성 모델",
+    items: [
+      "VoxCPM2 TTS", "Qwen3-TTS", "Qwen3-ASR", "화자 분리(pyannote)", "VLM 영상 이해",
+      "Stable Diffusion", "DreamBooth", "GPT Image", "Text-to-Video", "EmbeddingGemma",
+      "AdaFace · ArcFace", "OpenCV · ViT"
+    ]
+  },
+  {
+    group: "플랫폼 · GPU 인프라",
+    items: [
+      "Kubernetes", "Kueue · MultiKueue", "ArgoCD · GitOps", "Helm", "Keycloak",
+      "SeaweedFS", "CloudNativePG", "NATS", "Prometheus · Grafana", "CUDA", "Docker"
+    ]
+  },
+  {
     group: "언어 · 프레임워크",
-    items: ["Python", "C++", "Go", "Java", "TypeScript", "SQL", "FastAPI", "Flask", "Spring", "Next.js"]
+    items: [
+      "Python", "Go (Fiber)", "TypeScript", "C++", "React 19", "Next.js",
+      "FastAPI", "PyTorch", "PostgreSQL", "Redis"
+    ]
   },
   {
-    group: "딥러닝 · 머신러닝",
-    items: ["PyTorch", "TensorFlow", "HuggingFace", "LightGBM", "CatBoost", "XGBoost", "scikit-learn", "OR-Tools"]
-  },
-  {
-    group: "비전 · 생성 모델",
-    items: ["OpenCV", "ResNet", "ViT", "AdaFace", "ArcFace", "Stable Diffusion", "DreamBooth", "SRGAN", "CycleGAN"]
-  },
-  {
-    group: "LLM · 에이전트",
-    items: ["LLaMA Fine-Tuning", "SFT · DPO · GRPO", "vLLM", "LangChain", "ChromaDB", "RAG", "MCP", "Prompt Engineering"]
-  },
-  {
-    group: "인프라 · MLOps",
-    items: ["Kubernetes", "Docker", "Kueue", "ArgoCD", "Airflow", "MLflow", "Jenkins", "GitLab CI", "CUDA", "ONNX"]
-  },
-  {
-    group: "데이터 · 클라우드",
-    items: ["PostgreSQL", "MySQL", "Redis", "Cassandra", "NATS", "RabbitMQ", "AWS", "GCP", "SeaweedFS"]
+    group: "고전 ML · 최적화",
+    items: [
+      "LightGBM", "CatBoost", "XGBoost", "scikit-learn", "Google OR-Tools",
+      "Airflow", "선형계획 · 제약 최적화", "시계열 · 랭킹"
+    ]
   }
 ];
 
@@ -427,5 +486,14 @@ export const contact = {
     { label: "hyojunguy@gmail.com", url: "mailto:hyojunguy@gmail.com", kind: "mail" },
     { label: "GitHub", url: "https://github.com/sylvanus4", kind: "github" },
     { label: "실험 기록", url: "https://2icorp.github.io/papers.html", kind: "link" }
-  ]
+  ],
+  resume: {
+    title: "이력서",
+    note: "웹에서 바로 보거나 PDF로 받을 수 있습니다.",
+    items: [
+      { label: "이력서 · 경력기술서", sub: "웹", url: "resume.html" },
+      { label: "한효정_이력서.pdf", sub: "국문 · 3장", url: "한효정_이력서.pdf", download: true },
+      { label: "Hyojung_Han_Resume_EN.pdf", sub: "영문 · 2장", url: "Hyojung_Han_Resume_EN.pdf", download: true }
+    ]
+  }
 };

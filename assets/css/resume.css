@@ -1,0 +1,247 @@
+/* 이력서. 포트폴리오와 달리 밝은 종이다.
+   ATS 파싱을 위해 단일 컬럼 · 테이블 없음 · 텍스트박스 없음을 지킨다.
+   화면과 인쇄(A4)가 같은 레이아웃을 쓴다. */
+
+:root {
+  --r-ink:    #14181f;
+  --r-ink-2:  #39424f;
+  --r-ink-3:  #5d6775;
+  --r-line:   #d8dde5;
+  --r-line-2: #eceff3;
+  --r-accent: #0f6d84;
+  --r-bg:     #ffffff;
+  --r-tint:   #f5f8fa;
+
+  --r-sans: Pretendard, -apple-system, BlinkMacSystemFont,
+            "Apple SD Gothic Neo", "Segoe UI", Arial, sans-serif;
+  --r-page: 210mm;
+  --r-pad: 14mm;
+}
+
+* { box-sizing: border-box; margin: 0; }
+
+body {
+  background: #4a5261;
+  color: var(--r-ink);
+  font-family: var(--r-sans);
+  font-size: 10.2pt;
+  line-height: 1.55;
+  letter-spacing: -0.008em;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+  padding: 24px 12px 64px;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ---------- 화면 전용 도구막대 (인쇄/PDF 에서는 사라진다) ---------- */
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: min(100%, var(--r-page));
+  margin: 0 auto 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  background: #232a36;
+  border: 1px solid #39424f;
+  border-radius: 10px;
+  padding: 9px 12px;
+  color: #e8ecf2;
+  font-size: 12px;
+}
+.bar a, .bar span.sep { color: #cfd6e0; }
+.bar-links { display: flex; gap: 6px; flex-wrap: wrap; }
+.bar a.b {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid #4a5464;
+  border-radius: 999px;
+  transition: background .2s, border-color .2s, color .2s;
+}
+.bar a.b:hover { border-color: #7fd8e8; color: #fff; background: #2c3543; }
+.bar a.b[aria-current="true"] { background: #7fd8e8; color: #14181f; border-color: #7fd8e8; font-weight: 600; }
+
+/* ---------- 종이 ---------- */
+.sheet {
+  width: min(100%, var(--r-page));
+  margin: 0 auto;
+  background: var(--r-bg);
+  padding: var(--r-pad);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, .3);
+}
+
+/* ---------- 머리글 ---------- */
+.rhead {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  border-bottom: 2px solid var(--r-ink);
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+}
+.rhead-main { flex: 1 1 auto; min-width: 0; }
+.rhead h1 {
+  font-size: 21pt;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+}
+.rhead h1 small {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 11pt;
+  font-weight: 500;
+  color: var(--r-ink-3);
+  letter-spacing: 0;
+}
+.rhead .role {
+  margin-top: 3px;
+  font-size: 11pt;
+  font-weight: 600;
+  color: var(--r-accent);
+}
+.rhead .meta {
+  margin-top: 6px;
+  font-size: 8.9pt;
+  color: var(--r-ink-3);
+  line-height: 1.7;
+}
+.rhead .meta b { font-weight: 500; color: var(--r-ink-2); }
+.rphoto {
+  width: 27mm;
+  height: 33mm;
+  object-fit: cover;
+  object-position: center 22%;
+  border: 1px solid var(--r-line);
+  border-radius: 2px;
+  flex: 0 0 auto;
+}
+
+/* ---------- 섹션 ---------- */
+.sec { margin-top: 11px; break-inside: auto; }
+.sec > h2 {
+  font-size: 9.4pt;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--r-accent);
+  border-bottom: 1px solid var(--r-line);
+  padding-bottom: 3px;
+  margin-bottom: 7px;
+  break-after: avoid;
+}
+
+.sum { list-style: none; padding: 0; display: grid; gap: 3px; }
+.sum li { position: relative; padding-left: 11px; color: var(--r-ink-2); }
+.sum li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: .62em;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--r-accent);
+}
+
+/* 스킬은 한 줄 흐름으로 쓴다.
+   2열 그리드로 두면 PDF 텍스트가 "제목1 제목2 항목1 항목2" 로 뒤섞여 추출된다.
+   ATS 가 정확히 이 지점에서 깨지므로(단일 컬럼 원칙) 시각적으로도 한 흐름을 유지한다.
+   덤으로 세로 공간도 2열보다 덜 먹는다. */
+.skills { display: block; }
+.skill { break-inside: avoid; margin-bottom: 3px; }
+.skill b {
+  font-size: 9pt;
+  font-weight: 700;
+  color: var(--r-ink);
+}
+.skill b::after { content: "  "; }
+.skill span { font-size: 9pt; color: var(--r-ink-2); }
+
+/* 경력 */
+.job { margin-top: 9px; }
+.job:first-of-type { margin-top: 0; }
+.job-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; }
+.job-h .org { font-size: 12pt; font-weight: 750; letter-spacing: -0.02em; }
+.job-h .role { font-size: 9.6pt; font-weight: 600; color: var(--r-accent); }
+.job-h .when { margin-left: auto; font-size: 8.8pt; color: var(--r-ink-3); white-space: nowrap; }
+.job-h .where { font-size: 8.8pt; color: var(--r-ink-3); }
+.job-i { font-size: 9.2pt; color: var(--r-ink-2); margin-top: 2px; }
+
+.proj { margin-top: 6px; break-inside: avoid; }
+.proj > b {
+  display: block;
+  font-size: 9.6pt;
+  font-weight: 650;
+  color: var(--r-ink);
+  margin-bottom: 2px;
+}
+.proj ul { list-style: none; padding: 0; display: grid; gap: 2px; }
+.proj li { position: relative; padding-left: 11px; font-size: 9.3pt; color: var(--r-ink-2); }
+.proj li::before {
+  content: "";
+  position: absolute;
+  left: 2px; top: .6em;
+  width: 4px; height: 1px;
+  background: var(--r-ink-3);
+}
+
+/* 독립 연구개발 */
+.rnd-i { font-size: 9.2pt; color: var(--r-ink-2); margin-bottom: 6px; }
+.rgroup { margin-top: 6px; break-inside: avoid; }
+.rgroup b { display: block; font-size: 9.4pt; font-weight: 700; margin-bottom: 2px; }
+.rgroup ul { list-style: none; padding: 0; display: grid; gap: 1px; }
+.rgroup li { position: relative; padding-left: 11px; font-size: 9.1pt; color: var(--r-ink-2); }
+.rgroup li::before {
+  content: "";
+  position: absolute;
+  left: 2px; top: .6em;
+  width: 4px; height: 1px;
+  background: var(--r-ink-3);
+}
+
+.edu { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; font-size: 9.5pt; }
+.edu b { font-weight: 700; }
+.edu span { color: var(--r-ink-2); }
+.edu i { font-style: normal; margin-left: auto; color: var(--r-ink-3); font-size: 8.8pt; }
+
+.rfoot {
+  margin-top: 12px;
+  padding-top: 6px;
+  border-top: 1px solid var(--r-line-2);
+  font-size: 8.2pt;
+  color: var(--r-ink-3);
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* 영문판은 2장 안에 들어가야 한다. 한글보다 글자가 촘촘해도 읽힌다. */
+html[lang="en"] body { font-size: 9.6pt; line-height: 1.45; }
+html[lang="en"] .sec { margin-top: 8px; }
+html[lang="en"] .job { margin-top: 7px; }
+html[lang="en"] .proj { margin-top: 4px; }
+html[lang="en"] .rgroup { margin-top: 4px; }
+html[lang="en"] .rhead h1 { font-size: 19pt; }
+html[lang="en"] .proj li, html[lang="en"] .rgroup li { font-size: 8.9pt; }
+html[lang="en"] .skill b, html[lang="en"] .skill span { font-size: 8.7pt; }
+
+/* ---------- 인쇄 / PDF ---------- */
+@page { size: A4; margin: 12mm 13mm; }
+
+@media print {
+  body { background: #fff; padding: 0; font-size: 10pt; }
+  .bar { display: none !important; }
+  .sheet { width: auto; box-shadow: none; padding: 0; margin: 0; }
+  /* 회사 블록 전체를 통으로 묶으면 페이지가 통째로 밀려 장수가 늘어난다.
+     쪼개지면 안 되는 최소 단위는 프로젝트 하나다. */
+  .job { break-inside: auto; }
+  .proj, .rgroup, .skill { break-inside: avoid; }
+  .job-h { break-after: avoid; }
+  .sec > h2 { break-after: avoid; }
+  a { text-decoration: none; }
+}

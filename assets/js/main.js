@@ -11,6 +11,8 @@ const el = (id) => document.getElementById(id);
 function renderHero() {
   el("hero").innerHTML = `
     <div class="wrap hero-in">
+     <div class="hero-grid">
+      <div class="hero-copy">
       <p class="hero-name rv in">
         <b>${profile.name}</b>
         <span>${profile.nameEn}</span>
@@ -26,6 +28,15 @@ function renderHero() {
         <a class="btn btn-primary" href="#work" data-magnet>선택한 작업 보기</a>
         <a class="btn btn-ghost" href="#contact" data-magnet>연락하기</a>
       </div>
+      </div>
+      <figure class="hero-photo rv in rv-d2">
+        <picture>
+          <source srcset="${profile.photo.webp}" type="image/webp">
+          <img src="${profile.photo.jpg}" alt="${profile.photo.alt}" width="960" height="960"
+               fetchpriority="high" decoding="async">
+        </picture>
+      </figure>
+     </div>
     </div>
     <p class="hero-hint" aria-hidden="true"><i></i>스크롤하면 스택을 통과합니다</p>
   `;
@@ -86,6 +97,11 @@ function renderWork() {
               : ""
           }
           <div class="card-stack">${w.stack.map((s) => `<span class="chip">${s}</span>`).join("")}</div>
+          ${
+            w.link
+              ? `<p style="margin-top:1.2rem"><a class="card-link" href="${w.link.url}" target="_blank" rel="noopener">${w.link.label} ↗</a></p>`
+              : ""
+          }
         </div>
       </div>
 
@@ -150,7 +166,7 @@ function renderStack() {
     .map(
       (g) => `
     <div class="sgroup rv">
-      <h4>${g.group}</h4>
+      <h4>${g.group}${g.note ? `<b>${g.note}</b>` : ""}</h4>
       <ul>${g.items.map((i) => `<li>${i}</li>`).join("")}</ul>
     </div>`
     )
@@ -171,6 +187,18 @@ function renderContact() {
             } data-magnet>${l.label}</a>`
         )
         .join("")}
+    </div>
+    <div class="resume-box">
+      <p class="eyebrow" style="justify-content:center">${contact.resume.title}</p>
+      <p class="muted" style="font-size:.93rem;margin-top:.5rem">${contact.resume.note}</p>
+      <div class="resume-links">
+        ${contact.resume.items
+          .map(
+            (r) => `<a class="rlink" href="${r.url}"${r.download ? " download" : ""} data-magnet>
+              <b>${r.label}</b><span>${r.sub}</span></a>`
+          )
+          .join("")}
+      </div>
     </div>
     <p class="contact-meta">${profile.location} · ${profile.education}</p>
   `;

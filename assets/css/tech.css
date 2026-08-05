@@ -1,0 +1,243 @@
+
+/* ── 2i 카탈로그 이식 레이어 ────────────────────────────────────────────
+   마크업과 규칙은 원본 그대로다. 이 블록이 토큰만 갈아끼워 색을 맞춘다.
+   재생성: python3 tools/port_tech.py                                   */
+.tech2i {
+  --paper:      var(--bg);
+  --paper-2:    var(--bg-2);
+  --panel:      var(--bg-2);
+  --ink:        var(--fg);
+  --ink-soft:   var(--fg-2);
+  --ink-faint:  var(--fg-3);
+  --line:       var(--line-soft);
+  --line-soft:  oklch(22% 0.018 265);
+  --signal:     var(--cy);
+  --signal-deep: var(--cy-deep);
+  --steel:      var(--vi);
+  --steel-soft: oklch(60% 0.09 285);
+  --tint-signal: oklch(20% 0.03 220);
+  --tint-signal-line: oklch(34% 0.05 220);
+  /* 원본이 쓰는 타입 토큰 이름을 내 스케일로 이어준다.
+     ⚠ --sans/--mono/--gutter/--section/--ease/--dur/--ok 은 이름이 같아 그냥 상속된다.
+     같은 이름으로 재선언하면 var() 자기참조 = 순환이라 값이 통째로 무효가 된다. */
+  --text-hero: var(--t-hero);
+  --text-h2:   var(--t-h2);
+  --text-h3:   var(--t-h3);
+  --text-base: var(--t-body);
+  --text-sm:   var(--t-sm);
+  --text-xs:   var(--t-xs);
+  --radius: 6px;
+  color: var(--fg-2);
+}
+.tech2i .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);}
+.tech2i .reveal.in { opacity: 1; transform: none;}
+@media (prefers-reduced-motion: reduce) {
+.tech2i .reveal { opacity: 1; transform: none; transition: none;}
+}
+.tech2i .hero h1 .accent { color: var(--signal-deep);}
+.tech2i .hero h1 .u { display: inline-block; position: relative;}
+.tech2i .hero h1 .u::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0.06em; height: 0.14em; background: var(--signal); opacity: 0.35;}
+.tech2i .famnav {
+  display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
+  padding: 0.9rem 1rem; margin-bottom: 0.6rem;
+  background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);}
+.tech2i .famnav__k {
+  font-family: var(--mono); font-size: var(--text-xs); letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--ink-faint); margin-right: 0.35rem;}
+.tech2i .famnav__chip {
+  display: inline-flex; align-items: center; gap: 0.4rem; min-height: 34px;
+  padding: 0.3rem 0.75rem; border: 1px solid var(--line); border-radius: 999px;
+  font-size: var(--text-sm); color: var(--ink-soft); text-decoration: none;
+  background: var(--paper);
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease),
+              transform var(--dur) var(--ease);}
+.tech2i .famnav__chip:hover,
+.tech2i .famnav__chip:focus-visible {
+  border-color: var(--signal); color: var(--ink); transform: translateY(-1px);}
+.tech2i .famnav__n {
+  font-family: var(--mono); font-size: var(--text-xs); color: var(--signal-deep);
+  background: color-mix(in oklab, var(--signal) 12%, transparent);
+  border-radius: 999px; padding: 0.05rem 0.42rem;}
+.tech2i .fam { display: grid; gap: clamp(1.8rem, 1.2rem + 1.8vw, 2.9rem);}
+.tech2i .fam + .fam { margin-top: clamp(3rem, 1.8rem + 3.2vw, 5.2rem);}
+.tech2i .fam__head {
+  scroll-margin-top: 5rem; padding-top: 0.4rem;
+  border-top: 2px solid var(--ink);}
+.tech2i .fam__t {
+  display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.6rem;
+  margin-top: 0.9rem; font-size: var(--text-h3); letter-spacing: -0.01em;}
+.tech2i .fam__n {
+  font-family: var(--mono); font-size: var(--text-xs); font-weight: 500;
+  letter-spacing: 0.06em; color: var(--signal-deep);}
+.tech2i .fam__d { margin-top: 0.5rem; max-width: 62ch; color: var(--ink-soft); font-size: var(--text-sm);}
+.tech2i .fam__nos {
+  margin-top: 0.35rem; font-family: var(--mono); font-size: var(--text-xs);
+  letter-spacing: 0.08em; color: var(--ink-faint);}
+.tech2i .method__head h2 .accent { color: var(--signal-deep);}
+.tech2i .reveal.stagger.in > * { animation: riseIn 0.66s var(--ease) both;}
+.tech2i .reveal.stagger.in > *:nth-child(1) { animation-delay: 0.03s;}
+.tech2i .reveal.stagger.in > *:nth-child(2) { animation-delay: 0.10s;}
+.tech2i .reveal.stagger.in > *:nth-child(3) { animation-delay: 0.17s;}
+.tech2i .reveal.stagger.in > *:nth-child(4) { animation-delay: 0.24s;}
+.tech2i .reveal.stagger.in > *:nth-child(5) { animation-delay: 0.31s;}
+@media (prefers-reduced-motion: reduce) {
+.tech2i .reveal.stagger.in > *,
+.tech2i .gates3.in .g3,
+.tech2i .case.in .ba__a { animation: none;}
+}
+.tech2i .pboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+  gap: 1.5rem 1.25rem;
+  margin-top: 1.6rem;}
+@media (max-width: 640px) {
+.tech2i .pboard { grid-template-columns: 1fr; gap: 1.15rem;}
+}
+.tech2i .pcard {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  overflow: hidden;
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
+              transform var(--dur) var(--ease);}
+.tech2i .pcard__thumb {
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+  line-height: 0;}
+.tech2i .pcard__thumb img {
+  width: 100%; height: auto; display: block;
+  transition: transform var(--dur) var(--ease);}
+.tech2i .pcard { padding: 1.25rem 1.3rem 1.3rem;}
+.tech2i .pcard:has(.pcard__body) { padding: 0;}
+.tech2i .pcard__body {
+  display: flex; flex-direction: column; flex: 1 1 auto;
+  padding: 1.25rem 1.3rem 1.3rem;}
+.tech2i .pcard:hover {
+  border-color: color-mix(in oklab, var(--signal) 45%, var(--line));
+  box-shadow: 0 6px 22px -12px color-mix(in oklab, var(--ink) 40%, transparent);
+  transform: translateY(-2px);}
+.tech2i .pcard:hover .pcard__thumb img { transform: scale(1.03);}
+.tech2i .pcard:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px;}
+@media (prefers-reduced-motion: reduce) {
+.tech2i .pcard,
+.tech2i .pcard__thumb img { transition: none;}
+.tech2i .pcard:hover { transform: none;}
+.tech2i .pcard:hover .pcard__thumb img { transform: none;}
+}
+.tech2i .pcard__meta {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.55rem;
+  font-family: var(--mono); font-size: var(--text-xs);
+  letter-spacing: 0.04em; color: var(--ink-faint);
+  margin-bottom: 0.6rem;}
+.tech2i .pcard__cat {
+  color: var(--steel);
+  background: color-mix(in oklab, var(--steel) 10%, transparent);
+  border: 1px solid color-mix(in oklab, var(--steel) 24%, transparent);
+  padding: 0.1rem 0.5rem; border-radius: 2px;
+  text-transform: uppercase;}
+.tech2i .pcard__pdf {
+  color: var(--signal-deep);
+  border: 1px solid color-mix(in oklab, var(--signal) 40%, transparent);
+  padding: 0.1rem 0.42rem; border-radius: 2px; font-weight: 500;}
+.tech2i .pcard__title {
+  font-size: 1.06rem; font-weight: 800; letter-spacing: -0.02em;
+  color: var(--ink); margin-bottom: 0.45rem; line-height: 1.32;
+  transition: color var(--dur) var(--ease);}
+.tech2i .pcard:hover .pcard__title { color: var(--signal-deep);}
+.tech2i .pcard__excerpt {
+  color: var(--ink-soft); font-size: 0.92rem; line-height: 1.55;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+  overflow: hidden;}
+.tech2i .pcard__tags {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.45rem;
+  font-family: var(--mono); font-size: var(--text-xs); color: var(--ink-faint);
+  margin-top: auto; padding-top: 0.9rem;}
+.tech2i .pcard__go { margin-left: auto; color: var(--signal-deep); font-weight: 500;}
+.tech2i .pcard.is-hidden { display: none;}
+.tech2i .article__head .pcard__meta { margin: 0.9rem 0 0.9rem;}
+@media (prefers-reduced-motion: reduce) {
+.tech2i .pcard,
+.tech2i .pcard::before,
+.tech2i .pcard__title,
+.tech2i .pfilter { transition: none;}
+}
+.tech2i .techsearch {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem;
+  margin: 0 0 1.6rem;}
+.tech2i .techsearch__l {
+  font-family: var(--mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);}
+.tech2i .techsearch__i {
+  flex: 1 1 18rem;
+  min-height: 44px;
+  padding: 0.5rem 0.9rem;
+  font-family: inherit;
+  font-size: var(--text-sm);
+  color: var(--ink);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  transition: border-color var(--dur) var(--ease);}
+.tech2i .techsearch__i:focus-visible { outline: 2px solid var(--signal); outline-offset: 1px;}
+.tech2i .techsearch__i:hover { border-color: var(--steel-soft);}
+.tech2i .techsearch__n {
+  font-family: var(--mono);
+  font-size: var(--text-xs);
+  color: var(--signal-deep);}
+.tech2i .techboard .fam + .fam { margin-top: clamp(2.8rem, 1.6rem + 2.8vw, 4.6rem);}
+.tech2i .techboard .pboard { margin-top: 0.4rem;}
+.tech2i .techboard .pcard__tags span:first-child {
+  font-family: var(--mono);
+  color: var(--ink-soft);}
+@media (max-width: 768px) {
+.tech2i .foot__links a,
+.tech2i .foot__legal a,
+.tech2i .case__proof .chip,
+.tech2i .famnav__chip,
+.tech2i .idea__case,
+.tech2i .pfilter,
+.tech2i .ifilter,
+.tech2i .brand {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;}
+}
+
+/* 밝은 배경을 전제로 한 몇 군데 보정 */
+.tech2i .pcard { background: var(--panel); border-color: var(--line-soft); }
+.tech2i .pcard:hover { border-color: var(--cy); background: var(--bg-3); }
+.tech2i .pcard__title { color: var(--fg); }
+.tech2i .pcard__excerpt, .tech2i .pcard__tags { color: var(--fg-3); }
+.tech2i .pcard__cat, .tech2i .pcard__date, .tech2i .pcard__rt { color: var(--fg-4); }
+.tech2i .pcard__go { color: var(--cy); }
+.tech2i .fam__t { color: var(--fg); }
+.tech2i .fam__d { color: var(--fg-3); }
+.tech2i .fam__n { color: var(--cy); }
+.tech2i .famnav__chip {
+  border-color: var(--line); color: var(--fg-2); background: var(--bg-2);
+}
+.tech2i .famnav__chip:hover { border-color: var(--cy); color: var(--fg); }
+.tech2i .famnav__n { color: var(--cy); }
+.tech2i .famnav__k { color: var(--fg-4); }
+.tech2i .techsearch__i {
+  background: var(--bg-2); color: var(--fg);
+  border: 1px solid var(--line); border-radius: 999px;
+  min-height: 46px; padding: 0 1.1rem; width: min(100%, 34rem);
+}
+.tech2i .techsearch__i:focus-visible { border-color: var(--cy); outline: none; }
+.tech2i .techsearch__l { color: var(--fg-3); display: block; margin-bottom: .5rem; font-size: .9rem; }
+.tech2i .techsearch__n { color: var(--fg-4); font-family: var(--mono); font-size: .75rem; margin-left: .7rem; }
+.tech2i .reveal { opacity: 1; transform: none; }
+/* 썸네일은 밝은 종이 위에 그린 도면이라 다크 배경에서 흰 박스로 튄다.
+   반전 후 hue-rotate 로 선 색을 되돌리는 표준 다크모드 처리를 쓴다.
+   ⚠ 부모와 자식에 동시에 걸면 두 번 뒤집혀 원래대로 돌아온다. img 에만 건다. */
+.tech2i .pcard__thumb img {
+  filter: invert(1) hue-rotate(180deg) saturate(0.9) brightness(0.95) contrast(0.92);
+}
+.tech2i .pcard__thumb { background: var(--bg-3); }
+.tech2i a { color: inherit; }
