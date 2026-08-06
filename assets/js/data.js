@@ -519,7 +519,7 @@ export const reels = [
     blurb: "근무표, 콜센터 인력, 리그 일정처럼 딥러닝으로 풀기 어려운 배정 문제를 다룹니다." },
   { n: "05", slug: "05-quant", cat: "LLM 양자화", palette: "indigo",
     blurb: "같은 모델을 더 싸게 굴립니다. 서빙까지 검증한 것만 셉니다." },
-  { n: "06", slug: "06-distill", cat: "소형 모델 증류·이식", palette: "teal",
+  { n: "06", slug: "06-distill", cat: "소형 모델 증류·이식", palette: "teal", ready: true, dur: "0:29"
     blurb: "반복 워커만 떼어 소형 모델로 옮기고, 판단이 필요한 곳에만 큰 모델을 씁니다." },
   { n: "07", slug: "07-acoustic", cat: "음향", palette: "lime",
     blurb: "360만 곡 실시간 인식에서 설비 예지보전까지, 소리로 할 수 있는 일들입니다." },
@@ -531,11 +531,11 @@ export const reels = [
     blurb: "소재를 사람 손 없이 반복 생산합니다. 이 영상들도 그 파이프라인으로 만들었습니다." },
   { n: "11", slug: "11-marketing", cat: "마케팅 자동화", palette: "amber", ready: true, dur: "0:25",
     blurb: "기술 블로그 무인 운영과 경쟁사 인텔. 발행까지 자동으로 갑니다." },
-  { n: "12", slug: "12-storage", cat: "스토리지 내구성", palette: "teal",
+  { n: "12", slug: "12-storage", cat: "스토리지 내구성", palette: "teal", ready: true, dur: "0:32"
     blurb: "결함을 실제로 주입해 세어 본 것만 남깁니다. 공급자 주장을 실측으로 검증합니다." },
   { n: "13", slug: "13-product", cat: "도메인 제품", palette: "emerald", ready: true, dur: "0:27",
     blurb: "법률, 교육, 의료, 금융. 규제가 있는 곳에서 로컬 우선으로 만듭니다." },
-  { n: "14", slug: "14-devtool", cat: "개발 도구", palette: "azure",
+  { n: "14", slug: "14-devtool", cat: "개발 도구", palette: "azure", ready: true, dur: "0:24"
     blurb: "나머지 전부를 빠르게 만드는 바닥. 템플릿, 검사기, 문서화, 저작 도구." },
   { n: "15", slug: "15-career", cat: "커리어 아카이브", palette: "crimson",
     blurb: "2i 창업에서 토스, 삼성전자, Daum까지. 20년치 화면을 다시 움직이게 했습니다." }
