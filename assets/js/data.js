@@ -504,3 +504,39 @@ export const contact = {
     ]
   }
 };
+
+/* 포트폴리오 영상 15편. `ready` 인 것만 실제 파일을 붙이고, 나머지는 자리만 잡아 둔다.
+   한 편이 완성될 때마다 여기 한 줄을 ready 로 바꾸면 화면이 따라온다.
+   palette 는 편마다 다른 액센트 — 어두운 베이스는 공유하되 카테고리마다 색이 바뀐다. */
+export const reels = [
+  { n: "01", slug: "01-comms", cat: "통신 · 전 구간", palette: "cyan", ready: true, dur: "0:46",
+    blurb: "신호 지문을 전파로 일반화하고, 송신기와 채널과 수신기를 분리해 일반 서버 한 대에서 돌립니다." },
+  { n: "02", slug: "02-recsys", cat: "추천 시스템", palette: "amber",
+    blurb: "쿠폰 예산, 배송 물량, 오퍼 랭킹처럼 회사가 실제로 풀고 싶은 문제로 옮겨 놓습니다." },
+  { n: "03", slug: "03-agent", cat: "에이전트 플랫폼", palette: "violet",
+    blurb: "스킬 2,000개를 비서 하나가 운영합니다. 라우팅과 루프와 검증을 코드가 소유합니다." },
+  { n: "04", slug: "04-nphard", cat: "NP-하드 최적화", palette: "emerald",
+    blurb: "근무표, 콜센터 인력, 리그 일정처럼 딥러닝으로 풀기 어려운 배정 문제를 다룹니다." },
+  { n: "05", slug: "05-quant", cat: "LLM 양자화", palette: "indigo",
+    blurb: "같은 모델을 더 싸게 굴립니다. 서빙까지 검증한 것만 셉니다." },
+  { n: "06", slug: "06-distill", cat: "소형 모델 증류·이식", palette: "teal",
+    blurb: "반복 워커만 떼어 소형 모델로 옮기고, 판단이 필요한 곳에만 큰 모델을 씁니다." },
+  { n: "07", slug: "07-acoustic", cat: "음향", palette: "lime",
+    blurb: "360만 곡 실시간 인식에서 설비 예지보전까지, 소리로 할 수 있는 일들입니다." },
+  { n: "08", slug: "08-vision", cat: "비전", palette: "crimson",
+    blurb: "730만 장 사물 검색과 광학 채널. 통신이 없는 환경에서 데이터를 옮기는 방법입니다." },
+  { n: "09", slug: "09-aiplatform", cat: "AI 플랫폼 · 서빙", palette: "azure",
+    blurb: "사내 추론 기반과 소버린 배포. 삼성전자 ML 플랫폼에서 시작한 축입니다." },
+  { n: "10", slug: "10-mediagen", cat: "영상 · 이미지 생성", palette: "violet",
+    blurb: "소재를 사람 손 없이 반복 생산합니다. 이 영상들도 그 파이프라인으로 만들었습니다." },
+  { n: "11", slug: "11-marketing", cat: "마케팅 자동화", palette: "amber",
+    blurb: "기술 블로그 무인 운영과 경쟁사 인텔. 발행까지 자동으로 갑니다." },
+  { n: "12", slug: "12-storage", cat: "스토리지 내구성", palette: "teal",
+    blurb: "결함을 실제로 주입해 세어 본 것만 남깁니다. 공급자 주장을 실측으로 검증합니다." },
+  { n: "13", slug: "13-product", cat: "도메인 제품", palette: "emerald",
+    blurb: "법률, 교육, 의료, 금융. 규제가 있는 곳에서 로컬 우선으로 만듭니다." },
+  { n: "14", slug: "14-devtool", cat: "개발 도구", palette: "azure",
+    blurb: "나머지 전부를 빠르게 만드는 바닥. 템플릿, 검사기, 문서화, 저작 도구." },
+  { n: "15", slug: "15-career", cat: "커리어 아카이브", palette: "crimson",
+    blurb: "2i 창업에서 토스, 삼성전자, Daum까지. 20년치 화면을 다시 움직이게 했습니다." }
+];

@@ -225,7 +225,7 @@ export function initScene(canvas) {
   function frame() {
     if (!state.running) return;
     requestAnimationFrame(frame);
-    if (!state.visible) return;
+    if (!state.visible || state.suspended) return;
 
     const dt = Math.min(clock.getDelta(), 0.05);
 
@@ -262,6 +262,12 @@ export function initScene(canvas) {
     },
     setActiveLayer(i) {
       state.activeIndex = i;
+    },
+    /* Reversible pause — the render loop keeps its rAF chain but stops drawing.
+       `stop()` disposes and cannot be undone, so it is wrong for "a video started
+       playing": the scene has to come back when the video ends. */
+    setSuspended(on) {
+      state.suspended = !!on;
     },
     stop() {
       state.running = false;

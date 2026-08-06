@@ -2,7 +2,7 @@
    three.js 는 동적 import 로만 부른다. CDN 이 죽어도 페이지는 그대로 뜬다. */
 
 import { wireBurger } from "./main-nav.js";
-import { profile, stats, layers, work, timeline, strategy, research, stack, contact } from "./data.js";
+import { profile, stats, layers, work, timeline, strategy, research, stack, contact , reels } from "./data.js";
 
 const $ = (s, r = document) => r.querySelector(s);
 const el = (id) => document.getElementById(id);
@@ -339,6 +339,54 @@ async function wireScene() {
     { rootMargin: "-40% 0px -40% 0px" }
   );
   document.querySelectorAll("[data-layer]").forEach((n) => io.observe(n));
+
+  /* 영상이 도는 동안 3D 루프는 쉰다. 둘 다 GPU를 쓰기 때문에 같이 돌면 둘 다 버벅인다.
+     stop() 이 아니라 setSuspended 다 — 영상이 끝나면 씬이 돌아와야 한다. */
+  if (typeof ctl.setSuspended === "function") {
+    const vids = () => [...document.querySelectorAll("video")];
+    const anyPlaying = () => vids().some((v) => !v.paused && !v.ended);
+    const sync = () => ctl.setSuspended(anyPlaying());
+    ["play", "pause", "ended"].forEach((evt) =>
+      document.addEventListener(evt, (e) => {
+        if (e.target instanceof HTMLVideoElement) sync();
+      }, true)
+    );
+  }
+}
+
+
+/* 영상 15편. ready 인 것만 실제 플레이어, 나머지는 자리만 잡는 카드다.
+   preload="none" + poster 라 재생을 누르기 전에는 바이트가 오지 않는다. */
+function renderReels() {
+  const host = el("reelgrid");
+  if (!host) return;
+  host.innerHTML = reels
+    .map((r) => {
+      if (r.ready) {
+        return `
+    <figure class="reel rv" data-pal="${r.palette}">
+      <video class="reel-v" controls preload="none" playsinline
+             poster="assets/video/${r.slug}.jpg" aria-describedby="cap-${r.n}">
+        <source src="assets/video/${r.slug}.mp4" type="video/mp4">
+        이 브라우저는 영상 재생을 지원하지 않습니다.
+        <a href="assets/video/${r.slug}.mp4">영상 내려받기</a>
+      </video>
+      <figcaption class="reel-cap" id="cap-${r.n}">
+        <b><i>${r.n}</i>${r.cat}<em>${r.dur}</em></b>
+        <span>${r.blurb}</span>
+      </figcaption>
+    </figure>`;
+      }
+      return `
+    <figure class="reel reel--soon rv" data-pal="${r.palette}" aria-label="${r.cat} 영상 준비 중">
+      <div class="reel-v reel-slot"><span>준비 중</span></div>
+      <figcaption class="reel-cap">
+        <b><i>${r.n}</i>${r.cat}</b>
+        <span>${r.blurb}</span>
+      </figcaption>
+    </figure>`;
+    })
+    .join("");
 }
 
 /* ---------- 부팅 ---------- */
@@ -350,6 +398,7 @@ function boot() {
   renderTimeline();
   renderResearch();
   renderStack();
+  renderReels();
   renderContact();
 
   wireReveal();
