@@ -17,7 +17,7 @@ export const ko = {
     "2007년부터 공백 없이 19년째 컴퓨터 비전, 추천, 생성 AI, 엔터프라이즈 AI 플랫폼을 만들어 온 AI 시스템 엔지니어입니다.",
     "현재 ThakiCloud에서 추론(Metis), 학습(Maxis), 에이전트 자동화(Paxis) 세 플랫폼의 제품 전략과 아키텍처를 설계하고 팀을 이끕니다.",
     "생성 AI 콘텐츠 플랫폼을 직접 창업해 일본·대만·홍콩 3개 시장에서 유료 사용자 5만 명, 누적 매출 4억 원을 만든 경험이 있습니다.",
-    "한국어·영어·아랍어 3개 언어로 2,260편을 발행하는 기술 블로그를 운영하고, 동작하는 구현 사례 32건을 독립 연구로 축적했습니다.",
+    "한국어·영어·아랍어 3개 언어 기술 블로그를 운영하며 2,260편을 쓰고 608편을 공개했습니다. 동작하는 구현 사례 32건을 독립 연구로 축적했습니다.",
     "기획서로 멈추지 않고 모델부터 인프라, 제품까지 한 사람이 관통해 만드는 쪽을 강점으로 삼습니다."
   ],
 
@@ -94,7 +94,7 @@ export const ko = {
         {
           name: "기술 블로그 운영과 다국어 발행 파이프라인",
           bullets: [
-            "초안 생성부터 사실 검증, 번역, 배포까지 이어지는 발행 파이프라인을 구축해 2024년 5월부터 2,260편(한국어 1,055 · 영어 647 · 아랍어 558)을 발행",
+            "초안 생성부터 사실 검증, 번역, 배포까지 이어지는 발행 파이프라인을 구축해 2024년 5월부터 2,260편을 작성하고 608편(한국어 307 · 영어 301)을 공개 운영",
             "11개 카테고리에 걸쳐 품질 게이트를 코드로 강제해 3개 언어를 동일 품질 기준으로 유지"
           ]
         }
@@ -317,7 +317,7 @@ export const en = {
     "AI systems engineer with 19 years of continuous experience (2007-present) spanning computer vision, recommendation systems, generative AI, and enterprise AI platforms.",
     "Currently leads product strategy and architecture for three AI platforms at ThakiCloud: inference (Metis), training (Maxis), and enterprise agent automation (Paxis).",
     "Founded and ran a generative AI content platform that reached 50K paying users and KRW 400M in cumulative revenue across Japan, Taiwan, and Hong Kong.",
-    "Publishes and operates a trilingual technical blog (Korean, English, Arabic) with 2,260 posts since May 2024, backed by 32 working independent R&D implementations."
+    "Runs a trilingual technical blog (Korean, English, Arabic), having written 2,260 posts since May 2024 with 608 currently public, backed by 32 working independent R&D implementations."
   ],
 
   skills: [
@@ -393,7 +393,7 @@ export const en = {
         {
           name: "Built and operated a multilingual technical blog publishing pipeline",
           bullets: [
-            "Built an end-to-end pipeline from drafting through fact-checking, translation, and deployment, publishing 2,260 posts since May 2024 (1,055 Korean, 647 English, 558 Arabic)",
+            "Built an end-to-end pipeline from drafting through fact-checking, translation, and deployment, writing 2,260 posts since May 2024 with 608 currently public (307 Korean, 301 English)",
             "Enforced quality gates in code across 11 categories to keep all three languages at the same quality bar"
           ]
         }
