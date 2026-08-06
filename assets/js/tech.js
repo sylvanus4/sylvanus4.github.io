@@ -2,6 +2,7 @@
    여기서 하는 일은 검색 필터와 카운트뿐이다. */
 
 import { wireBurger } from "./main-nav.js";
+import { reels } from "./data.js";
 
 const board = document.getElementById("techboard");
 wireBurger();
@@ -16,6 +17,7 @@ async function load() {
       <a href="https://2icorp.github.io/tech.html" target="_blank" rel="noopener" style="color:var(--cy)">원본 목록 보기</a></p>`;
     return;
   }
+  mountReels();
   wireSearch();
   wireCount();
 }
@@ -67,3 +69,24 @@ function wireSearch() {
 }
 
 load();
+
+/* 분류마다 그 카테고리 영상을 머리에 얹는다. 아직 안 만든 편은 자리만 잡는다.
+   data.js 의 reels 가 유일한 출처라 홈과 카탈로그가 어긋날 수 없다. */
+function mountReels() {
+  const by = Object.fromEntries(reels.map((r) => [r.slug, r]));
+  document.querySelectorAll(".fam__reel[data-reel]").forEach((host) => {
+    const r = by[host.dataset.reel];
+    if (!r) { host.remove(); return; }
+    host.dataset.pal = r.palette;
+    host.innerHTML = r.ready
+      ? `<video class="fam__v" controls preload="none" playsinline
+                poster="assets/video/${r.slug}.jpg" aria-label="${r.cat} 소개 영상">
+           <source src="assets/video/${r.slug}.mp4" type="video/mp4">
+           이 브라우저는 영상 재생을 지원하지 않습니다.
+           <a href="assets/video/${r.slug}.mp4">영상 내려받기</a>
+         </video>
+         <p class="fam__vcap">${r.blurb} <em>${r.dur}</em></p>`
+      : `<div class="fam__v fam__vslot"><span>영상 준비 중</span></div>
+         <p class="fam__vcap">${r.blurb}</p>`;
+  });
+}

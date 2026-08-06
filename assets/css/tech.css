@@ -241,3 +241,11 @@
 }
 .tech2i .pcard__thumb { background: var(--bg-3); }
 .tech2i a { color: inherit; }
+
+/* ⛔ grid blowout 방어. `.fam` 은 컬럼이 명시되지 않은 grid라 트랙이 auto 이고, auto 트랙은
+   min-content 아래로 못 줄어든다. 거기에 고유 너비 1920px 인 <video> 를 자식으로 넣으면
+   트랙이 통째로 부풀어 헤더까지 1280px 로 끌려간다(375px 뷰포트에서 544px 넘침).
+   minmax(0,1fr) + min-width:0 이 정석 처방이다. */
+.tech2i .fam { grid-template-columns: minmax(0, 1fr); }
+.tech2i .fam__reel { min-width: 0; }
+.tech2i .fam__v { max-width: min(880px, 100%); }

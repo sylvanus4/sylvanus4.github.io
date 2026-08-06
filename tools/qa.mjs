@@ -207,7 +207,7 @@ async function runTech(name, ctxOpts) {
   const cards = await page.locator("#techboard a.pcard").count();
   cards === 127 ? ok(`카드 ${cards}개`) : bad(`카드 ${cards}개 (기대 127)`);
   const fams = await page.locator("#techboard .fam").count();
-  fams === 11 ? ok(`분류 ${fams}개`) : bad(`분류 ${fams}개 (기대 11)`);
+  fams === 15 ? ok(`분류 ${fams}개`) : bad(`분류 ${fams}개 (기대 15)`);
 
   errors.length ? bad(`콘솔 에러: ${errors.slice(0, 2).join(" | ")}`) : ok("콘솔 에러 0");
 

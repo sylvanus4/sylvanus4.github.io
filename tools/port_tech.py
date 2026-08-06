@@ -188,6 +188,81 @@ def card_html(c: dict) -> str:
     )
 
 
+
+def retaxonomy(body: str, cfg: dict) -> str:
+    """카드를 영상 카테고리와 같은 축으로 다시 담는다.
+
+    2i 원본의 계열 구조를 그대로 두면 영상 15편과 축이 어긋난다. 카드는 하나도 버리지 않고
+    버킷만 옮기며, 규칙은 위에서부터 첫 매치가 이긴다. 원본이 갱신돼도 이 재분류가 살아남도록
+    생성기가 소유한다(생성 파일을 손으로 고치면 다음 재생성 때 날아간다).
+    """
+    tax = cfg.get("taxonomy")
+    if not tax:
+        return body
+
+    # 계열별 카드 수확 — 카드는 <a class="pcard ...> ... </a> 한 덩어리다
+    cards = []
+    for sec in re.finditer(r'<section class="fam" id="(tech-[a-z]+)".*?</section>', body, re.S):
+        fam = sec.group(1).replace("tech-", "")
+        for a in re.finditer(r'\n?\s*<a class="pcard[ "].*?</a>', sec.group(0), re.S):
+            cards.append({"fam": fam, "html": a.group(0)})
+    if not cards:
+        print("  ⚠ 재분류: 카드를 찾지 못해 원본 유지")
+        return body
+
+    def bucket(c):
+        q = c["html"].lower()
+        for t in tax:
+            if c["fam"] not in t.get("from", []):
+                continue
+            keys = t.get("any") or []
+            if not keys or any(k.lower() in q for k in keys):
+                return t["id"]
+        return "tech-misc"
+
+    buckets = {t["id"]: [] for t in tax}
+    for c in cards:
+        buckets.setdefault(bucket(c), []).append(c["html"])
+
+    out = []
+    for t in tax:
+        items = buckets.get(t["id"], [])
+        if not items:
+            continue
+        short = t["id"].replace("tech-", "")
+        reel = (f'\n        <div class="fam__reel" data-reel="{t["reel"]}"></div>'
+                if t.get("reel") else "")
+        out.append(
+            f'<section class="fam" id="{t["id"]}" aria-labelledby="techt-{short}">\n'
+            f'        <header class="fam__head">\n'
+            f'          <h2 class="fam__t" id="techt-{short}">{t["title"]}'
+            f'<span class="fam__n">{len(items)}개</span></h2>\n'
+            f'          <p class="fam__d">{t["desc"]}</p>\n'
+            f'        </header>'
+            f'{reel}\n'
+            f'        <div class="pboard">' + "".join(items) + "\n        </div>\n      </section>"
+        )
+
+    nav = ['<nav class="famnav" aria-label="분류로 바로가기"><span class="famnav__k">분류</span>']
+    for t in tax:
+        n = len(buckets.get(t["id"], []))
+        if n:
+            nav.append(f'<a class="famnav__chip" href="#{t["id"]}">{t["title"]}'
+                       f'<span class="famnav__n">{n}</span></a>')
+    nav.append("</nav>")
+
+    first = re.search(r'<section class="fam" id="tech-[a-z]+"', body)
+    last = None
+    for m in re.finditer(r'</section>', body):
+        last = m
+    head = body[: first.start()]
+    tail = body[last.end():]
+    head = re.sub(r'<nav class="famnav".*?</nav>', "".join(nav), head, flags=re.S)
+    total = sum(len(v) for v in buckets.values())
+    print(f"  재분류: {len(cards)}장 -> {sum(1 for t in tax if buckets.get(t['id']))}개 분류 (합계 {total})")
+    return head + "\n      ".join(out) + tail
+
+
 def apply_extra(body: str) -> str:
     """내 저장소를 덧붙이고, 회사 화법으로 남은 문장을 고치고, 개수를 다시 센다."""
     if not EXTRA_JSON.exists():
@@ -209,6 +284,8 @@ def apply_extra(body: str) -> str:
             print(f'  ⚠ 계열 없음: {c["fam"]}')
             continue
         body = body[: sec.start()] + sec.group(1) + sec.group(2) + card_html(c) + sec.group(3) + body[sec.end():]
+
+    body = retaxonomy(body, cfg)
 
     for fam, label in cfg.get("rename", {}).items():
         body = re.sub(
