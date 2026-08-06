@@ -147,9 +147,9 @@
     },
     {
       "id": "tech-aiplatform",
-      "title": "AI 플랫폼·서빙",
+      "title": "Paxis · Maxis · Metis",
       "reel": "09-aiplatform",
-      "desc": "추론 서빙, 쿠버네티스 운영, 셀프호스팅 비용, 소버린 배포.",
+      "desc": "에이전트 실행 플랫폼과 그 밑을 받치는 학습·추론 기반. 서빙, GPU 스케줄링, 실험 추적, 멀티테넌시.",
       "from": [
         "llm"
       ],

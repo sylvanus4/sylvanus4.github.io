@@ -18,7 +18,7 @@ export const ko = {
     "현재 ThakiCloud에서 추론(Metis), 학습(Maxis), 에이전트 자동화(Paxis) 세 플랫폼의 제품 전략과 아키텍처를 설계하고 팀을 이끕니다.",
     "생성 AI 콘텐츠 플랫폼을 직접 창업해 일본·대만·홍콩 3개 시장에서 유료 사용자 5만 명, 누적 매출 4억 원을 만든 경험이 있습니다.",
     "한국어·영어·아랍어 3개 언어 기술 블로그를 운영하며 2,260편을 쓰고 608편을 공개했습니다. 동작하는 구현 사례 32건을 독립 연구로 축적했습니다.",
-    "기획서로 멈추지 않고 모델부터 인프라, 제품까지 한 사람이 관통해 만드는 쪽을 강점으로 삼습니다."
+    "모델부터 인프라, 제품까지 직접 만들어 본 경험을 바탕으로 방향을 정하고, 필요한 부분은 지금도 직접 구현합니다."
   ],
 
   skills: [
@@ -85,10 +85,17 @@ export const ko = {
         "추론 · 학습 · 에이전트 플랫폼 세 축을 기획하고 설계하며 팀을 이끌고 있습니다. 기술 블로그 발행 파이프라인도 함께 운영합니다.",
       projects: [
         {
-          name: "AI 플랫폼 3종 기획 · 설계 · 구축",
+          name: "AI 플랫폼 3종 기획 · 아키텍처 설계 · 리딩",
           bullets: [
-            "추론(Metis) · 학습(Maxis) · 에이전트(Paxis) 플랫폼 세 축의 로드맵과 아키텍처를 직접 설계하고 구현까지 리딩",
-            "Kubernetes 기반 GPU 스케줄링과 멀티테넌시, GitOps 배포 체계를 구축해 플랫폼 운영 기반을 확립"
+            "추론(Metis) · 학습(Maxis) · 에이전트(Paxis) 세 축의 제품 방향과 기본 아키텍처를 설계하고, 실험 우선순위를 정해 개발팀을 리딩",
+            "Kubernetes GPU 스케줄링 · 멀티테넌시 · GitOps 배포 체계의 설계 방향을 잡고 구축을 총괄"
+          ]
+        },
+        {
+          name: "에이전트 빌더 사내 시스템 연동 (직접 구현)",
+          bullets: [
+            "에이전트 빌더를 사내 시스템과 연동해 실제 업무를 에이전트로 조립·실행하는 경로를 직접 설계하고 구현",
+            "모델 양자화(NVFP4 · W4A16)를 직접 담당해 서빙 가능 여부까지 검증한 뒤 배포 대상으로 확정"
           ]
         },
         {
@@ -386,8 +393,15 @@ export const en = {
         {
           name: "Led strategy and architecture for three AI platforms",
           bullets: [
-            "Designed roadmap and architecture for inference (Metis), training (Maxis), and agent automation (Paxis) platforms, driving each through implementation",
-            "Built GPU scheduling, multi-tenancy, and GitOps deployment on Kubernetes to establish the platforms' operating foundation"
+            "Set product direction and designed the core architecture for inference (Metis), training (Maxis), and agent automation (Paxis), and led the engineering team by setting experiment priorities",
+            "Directed the design of GPU scheduling, multi-tenancy, and GitOps deployment on Kubernetes, overseeing the build"
+          ]
+        },
+        {
+          name: "Agent builder integration with internal systems (hands-on)",
+          bullets: [
+            "Personally designed and built the path that wires the agent builder into internal systems so real work can be assembled and executed as agents",
+            "Owned model quantization (NVFP4, W4A16) end to end, qualifying each build by whether it actually serves before it ships"
           ]
         },
         {
