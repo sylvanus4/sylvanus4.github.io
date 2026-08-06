@@ -208,6 +208,43 @@
     align-items: center;}
 }
 
+/* ⛔ grid blowout 방어 — 생성기가 소유해야 한다. `.fam` 은 컬럼이 명시되지 않은 grid라
+   트랙이 auto 이고, auto 트랙은 min-content 아래로 못 줄어든다. 고유 너비 1920px 인
+   <video> 를 자식으로 넣으면 트랙이 부풀어 헤더까지 끌려가 375px 에서 544px 넘친다.
+   2026-08-06: 이 규칙을 tech.css 에 손으로 덧붙였다가 port_tech.py 재실행에 통째로
+   날아갔다. 생성 파일에 append 하지 말 것 — 여기 PATCH 에 둬야 살아남는다. */
+.tech2i .fam { grid-template-columns: minmax(0, 1fr); }
+.tech2i .fam__reel { margin: 1.25rem 0 1.75rem; min-width: 0; }
+.tech2i .fam__v {
+  display: block; width: 100%; height: auto; aspect-ratio: 16/9;
+  max-width: min(880px, 100%); border-radius: 12px; background: #05070d;
+  border: 1px solid var(--line);
+  border-top: 2px solid color-mix(in oklab, var(--pal, var(--cy)) 55%, transparent);
+}
+.tech2i .fam__reel[data-pal="cyan"]    { --pal: var(--cy); }
+.tech2i .fam__reel[data-pal="violet"]  { --pal: var(--vi); }
+.tech2i .fam__reel[data-pal="azure"]   { --pal: oklch(74% .13 250); }
+.tech2i .fam__reel[data-pal="emerald"] { --pal: var(--ok); }
+.tech2i .fam__reel[data-pal="teal"]    { --pal: oklch(76% .11 185); }
+.tech2i .fam__reel[data-pal="amber"]   { --pal: var(--am); }
+.tech2i .fam__reel[data-pal="crimson"] { --pal: oklch(70% .16 20); }
+.tech2i .fam__reel[data-pal="indigo"]  { --pal: oklch(68% .15 275); }
+.tech2i .fam__vslot {
+  display: grid; place-items: center;
+  background: repeating-linear-gradient(-45deg, transparent 0 14px,
+    color-mix(in oklab, var(--line) 40%, transparent) 14px 15px), var(--bg-2);
+}
+.tech2i .fam__vslot span {
+  font-size: .78rem; font-weight: 600; letter-spacing: .14em; color: var(--fg-3);
+  padding: .45rem .95rem; border: 1px solid var(--line); border-radius: 999px;
+  background: var(--bg);
+}
+.tech2i .fam__vcap {
+  max-width: 880px; margin: .7rem 0 0;
+  font-size: .88rem; line-height: 1.6; color: var(--fg-3);
+}
+.tech2i .fam__vcap em { font-style: normal; color: var(--fg-4); }
+
 /* 밝은 배경을 전제로 한 몇 군데 보정 */
 .tech2i .pcard { background: var(--panel); border-color: var(--line-soft); }
 .tech2i .pcard:hover { border-color: var(--cy); background: var(--bg-3); }
