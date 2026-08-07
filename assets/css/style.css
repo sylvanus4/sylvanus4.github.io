@@ -1116,3 +1116,165 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .leadreel__blurb { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
 }
 @media print { .leadreel__v { display: none; } }
+
+/* ── 데모 목록 ──────────────────────────────────────────────────────────────
+   화면 캡처가 주인공이라 카드는 액자처럼 얇게 둔다. 분류 이동은 앵커라
+   스크립트가 죽어도 목록이 남는다(그래서 필터가 아니라 nav 다). */
+.dnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: clamp(2rem, 1.5rem + 1.5vw, 3rem) 0 clamp(2.5rem, 2rem + 2vw, 4rem);
+  padding: 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg, 14px);
+  background: var(--panel);
+}
+.dnav__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 40px;
+  padding: 0 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: var(--t-sm);
+  color: var(--fg-2);
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease),
+              background var(--dur) var(--ease);
+}
+.dnav__chip b {
+  font-family: var(--mono);
+  font-size: var(--t-2xs);
+  font-weight: 500;
+  color: var(--cy);
+}
+.dnav__chip:hover, .dnav__chip:focus-visible {
+  color: var(--fg);
+  border-color: var(--cy);
+  background: var(--cy-dim);
+}
+
+.dfam { margin-bottom: clamp(3rem, 2rem + 3vw, 5rem); scroll-margin-top: 84px; }
+.dfam__h {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  margin-bottom: clamp(1.2rem, 1rem + 1vw, 2rem);
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: clamp(1.05rem, 0.98rem + 0.45vw, 1.35rem);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+}
+.dfam__h b {
+  font-family: var(--mono);
+  font-size: var(--t-2xs);
+  font-weight: 500;
+  color: var(--fg-4);
+}
+
+.dgrid {
+  display: grid;
+  gap: clamp(1.2rem, 1rem + 1.2vw, 2rem);
+  grid-template-columns: 1fr;
+  align-items: start;   /* 없으면 짧은 카드가 늘어나 빈 공간이 생긴다 */
+}
+@media (min-width: 700px)  { .dgrid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1180px) { .dgrid { grid-template-columns: repeat(3, 1fr); } }
+
+.dcard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg, 14px);
+  background: var(--panel);
+  overflow: hidden;
+  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease);
+}
+.dcard:hover {
+  border-color: var(--line-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 44px oklch(6% 0.02 265 / 0.45);
+}
+.dcard__shot {
+  display: block;
+  border-bottom: 1px solid var(--line-soft);
+  background: var(--bg-2);
+}
+/* height 속성은 프레젠테이션 힌트로 남아 aspect-ratio 를 무력화한다. 눌러 준다. */
+.dcard__shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1200 / 750;
+  object-fit: cover;
+  object-position: top center;
+  transition: opacity var(--dur) var(--ease);
+}
+.dcard__shot:hover img { opacity: 0.86; }
+.dcard__shot--missing {
+  min-height: 140px;
+  background:
+    repeating-linear-gradient(-45deg, transparent 0 14px,
+      color-mix(in oklab, var(--line) 40%, transparent) 14px 15px), var(--bg-2);
+}
+.dcard__shot--missing img { display: none; }
+
+.dcard__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: clamp(1rem, 0.85rem + 0.6vw, 1.4rem);
+}
+.dbadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: var(--t-2xs);
+  letter-spacing: 0.06em;
+  color: var(--fg-4);
+}
+/* 소스가 열려 있는 것은 증거의 급이 다르다. 그 차이만 색으로 표시한다. */
+.dbadge--own {
+  color: var(--cy);
+  border-color: color-mix(in oklab, var(--cy) 45%, transparent);
+  background: var(--cy-dim);
+}
+.dcard__title {
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.12rem);
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  color: var(--fg);
+}
+.dcard__blurb {
+  font-size: var(--t-sm);
+  line-height: 1.68;
+  color: var(--fg-3);
+}
+.dcard__tech { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.dcard__links { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.35rem; }
+.dlink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 0.95rem;
+  border: 1px solid var(--cy);
+  border-radius: 999px;
+  font-size: var(--t-sm);
+  color: var(--cy);
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.dlink:hover { background: var(--cy); color: oklch(15% 0.03 220); }
+.dlink--ghost { border-color: var(--line-bright); color: var(--fg-3); }
+.dlink--ghost:hover { background: var(--bg-3); color: var(--fg); border-color: var(--line-bright); }
+
+@media (max-width: 600px) {
+  .dnav__chip, .dlink { min-height: 44px; }
+}

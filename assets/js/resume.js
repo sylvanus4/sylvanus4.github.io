@@ -147,6 +147,7 @@ if (bar) {
       <a class="b" href="?lang=ko" aria-current="${!isEn}">한국어</a>
       <a class="b" href="?lang=en" aria-current="${isEn}">English</a>
       <a class="b" href="${isEn ? "Hyojung_Han_Resume_EN.pdf" : "한효정_이력서.pdf"}" download>PDF</a>
+      <a class="b" href="demos.html">${isEn ? "Demos" : "데모"}</a>
       <a class="b" href="tech.html">${isEn ? "Catalog" : "카탈로그"}</a>
       <a class="b" href="./">${isEn ? "Portfolio" : "포트폴리오"}</a>
     </span>`;

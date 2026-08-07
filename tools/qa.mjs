@@ -2,7 +2,7 @@
    사용: node tools/qa.mjs [baseURL]   기본값 http://127.0.0.1:4173 */
 
 import { chromium, devices } from "playwright";
-import { mkdirSync } from "node:fs";
+import { mkdirSync, readFileSync, existsSync } from "node:fs";
 
 const BASE = process.argv[2] || "http://127.0.0.1:4173";
 const OUT = "tools/qa-shots";
@@ -255,24 +255,29 @@ async function navParity() {
     return s;
   };
 
+  const PAGES = ["/index.html", "/tech.html", "/demos.html"];
+  const labels = (s) => s.map((i) => i.t).join("|");
+
   for (const lang of ["", "?lang=en"]) {
-    const home = await shape("/index.html" + lang);
-    const tech = await shape("/tech.html" + lang);
     const tag = lang || "?lang=ko";
+    const shapes = [];
+    for (const p of PAGES) shapes.push([p, await shape(p + lang)]);
 
-    if (!home.length) { bad(`${tag} 홈 내비가 비었다`); continue; }
+    const [refPath, ref] = shapes[0];
+    if (!ref.length) { bad(`${tag} ${refPath} 내비가 비었다`); continue; }
 
-    const labels = (s) => s.map((i) => i.t).join("|");
-    labels(home) === labels(tech)
-      ? ok(`${tag} 항목 동일 (${home.length}개)`)
-      : bad(`${tag} 항목 불일치\n      home: ${labels(home)}\n      tech: ${labels(tech)}`);
+    for (const [p, s] of shapes.slice(1)) {
+      labels(ref) === labels(s)
+        ? ok(`${tag} ${p} 항목 동일 (${s.length}개)`)
+        : bad(`${tag} ${p} 항목 불일치\n      ${refPath}: ${labels(ref)}\n      ${p}: ${labels(s)}`);
 
-    // 개수가 다르면 좌표 비교는 의미가 없다. 위에서 이미 실패로 잡혔다.
-    if (home.length !== tech.length) continue;
-    const drift = home.reduce((m, it, i) => Math.max(m, Math.abs(it.x - tech[i].x)), 0);
-    drift === 0
-      ? ok(`${tag} 페이지 이동 시 좌표 이동 0px`)
-      : bad(`${tag} 페이지 이동 시 내비가 ${drift}px 흔들린다`);
+      // 개수가 다르면 좌표 비교는 의미가 없다. 위에서 이미 실패로 잡혔다.
+      if (ref.length !== s.length) continue;
+      const drift = ref.reduce((m, it, i) => Math.max(m, Math.abs(it.x - s[i].x)), 0);
+      drift === 0
+        ? ok(`${tag} ${p} 좌표 이동 0px`)
+        : bad(`${tag} ${p} 내비가 ${drift}px 흔들린다`);
+    }
   }
 }
 await navParity();
@@ -355,6 +360,98 @@ async function leadReelGate() {
   }
 }
 await leadReelGate();
+
+/* ---- 데모 목록 ----
+   카드의 값어치는 전부 "화면과 링크가 실제와 맞는가" 하나에 달려 있다.
+   개수만 세면 깨진 액자 44개도 통과하므로 이미지 로드까지 본다. */
+async function demosGate() {
+  console.log("\n[demos]");
+  const manifest = JSON.parse(readFileSync("assets/demos.json", "utf8"));
+
+  // 파일 존재는 브라우저를 켜기 전에 확인한다(빠르고 원인이 분명하다).
+  const noShot = manifest.filter((d) => !existsSync(`assets/img/demos/${d.slug}.jpg`));
+  noShot.length === 0
+    ? ok(`캡처 파일 ${manifest.length}개 존재`)
+    : bad(`캡처 없음 ${noShot.length}건: ${noShot.map((d) => d.slug).join(", ")}`);
+
+  // 두 언어가 같은 레코드에 있으므로 한쪽만 빠질 수 없다. 그래도 확인한다.
+  const noEn = manifest.filter((d) => !d.title_en || !d.blurb_en);
+  noEn.length === 0
+    ? ok("영문 필드 전부 채움")
+    : bad(`영문 누락 ${noEn.length}건: ${noEn.map((d) => d.slug).join(", ")}`);
+
+  for (const lang of ["", "?lang=en"]) {
+    const tag = lang || "?lang=ko";
+    const ctx = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
+    const page = await ctx.newPage();
+    const errs = [];
+    page.on("pageerror", (e) => errs.push(e.message));
+    page.on("console", (m) => m.type() === "error" && errs.push(m.text()));
+
+    await page.goto(`${BASE}/demos.html${lang}`, { waitUntil: "load", timeout: 45000 });
+    await page.waitForTimeout(2600);
+    /* ⚠️ loading="lazy" 이미지는 화면 밖을 빠르게 지나가면 아예 요청되지 않는다.
+       그래서 "브라우저에서 44장이 전부 complete 인가" 는 성립하지 않는 조건이고,
+       처음에 그걸 재다가 게이트가 스스로 실패했다. 잡고 싶은 결함은 타이밍이 아니라
+       "페이지가 내보낸 경로가 실제로 존재하는가" 이므로 응답 코드로 확인한다. */
+    const srcs = await page.evaluate(() =>
+      [...document.querySelectorAll(".dcard__shot img")].map((i) => i.src)
+    );
+    const codes = await Promise.all(
+      srcs.map((s) =>
+        page.request.get(s).then((r) => r.status()).catch(() => 0)
+      )
+    );
+    const dead = srcs.filter((_, i) => codes[i] !== 200);
+    dead.length === 0
+      ? ok(`${tag} 캡처 경로 ${srcs.length}개 전부 200`)
+      : bad(`${tag} 캡처 응답 실패 ${dead.length}건: ${dead.slice(0, 3).join(", ")}`);
+
+    const r = await page.evaluate(() => {
+      const imgs = [...document.querySelectorAll(".dcard__shot img")];
+      return {
+        cards: document.querySelectorAll(".dcard").length,
+        groups: document.querySelectorAll(".dfam").length,
+        chips: document.querySelectorAll(".dnav__chip").length,
+        // 실제로 불린 것 중 깨진 것. 아직 안 불린 것은 lazy 라 정상이다.
+        broken: imgs.filter((i) => i.complete && i.naturalWidth === 0).length,
+        noAlt: imgs.filter((i) => !i.alt.trim()).length,
+        repoLinks: document.querySelectorAll(".dlink--ghost").length,
+        ownBadges: document.querySelectorAll(".dbadge--own").length,
+        overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+        hangul: [...document.querySelectorAll(".dcard__title, .dcard__blurb, .dfam__h")]
+          .map((n) => n.textContent.trim())
+          .filter((s) => /[가-힣]/.test(s))
+          .slice(0, 3)
+      };
+    });
+    await ctx.close();
+
+    r.cards === manifest.length
+      ? ok(`${tag} 카드 ${r.cards}개`)
+      : bad(`${tag} 카드 ${r.cards}개 (매니페스트 ${manifest.length})`);
+    r.groups === r.chips && r.groups > 0
+      ? ok(`${tag} 분류 ${r.groups}개 · 칩 동일`)
+      : bad(`${tag} 분류 ${r.groups} vs 칩 ${r.chips}`);
+    r.broken === 0
+      ? ok(`${tag} 로드된 캡처 중 깨진 것 없음`)
+      : bad(`${tag} 깨진 이미지 ${r.broken}건`);
+    r.noAlt === 0 ? ok(`${tag} alt 전부 있음`) : bad(`${tag} alt 없는 이미지 ${r.noAlt}건`);
+    // 소스가 공개된 것만 저장소 링크를 단다. 둘이 어긋나면 배지가 거짓말이 된다.
+    r.ownBadges === r.repoLinks
+      ? ok(`${tag} 소스공개 배지 ${r.ownBadges} = 저장소 링크 ${r.repoLinks}`)
+      : bad(`${tag} 배지 ${r.ownBadges} ≠ 저장소 링크 ${r.repoLinks}`);
+    r.overflow <= 0 ? ok(`${tag} 가로 넘침 없음`) : bad(`${tag} 가로 넘침 ${r.overflow}px`);
+    errs.length === 0 ? ok(`${tag} 콘솔 에러 0`) : bad(`${tag} 콘솔 에러: ${errs[0]}`);
+
+    if (lang === "?lang=en") {
+      r.hangul.length === 0
+        ? ok("영문 화면에 국문 잔류 없음")
+        : bad(`영문 카드에 국문 잔류: ${r.hangul.join(" / ")}`);
+    }
+  }
+}
+await demosGate();
 
 /* ---- 두 언어의 숫자 일치 ----
    국문과 영문이 서로 다른 실적을 주장하면 둘 다 못 믿을 문서가 된다. */

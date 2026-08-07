@@ -38,6 +38,7 @@ const UI = {
     "meta.desc":
       "19년차 AI 시스템 엔지니어 한효정. Daum, 삼성전자, Toss를 거쳐 지금은 ThakiCloud에서 추론·학습·에이전트 플랫폼을 설계합니다.",
     "meta.techTitle": "보유 기술 카탈로그 · 한효정",
+    "meta.demosTitle": "돌아가는 데모 44개 · 한효정",
 
     "skip": "본문으로 건너뛰기",
     "nav.aria": "주요 섹션",
@@ -47,6 +48,7 @@ const UI = {
     "nav.career": "이력",
     "nav.research": "연구",
     "nav.skills": "도구",
+    "nav.demos": "데모",
     "nav.tech": "카탈로그",
     "nav.resume": "이력서",
     "nav.cta": "연락하기",
@@ -107,6 +109,20 @@ const UI = {
     "tech.match": "개 일치",
     "tech.reelSoon": "영상 준비 중",
 
+    "demos.eyebrow": "Live Demos",
+    "demos.h1": "말로 설명하는 대신, 눌러 보시면 됩니다",
+    "demos.lede":
+      "브라우저에서 그 자리에서 계산하는 데모 <b id=\"demototal\">44</b>개입니다. 영상도 슬라이드도 아니고 값을 바꾸면 결과가 다시 나옵니다. 제가 다루는 문제가 실제로 어떤 모양인지 보시는 게 가장 빠릅니다.",
+    "demos.note":
+      "12개는 제 개인 저장소에 소스까지 공개돼 있어 코드를 바로 열어 볼 수 있습니다. 나머지는 배포된 화면만 공개돼 있습니다.",
+    "demos.loading": "데모 목록을 불러오는 중입니다.",
+    "demos.failed": "데모 목록을 불러오지 못했습니다.",
+    "demos.open": "데모 열기",
+    "demos.source": "소스",
+    "demos.badgeOwn": "소스 공개",
+    "demos.badgeHosted": "배포 화면",
+    "demos.shotAlt": "화면 캡처",
+
     "foot.where": "ThakiCloud · 서울 역삼",
     "noscript":
       "이 페이지는 자바스크립트로 내용을 불러옵니다. 연락은 hyojunguy@gmail.com 으로 주세요."
@@ -117,6 +133,7 @@ const UI = {
     "meta.desc":
       "Hyojung Han, AI systems engineer with 19 years of experience. Built recognition engines and ML platforms at Daum, Samsung Electronics and Toss. Now designs inference, training and agent platforms at ThakiCloud.",
     "meta.techTitle": "Technology Catalog · Hyojung Han",
+    "meta.demosTitle": "44 Live Demos · Hyojung Han",
 
     "skip": "Skip to content",
     "nav.aria": "Main sections",
@@ -126,6 +143,7 @@ const UI = {
     "nav.career": "Career",
     "nav.research": "Research",
     "nav.skills": "Toolbox",
+    "nav.demos": "Demos",
     "nav.tech": "Catalog",
     "nav.resume": "Resume",
     "nav.cta": "Get in touch",
@@ -185,6 +203,20 @@ const UI = {
     "tech.koOnly": "Catalog entry descriptions are available in Korean only.",
     "tech.match": " matching",
     "tech.reelSoon": "Reel coming soon",
+
+    "demos.eyebrow": "Live Demos",
+    "demos.h1": "Rather than explain it, you can just press it",
+    "demos.lede":
+      "<b id=\"demototal\">44</b> demos that compute in your browser on the spot. Not a video and not a slide: change a value and the result is recomputed. The fastest way to see the shape of the problems I work on.",
+    "demos.note":
+      "12 of them ship their source in my own public repositories, so you can open the code directly. The rest are published as running screens only.",
+    "demos.loading": "Loading the demo list.",
+    "demos.failed": "The demo list could not be loaded.",
+    "demos.open": "Open demo",
+    "demos.source": "Source",
+    "demos.badgeOwn": "Source open",
+    "demos.badgeHosted": "Running screen",
+    "demos.shotAlt": "screenshot",
 
     "foot.where": "ThakiCloud · Yeoksam, Seoul",
     "noscript":

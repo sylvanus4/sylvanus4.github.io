@@ -7,6 +7,7 @@ const BASE = process.argv[2] || "http://127.0.0.1:4173";
 const PAGES = [
   { name: "portfolio", url: "/" },
   { name: "catalog", url: "/tech.html" },
+  { name: "demos", url: "/demos.html" },
   { name: "resume-ko", url: "/resume.html?lang=ko" },
   { name: "resume-en", url: "/resume.html?lang=en" }
 ];

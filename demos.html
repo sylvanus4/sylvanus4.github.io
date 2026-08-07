@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko" data-title-key="meta.demosTitle">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>돌아가는 데모 44개 · 한효정</title>
+
+<meta name="description" content="브라우저에서 그 자리에서 계산하는 데모 44개. 최적화, 모델 서빙, 에이전트 하네스, 비전과 신호, 추천, 스토리지까지 화면과 링크로 바로 확인할 수 있습니다.">
+<meta name="theme-color" content="#0d1119">
+<link rel="canonical" href="https://sylvanus4.github.io/demos.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="돌아가는 데모 44개 · 한효정">
+<meta property="og:description" content="말로 설명하는 대신 눌러 보면 되는 것들. 브라우저에서 실제로 계산하는 데모 44개.">
+<meta property="og:url" content="https://sylvanus4.github.io/demos.html">
+<meta property="og:image" content="https://sylvanus4.github.io/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d1119'/%3E%3Cg stroke='%237fd8e8' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M7 10h18M7 16h18M7 22h18' opacity='.55'/%3E%3Cpath d='M16 5v22' stroke='%23c08ef0'/%3E%3C/g%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5.0.19/400.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+<div class="scene-fallback" aria-hidden="true"></div>
+
+<a class="skip" href="#main" data-i18n="skip">본문으로 건너뛰기</a>
+<div class="page">
+
+  <!-- 항목 순서와 개수는 index.html · tech.html 과 완전히 같아야 한다. qa.mjs 가 검사한다. -->
+  <header class="nav">
+    <div class="nav-in">
+      <a class="brand" href="./">한효정 <span>Hyojung Han</span></a>
+      <nav class="nav-links" id="navlinks" aria-label="주요 섹션" data-i18n-attr="aria-label:nav.aria">
+        <a href="./#stack" data-i18n="nav.stack">스택</a>
+        <a href="./#reels" data-i18n="nav.reels">영상</a>
+        <a href="./#work" data-i18n="nav.work">작업</a>
+        <a href="./#career" data-i18n="nav.career">이력</a>
+        <a href="./#research" data-i18n="nav.research">연구</a>
+        <a href="./#skills" data-i18n="nav.skills">도구</a>
+        <a href="demos.html" class="on" aria-current="page" data-i18n="nav.demos">데모</a>
+        <a href="tech.html" data-i18n="nav.tech">카탈로그</a>
+        <a href="resume.html" data-i18n="nav.resume">이력서</a>
+      </nav>
+      <div class="langpick" id="langpick"></div>
+      <button class="nav-burger" type="button" aria-expanded="false" aria-controls="navlinks"
+              aria-label="메뉴 열기" data-i18n-attr="aria-label:nav.open"><span></span></button>
+      <a class="nav-cta" href="./#contact" data-magnet data-i18n="nav.cta">연락하기</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section" style="padding-top:clamp(6.5rem,4rem+7vw,10rem)">
+      <div class="wrap">
+        <div class="head">
+          <p class="eyebrow" data-i18n="demos.eyebrow">Live Demos</p>
+          <h1 class="h2" data-i18n="demos.h1">말로 설명하는 대신, 눌러 보시면 됩니다</h1>
+          <p class="lede" data-i18n-html="demos.lede">
+            브라우저에서 그 자리에서 계산하는 데모 <b id="demototal">44</b>개입니다. 영상도 슬라이드도 아니고
+            값을 바꾸면 결과가 다시 나옵니다. 제가 다루는 문제가 실제로 어떤 모양인지 보시는 게 가장 빠릅니다.
+          </p>
+          <p class="lede muted" style="font-size:.95rem;margin-top:1rem" data-i18n="demos.note">
+            12개는 제 개인 저장소에 소스까지 공개돼 있어 코드를 바로 열어 볼 수 있습니다.
+            나머지는 배포된 화면만 공개돼 있습니다.
+          </p>
+        </div>
+
+        <nav class="dnav" id="demonav" aria-label="분류"></nav>
+        <div id="demoboard">
+          <p class="muted" data-i18n="demos.loading">데모 목록을 불러오는 중입니다.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap foot">
+    <span>© 2026 한효정 (Hyojung Han)</span>
+    <span class="mono" data-i18n="foot.where">ThakiCloud · 서울 역삼</span>
+  </footer>
+</div>
+
+<script type="module" src="assets/js/demos.js"></script>
+</body>
+</html>
