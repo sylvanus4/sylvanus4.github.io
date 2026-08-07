@@ -293,7 +293,8 @@ async function langGate() {
   const r = await page.evaluate(() => ({
     lang: document.documentElement.lang,
     cards: document.querySelectorAll(".card").length,
-    reels: document.querySelectorAll(".reel").length,
+    // 대표 한 편은 그리드에서 빠져 위에 크게 걸린다. 둘을 더해야 전체 편수다.
+    reels: document.querySelectorAll(".reel").length + document.querySelectorAll(".leadreel").length,
     // 화면에 보이는 본문에 한글이 남아 있으면 번역이 샌 것이다.
     // 브랜드(한효정)는 의도적으로 남기므로 제외한다.
     hangul: [...document.querySelectorAll("main h1, main h2, main h3, main p, .nav-links a, .card-toggle span")]
@@ -304,7 +305,7 @@ async function langGate() {
 
   r.lang === "en" ? ok("html lang=en") : bad(`html lang=${r.lang}`);
   r.cards === 12 ? ok(`영문 케이스 ${r.cards}개`) : bad(`영문 케이스 ${r.cards}개`);
-  r.reels === 16 ? ok(`영문 영상 ${r.reels}개`) : bad(`영문 영상 ${r.reels}개`);
+  r.reels === 16 ? ok(`영문 영상 ${r.reels}개 (대표 1 + 그리드 15)`) : bad(`영문 영상 ${r.reels}개`);
   r.hangul.length === 0
     ? ok("영문 화면에 국문 잔류 없음")
     : bad(`영문 화면에 국문 잔류: ${r.hangul.join(" / ")}`);
@@ -314,6 +315,46 @@ async function langGate() {
   await ctx.close();
 }
 await langGate();
+
+/* ---- 대표 영상 ----
+   홈과 카탈로그 맨 위에 같은 한 편이 크게 걸려야 하고, 같은 페이지에 두 번 나오면 안 된다
+   (크게 건 편이 아래 그리드에도 남아 있으면 강조가 상쇄된다). */
+async function leadReelGate() {
+  console.log("\n[lead-reel]");
+  for (const path of ["/index.html", "/tech.html"]) {
+    const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+    const page = await ctx.newPage();
+    await page.goto(BASE + path, { waitUntil: "load", timeout: 45000 });
+    await page.waitForTimeout(2200);
+    const r = await page.evaluate(() => {
+      const L = document.querySelector(".leadreel");
+      const src = L?.querySelector("source")?.getAttribute("src") || "";
+      const slug = src.split("/").pop().replace(".mp4", "");
+      return {
+        has: !!L,
+        slug,
+        // 대표 편이 같은 페이지에 몇 번 등장하나
+        occurrences: [...document.querySelectorAll("video source")].filter((s) =>
+          s.getAttribute("src").includes(slug)
+        ).length,
+        width: L ? Math.round(L.getBoundingClientRect().width) : 0,
+        videoH: L ? Math.round(L.querySelector("video").getBoundingClientRect().height) : 0
+      };
+    });
+    await ctx.close();
+
+    if (!r.has) { bad(`${path} 대표 영상 없음`); continue; }
+    ok(`${path} 대표 영상 ${r.slug}`);
+    r.occurrences === 1
+      ? ok(`${path} 중복 없음`)
+      : bad(`${path} 대표 영상이 ${r.occurrences}번 나온다 (그리드에서 안 빠졌다)`);
+    // 눈에 띄게 크지 않으면 "부각"이라는 목적을 못 채운다.
+    r.videoH >= 400
+      ? ok(`${path} 재생 영역 ${r.width}x${r.videoH}`)
+      : bad(`${path} 재생 영역이 작다 ${r.width}x${r.videoH}`);
+  }
+}
+await leadReelGate();
 
 /* ---- 두 언어의 숫자 일치 ----
    국문과 영문이 서로 다른 실적을 주장하면 둘 다 못 믿을 문서가 된다. */

@@ -3,6 +3,7 @@
 
 import { wireBurger } from "./main-nav.js";
 import { isEn, t, applyStatic, renderLangToggle } from "./i18n.js";
+import { renderLeadReel } from "./reel-lead.js";
 
 const board = document.getElementById("techboard");
 
@@ -15,6 +16,9 @@ let reels = [];
 
 async function load() {
   reels = (isEn ? await import("./data.en.js") : await import("./data.js")).reels;
+
+  // 계열 카드보다 먼저. 카탈로그를 열자마자 보이는 자리다.
+  renderLeadReel(document.getElementById("reel-lead"), reels);
 
   if (isEn) {
     const note = document.querySelector(".catalog-konly");

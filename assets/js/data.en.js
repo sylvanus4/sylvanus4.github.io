@@ -511,7 +511,10 @@ export const contact = {
 };
 
 export const reels = [
+  /* lead 는 data.js 와 같은 편을 가리켜야 한다. 두 언어가 다른 영상을 앞세우면 안 된다. */
   { n: "00", slug: "00-ainative", cat: "AI native · Jarvis", palette: "amber", ready: true, dur: "0:50",
+    lead: true,
+    hook: "It starts with speech and ends with speech.",
     blurb: "It starts with speech and ends with speech. One assistant picks from 1,930 skills. This is already running on this laptop." },
   { n: "01", slug: "01-comms", cat: "Communications, end to end", palette: "cyan", ready: true, dur: "0:52",
     blurb: "Signal fingerprinting generalized to radio, with transmitter, channel and receiver split apart to run on a single ordinary server." },

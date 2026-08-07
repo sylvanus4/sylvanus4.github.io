@@ -67,6 +67,7 @@ const UI = {
     "reels.h2": "기술을 90초 안에 보여드립니다",
     "reels.lede":
       "글로 읽으면 오래 걸리는 것들을 영상으로 만들고 있습니다. 각 편은 기술을 짧게 설명하고, 제가 실제로 구현한 사례를 보여준 뒤, 그 기술로 풀 수 있는 문제 세 가지로 끝납니다.",
+    "reels.featured": "대표 영상",
     "reels.soon": "준비 중",
     "reels.noVideo": "이 브라우저는 영상 재생을 지원하지 않습니다.",
     "reels.download": "영상 내려받기",
@@ -145,6 +146,7 @@ const UI = {
     "reels.h2": "Each capability in 90 seconds",
     "reels.lede":
       "Some things take too long to read. Each reel explains one capability, shows something I actually built with it, and closes with three problems it can solve.",
+    "reels.featured": "Featured reel",
     "reels.soon": "Coming soon",
     "reels.noVideo": "This browser cannot play the video.",
     "reels.download": "Download the video",

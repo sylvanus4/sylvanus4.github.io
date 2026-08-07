@@ -3,6 +3,7 @@
 
 import { wireBurger } from "./main-nav.js";
 import { isEn, t, applyStatic, renderLangToggle } from "./i18n.js";
+import { renderLeadReel } from "./reel-lead.js";
 
 const $ = (s, r = document) => r.querySelector(s);
 const el = (id) => document.getElementById(id);
@@ -388,7 +389,13 @@ async function wireScene() {
 function renderReels() {
   const host = el("reelgrid");
   if (!host) return;
+
+  // 대표 편은 위에서 크게 나갔으므로 그리드에서는 뺀다. 같은 영상이 두 번 나오면
+  // 크게 건 의미가 없어진다.
+  const lead = renderLeadReel(el("reel-lead"), reels);
+
   host.innerHTML = reels
+    .filter((r) => r !== lead)
     .map((r) => {
       if (r.ready) {
         return `

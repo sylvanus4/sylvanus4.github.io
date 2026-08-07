@@ -1021,14 +1021,98 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .reel--soon { opacity: .78; }
 .reel--soon:hover { opacity: 1; }
-/* 편별 액센트 — 어두운 베이스는 공유하고 테두리 발색만 바뀐다. */
-.reel[data-pal="cyan"]    { --pal: var(--cy); }
-.reel[data-pal="violet"]  { --pal: var(--vi); }
-.reel[data-pal="azure"]   { --pal: oklch(74% .13 250); }
-.reel[data-pal="emerald"] { --pal: var(--ok); }
-.reel[data-pal="teal"]    { --pal: oklch(76% .11 185); }
-.reel[data-pal="amber"]   { --pal: var(--am); }
-.reel[data-pal="crimson"] { --pal: oklch(70% .16 20); }
-.reel[data-pal="indigo"]  { --pal: oklch(68% .15 275); }
+/* 편별 액센트 — 어두운 베이스는 공유하고 테두리 발색만 바뀐다.
+   그리드 카드와 대표 블록이 같은 팔레트를 쓰므로 매핑은 한 벌만 둔다. */
+.reel[data-pal="cyan"],    .leadreel[data-pal="cyan"]    { --pal: var(--cy); }
+.reel[data-pal="violet"],  .leadreel[data-pal="violet"]  { --pal: var(--vi); }
+.reel[data-pal="azure"],   .leadreel[data-pal="azure"]   { --pal: oklch(74% .13 250); }
+.reel[data-pal="emerald"], .leadreel[data-pal="emerald"] { --pal: var(--ok); }
+.reel[data-pal="teal"],    .leadreel[data-pal="teal"]    { --pal: oklch(76% .11 185); }
+.reel[data-pal="amber"],   .leadreel[data-pal="amber"]   { --pal: var(--am); }
+.reel[data-pal="crimson"], .leadreel[data-pal="crimson"] { --pal: oklch(70% .16 20); }
+.reel[data-pal="indigo"],  .leadreel[data-pal="indigo"]  { --pal: oklch(68% .15 275); }
 .reel { border-top: 2px solid color-mix(in oklab, var(--pal, var(--cy)) 55%, transparent); }
 .reel .reel-cap b i { color: var(--pal, var(--cy)); }
+
+/* ── 대표 영상 ──────────────────────────────────────────────────────────────
+   한 편만 크게 건다. 그리드 카드와 같은 패널 언어를 쓰되 스케일과 깊이로만
+   위계를 만든다 — 색을 새로 들이면 편별 액센트 체계가 무너진다.
+   preload="none" 은 그대로다. 크게 걸었다고 자동으로 16MB 를 내려받게 하지 않는다. */
+.leadreel {
+  margin: clamp(2.5rem, 2rem + 2vw, 4rem) 0 0;
+  border: 1px solid var(--line);
+  border-top: 3px solid color-mix(in oklab, var(--pal, var(--cy)) 70%, transparent);
+  border-radius: var(--r-lg, 14px);
+  background: var(--panel);
+  overflow: hidden;
+  box-shadow:
+    0 34px 80px oklch(6% 0.02 265 / 0.5),
+    0 0 0 1px color-mix(in oklab, var(--pal, var(--cy)) 14%, transparent);
+}
+.leadreel__v {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: #05070d;
+  object-fit: cover;
+}
+.leadreel__cap {
+  padding: clamp(1.3rem, 1rem + 1.6vw, 2.3rem);
+  border-top: 1px solid var(--line-soft);
+  display: grid;
+  gap: 0.55rem clamp(2rem, 1rem + 3vw, 4rem);
+}
+.leadreel__meta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  font-family: var(--mono);
+  font-size: var(--t-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-4);
+}
+.leadreel__meta i {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.15em;
+  color: var(--pal, var(--cy));
+}
+/* 재생 시간은 라벨에 붙여 읽는다. 오른쪽 끝으로 밀면(margin-left:auto)
+   왼쪽 칸이 넓어 "대표 영상"과 사이가 텅 비어 보인다. */
+.leadreel__meta em {
+  font-style: normal;
+  color: var(--fg-4);
+}
+.leadreel__meta em::before {
+  content: "";
+  display: inline-block;
+  width: 3px; height: 3px;
+  margin-right: 0.7rem;
+  vertical-align: 0.25em;
+  border-radius: 50%;
+  background: var(--fg-4);
+  opacity: 0.6;
+}
+.leadreel__title {
+  font-size: clamp(1.35rem, 1.05rem + 1.25vw, 2.1rem);
+  font-weight: 650;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  color: var(--fg);
+}
+.leadreel__blurb {
+  font-size: clamp(0.98rem, 0.92rem + 0.3vw, 1.14rem);
+  line-height: 1.72;
+  color: var(--fg-2);
+}
+/* 넓은 화면에서는 제목과 설명을 나란히 둔다. 한 덩어리로 쌓으면
+   카드가 그냥 커진 것처럼 보이고 위계가 안 생긴다. */
+@media (min-width: 981px) {
+  .leadreel__cap { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); }
+  .leadreel__meta  { grid-column: 1; grid-row: 1; }
+  .leadreel__title { grid-column: 1; grid-row: 2; align-self: start; }
+  .leadreel__blurb { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+}
+@media print { .leadreel__v { display: none; } }
