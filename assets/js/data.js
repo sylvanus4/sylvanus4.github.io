@@ -6,6 +6,9 @@ export const profile = {
   nameEn: "Hyojung Han",
   role: "AI Systems Engineer",
   tagline: "연구에서 배포까지, 한 사람이 관통합니다",
+  /* tagline 안에서 그라데이션으로 강조할 부분. 정규식으로 어미를 맞히던 것을
+     문자열 지정으로 바꿨다 — 언어가 늘면 정규식은 매번 새로 짜야 한다. */
+  grad: "한 사람이 관통합니다",
   lead:
     "2007년부터 쉬지 않고 Daum, 삼성전자, Toss에서 인식 엔진과 머신러닝 플랫폼을 만들어 왔습니다. " +
     "지금은 ThakiCloud에서 추론·학습·에이전트 플랫폼 세 개를 기획하고 설계하고 있습니다.",

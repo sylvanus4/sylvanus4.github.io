@@ -64,7 +64,9 @@ a { color: inherit; text-decoration: none; }
   transition: background .2s, border-color .2s, color .2s;
 }
 .bar a.b:hover { border-color: #7fd8e8; color: #fff; background: #2c3543; }
-.bar a.b[aria-current="true"] { background: #7fd8e8; color: #14181f; border-color: #7fd8e8; font-weight: 600; }
+/* 굵기는 항상 같게 둔다. 활성일 때만 굵어지면 버튼 폭이 변해 막대가 흔들린다. */
+.bar a.b { font-weight: 600; }
+.bar a.b[aria-current="true"] { background: #7fd8e8; color: #14181f; border-color: #7fd8e8; }
 
 /* ---------- 종이 ---------- */
 .sheet {

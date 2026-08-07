@@ -254,6 +254,44 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   background: var(--cy-dim);
   transform: translateY(-1px);
 }
+
+/* 활성 표시는 색만 바꾼다. 굵기나 테두리로 표시하면 글자 폭이 달라져
+   섹션을 옮길 때마다 내비 전체가 좌우로 밀린다. */
+.nav-links a,
+.nav-links a.on,
+.nav-links a[aria-current] { font-weight: 500; }
+.nav-links a.on { color: var(--cy); background: var(--cy-dim); }
+
+/* ---------- 언어 전환 ---------- */
+.langpick {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--line-bright);
+  border-radius: 999px;
+  flex: none;
+}
+.langpick__b {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 30px;
+  padding: 0 0.6rem;
+  border-radius: 999px;
+  font-size: var(--t-2xs);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--fg-3);
+  transition: color var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+.langpick__b:hover { color: var(--fg); background: var(--bg-3); }
+.langpick__b[aria-current="true"] {
+  color: oklch(15% 0.03 220);
+  background: var(--cy);
+}
+.langpick__b:focus-visible { box-shadow: 0 0 0 2px var(--cy); outline: none; }
 /* ---------- 모바일 내비 ----------
    좁은 화면에서 링크를 그냥 숨기면 카탈로그와 이력서로 갈 방법이 사라진다.
    버튼 하나로 여는 disclosure 패널을 둔다. */
@@ -295,6 +333,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 @media (max-width: 980px) {
   .nav-burger { display: inline-flex; }
   .nav-cta { display: none; }
+  /* 언어 전환은 좁은 화면에서도 남긴다. 여기서 사라지면 모바일 방문자는
+     영문으로 갈 방법이 없다. 터치 목표는 44px 를 지킨다. */
+  .langpick { margin-left: auto; }
+  .langpick__b { min-height: 44px; min-width: 46px; }
   .nav-links {
     position: absolute;
     top: 100%;

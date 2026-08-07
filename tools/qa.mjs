@@ -234,6 +234,107 @@ await runTech("desktop", { viewport: { width: 1512, height: 950 }, deviceScaleFa
 await runTech("tablet", { viewport: { width: 768, height: 1024 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
 await runTech("mobile", { ...devices["iPhone 14 Pro"] });
 
+/* ---- 내비 동일성 ----
+   내비가 페이지마다 손으로 복사돼 있어 tech.html 에만 "영상"이 빠져 있었다.
+   그래서 탭을 옮길 때마다 남은 항목이 26px 씩 좌우로 밀렸다("메뉴가 흔들린다").
+   레이블만 비교하면 부족하다 — 폭이 달라져도 개수는 같을 수 있으므로 x 좌표까지 잰다. */
+async function navParity() {
+  console.log("\n[nav-parity]");
+  const shape = async (path) => {
+    const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+    const page = await ctx.newPage();
+    await page.goto(BASE + path, { waitUntil: "load", timeout: 45000 });
+    await page.waitForTimeout(1200);
+    const s = await page.evaluate(() =>
+      [...document.querySelectorAll(".nav-links a")].map((a) => ({
+        t: a.textContent.trim(),
+        x: Math.round(a.getBoundingClientRect().x)
+      }))
+    );
+    await ctx.close();
+    return s;
+  };
+
+  for (const lang of ["", "?lang=en"]) {
+    const home = await shape("/index.html" + lang);
+    const tech = await shape("/tech.html" + lang);
+    const tag = lang || "?lang=ko";
+
+    if (!home.length) { bad(`${tag} 홈 내비가 비었다`); continue; }
+
+    const labels = (s) => s.map((i) => i.t).join("|");
+    labels(home) === labels(tech)
+      ? ok(`${tag} 항목 동일 (${home.length}개)`)
+      : bad(`${tag} 항목 불일치\n      home: ${labels(home)}\n      tech: ${labels(tech)}`);
+
+    // 개수가 다르면 좌표 비교는 의미가 없다. 위에서 이미 실패로 잡혔다.
+    if (home.length !== tech.length) continue;
+    const drift = home.reduce((m, it, i) => Math.max(m, Math.abs(it.x - tech[i].x)), 0);
+    drift === 0
+      ? ok(`${tag} 페이지 이동 시 좌표 이동 0px`)
+      : bad(`${tag} 페이지 이동 시 내비가 ${drift}px 흔들린다`);
+  }
+}
+await navParity();
+
+/* ---- 영문 전환 ----
+   ?lang=en 이 실제로 영문을 내는지, 국문 문구가 남아 새는지 본다. */
+async function langGate() {
+  console.log("\n[lang-en]");
+  const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  const page = await ctx.newPage();
+  const errs = [];
+  page.on("pageerror", (e) => errs.push(e.message));
+  page.on("console", (m) => m.type() === "error" && errs.push(m.text()));
+
+  await page.goto(`${BASE}/index.html?lang=en`, { waitUntil: "load", timeout: 45000 });
+  await page.waitForTimeout(2200);
+
+  const r = await page.evaluate(() => ({
+    lang: document.documentElement.lang,
+    cards: document.querySelectorAll(".card").length,
+    reels: document.querySelectorAll(".reel").length,
+    // 화면에 보이는 본문에 한글이 남아 있으면 번역이 샌 것이다.
+    // 브랜드(한효정)는 의도적으로 남기므로 제외한다.
+    hangul: [...document.querySelectorAll("main h1, main h2, main h3, main p, .nav-links a, .card-toggle span")]
+      .map((n) => n.textContent.trim())
+      .filter((s) => /[가-힣]/.test(s) && !s.includes("한효정"))
+      .slice(0, 4)
+  }));
+
+  r.lang === "en" ? ok("html lang=en") : bad(`html lang=${r.lang}`);
+  r.cards === 12 ? ok(`영문 케이스 ${r.cards}개`) : bad(`영문 케이스 ${r.cards}개`);
+  r.reels === 16 ? ok(`영문 영상 ${r.reels}개`) : bad(`영문 영상 ${r.reels}개`);
+  r.hangul.length === 0
+    ? ok("영문 화면에 국문 잔류 없음")
+    : bad(`영문 화면에 국문 잔류: ${r.hangul.join(" / ")}`);
+  errs.length === 0 ? ok("콘솔 에러 0") : bad(`영문 콘솔 에러 ${errs.length}건: ${errs[0]}`);
+
+  await page.screenshot({ path: `${OUT}/index-en.png` });
+  await ctx.close();
+}
+await langGate();
+
+/* ---- 두 언어의 숫자 일치 ----
+   국문과 영문이 서로 다른 실적을 주장하면 둘 다 못 믿을 문서가 된다. */
+async function numberParity() {
+  console.log("\n[number-parity]");
+  const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  const page = await ctx.newPage();
+  const nums = async (path) => {
+    await page.goto(BASE + path, { waitUntil: "load", timeout: 45000 });
+    await page.waitForTimeout(1800);
+    return page.evaluate(() =>
+      [...document.querySelectorAll("#stats .stat b")].map((n) => n.textContent.trim()).join(",")
+    );
+  };
+  const ko = await nums("/index.html");
+  const en = await nums("/index.html?lang=en");
+  ko && ko === en ? ok(`핵심 수치 일치 (${ko})`) : bad(`핵심 수치 불일치 ko=${ko} en=${en}`);
+  await ctx.close();
+}
+await numberParity();
+
 await browser.close();
 
 console.log("\n" + "=".repeat(52));

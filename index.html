@@ -56,24 +56,28 @@
 <div class="scene-fallback" aria-hidden="true"></div>
 <canvas id="scene" aria-hidden="true"></canvas>
 
-<a class="skip" href="#top">본문으로 건너뛰기</a>
+<a class="skip" href="#top" data-i18n="skip">본문으로 건너뛰기</a>
 <div class="page">
 
+  <!-- 내비 항목은 세 페이지가 글자 하나까지 같아야 한다. 하나라도 빠지면 탭을 옮길 때
+       나머지 항목이 좌우로 밀려 화면이 흔들린다. tools/qa.mjs 가 이 동일성을 검사한다. -->
   <header class="nav">
     <div class="nav-in">
       <a class="brand" href="#top">한효정 <span>Hyojung Han</span></a>
-      <nav class="nav-links" id="navlinks" aria-label="주요 섹션">
-        <a href="#stack">스택</a>
-        <a href="#reels">영상</a>
-        <a href="#work">작업</a>
-        <a href="#career">이력</a>
-        <a href="#research">연구</a>
-        <a href="#skills">도구</a>
-        <a href="tech.html">카탈로그</a>
-        <a href="resume.html">이력서</a>
+      <nav class="nav-links" id="navlinks" aria-label="주요 섹션" data-i18n-attr="aria-label:nav.aria">
+        <a href="#stack" data-i18n="nav.stack">스택</a>
+        <a href="#reels" data-i18n="nav.reels">영상</a>
+        <a href="#work" data-i18n="nav.work">작업</a>
+        <a href="#career" data-i18n="nav.career">이력</a>
+        <a href="#research" data-i18n="nav.research">연구</a>
+        <a href="#skills" data-i18n="nav.skills">도구</a>
+        <a href="tech.html" data-i18n="nav.tech">카탈로그</a>
+        <a href="resume.html" data-i18n="nav.resume">이력서</a>
       </nav>
-      <button class="nav-burger" type="button" aria-expanded="false" aria-controls="navlinks" aria-label="메뉴 열기"><span></span></button>
-      <a class="nav-cta" href="#contact" data-magnet>연락하기</a>
+      <div class="langpick" id="langpick"></div>
+      <button class="nav-burger" type="button" aria-expanded="false" aria-controls="navlinks"
+              aria-label="메뉴 열기" data-i18n-attr="aria-label:nav.open"><span></span></button>
+      <a class="nav-cta" href="#contact" data-magnet data-i18n="nav.cta">연락하기</a>
     </div>
   </header>
 
@@ -94,9 +98,9 @@
     <section class="section" id="stack">
       <div class="wrap">
         <div class="head veil">
-          <p class="eyebrow rv">The Stack</p>
-          <h2 class="h2 rv rv-d1">다섯 층을 하나로 꿰는 사람</h2>
-          <p class="lede rv rv-d2">
+          <p class="eyebrow rv" data-i18n="stack.eyebrow">The Stack</p>
+          <h2 class="h2 rv rv-d1" data-i18n="stack.h2">다섯 층을 하나로 꿰는 사람</h2>
+          <p class="lede rv rv-d2" data-i18n="stack.lede">
             대부분의 엔지니어는 한두 층에서 깊어집니다. 저는 다섯 층을 모두 직접 만들어 봤고,
             그래서 층 사이에서 무엇이 깨지는지 압니다. 스크롤하면 위에서 아래로 내려갑니다.
           </p>
@@ -108,9 +112,9 @@
     <section class="section" id="reels">
       <div class="wrap">
         <div class="head veil">
-          <p class="eyebrow rv">Reels</p>
-          <h2 class="h2 rv rv-d1">기술을 90초 안에 보여드립니다</h2>
-          <p class="lede rv rv-d2">
+          <p class="eyebrow rv" data-i18n="reels.eyebrow">Reels</p>
+          <h2 class="h2 rv rv-d1" data-i18n="reels.h2">기술을 90초 안에 보여드립니다</h2>
+          <p class="lede rv rv-d2" data-i18n="reels.lede">
             글로 읽으면 오래 걸리는 것들을 영상으로 만들고 있습니다. 각 편은 기술을 짧게
             설명하고, 제가 실제로 구현한 사례를 보여준 뒤, 그 기술로 풀 수 있는 문제 세 가지로
             끝납니다. 카테고리별로 순서대로 채워 나가는 중입니다.
@@ -123,9 +127,9 @@
     <section class="section" id="work">
       <div class="wrap">
         <div class="head veil">
-          <p class="eyebrow rv">Selected Work</p>
-          <h2 class="h2 rv rv-d1">문제, 접근, 그리고 숫자</h2>
-          <p class="lede rv rv-d2">
+          <p class="eyebrow rv" data-i18n="work.eyebrow">Selected Work</p>
+          <h2 class="h2 rv rv-d1" data-i18n="work.h2">문제, 접근, 그리고 숫자</h2>
+          <p class="lede rv rv-d2" data-i18n="work.lede">
             만들었다는 말보다 무엇이 얼마나 달라졌는지가 중요합니다. 카드를 열면
             문제와 접근, 결과를 순서대로 볼 수 있습니다.
           </p>
@@ -137,8 +141,8 @@
     <section class="section" id="career">
       <div class="wrap">
         <div class="head veil">
-          <p class="eyebrow rv">Career</p>
-          <h2 class="h2 rv rv-d1">제주에서 수원, 강남을 거쳐 역삼까지</h2>
+          <p class="eyebrow rv" data-i18n="career.eyebrow">Career</p>
+          <h2 class="h2 rv rv-d1" data-i18n="career.h2">제주에서 수원, 강남을 거쳐 역삼까지</h2>
         </div>
         <div class="tl" id="tl"></div>
       </div>
@@ -154,8 +158,8 @@
     <section class="section" id="skills">
       <div class="wrap">
         <div class="head veil">
-          <p class="eyebrow rv">Toolbox</p>
-          <h2 class="h2 rv rv-d1">손에 익은 것들</h2>
+          <p class="eyebrow rv" data-i18n="skills.eyebrow">Toolbox</p>
+          <h2 class="h2 rv rv-d1" data-i18n="skills.h2">손에 익은 것들</h2>
         </div>
         <div class="sgrid" id="sgrid"></div>
       </div>

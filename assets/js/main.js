@@ -2,10 +2,18 @@
    three.js 는 동적 import 로만 부른다. CDN 이 죽어도 페이지는 그대로 뜬다. */
 
 import { wireBurger } from "./main-nav.js";
-import { profile, stats, layers, work, timeline, strategy, research, stack, contact , reels } from "./data.js";
+import { isEn, t, applyStatic, renderLangToggle } from "./i18n.js";
 
 const $ = (s, r = document) => r.querySelector(s);
 const el = (id) => document.getElementById(id);
+
+/* 콘텐츠는 언어별 파일 하나씩. 한국어가 기본이라 영문은 필요할 때만 내려받는다. */
+let profile, stats, layers, work, timeline, strategy, research, stack, contact, reels;
+
+async function loadData() {
+  const m = isEn ? await import("./data.en.js") : await import("./data.js");
+  ({ profile, stats, layers, work, timeline, strategy, research, stack, contact, reels } = m);
+}
 
 /* ---------- 렌더 ---------- */
 
@@ -19,15 +27,16 @@ function renderHero() {
         <span>${profile.nameEn}</span>
         <span>${profile.role}</span>
       </p>
-      <h1 class="rv in rv-d1">${profile.tagline.replace(
-        /(한 사람이 관통합니다|관통합니다)$/,
-        '<span class="grad">$1</span>'
-      )}</h1>
+      <h1 class="rv in rv-d1">${
+        profile.grad
+          ? profile.tagline.replace(profile.grad, `<span class="grad">${profile.grad}</span>`)
+          : profile.tagline
+      }</h1>
       <p class="lede hero-lead rv in rv-d2">${profile.lead}</p>
       <p class="hero-sub rv in rv-d3">${profile.sub}</p>
       <div class="hero-actions rv in rv-d4">
-        <a class="btn btn-primary" href="#work" data-magnet>선택한 작업 보기</a>
-        <a class="btn btn-ghost" href="#contact" data-magnet>연락하기</a>
+        <a class="btn btn-primary" href="#work" data-magnet>${t("hero.workBtn")}</a>
+        <a class="btn btn-ghost" href="#contact" data-magnet>${t("hero.contactBtn")}</a>
       </div>
       </div>
       <figure class="hero-photo rv in rv-d2">
@@ -39,7 +48,7 @@ function renderHero() {
       </figure>
      </div>
     </div>
-    <p class="hero-hint" aria-hidden="true"><i></i>스크롤하면 스택을 통과합니다</p>
+    <p class="hero-hint" aria-hidden="true"><i></i>${t("hero.hint")}</p>
   `;
 }
 
@@ -86,9 +95,9 @@ function renderWork() {
       <div class="card-more">
         <div>
           <dl class="qa">
-            <div><dt>문제</dt><dd>${w.problem}</dd></div>
-            <div><dt>접근</dt><dd>${w.approach}</dd></div>
-            <div class="res"><dt>결과</dt><dd>${w.result}</dd></div>
+            <div><dt>${t("work.problem")}</dt><dd>${w.problem}</dd></div>
+            <div><dt>${t("work.approach")}</dt><dd>${w.approach}</dd></div>
+            <div class="res"><dt>${t("work.result")}</dt><dd>${w.result}</dd></div>
           </dl>
           ${
             w.metrics
@@ -107,7 +116,7 @@ function renderWork() {
       </div>
 
       <button class="card-toggle" type="button" aria-expanded="false">
-        <span>자세히</span>${chev}
+        <span>${t("work.more")}</span>${chev}
       </button>
     </article>`
     )
@@ -134,7 +143,7 @@ function renderTimeline() {
 function renderResearch() {
   el("research-split").innerHTML = `
     <div class="rv">
-      <p class="eyebrow">Research &amp; Evidence</p>
+      <p class="eyebrow">${t("research.eyebrow")}</p>
       <h2 class="h2">${research.title}</h2>
       <p class="lede">${research.body}</p>
       <p style="margin-top:2rem">
@@ -176,7 +185,7 @@ function renderStack() {
 
 function renderContact() {
   el("contact-in").innerHTML = `
-    <p class="eyebrow" style="justify-content:center">Contact</p>
+    <p class="eyebrow" style="justify-content:center">${t("contact.eyebrow")}</p>
     <h2 class="h2">${contact.title}</h2>
     <p class="lede" style="margin-inline:auto">${contact.body}</p>
     <div class="contact-links">
@@ -244,7 +253,7 @@ function wireCards() {
       const card = btn.closest(".card");
       const open = card.classList.toggle("open");
       btn.setAttribute("aria-expanded", String(open));
-      btn.querySelector("span").textContent = open ? "접기" : "자세히";
+      btn.querySelector("span").textContent = open ? t("work.less") : t("work.more");
     });
   });
 }
@@ -278,31 +287,50 @@ function wireCursor() {
   })();
 }
 
+/* 스크롤 위치로 활성 메뉴를 정한다.
+   예전에는 IntersectionObserver 로 화면 중앙 5% 띠에 들어온 섹션만 잡았는데,
+   그 띠에 아무 섹션도 없는 구간(문서 맨 위 등)에서는 활성 표시가 통째로 사라졌다.
+   "기준선 위에 있는 마지막 섹션"으로 바꾸면 항상 정확히 하나가 켜져 있다. */
 function wireNav() {
   const nav = $(".nav");
-  const links = [...document.querySelectorAll(".nav-links a")];
-  const sections = links
-    .map((a) => document.querySelector(a.getAttribute("href")))
-    .filter(Boolean);
+  const pairs = [...document.querySelectorAll(".nav-links a")]
+    .filter((a) => (a.getAttribute("href") || "").startsWith("#"))
+    .map((a) => ({ a, s: document.querySelector(a.getAttribute("href")) }))
+    .filter((p) => p.s);
 
-  const io = new IntersectionObserver(
-    (es) => {
-      es.forEach((e) => {
-        if (!e.isIntersecting) return;
-        links.forEach((a) =>
-          a.classList.toggle("on", a.getAttribute("href") === `#${e.target.id}`)
-        );
-      });
-    },
-    { rootMargin: "-45% 0px -50% 0px" }
-  );
-  sections.forEach((s) => io.observe(s));
+  const top = (n) => n.getBoundingClientRect().top + scrollY;
 
-  addEventListener(
-    "scroll",
-    () => nav.classList.toggle("stuck", scrollY > 24),
-    { passive: true }
-  );
+  const mark = () => {
+    if (!pairs.length) return;
+    const line = scrollY + innerHeight * 0.35;
+    let active = pairs[0];
+    for (const p of pairs) if (top(p.s) <= line) active = p;
+    // 마지막 섹션이 짧으면 기준선에 닿지 못한다. 문서 끝에서는 강제로 마지막을 잡는다.
+    if (scrollY + innerHeight >= document.documentElement.scrollHeight - 4) {
+      active = pairs[pairs.length - 1];
+    }
+    pairs.forEach(({ a }) => {
+      const on = a === active.a;
+      a.classList.toggle("on", on);
+      if (on) a.setAttribute("aria-current", "true");
+      else a.removeAttribute("aria-current");
+    });
+  };
+
+  let queued = false;
+  const onScroll = () => {
+    nav.classList.toggle("stuck", scrollY > 24);
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(() => {
+      queued = false;
+      mark();
+    });
+  };
+
+  addEventListener("scroll", onScroll, { passive: true });
+  addEventListener("resize", onScroll, { passive: true });
+  onScroll();
 }
 
 /* 3D 씬은 있으면 좋고 없어도 되는 층위다. 실패해도 조용히 넘어간다. */
@@ -368,8 +396,8 @@ function renderReels() {
       <video class="reel-v" controls preload="none" playsinline
              poster="assets/video/${r.slug}.jpg" aria-describedby="cap-${r.n}">
         <source src="assets/video/${r.slug}.mp4" type="video/mp4">
-        이 브라우저는 영상 재생을 지원하지 않습니다.
-        <a href="assets/video/${r.slug}.mp4">영상 내려받기</a>
+        ${t("reels.noVideo")}
+        <a href="assets/video/${r.slug}.mp4">${t("reels.download")}</a>
       </video>
       <figcaption class="reel-cap" id="cap-${r.n}">
         <b><i>${r.n}</i>${r.cat}<em>${r.dur}</em></b>
@@ -378,8 +406,8 @@ function renderReels() {
     </figure>`;
       }
       return `
-    <figure class="reel reel--soon rv" data-pal="${r.palette}" aria-label="${r.cat} 영상 준비 중">
-      <div class="reel-v reel-slot"><span>준비 중</span></div>
+    <figure class="reel reel--soon rv" data-pal="${r.palette}" aria-label="${r.cat} ${t("reels.soonAria")}">
+      <div class="reel-v reel-slot"><span>${t("reels.soon")}</span></div>
       <figcaption class="reel-cap">
         <b><i>${r.n}</i>${r.cat}</b>
         <span>${r.blurb}</span>
@@ -390,7 +418,11 @@ function renderReels() {
 }
 
 /* ---------- 부팅 ---------- */
-function boot() {
+async function boot() {
+  applyStatic();
+  renderLangToggle(el("langpick"));
+  await loadData();
+
   renderHero();
   renderStats();
   renderLayers();

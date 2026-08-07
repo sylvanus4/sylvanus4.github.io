@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" data-title-key="meta.techTitle">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -27,23 +27,28 @@
 <body>
 <div class="scene-fallback" aria-hidden="true"></div>
 
-<a class="skip" href="#main">본문으로 건너뛰기</a>
+<a class="skip" href="#main" data-i18n="skip">본문으로 건너뛰기</a>
 <div class="page">
 
+  <!-- 항목 순서와 개수는 index.html 과 완전히 같아야 한다. 예전에는 여기에 "영상"이
+       빠져 있어서 카탈로그로 넘어올 때 나머지 항목이 26px 씩 밀렸다. -->
   <header class="nav">
     <div class="nav-in">
       <a class="brand" href="./">한효정 <span>Hyojung Han</span></a>
-      <nav class="nav-links" id="navlinks" aria-label="주요 섹션">
-        <a href="./#stack">스택</a>
-        <a href="./#work">작업</a>
-        <a href="./#career">이력</a>
-        <a href="./#research">연구</a>
-        <a href="./#skills">도구</a>
-        <a href="tech.html" class="on" aria-current="page">카탈로그</a>
-        <a href="resume.html">이력서</a>
+      <nav class="nav-links" id="navlinks" aria-label="주요 섹션" data-i18n-attr="aria-label:nav.aria">
+        <a href="./#stack" data-i18n="nav.stack">스택</a>
+        <a href="./#reels" data-i18n="nav.reels">영상</a>
+        <a href="./#work" data-i18n="nav.work">작업</a>
+        <a href="./#career" data-i18n="nav.career">이력</a>
+        <a href="./#research" data-i18n="nav.research">연구</a>
+        <a href="./#skills" data-i18n="nav.skills">도구</a>
+        <a href="tech.html" class="on" aria-current="page" data-i18n="nav.tech">카탈로그</a>
+        <a href="resume.html" data-i18n="nav.resume">이력서</a>
       </nav>
-      <button class="nav-burger" type="button" aria-expanded="false" aria-controls="navlinks" aria-label="메뉴 열기"><span></span></button>
-      <a class="nav-cta" href="./#contact" data-magnet>연락하기</a>
+      <div class="langpick" id="langpick"></div>
+      <button class="nav-burger" type="button" aria-expanded="false" aria-controls="navlinks"
+              aria-label="메뉴 열기" data-i18n-attr="aria-label:nav.open"><span></span></button>
+      <a class="nav-cta" href="./#contact" data-magnet data-i18n="nav.cta">연락하기</a>
     </div>
   </header>
 
@@ -51,23 +56,26 @@
     <section class="section" style="padding-top:clamp(6.5rem,4rem+7vw,10rem)">
       <div class="wrap">
         <div class="head">
-          <p class="eyebrow">Technology Catalog</p>
-          <h1 class="h2">쓰던 것을 다시 꺼내 씁니다</h1>
-          <p class="lede">
+          <p class="eyebrow" data-i18n="tech.eyebrow">Technology Catalog</p>
+          <h1 class="h2" data-i18n="tech.h1">쓰던 것을 다시 꺼내 씁니다</h1>
+          <p class="lede" data-i18n-html="tech.lede1">
             직접 만들어 굴리고 있는 저장소 <b id="techtotal">127</b>개입니다. 새 과제를 받으면
             백지에서 시작하지 않고 이 목록에서 맞는 조각을 먼저 찾습니다. 그래서 첫 결과가 빨리 나옵니다.
           </p>
-          <p class="lede muted" style="font-size:.95rem;margin-top:1rem">
+          <p class="lede muted" style="font-size:.95rem;margin-top:1rem" data-i18n="tech.lede2">
             105개는 2026년에 손댄 것이고 나머지는 휴면입니다. 111개는 비공개 저장소라 링크를 눌러도
             코드가 보이지 않습니다. 무엇을 갖고 있는지에 대한 목록이지 코드를 공개하겠다는 뜻은 아닙니다.
           </p>
-          <p class="mono muted" style="margin-top:1.2rem">
+          <p class="mono muted" style="margin-top:1.2rem" data-i18n="tech.langs">
             주 사용 언어 · Python 66 · JavaScript 23 · TypeScript 12 · Rust 10 · HTML 6 · Go 4
           </p>
+          <!-- 카탈로그 본문 127개는 국문만 있다. 영문 화면에서 그 사실을 숨기지 않는다. -->
+          <p class="muted catalog-konly" hidden style="font-size:.9rem;margin-top:.9rem"
+             data-i18n="tech.koOnly"></p>
         </div>
 
         <div class="tech2i" id="techboard">
-          <p class="muted">카탈로그를 불러오는 중입니다.</p>
+          <p class="muted" data-i18n="tech.loading">카탈로그를 불러오는 중입니다.</p>
         </div>
       </div>
     </section>
@@ -75,7 +83,7 @@
 
   <footer class="wrap foot">
     <span>© 2026 한효정 (Hyojung Han)</span>
-    <span class="mono">ThakiCloud · 서울 역삼</span>
+    <span class="mono" data-i18n="foot.where">ThakiCloud · 서울 역삼</span>
   </footer>
 </div>
 

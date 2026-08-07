@@ -2,11 +2,11 @@
    ?lang=en 이면 영문, 아니면 한국어. PDF 생성기도 같은 URL 을 쓴다. */
 
 import { ko, en } from "./resume-data.js";
+/* 언어 결정은 사이트 전체가 한 곳에서 한다. ?lang= 이 여전히 최우선이라
+   PDF 생성기(tools/make_resume_pdf.mjs)의 고정 주소는 그대로 동작한다. */
+import { LANG as lang, isEn } from "./i18n.js";
 
-const params = new URLSearchParams(location.search);
-const lang = params.get("lang") === "en" ? "en" : "ko";
-const d = lang === "en" ? en : ko;
-const isEn = lang === "en";
+const d = isEn ? en : ko;
 
 const L = isEn
   ? {
@@ -147,6 +147,7 @@ if (bar) {
       <a class="b" href="?lang=ko" aria-current="${!isEn}">한국어</a>
       <a class="b" href="?lang=en" aria-current="${isEn}">English</a>
       <a class="b" href="${isEn ? "Hyojung_Han_Resume_EN.pdf" : "한효정_이력서.pdf"}" download>PDF</a>
+      <a class="b" href="tech.html">${isEn ? "Catalog" : "카탈로그"}</a>
       <a class="b" href="./">${isEn ? "Portfolio" : "포트폴리오"}</a>
     </span>`;
 }

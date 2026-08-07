@@ -2,19 +2,32 @@
    여기서 하는 일은 검색 필터와 카운트뿐이다. */
 
 import { wireBurger } from "./main-nav.js";
-import { reels } from "./data.js";
+import { isEn, t, applyStatic, renderLangToggle } from "./i18n.js";
 
 const board = document.getElementById("techboard");
+
+applyStatic();
+renderLangToggle(document.getElementById("langpick"));
 wireBurger();
 
+/* 영상 자막은 언어를 따라간다. 카탈로그 카드 본문은 국문 생성물이라 그대로 둔다. */
+let reels = [];
+
 async function load() {
+  reels = (isEn ? await import("./data.en.js") : await import("./data.js")).reels;
+
+  if (isEn) {
+    const note = document.querySelector(".catalog-konly");
+    if (note) note.hidden = false;
+  }
+
   try {
     const res = await fetch("assets/tech-body.html");
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     board.innerHTML = await res.text();
   } catch (e) {
-    board.innerHTML = `<p class="muted">카탈로그를 불러오지 못했습니다.
-      <a href="https://2icorp.github.io/tech.html" target="_blank" rel="noopener" style="color:var(--cy)">원본 목록 보기</a></p>`;
+    board.innerHTML = `<p class="muted">${t("tech.failed")}
+      <a href="https://2icorp.github.io/tech.html" target="_blank" rel="noopener" style="color:var(--cy)">${t("tech.origin")}</a></p>`;
     return;
   }
   mountReels();
@@ -25,7 +38,7 @@ async function load() {
 function wireCount() {
   const n = board.querySelectorAll("a.pcard").length;
   const el = document.getElementById("techtotal");
-  if (el) el.textContent = n.toLocaleString("ko-KR");
+  if (el) el.textContent = n.toLocaleString(isEn ? "en-US" : "ko-KR");
 }
 
 function wireSearch() {
@@ -57,7 +70,7 @@ function wireSearch() {
       const t = document.querySelector(ch.getAttribute("href"));
       ch.style.opacity = t && t.closest(".fam")?.hidden ? "0.35" : "";
     });
-    out.textContent = q ? `${shown}개 일치` : "";
+    out.textContent = q ? `${shown}${t("tech.match")}` : "";
   };
 
   let t;
@@ -80,13 +93,13 @@ function mountReels() {
     host.dataset.pal = r.palette;
     host.innerHTML = r.ready
       ? `<video class="fam__v" controls preload="none" playsinline
-                poster="assets/video/${r.slug}.jpg" aria-label="${r.cat} 소개 영상">
+                poster="assets/video/${r.slug}.jpg" aria-label="${r.cat}">
            <source src="assets/video/${r.slug}.mp4" type="video/mp4">
-           이 브라우저는 영상 재생을 지원하지 않습니다.
-           <a href="assets/video/${r.slug}.mp4">영상 내려받기</a>
+           ${t("reels.noVideo")}
+           <a href="assets/video/${r.slug}.mp4">${t("reels.download")}</a>
          </video>
          <p class="fam__vcap">${r.blurb} <em>${r.dur}</em></p>`
-      : `<div class="fam__v fam__vslot"><span>영상 준비 중</span></div>
+      : `<div class="fam__v fam__vslot"><span>${t("tech.reelSoon")}</span></div>
          <p class="fam__vcap">${r.blurb}</p>`;
   });
 }
