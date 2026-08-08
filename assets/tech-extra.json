@@ -16,6 +16,22 @@
         "#재현성"
       ],
       "q": "추천 recsys recommendation 랭킹 ranking semantic id 인기순 대조군 baseline 재현 반증 gpu 실험 python"
+    },
+    {
+      "fam": "tech-product",
+      "repo": "sylvanus4/hanji",
+      "url": "https://github.com/sylvanus4/hanji",
+      "title": "업로드 없이 도는 한국어 문서 뷰어 · 변환기",
+      "excerpt": "HWP·HWPX·PDF·이미지·동영상을 한 자리에서 열고 바꾸는 도구다. 파일이 기기를 떠나지 않는 것이 유일한 주장이라, 실제 브라우저로 문서를 통과시키며 외부 요청이 0건인지 검사 40개로 매번 확인한다. 웹과 데스크탑이 같은 번들을 쓰고 데스크탑 바이너리에는 네트워크 라이브러리를 넣지 않았다. HWP 표가 우측 단을 넘던 결함은 상위 엔진 358커밋을 이분 탐색해 회귀 지점을 찾고 패치해 해결했다.",
+      "lang": "TypeScript",
+      "date": "2026.08.08",
+      "private": false,
+      "tags": [
+        "#문서",
+        "#로컬우선",
+        "#WASM"
+      ],
+      "q": "hanji 한지 hwp hwpx 한글 문서 변환 converter viewer 뷰어 pdf 이미지 동영상 gif 로컬 local-first 업로드없음 no-upload privacy 프라이버시 wasm tauri 데스크탑 desktop offline 오프라인 typescript rhwp"
     }
   ],
   "rewrite": [

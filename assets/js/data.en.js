@@ -27,7 +27,7 @@ export const profile = {
 export const stats = [
   { value: "19", unit: "yrs", label: "Building since 2007, no gaps" },
   { value: "608", unit: "posts", label: "Published across a three-language tech blog" },
-  { value: "127", unit: "repos", label: "Built and maintained personally" },
+  { value: "128", unit: "repos", label: "Built and maintained personally" },
   { value: "32", unit: "systems", label: "Finished builds with measured results" }
 ];
 
@@ -85,7 +85,7 @@ export const layers = [
     line: "I widen the fields I already know, much faster",
     body:
       "I take domains I have worked in for years and extend them with agents straight into implementation. " +
-      "That is how 127 repositories came to exist, 32 of them finished builds with measurements attached. " +
+      "That is how 128 repositories came to exist, 32 of them finished builds with measurements attached. " +
       "I report results as they came out, without dressing them up.",
     keys: ["Agent-driven research", "Rapid prototyping", "Honest measurement", "Reproducibility"]
   }
@@ -136,6 +136,35 @@ export const work = [
     stack: ["Jekyll", "GitHub Actions", "LLM pipeline", "i18n", "SEO"],
     tags: ["Content", "Automation", "Operations"],
     link: { label: "Open the blog", url: "https://thakicloud.com/tech-blog" },
+    featured: true
+  },
+  {
+    id: "hanji",
+    era: "2026",
+    org: "Personal project · Open source",
+    title: "hanji, a document converter that never uploads your files",
+    summary:
+      "Built and released a tool that opens and converts Korean HWP documents, PDFs, images and video in one place. " +
+      "It ships as both a web app and a desktop app.",
+    problem:
+      "Every online converter sends the file to a server. For anyone handling contracts or HR records, " +
+      "'we delete it quickly' is not an answer. Korea also mandated open document formats for public agencies " +
+      "from May 2026, which made converting Korean HWP files a far more common chore.",
+    approach:
+      "Parsing, rendering and encoding all happen inside the browser, which narrows the product to a single claim. " +
+      "Rather than assert that claim, 40 checks drive real documents through a real browser and confirm zero outbound " +
+      "requests on every run. The desktop binary ships with no networking library at all, so the dependency list is itself the proof.",
+    result:
+      "Released for macOS and Windows at 9.3MB, with the source public under MIT. " +
+      "A defect where Korean tables overran the page was traced by bisecting 358 upstream commits and then patched.",
+    metrics: [
+      { k: "No-upload proof", v: "40 real-browser checks · 0 outbound requests" },
+      { k: "Install size", v: "9.3MB · zero networking libraries" },
+      { k: "Upstream defect", v: "Bisected across 358 commits, then patched" }
+    ],
+    stack: ["TypeScript", "WebAssembly", "Tauri", "Rust", "pdf-lib"],
+    tags: ["Product", "Open source", "Local-first"],
+    link: { label: "Download page", url: "https://sylvanus4.github.io/hanji-download/" },
     featured: true
   },
   {
@@ -425,7 +454,7 @@ export const research = {
     "the agent, speed and depth rise together. I write results down as they came out. I have published one saying " +
     "the wall I hit turned out to be my own model.",
   counts: [
-    { k: "Repositories built", v: "127" },
+    { k: "Repositories built", v: "128" },
     { k: "Finished builds with measurements", v: "32" },
     { k: "Core domains", v: "Optimization · Infra · RecSys · Signal" }
   ],

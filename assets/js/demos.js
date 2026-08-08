@@ -52,7 +52,7 @@ function card(d) {
       <p class="dcard__blurb">${esc(blurb)}</p>
       <p class="dcard__tech">${tech.map((x) => `<span class="chip">${esc(x)}</span>`).join("")}</p>
       <p class="dcard__links">
-        <a class="dlink" href="${esc(d.url)}" target="_blank" rel="noopener">${t("demos.open")} ↗</a>
+        <a class="dlink" href="${esc(d.url)}" target="_blank" rel="noopener">${esc(pick(d, "cta") || t("demos.open"))} ↗</a>
         ${d.repo ? `<a class="dlink dlink--ghost" href="${esc(d.repo)}" target="_blank" rel="noopener">${t("demos.source")} ↗</a>` : ""}
       </p>
     </div>

@@ -98,7 +98,7 @@ const UI = {
     "tech.eyebrow": "Technology Catalog",
     "tech.h1": "쓰던 것을 다시 꺼내 씁니다",
     "tech.lede1":
-      "직접 만들어 굴리고 있는 저장소 <b id=\"techtotal\">127</b>개입니다. 새 과제를 받으면 백지에서 시작하지 않고 이 목록에서 맞는 조각을 먼저 찾습니다. 그래서 첫 결과가 빨리 나옵니다.",
+      "직접 만들어 굴리고 있는 저장소 <b id=\"techtotal\">128</b>개입니다. 새 과제를 받으면 백지에서 시작하지 않고 이 목록에서 맞는 조각을 먼저 찾습니다. 그래서 첫 결과가 빨리 나옵니다.",
     "tech.lede2":
       "105개는 2026년에 손댄 것이고 나머지는 휴면입니다. 111개는 비공개 저장소라 링크를 눌러도 코드가 보이지 않습니다. 무엇을 갖고 있는지에 대한 목록이지 코드를 공개하겠다는 뜻은 아닙니다.",
     "tech.langs": "주 사용 언어 · Python 66 · JavaScript 23 · TypeScript 12 · Rust 10 · HTML 6 · Go 4",
@@ -193,7 +193,7 @@ const UI = {
     "tech.eyebrow": "Technology Catalog",
     "tech.h1": "I reuse what I have already built",
     "tech.lede1":
-      "<b id=\"techtotal\">127</b> repositories I built and still maintain. When a new problem arrives I do not start from a blank page. I look here first for a piece that fits, which is why the first result comes quickly.",
+      "<b id=\"techtotal\">128</b> repositories I built and still maintain. When a new problem arrives I do not start from a blank page. I look here first for a piece that fits, which is why the first result comes quickly.",
     "tech.lede2":
       "105 were touched in 2026 and the rest are dormant. 111 are private, so the links will not show you code. This is an inventory of what I have, not a promise to open source it.",
     "tech.langs": "Primary languages · Python 66 · JavaScript 23 · TypeScript 12 · Rust 10 · HTML 6 · Go 4",

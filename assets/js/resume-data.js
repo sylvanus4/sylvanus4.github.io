@@ -238,7 +238,7 @@ export const ko = {
 
   rnd: {
     intro:
-      "비전, 신호 처리, 최적화, 추천처럼 제가 오래 다뤄 온 영역을 에이전트로 더 넓게 확장하며 직접 구현합니다. 무엇을 재야 답이 나오는지 이미 알기 때문에 논문을 읽는 자리에서 곧바로 실측 가능한 구현으로 넘어갑니다. 저장소 127개를 만들어 운영하며 그중 32건은 측정값이 붙은 완성 구현입니다.",
+      "비전, 신호 처리, 최적화, 추천처럼 제가 오래 다뤄 온 영역을 에이전트로 더 넓게 확장하며 직접 구현합니다. 무엇을 재야 답이 나오는지 이미 알기 때문에 논문을 읽는 자리에서 곧바로 실측 가능한 구현으로 넘어갑니다. 저장소 128개를 만들어 운영하며 그중 32건은 측정값이 붙은 완성 구현입니다.",
     groups: [
       {
         name: "최적화 · 스케줄링",
@@ -298,6 +298,13 @@ export const ko = {
           "무선망을 멈추는 원인 불명 전파를 실시간으로 지목하는 신호 지문 분석",
           "여분의 스마트폰 한 대로 통행량을 세는 무설치 음향 센싱",
           "전파도 빛도 못 쓰는 방에서 소리로 데이터를 넘기는 에어갭 음향 통신"
+        ]
+      },
+      {
+        name: "제품 · 도구",
+        items: [
+          "파일을 서버로 보내지 않는 한글 문서 변환기를 웹과 데스크탑 앱으로 출시(MIT 공개, 무업로드를 검사 40개로 상시 검증)",
+          "모델이 내 GPU에 올라가는지와 자체 호스팅이 API보다 싼지를 브라우저에서 계산하는 도구"
         ]
       }
     ]
@@ -544,7 +551,7 @@ export const en = {
 
   rnd: {
     intro:
-      "Extends long-held domains, computer vision, signal processing, combinatorial optimization, and recommendation, through agent-driven development. Knowing the field is what makes the speed possible: I know which measurement settles the question, so a paper becomes a measured implementation rather than a summary. Owns and operates 127 repositories, 32 of them completed implementations with measured results.",
+      "Extends long-held domains, computer vision, signal processing, combinatorial optimization, and recommendation, through agent-driven development. Knowing the field is what makes the speed possible: I know which measurement settles the question, so a paper becomes a measured implementation rather than a summary. Owns and operates 128 repositories, 32 of them completed implementations with measured results.",
     groups: [
       {
         name: "Optimization & Scheduling",
@@ -602,6 +609,13 @@ export const en = {
           "Signal fingerprinting that pinpoints unidentified RF interference disrupting a wireless network in real time",
           "Installation-free acoustic sensing that counts foot traffic with a single spare phone",
           "Air-gapped acoustic data link that moves data by sound in a room where RF and light are unavailable"
+        ]
+      },
+      {
+        name: "Shipped Products & Tooling",
+        items: [
+          "Shipped a Korean document converter that never uploads files, as both a web and a desktop app (MIT, no-upload claim re-proven by 40 checks per run)",
+          "Browser-side calculator for whether a model fits a given GPU and whether self-hosting beats the API"
         ]
       }
     ]
