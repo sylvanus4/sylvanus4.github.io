@@ -226,6 +226,22 @@ def card_html(c: dict) -> str:
 
 
 
+def _match_end(text: str, pos: int, tag: str) -> int:
+    """`pos` 시점에 열려 있는 `tag` 의 닫는 태그 끝 위치. 중첩을 센다.
+
+    카드 안에 같은 태그가 들어 있어서 필요하다(pcard 안의 pcard__tags 가 둘 다 div).
+    닫히지 않으면 -1 을 돌려 호출부가 그 카드를 건너뛴다.
+    """
+    depth = 1
+    scan = re.compile(rf"<(/?){tag}\b", re.I)
+    for m in scan.finditer(text, pos):
+        depth += -1 if m.group(1) else 1
+        if depth == 0:
+            close = text.find(">", m.end())
+            return close + 1 if close != -1 else -1
+    return -1
+
+
 def retaxonomy(body: str, cfg: dict) -> str:
     """카드를 영상 카테고리와 같은 축으로 다시 담는다.
 
@@ -237,12 +253,28 @@ def retaxonomy(body: str, cfg: dict) -> str:
     if not tax:
         return body
 
-    # 계열별 카드 수확 — 카드는 <a class="pcard ...> ... </a> 한 덩어리다
+    # 계열별 카드 수확.
+    #
+    # 카드는 <a class="pcard"> 이거나 <div class="pcard"> 다. 원래 전부 <a> 였는데, 2i 쪽
+    # 보안 스크럽이 개인 계정 귀속 링크를 지우면서 링크가 없어진 카드 77장이 <div> 로 바뀌었다.
+    # <a> 만 보던 정규식은 그 77장을 조용히 흘려보냈고, 재분류가 남은 것만 다시 담아 본문이
+    # 128장에서 52장으로 줄었다. 카드가 0장이면 경고하고 원본을 지키지만 52장은 "찾긴 찾았다"라
+    # 경고도 안 떴다.
+    #
+    # 태그별로 처리가 갈리는 이유: <a> 는 중첩되지 않아 non-greedy 로 끝나지만 <div> 안에는
+    # <div class="pcard__tags"> 가 들어 있어 첫 </div> 에서 끊으면 카드가 반토막 난다.
     cards = []
+    open_re = re.compile(r'\n?[ \t]*<(a|div) class="pcard[ "]')
     for sec in re.finditer(r'<section class="fam" id="(tech-[a-z]+)".*?</section>', body, re.S):
         fam = sec.group(1).replace("tech-", "")
-        for a in re.finditer(r'\n?\s*<a class="pcard[ "].*?</a>', sec.group(0), re.S):
-            cards.append({"fam": fam, "html": a.group(0)})
+        chunk = sec.group(0)
+        for m in open_re.finditer(chunk):
+            tag = m.group(1)
+            end = (_match_end(chunk, m.end(), tag) if tag == "div"
+                   else chunk.find("</a>", m.end()) + len("</a>"))
+            if end <= 0:
+                continue
+            cards.append({"fam": fam, "html": chunk[m.start():end]})
     if not cards:
         print("  ⚠ 재분류: 카드를 찾지 못해 원본 유지")
         return body

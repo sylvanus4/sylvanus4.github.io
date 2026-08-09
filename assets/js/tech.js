@@ -40,7 +40,7 @@ async function load() {
 }
 
 function wireCount() {
-  const n = board.querySelectorAll("a.pcard").length;
+  const n = board.querySelectorAll(".pcard").length;
   const el = document.getElementById("techtotal");
   if (el) el.textContent = n.toLocaleString(isEn ? "en-US" : "ko-KR");
 }
@@ -52,7 +52,7 @@ function wireSearch() {
   if (!box || !input) return;
   box.hidden = false;
 
-  const cards = [...board.querySelectorAll("a.pcard")];
+  const cards = [...board.querySelectorAll(".pcard")];
   const fams = [...board.querySelectorAll(".fam")];
   const chips = [...board.querySelectorAll(".famnav__chip")];
   // 검색 대상 문자열을 한 번만 만들어 둔다
@@ -68,7 +68,7 @@ function wireSearch() {
     });
     // 결과가 하나도 없는 분류는 통째로 숨긴다
     fams.forEach((f) => {
-      f.hidden = ![...f.querySelectorAll("a.pcard")].some((c) => !c.hidden);
+      f.hidden = ![...f.querySelectorAll(".pcard")].some((c) => !c.hidden);
     });
     chips.forEach((ch) => {
       const t = document.querySelector(ch.getAttribute("href"));

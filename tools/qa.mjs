@@ -204,8 +204,8 @@ async function runTech(name, ctxOpts) {
   await page.goto(`${BASE}/tech.html`, { waitUntil: "networkidle", timeout: 45000 });
   await page.waitForTimeout(1400);
 
-  const cards = await page.locator("#techboard a.pcard").count();
-  cards === 128 ? ok(`카드 ${cards}개`) : bad(`카드 ${cards}개 (기대 128)`);
+  const cards = await page.locator("#techboard .pcard").count();
+  cards === 129 ? ok(`카드 ${cards}개`) : bad(`카드 ${cards}개 (기대 129)`);
   const fams = await page.locator("#techboard .fam").count();
   fams === 15 ? ok(`분류 ${fams}개`) : bad(`분류 ${fams}개 (기대 15)`);
 
@@ -217,8 +217,8 @@ async function runTech(name, ctxOpts) {
   // 검색 필터 실동작
   await page.fill("#techq", "양자화");
   await page.waitForTimeout(400);
-  const shown = await page.evaluate(() => [...document.querySelectorAll("#techboard a.pcard")].filter((c) => !c.hidden).length);
-  shown > 0 && shown < 126 ? ok(`검색 필터 동작 (${shown}개)`) : bad(`검색 필터 이상 (${shown}개)`);
+  const shown = await page.evaluate(() => [...document.querySelectorAll("#techboard .pcard")].filter((c) => !c.hidden).length);
+  shown > 0 && shown < 129 ? ok(`검색 필터 동작 (${shown}개)`) : bad(`검색 필터 이상 (${shown}개)`);
   await page.fill("#techq", "");
   await page.waitForTimeout(300);
 
