@@ -205,7 +205,7 @@ async function runTech(name, ctxOpts) {
   await page.waitForTimeout(1400);
 
   const cards = await page.locator("#techboard .pcard").count();
-  cards === 129 ? ok(`카드 ${cards}개`) : bad(`카드 ${cards}개 (기대 129)`);
+  cards === 130 ? ok(`카드 ${cards}개`) : bad(`카드 ${cards}개 (기대 130)`);
   const fams = await page.locator("#techboard .fam").count();
   fams === 15 ? ok(`분류 ${fams}개`) : bad(`분류 ${fams}개 (기대 15)`);
 
@@ -218,7 +218,7 @@ async function runTech(name, ctxOpts) {
   await page.fill("#techq", "양자화");
   await page.waitForTimeout(400);
   const shown = await page.evaluate(() => [...document.querySelectorAll("#techboard .pcard")].filter((c) => !c.hidden).length);
-  shown > 0 && shown < 129 ? ok(`검색 필터 동작 (${shown}개)`) : bad(`검색 필터 이상 (${shown}개)`);
+  shown > 0 && shown < 130 ? ok(`검색 필터 동작 (${shown}개)`) : bad(`검색 필터 이상 (${shown}개)`);
   await page.fill("#techq", "");
   await page.waitForTimeout(300);
 
@@ -246,9 +246,9 @@ async function techEnGate() {
     const en = JSON.parse(readFileSync("assets/tech-en.json", "utf8"));
     const titles = [...body.matchAll(/pcard__title">([^<]+)</g)].map((m) => m[1]);
     const missing = titles.filter((t) => !en.cards[t]);
-    titles.length >= 129
+    titles.length >= 130
       ? ok(`body 제목 ${titles.length}개 (regex 기준)`)
-      : bad(`body 제목 ${titles.length}개 — 129 미만, 추출 회귀 의심`);
+      : bad(`body 제목 ${titles.length}개 — 130 미만, 추출 회귀 의심`);
     missing.length === 0
       ? ok("영문 오버레이 커버리지 전량")
       : bad(`영문 오버레이 누락 ${missing.length}개: ${missing.slice(0, 3).join(" / ")}`);
@@ -286,7 +286,7 @@ async function techEnGate() {
         (/[가-힣]/.test(document.querySelector("#techq")?.placeholder || "") ? 1 : 0)
     };
   });
-  r.cards === 129 ? ok(`영문 화면 카드 ${r.cards}개`) : bad(`영문 화면 카드 ${r.cards}개 (기대 129)`);
+  r.cards === 130 ? ok(`영문 화면 카드 ${r.cards}개`) : bad(`영문 화면 카드 ${r.cards}개 (기대 130)`);
   const leaks = r.title + r.excerpt + r.tags + r.cat + r.fam + r.chips + r.search;
   leaks === 0
     ? ok("영문 카드·계열·칩·검색에 국문 잔류 0")
@@ -504,6 +504,11 @@ async function demosGate() {
         noAlt: imgs.filter((i) => !i.alt.trim()).length,
         repoLinks: document.querySelectorAll(".dlink--ghost").length,
         ownBadges: document.querySelectorAll(".dbadge--own").length,
+        privBadges: document.querySelectorAll(".dbadge--priv").length,
+        // 비공개 카드가 링크(캡처 앵커·CTA·저장소)를 하나라도 달면 죽은 링크가 된다.
+        privLinks: [...document.querySelectorAll(".dcard")].filter(
+          (c) => c.querySelector(".dbadge--priv") && c.querySelector("a[href]")
+        ).length,
         overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
         hangul: [...document.querySelectorAll(".dcard__title, .dcard__blurb, .dfam__h")]
           .map((n) => n.textContent.trim())
@@ -527,6 +532,14 @@ async function demosGate() {
     r.ownBadges === r.repoLinks
       ? ok(`${tag} 소스공개 배지 ${r.ownBadges} = 저장소 링크 ${r.repoLinks}`)
       : bad(`${tag} 배지 ${r.ownBadges} ≠ 저장소 링크 ${r.repoLinks}`);
+    // 비공개는 manifest 가 정본이고, 비공개 카드에는 어떤 링크도 없어야 한다.
+    const privManifest = manifest.filter((d) => d.src === "private").length;
+    r.privBadges === privManifest
+      ? ok(`${tag} 비공개 배지 ${r.privBadges} = 매니페스트 ${privManifest}`)
+      : bad(`${tag} 비공개 배지 ${r.privBadges} ≠ 매니페스트 ${privManifest}`);
+    r.privLinks === 0
+      ? ok(`${tag} 비공개 카드에 링크 없음`)
+      : bad(`${tag} 비공개 카드에 링크 ${r.privLinks}건 — 죽은 링크가 된다`);
     r.overflow <= 0 ? ok(`${tag} 가로 넘침 없음`) : bad(`${tag} 가로 넘침 ${r.overflow}px`);
     errs.length === 0 ? ok(`${tag} 콘솔 에러 0`) : bad(`${tag} 콘솔 에러: ${errs[0]}`);
 

@@ -48,6 +48,22 @@
     "#재현성"
    ],
    "q": "algorithms polyglot 알고리즘 교차검증 cross-validation conformance 상호일치 golden file 골든파일 dijkstra knapsack lcs lis mergesort quicksort backtracking dp greedy graph mst flow 벤치마크 benchmark 재현성 reproducibility 타이브레이크 tiebreak go c cpp rust python java erickson 코딩테스트 인터뷰 mutation testing 뮤테이션"
+  },
+  {
+   "fam": "tech-product",
+   "repo": "sylvanus4/korean-history-exam-lab",
+   "url": "https://github.com/sylvanus4/korean-history-exam-lab",
+   "title": "기출 서안 · 한능검 심화 기출 학습 앱",
+   "excerpt": "한국사능력검정시험 심화 기출 스무 회차 1,000문항을 전수 파싱해 지식 그래프(노드 963 · 오답 교정 4,001)로 뒤집고, 그 위에 SM-2 암기 카드 2,072장·설명 채점 627개·혼동쌍 기반 유사문항 생성을 얹은 오프라인 데스크탑 앱이다. 생성 문항은 코드 소유 3중 게이트(구조·자료 누설·사실 반증)를 통과한 것만 실린다. 기출 원문 저작권(공공누리 제4유형) 때문에 배포판과 저장소는 비공개다.",
+   "lang": "Python · Rust",
+   "date": "2026.08.10",
+   "private": true,
+   "tags": [
+    "#지식그래프",
+    "#간격반복",
+    "#Tauri"
+   ],
+   "q": "한능검 한국사 기출 지식그래프 srs 간격반복 앰기 tauri 오프라인 혼동쌍 유사문항 생성 게이트 quiz knowledge graph spaced repetition"
   }
  ],
  "rewrite": [

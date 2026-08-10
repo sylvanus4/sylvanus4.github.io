@@ -31,6 +31,9 @@ async function worker() {
   while (queue.length) {
     const d = queue.shift();
     const path = `${OUT}/${d.slug}.jpg`;
+    // 비공개 항목은 열 URL 자체가 없다. 캡처는 손으로 만든 것을 쓰고, --force 재촬영이
+    // 이 항목에서 죽으면 나머지 45장의 링크 생존 확인까지 같이 죽는다.
+    if (d.src === "private" || !d.url) { skipped++; continue; }
     if (!force && existsSync(path)) { skipped++; continue; }
 
     const ctx = await browser.newContext({

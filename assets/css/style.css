@@ -1246,6 +1246,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   border-color: color-mix(in oklab, var(--cy) 45%, transparent);
   background: var(--cy-dim);
 }
+/* 비공개: 라이선스 사정으로 배포하지 않는 것. 숨기는 대신 이유를 말한다. */
+.dbadge--priv {
+  color: var(--am);
+  border-color: color-mix(in oklab, var(--am) 45%, transparent);
+}
+.dcard__shot--plain { cursor: default; }
+.dcard__shot--plain:hover img { opacity: 1; }
 .dcard__title {
   font-size: clamp(1rem, 0.95rem + 0.3vw, 1.12rem);
   font-weight: 650;
@@ -1274,6 +1281,18 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .dlink:hover { background: var(--cy); color: oklch(15% 0.03 220); }
 .dlink--ghost { border-color: var(--line-bright); color: var(--fg-3); }
 .dlink--ghost:hover { background: var(--bg-3); color: var(--fg); border-color: var(--line-bright); }
+/* 링크가 아닌 안내문. .dlink 뒤에 와야 한다 — 앞에 두면 동률 특이성으로 .dlink 가 덮어
+   버튼처럼 보이는 죽은 링크가 된다(실제로 그렇게 렌더된 것을 육안으로 잡았다). */
+.dlink--muted {
+  border: 0;
+  padding: 0;
+  min-height: 0;
+  background: none;
+  color: var(--fg-4);
+  font-size: var(--t-xs);
+  cursor: default;
+}
+.dlink--muted:hover { background: none; color: var(--fg-4); }
 
 @media (max-width: 600px) {
   .dnav__chip, .dlink { min-height: 44px; }

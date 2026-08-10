@@ -1100,6 +1100,15 @@
     "#Swift",
     "#Capacitor"
    ]
+  },
+  "기출 서안 · 한능검 심화 기출 학습 앱": {
+   "t": "Gichul Seoan, an offline study app for the Korean History Exam",
+   "e": "All 1,000 questions from twenty rounds of the advanced Korean History Exam, parsed in full and inverted into a knowledge graph (963 nodes, 4,001 distractor corrections), with 2,072 SM-2 flashcards, 627 explain-back rubrics and confusion-pair question generation on top. Generated items ship only after a code-owned triple gate: structure, cue leakage, fact refutation. The build and repo stay private because the bundle carries original exam text.",
+   "g": [
+    "#KnowledgeGraph",
+    "#SpacedRepetition",
+    "#Tauri"
+   ]
   }
  },
  "fams": {

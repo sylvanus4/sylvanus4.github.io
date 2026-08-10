@@ -36,25 +36,36 @@ function card(d) {
   const blurb = pick(d, "blurb");
   const tech = pick(d, "tech") || [];
   const own = d.src === "own";
+  // 비공개: 라이선스나 데이터 사정으로 배포판을 공개하지 않는 것. 캡처와 설명만 싣는다.
+  // 눌러도 안 가는 링크를 다는 것보다 처음부터 링크가 아닌 편이 정직하다 — 버튼이
+  // 있는데 죽어 있으면 방문자는 사이트가 깨졌다고 읽는다.
+  const priv = d.src === "private";
+  const badge = priv ? t("demos.badgePrivate") : own ? t("demos.badgeOwn") : t("demos.badgeHosted");
+  const badgeCls = priv ? " dbadge--priv" : own ? " dbadge--own" : "";
+
+  const shotImg = `<img src="assets/img/demos/${esc(d.slug)}.jpg" alt="${esc(title)} ${t("demos.shotAlt")}"
+           width="1200" height="750" loading="lazy" decoding="async">`;
+  const shot = priv
+    ? `<span class="dcard__shot dcard__shot--plain">${shotImg}</span>`
+    : `<a class="dcard__shot" href="${esc(d.url)}" target="_blank" rel="noopener"
+       aria-label="${esc(title)}${isEn ? "" : " 데모 열기"}">${shotImg}</a>`;
+
+  const links = priv
+    ? `<span class="dlink dlink--muted">${t("demos.privateNote")}</span>`
+    : `<a class="dlink" href="${esc(d.url)}" target="_blank" rel="noopener">${esc(pick(d, "cta") || t("demos.open"))} ↗</a>
+        ${d.repo ? `<a class="dlink dlink--ghost" href="${esc(d.repo)}" target="_blank" rel="noopener">${t("demos.source")} ↗</a>` : ""}`;
 
   return `
   <article class="dcard">
-    <a class="dcard__shot" href="${esc(d.url)}" target="_blank" rel="noopener"
-       aria-label="${esc(title)}${isEn ? "" : " 데모 열기"}">
-      <img src="assets/img/demos/${esc(d.slug)}.jpg" alt="${esc(title)} ${t("demos.shotAlt")}"
-           width="1200" height="750" loading="lazy" decoding="async">
-    </a>
+    ${shot}
     <div class="dcard__body">
       <p class="dcard__badges">
-        <span class="dbadge${own ? " dbadge--own" : ""}">${own ? t("demos.badgeOwn") : t("demos.badgeHosted")}</span>
+        <span class="dbadge${badgeCls}">${badge}</span>
       </p>
       <h3 class="dcard__title">${esc(title)}</h3>
       <p class="dcard__blurb">${esc(blurb)}</p>
       <p class="dcard__tech">${tech.map((x) => `<span class="chip">${esc(x)}</span>`).join("")}</p>
-      <p class="dcard__links">
-        <a class="dlink" href="${esc(d.url)}" target="_blank" rel="noopener">${esc(pick(d, "cta") || t("demos.open"))} ↗</a>
-        ${d.repo ? `<a class="dlink dlink--ghost" href="${esc(d.repo)}" target="_blank" rel="noopener">${t("demos.source")} ↗</a>` : ""}
-      </p>
+      <p class="dcard__links">${links}</p>
     </div>
   </article>`;
 }
