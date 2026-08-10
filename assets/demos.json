@@ -814,5 +814,28 @@
    "WASM",
    "On-device"
   ]
+ },
+ {
+  "slug": "algorithms-polyglot",
+  "group": "doc",
+  "src": "own",
+  "title": "여섯 언어 교차 검증 알고리즘 랩",
+  "url": "https://sylvanus4.github.io/algorithms-polyglot/",
+  "repo": "https://github.com/sylvanus4/algorithms-polyglot",
+  "cta": "학습 사이트 열기",
+  "blurb": "알고리즘 26개와 새로 쓴 문제 8개를 Go·C·C++·Rust·Python·Java 여섯 벌로 독립 구현하고 공유 벡터 232개로 교차 검증한 기록입니다. 결함 15건 중 컴파일러·타입 검사기·린터가 잡은 것은 0건이고 전부 상호일치 게이트와 브루트포스 대조가 찾았습니다. 이 링크는 저장소 소스에서 생성되는 학습 사이트라, 조작하는 데모가 아니라 읽는 면입니다.",
+  "tech": [
+   "6개 언어",
+   "교차 검증",
+   "골든 벡터 232개"
+  ],
+  "title_en": "A six-language cross-validation algorithms lab",
+  "cta_en": "Open the learning site",
+  "blurb_en": "26 algorithms plus 8 original problems, independently implemented six ways (Go, C, C++, Rust, Python, Java) and cross-checked against 232 shared vectors. Of 15 recorded defects, zero were caught by compilers, type checkers or linters. The agreement gate and brute-force comparison found them all. This link is the learning site generated from the repo: a page to read, not a demo to operate.",
+  "tech_en": [
+   "6 languages",
+   "Cross-validation",
+   "232 golden vectors"
+  ]
  }
 ]
