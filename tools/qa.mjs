@@ -234,6 +234,92 @@ await runTech("desktop", { viewport: { width: 1512, height: 950 }, deviceScaleFa
 await runTech("tablet", { viewport: { width: 768, height: 1024 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
 await runTech("mobile", { ...devices["iPhone 14 Pro"] });
 
+/* ---- 카탈로그 영문 오버레이 ----
+   커버리지는 렌더러(tech.js)와 다른 방법으로 센다: 원시 파일 정규식 대조.
+   생성기와 게이트가 같은 셀렉터를 쓰면 회귀가 서로에게 안 보인다(2026-08-09 사고). */
+async function techEnGate() {
+  console.log("\n[tech-en]");
+
+  // 1) 파일 대조: body 의 국문 제목 전량이 tech-en.json 키에 있어야 한다
+  try {
+    const body = readFileSync("assets/tech-body.html", "utf8");
+    const en = JSON.parse(readFileSync("assets/tech-en.json", "utf8"));
+    const titles = [...body.matchAll(/pcard__title">([^<]+)</g)].map((m) => m[1]);
+    const missing = titles.filter((t) => !en.cards[t]);
+    titles.length >= 129
+      ? ok(`body 제목 ${titles.length}개 (regex 기준)`)
+      : bad(`body 제목 ${titles.length}개 — 129 미만, 추출 회귀 의심`);
+    missing.length === 0
+      ? ok("영문 오버레이 커버리지 전량")
+      : bad(`영문 오버레이 누락 ${missing.length}개: ${missing.slice(0, 3).join(" / ")}`);
+    const famIds = [...body.matchAll(/class="fam__t" id="([^"]+)"/g)].map((m) => m[1]);
+    const famMiss = famIds.filter((i) => !en.fams[i]);
+    famMiss.length === 0
+      ? ok(`계열 영문 ${famIds.length}개 전량`)
+      : bad(`계열 영문 누락: ${famMiss.join(", ")}`);
+  } catch (e) {
+    bad(`tech-en.json 대조 실패: ${e.message}`);
+  }
+
+  // 2) 실렌더: 영문 화면 카드 본문에 한글이 남으면 스왑이 샌 것이다
+  const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  const page = await ctx.newPage();
+  const errors = [];
+  page.on("console", (m) => { if (m.type() === "error") errors.push(m.text()); });
+  page.on("pageerror", (e) => errors.push("pageerror: " + e.message));
+  await page.goto(`${BASE}/tech.html?lang=en`, { waitUntil: "networkidle", timeout: 45000 });
+  await page.waitForTimeout(1400);
+
+  const r = await page.evaluate(() => {
+    const H = /[가-힣]/;
+    const leak = (sel) =>
+      [...document.querySelectorAll(sel)].filter((n) => H.test(n.textContent)).length;
+    return {
+      cards: document.querySelectorAll("#techboard .pcard").length,
+      title: leak(".pcard__title"),
+      excerpt: leak(".pcard__excerpt"),
+      tags: leak(".pcard__tags"),
+      cat: leak(".pcard__cat"),
+      fam: leak(".fam__t") + leak(".fam__d"),
+      chips: leak(".famnav__chip") + leak(".famnav__k"),
+      search: leak(".techsearch__l") +
+        (/[가-힣]/.test(document.querySelector("#techq")?.placeholder || "") ? 1 : 0)
+    };
+  });
+  r.cards === 129 ? ok(`영문 화면 카드 ${r.cards}개`) : bad(`영문 화면 카드 ${r.cards}개 (기대 129)`);
+  const leaks = r.title + r.excerpt + r.tags + r.cat + r.fam + r.chips + r.search;
+  leaks === 0
+    ? ok("영문 카드·계열·칩·검색에 국문 잔류 0")
+    : bad(`영문 카탈로그 국문 잔류: title ${r.title} / excerpt ${r.excerpt} / tags ${r.tags} / cat ${r.cat} / fam ${r.fam} / chips ${r.chips} / search ${r.search}`);
+
+  // 검색 매치 카운터가 실제로 살아있는지 (타이머 변수가 t() 를 가리면 여기서 죽는다)
+  await page.fill("#techq", "quantization");
+  await page.waitForTimeout(400);
+  const counter = await page.evaluate(() => document.querySelector("#techn")?.textContent || "");
+  counter.trim().length > 0 ? ok(`검색 매치 카운터 "${counter.trim()}"`) : bad("검색 매치 카운터가 비어 있다");
+
+  errors.length ? bad(`영문 카탈로그 콘솔 에러: ${errors.slice(0, 2).join(" | ")}`) : ok("콘솔 에러 0");
+  await page.screenshot({ path: `${OUT}/tech-en-desktop.png` });
+  await ctx.close();
+}
+await techEnGate();
+
+/* ---- hreflang / og:locale ---- 영문 페이지가 검색에 잡히기 위한 최소 조건 */
+async function hreflangGate() {
+  console.log("\n[hreflang]");
+  const ctx = await browser.newContext();
+  const page = await ctx.newPage();
+  for (const p of ["/index.html", "/tech.html", "/demos.html", "/resume.html"]) {
+    const res = await page.request.get(BASE + p);
+    const html = await res.text();
+    const n = (html.match(/rel="alternate" hreflang=/g) || []).length;
+    n === 3 ? ok(`${p} hreflang 3종`) : bad(`${p} hreflang ${n}개 (기대 ko/en/x-default 3)`);
+    /og:locale:alternate/.test(html) ? ok(`${p} og:locale:alternate`) : bad(`${p} og:locale:alternate 없음`);
+  }
+  await ctx.close();
+}
+await hreflangGate();
+
 /* ---- 내비 동일성 ----
    내비가 페이지마다 손으로 복사돼 있어 tech.html 에만 "영상"이 빠져 있었다.
    그래서 탭을 옮길 때마다 남은 항목이 26px 씩 좌우로 밀렸다("메뉴가 흔들린다").

@@ -105,7 +105,6 @@ const UI = {
     "tech.loading": "카탈로그를 불러오는 중입니다.",
     "tech.failed": "카탈로그를 불러오지 못했습니다.",
     "tech.origin": "원본 목록 보기",
-    "tech.koOnly": "카탈로그 항목 설명은 한국어로만 제공합니다.",
     "tech.match": "개 일치",
     "tech.reelSoon": "영상 준비 중",
 
@@ -200,7 +199,6 @@ const UI = {
     "tech.loading": "Loading the catalog.",
     "tech.failed": "The catalog could not be loaded.",
     "tech.origin": "Open the original list",
-    "tech.koOnly": "Catalog entry descriptions are available in Korean only.",
     "tech.match": " matching",
     "tech.reelSoon": "Reel coming soon",
 

@@ -1,0 +1,1182 @@
+{
+ "cards": {
+  "신호 지문 인식 엔진 (통신 신호 일반화)": {
+   "t": "Signal Fingerprinting Engine (Generalized for Communication Signals)",
+   "e": "An open-source signal fingerprinting engine that generalizes the landmark/constellation fingerprinting technique from music recognition to the communication signal (RF/IQ) domain, porting the legacy C/C++ core to Rust. It targets a spectrum-awareness engine that runs alongside COTS server software stacks such as O-RAN DU/CU.",
+   "g": [
+    "#Rust",
+    "#C",
+    "#Standard ML"
+   ]
+  },
+  "RF 간섭원 실시간 지문 매칭": {
+   "t": "Real-Time Fingerprint Matching for RF Interference Sources",
+   "e": "The sigprint engine captures anomalous wireless network signals in real time via CFAR detection, registers candidate interferer waveforms in a signature database, and pinpoints the source through robust hash fingerprint matching. This is a reference demo built on synthetic RF signals.",
+   "g": [
+    "#Python",
+    "#NumPy",
+    "#SciPy",
+    "#DSP/CFAR"
+   ]
+  },
+  "RF 스펙트럼 간섭원 식별 엔진": {
+   "t": "RF Spectrum Interference Source Identification Engine",
+   "e": "An O-RAN and COTS communication-stack application of the sigprint engine, which uses CFAR detection and robust hash fingerprinting to identify known interference sources and waveform signatures in IQ streams at low computational cost. It connects into the commstack system as a feature-computation and classification subsystem.",
+   "g": [
+    "#Python",
+    "#Rust",
+    "#Shell"
+   ]
+  },
+  "물리 기반 지능형 무선 수신기 시스템": {
+   "t": "Physics-Based Intelligent Radio Receiver System",
+   "e": "A physics-based intelligent receiver system that separates transmitter, channel, and receiver effects, makes real-time judgments about unknown signals and interference, and feeds decisions back into O-RAN control. It embeds sigprint-spectrum (the RF spectrum fingerprinting engine) as a subsystem.",
+   "g": [
+    "#Python",
+    "#Rust",
+    "#Shell"
+   ]
+  },
+  "에어갭 통신 소프트웨어 시뮬레이션 코어": {
+   "t": "Simulation Core for Air-Gapped Communication Software",
+   "e": "A Rust workspace covering screen-to-camera fountain transmission, dual-channel AIRCODE, electromagnetic emission modeling, and covert-channel defense, developed using the compiler and test suite as the reward signal. It explicitly states that no real SDR, camera, or microphone hardware was used, verified only over deterministic simulated channels.",
+   "g": [
+    "#Rust",
+    "#GF(256)",
+    "#LT fountain code",
+    "#polar codes"
+   ]
+  },
+  "광학 결제 프로토콜 스택 연구 프로토타입": {
+   "t": "Research Prototype for an Optical Payment Protocol Stack",
+   "e": "A Rust optical payment protocol stack that transmits signed transaction objects, cancellation/limit state, itemized receipts, broadcast vouchers, and settlement batches over a display-to-camera channel. It is an unaudited research prototype and must not be used for real payments.",
+   "g": [
+    "#Rust"
+   ]
+  },
+  "회의용 실시간 음성 번역 데스크톱 앱": {
+   "t": "Real-Time Voice Translation Desktop App for Meetings",
+   "e": "A PySide6 desktop app that uses the OpenAI Realtime Translation API to translate microphone audio on the spot, outputting both text and speech. It runs Silero VAD locally, keeping latency in the low hundreds of milliseconds.",
+   "g": [
+    "#Python",
+    "#PySide6",
+    "#Silero VAD"
+   ]
+  },
+  "듀얼 백엔드 실시간 음성 번역 데스크톱 앱": {
+   "t": "Dual-Backend Real-Time Voice Translation Desktop App",
+   "e": "A macOS desktop app for real-time voice translation that supports two interchangeable backends: the OpenAI Realtime API and a self-hosted FastAPI server (RunPod GPU or local Apple Silicon). It is built on a Tauri 2 frontend.",
+   "g": [
+    "#Python",
+    "#Tauri",
+    "#FastAPI"
+   ]
+  },
+  "실시간 음성 에이전트 지연 예산 계산기": {
+   "t": "Latency Budget Calculator for Real-Time Voice Agents",
+   "e": "A 100% client-side static calculator that takes the expected latency of each stage from end-of-speech through ASR, LLM, and TTS to first audio response, then diagnoses the cumulative timeline and bottlenecks before launch. Results can be shared via a URL hash, with no server or API key required.",
+   "g": [
+    "#JavaScript",
+    "#HTML",
+    "#CSS"
+   ]
+  },
+  "생태 음향 종 시그니처 식별 엔진": {
+   "t": "Bioacoustic Species Signature Identification Engine",
+   "e": "A bioacoustics application of the sigprint engine that identifies species-specific vocalization signatures, such as birds, whales, and bats, from field recorder audio through fingerprint matching. Its differentiators over deep learning are low-power offline operation and the ability to register a rare species from a single sample.",
+   "g": [
+    "#Rust"
+   ]
+  },
+  "방송 송출 검증 모니터링 엔진": {
+   "t": "Broadcast Airplay Verification and Monitoring Engine",
+   "e": "A sigprint engine application that automatically confirms whether a track or advertisement actually aired on radio, TV, or streams, generating evidence for royalty settlement and ad-delivery verification. Its differentiator over commercial APIs is self-hosting.",
+   "g": [
+    "#Rust"
+   ]
+  },
+  "전력망 주파수 지문 기반 녹음 검증 엔진": {
+   "t": "Recording Verification Engine Based on Power-Grid Frequency Fingerprints",
+   "e": "A sigprint engine application that extracts the minute fluctuations in power-grid fundamental frequency (50/60Hz) embedded in a recording and matches them against grid reference data to verify recording time and detect edits. It uses training-free time-series matching to help identify deepfakes and tampered evidence.",
+   "g": [
+    "#Rust"
+   ]
+  },
+  "설비 예지보전 음향·진동 시그니처 엔진": {
+   "t": "Acoustic and Vibration Signature Engine for Predictive Maintenance",
+   "e": "A sigprint engine application that fingerprints the normal and degraded acoustic and vibration patterns of rotating equipment such as motors, pumps, and bearings, enabling early anomaly detection on edge boxes without training. Its differentiator over cloud-subscription commercial offerings is offline edge matching.",
+   "g": [
+    "#Rust"
+   ]
+  },
+  "청진음 이상 패턴 스크리닝 보조 엔진": {
+   "t": "Auscultation Anomaly Screening Assistant Engine",
+   "e": "A sigprint engine application that matches known abnormal-pattern signatures, such as heart murmurs and wheezes, in audio from a digital stethoscope or phone microphone, providing a first-pass screening indicator. It is positioned as a re-listen recommendation flag rather than a diagnosis, and requires medical device regulatory disclosure.",
+   "g": [
+    "#Rust"
+   ]
+  },
+  "루트 확률·가챠 기댓값 계산기": {
+   "t": "Loot Probability and Gacha Expected-Value Calculator",
+   "e": "A web tool that, given a pasted drop table or gacha probability sheet, computes the actual normalized probabilities, rarity tiers, and expected-value statistics across a given number of pulls. It ranks rarity by actual probability rather than item name.",
+   "g": [
+    "#JavaScript",
+    "#HTML",
+    "#CSS"
+   ]
+  },
+  "부서 엑셀 통합 경영 대시보드": {
+   "t": "Cross-Department Excel Consolidation Management Dashboard",
+   "e": "An ETL pipeline cleans scattered spreadsheets and in-house system data into a standard schema, then serves a separate summary view for management and a detailed view for field staff. It is a reference demo built with pandas, SQLite, and Streamlit on synthetic data.",
+   "g": [
+    "#Python",
+    "#pandas",
+    "#SQLite",
+    "#Streamlit"
+   ]
+  },
+  "견적 발주 문서 파싱 자동화": {
+   "t": "Automated Parsing for Quotation and Purchase Order Documents",
+   "e": "Rule-based extraction pulls table and line-item structure from documents, then cross-checks item codes and unit prices against predefined rules, routing only outliers to a review queue. It is a reference demo built on synthetic data.",
+   "g": [
+    "#Python",
+    "#Rule-Based Parsing",
+    "#pytest"
+   ]
+  },
+  "SKU 수요예측 발주 권고 엔진": {
+   "t": "SKU Demand Forecasting and Purchase Recommendation Engine",
+   "e": "A time-series demand forecasting model combines sales history, seasonal indices, promotions, and weather signals, then automatically converts the forecast into a purchase recommendation list with supporting rationale. It is a reference demo built on synthetic data.",
+   "g": [
+    "#Python",
+    "#pandas",
+    "#NumPy",
+    "#Time Series"
+   ]
+  },
+  "뉴스 나라장터 영업 신호 레이더": {
+   "t": "News and Public Procurement Sales Signal Radar",
+   "e": "Automatically collects and filters news and Nara Marketplace (Korean public procurement) data based on key accounts and industry keywords, classifies importance with an LLM, and routes results into Slack alerts and CRM notes. It is a reference demo built on synthetic data.",
+   "g": [
+    "#Python",
+    "#Signal Scoring",
+    "#Pipeline"
+   ]
+  },
+  "오픈소스 프로젝트 커뮤니티 언급 주간 다이제스트": {
+   "t": "Weekly Digest of Community Mentions for an Open Source Project",
+   "e": "A static digest tool that weekly compiles threads mentioning your open source project on Reddit and Hacker News, highlighting unanswered threads. It surfaces prospective-user questions that a solo maintainer is likely to miss.",
+   "g": [
+    "#Python",
+    "#JavaScript",
+    "#CSS"
+   ]
+  },
+  "AI 트렌드 논문 일일 다이제스트": {
+   "t": "Daily Digest of Trending AI Papers",
+   "e": "A tool that pulls daily trending AI/ML papers into a plain-language markdown digest, adding an LLM-generated explanation of why each paper matters when an API key is available. Without a key, it falls back to the paper's abstract.",
+   "g": [
+    "#Python"
+   ]
+  },
+  "추천 아키텍처 재현 · 반증 랩": {
+   "t": "Recommender Architecture Reproduction and Refutation Lab",
+   "e": "An experimentation lab that reruns the architectural claims of 2026 recommender system papers on its own GPUs to verify them. It first establishes a popularity baseline for comparison, then measures what breaks when positional information is removed from semantic IDs and whether ranking order holds across different seeds. It does not claim ranking results from a single seed.",
+   "g": [
+    "#Recommenders",
+    "#Ranking",
+    "#Reproducibility"
+   ]
+  },
+  "금융 콜센터 실시간 AI 코파일럿": {
+   "t": "Real-Time AI Copilot for Financial Call Centers",
+   "e": "A real-time AI copilot platform for financial call center agents that transcribes live calls and surfaces knowledge-base recommendations and compliance warnings within three seconds of latency. It covers the entire call flow, from call start through post-processing.",
+   "g": [
+    "#Python",
+    "#TypeScript",
+    "#Go"
+   ]
+  },
+  "기획팀 업무 자동화 플레이북": {
+   "t": "Automation Playbook for a Planning Team's Workflows",
+   "e": "A playbook that automates 50 core planning-team tasks with AI agents, using Notion as the system of record, Slack as the input/output channel, and Cursor skills as reusable building blocks. It also includes a knowledge graph and a simulation layer.",
+   "g": [
+    "#Python",
+    "#Notion API",
+    "#Slack"
+   ]
+  },
+  "X 트윗 리서치 슬랙 자동 포스팅": {
+   "t": "Automated X (Twitter) Research Posting to Slack",
+   "e": "A Cursor skill that, given an X link, collects the tweet content, adds web research, and automatically posts a three-message thread to a Slack channel. Messages are structured as summary, detailed research, and insights, in that order.",
+   "g": [
+    "#Python",
+    "#Slack MCP"
+   ]
+  },
+  "에이전트 하네스 품질 진단 도구": {
+   "t": "Agent Harness Quality Diagnostic Tool",
+   "e": "A 100% client-side static analyzer that scores a pasted system prompt and tool schema across five axes, loop, verification, tracing, memory, and safety, then generates a hardened prompt that satisfies all five.",
+   "g": [
+    "#JavaScript",
+    "#CSS"
+   ]
+  },
+  "SKILL.md 작성 품질 진단 도구": {
+   "t": "SKILL.md Authoring Quality Diagnostic Tool",
+   "e": "A 100% client-side static analyzer that scores the authoring quality of a pasted or URL-loaded SKILL.md file across five axes: discoverability, scope, actionability, guardrails, and structure. It shows concretely what needs to be added.",
+   "g": [
+    "#JavaScript",
+    "#CSS"
+   ]
+  },
+  "파인만식 자기기만 방지 에이전트 스킬 7종": {
+   "t": "Seven Feynman-Style Anti-Self-Deception Agent Skills",
+   "e": "A collection of seven small agent skills that widen the gap between knowing the name of something and actually understanding it. Each skill translates one of Richard Feynman's own habits for avoiding self-deception.",
+   "g": [
+    "#Python"
+   ]
+  },
+  "결과 검증형 AutoML 하이퍼파라미터 탐색 스킬": {
+   "t": "Result-Verified AutoML Hyperparameter Search Skill",
+   "e": "A schema-driven hyperparameter search agent skill that attaches to any training backend and enforces four code-owned gates that refuse to promote a result unless it beats the baseline. It consists of a SKILL.md and scripts written in pure standard library.",
+   "g": [
+    "#Python"
+   ]
+  },
+  "결정론 게이트 기반 자율 인프라 운영 스킬팩": {
+   "t": "Deterministic-Gate Autonomous Infrastructure Operations Skill Pack",
+   "e": "A collection of skill packs that let an agent perform infrastructure operations, QA, and experiments repeatedly without human intervention, but never executes without passing a deterministic verification gate. It works out of the box with Claude Code and Codex.",
+   "g": [
+    "#Python",
+    "#Shell"
+   ]
+  },
+  "에이전트 파이프라인 모델 티어 비용 계산기": {
+   "t": "Model-Tier Cost Calculator for Agent Pipelines",
+   "e": "A vendor-neutral static web tool that calculates, before deployment, how much per-role model-tier routing reduces token costs in a multi-agent pipeline. It compares a baseline against routed scenarios to show savings and bottlenecks.",
+   "g": [
+    "#JavaScript",
+    "#HTML"
+   ]
+  },
+  "멀티에이전트 조직도 시각화 도구": {
+   "t": "Multi-Agent Org Chart Visualization Tool",
+   "e": "A 100% client-side tool that reads an agent registry (JSON) and renders a multi-agent system as a hub-and-spoke org chart. It can export to YAML, JSON, Mermaid, and PNG.",
+   "g": [
+    "#JavaScript",
+    "#Python"
+   ]
+  },
+  "주문 CS 상담 핸드오프 챗봇": {
+   "t": "Order Support Chatbot with Human Handoff",
+   "e": "A FastAPI support agent integrated with order, inventory, and CS systems handles structured inquiries through intent classification and automatically hands off to a human agent with full conversation context when it determines it cannot resolve the case. It is a reference demo built on synthetic data.",
+   "g": [
+    "#Python",
+    "#FastAPI",
+    "#Intent Classification",
+    "#Handoff"
+   ]
+  },
+  "사내 문서 인용 기반 RAG 검색": {
+   "t": "Citation-Grounded RAG Search for Internal Documents",
+   "e": "A RAG pipeline that indexes manuals, drawings, and history documents into vector-searchable form and answers natural-language questions with source citations from the original text. A synthetic-data reference demo.",
+   "g": [
+    "#Python",
+    "#Embedding Search",
+    "#RAG"
+   ]
+  },
+  "한 문장 의도분해 대화형 오케스트레이터": {
+   "t": "Single-Sentence Intent Decomposition Conversational Orchestrator",
+   "e": "A conversational agent orchestrator that decomposes natural-language intent, calls the needed tools sequentially or in parallel, and merges the results into a single answer plus voice output. A synthetic-data reference demo.",
+   "g": [
+    "#Python",
+    "#Intent Decomposition",
+    "#pytest"
+   ]
+  },
+  "건축 blockout 관찰 수정 폐루프 에이전트": {
+   "t": "Architectural Blockout Observe-Patch Closed-Loop Agent",
+   "e": "A closed-loop agent demo that observes a draft built from spec requirements visually and structurally, diagnoses violations, and passes 7 design gates through targeted patches alone, without regeneration. It converged the gate score from 11.40 to 0.00 over 5 iterations with 4 accepted patches.",
+   "g": [
+    "#Python",
+    "#Geometry Validation",
+    "#observe-critic-patch loop"
+   ]
+  },
+  "병원 동선 시뮬레이션 폐루프 에이전트": {
+   "t": "Hospital Flow Simulation Closed-Loop Agent",
+   "e": "A reference demo that iteratively revises a hospital digital twin through an observe-patch-run-verify-rollback closed loop to pass 5 operational gates, such as reception wait time and corridor congestion, with measured results. It converged over 15 discrete-event simulation iterations, with 11 accepted patches and 4 rollbacks.",
+   "g": [
+    "#Python",
+    "#Discrete-Event Simulation",
+    "#observe-critic-patch loop"
+   ]
+  },
+  "간호사 3교대 CP-SAT 로스터링": {
+   "t": "Nurse 3-Shift Rostering with CP-SAT",
+   "e": "Solves nurse 3-shift rostering with OR-Tools CP-SAT and scores not only self-made synthetic instances but also 8 standard instances from the public Curtois and Qu benchmarks with no code changes. It maintains zero hard-constraint violations and reduced the gap to the best known public-benchmark solution from 18.98% to 12.96%.",
+   "g": [
+    "#Python",
+    "#OR-Tools CP-SAT"
+   ]
+  },
+  "콜센터 상담사 배치 CP-SAT": {
+   "t": "Call Center Agent Scheduling with CP-SAT",
+   "e": "A two-stage pipeline that computes required staffing per interval with Erlang C and assigns shift patterns with a CP-SAT set-covering model. Measured across 9 cells, it achieved zero hard-constraint violations, an optimization gap of 1.6 to 13.0 percent, and an SLA attainment rate of 69 to 81.8 percent.",
+   "g": [
+    "#Python",
+    "#OR-Tools CP-SAT",
+    "#Erlang C"
+   ]
+  },
+  "스포츠 리그 일정편성 CP-SAT": {
+   "t": "Sports League Scheduling with CP-SAT",
+   "e": "Uses CP-SAT to schedule a synthetic baseball league's regular season, handling conflicting objectives such as travel distance and consecutive home/away assignments in a single objective function. All 9 measured runs were FEASIBLE, with at most 6 unassigned games out of 720 occurring only in the largest instances.",
+   "g": [
+    "#Python",
+    "#OR-Tools CP-SAT"
+   ]
+  },
+  "기숙사 연수원 방배정 CP-SAT": {
+   "t": "Dormitory and Training Center Room Assignment with CP-SAT",
+   "e": "Enforces capacity, gender separation, conflicting pairs, and accessibility as critical penalties that act effectively as hard constraints, while simultaneously optimizing soft objectives like preference and diversity in a single CP-SAT objective function. Across 9 measured runs there were zero conflicting-pair co-assignment violations, though the largest instances sometimes failed to converge within the 300-second budget.",
+   "g": [
+    "#Python",
+    "#OR-Tools CP-SAT"
+   ]
+  },
+  "근무 스케줄링 엔진 재설계 랩": {
+   "t": "Shift Scheduling Engine Redesign Lab",
+   "e": "A workspace that redesigns a shift-scheduling problem originally solved in 2023 using CP-SAT, alongside the public Curtois, Qu, and INRC-II benchmarks and a research brief. It states an invariant rule that no real PII from the original dataset is brought in, using only synthetic data and public benchmarks.",
+   "g": [
+    "#Python",
+    "#OR-Tools CP-SAT"
+   ]
+  },
+  "Qwen3-30B NVFP4 양자화 파이프라인": {
+   "t": "Qwen3-30B NVFP4 Quantization Pipeline",
+   "e": "A pipeline and output archive for quantizing the Qwen3-30B-A3B model to NVFP4 (W4A4, group_size=16). It includes GPU cost-optimized execution artifacts such as smoke tests and an NFS storage-separated pipeline.",
+   "g": [
+    "#Python"
+   ]
+  },
+  "쿠버네티스 LLM 운영 레시피 모음": {
+   "t": "Kubernetes LLM Operations Recipe Collection",
+   "e": "A vendor-neutral, reproducible recipe collection for operating LLMs on Kubernetes, covering vLLM serving, Kueue GPU scheduling, quantized deployment, and multi-tenant isolation. It consists of real Kubernetes manifests that pass schema validation.",
+   "g": [
+    "#Kubernetes YAML",
+    "#Makefile"
+   ]
+  },
+  "ktransformers MoE 오프로드 재현 벤치마크": {
+   "t": "ktransformers MoE Offload Reproduction Benchmark",
+   "e": "A benchmark that directly reproduces and measures ktransformers' claimed 28x MoE offload speedup on RunPod for about $5. It decomposes the headline number into three factors, GPU attention, AMX kernels, and INT quantization, to verify it.",
+   "g": [
+    "#Shell",
+    "#Python"
+   ]
+  },
+  "GPU 파인튜닝 기법 계산기": {
+   "t": "GPU Fine-Tuning Technique Calculator",
+   "e": "A 100% browser-based static tool that computes training VRAM, the largest trainable model size, data format and volume, and training time and cost with formulas, given a GPU, model, and technique as input. When memory overflow is expected, it immediately suggests ways to reduce it.",
+   "g": [
+    "#JavaScript",
+    "#HTML",
+    "#CSS"
+   ]
+  },
+  "에이전트 스킬 워커 초소형 증류 벤치마크": {
+   "t": "Agent-Skill Worker Tiny-Model Distillation Benchmark",
+   "e": "Fine-tune-distills the repetitive worker portion of an agent skill, where an LLM is strictly necessary, into a sub-1B-parameter, 4-bit model that runs on-premise, reserving large models for genuine judgment calls. It validates this principle with reproducible before/after measurements.",
+   "g": [
+    "#Python",
+    "#Shell"
+   ]
+  },
+  "한국 법령 RAG 소버린 파일럿": {
+   "t": "Korean Statute RAG Sovereign Pilot",
+   "e": "An experimental repository verifying whether small-model (8B or smaller) SFT combined with article-level embedding RAG can eliminate the article-fabrication problem seen in large general-purpose APIs through article-level grounding. The statute text is public domain, and the data is referenced only by hash, never redistributed.",
+   "g": [
+    "#Python"
+   ]
+  },
+  "Qwen 추론 강도 제어 학습 파이프라인": {
+   "t": "Qwen Reasoning-Intensity Control Training Pipeline",
+   "e": "A reproducible pipeline, built entirely from open Hugging Face data and open tools, that trains a Qwen model to have controllable low, medium, and high reasoning intensity. It combines intensity-conditioned SFT with truncated-trace robustness and length-compliant GRPO.",
+   "g": [
+    "#Python",
+    "#Shell"
+   ]
+  },
+  "온프렘 실시간 음성 대화 서버": {
+   "t": "On-Premise Real-Time Voice Conversation Server",
+   "e": "A voice conversation stack that chains Silero VAD, Whisper STT, an LLM, and Qwen3 TTS, served on a private GPU cluster over a WebSocket protocol compatible with the OpenAI Realtime API. It measured a 1.47-second Korean single-turn round trip on an H200-class cluster.",
+   "g": [
+    "#Python",
+    "#Docker",
+    "#WebSocket",
+    "#Whisper",
+    "#Qwen3-TTS"
+   ]
+  },
+  "LLM 셀프호스팅 비용 VRAM 계산기": {
+   "t": "LLM Self-Hosting Cost and VRAM Calculator",
+   "e": "A browser-only static calculator for VRAM fit, inference speed, and break-even versus API costs when self-hosting an open LLM on your own GPU. With no backend or build step, it also generates deployment manifests for vLLM, SGLang, and TensorRT-LLM.",
+   "g": [
+    "#JavaScript",
+    "#HTML/CSS",
+    "#vLLM",
+    "#SGLang",
+    "#TensorRT-LLM"
+   ]
+  },
+  "LLM 셀프호스팅 손익분기 계산기": {
+   "t": "LLM Self-Hosting Break-Even Calculator",
+   "e": "A free tool that instantly computes, in the browser, whether an open LLM fits on your own GPU or Mac, and whether self-hosting is cheaper than the API, based on VRAM fit, token throughput, and the break-even point. There are no keys, servers, or data transmission involved at all.",
+   "g": [
+    "#JavaScript",
+    "#HTML",
+    "#CSS"
+   ]
+  },
+  "MoE 전문가 병렬화 시각화 플레이그라운드": {
+   "t": "MoE Expert-Parallelism Visualization Playground",
+   "e": "A 100% client-side playground that shows, in real time, how a deterministically seeded router sends token batches to experts sharded across multiple GPUs, visualizing all-to-all traffic and expert load imbalance. It runs entirely from a single index.html with no server.",
+   "g": [
+    "#JavaScript",
+    "#HTML",
+    "#CSS"
+   ]
+  },
+  "RAG 임베딩 모델 비교 대시보드": {
+   "t": "RAG Embedding Model Comparison Dashboard",
+   "e": "A vendor-neutral dashboard that compares retrieval embedding models for RAG on benchmark scores, parameter size, license, and language support, updated daily. The collection and aggregation logic is fully open and verifiable.",
+   "g": [
+    "#Python",
+    "#JavaScript",
+    "#GitHub Actions"
+   ]
+  },
+  "사출성형 표면 결함 비전 탐지": {
+   "t": "Injection-Molding Surface Defect Vision Detection",
+   "e": "An anomaly-detection vision model trained only on normal samples judges product surface images, running in shadow mode alongside manual visual inspection without replacing the actual line. A synthetic-data reference demo.",
+   "g": [
+    "#Python",
+    "#NumPy",
+    "#Pillow",
+    "#matplotlib"
+   ]
+  },
+  "의료영상 분할 도구운용 폐루프 에이전트": {
+   "t": "Medical Image Segmentation Tool-Operating Closed-Loop Agent",
+   "e": "A research closed-loop agent that iteratively revises segmentation error parameters using only computable quality signals, without ground truth. Ground truth was used only for verification, and mean Dice improved from 0.583 to 0.927.",
+   "g": [
+    "#Python",
+    "#Medical Image Segmentation",
+    "#observe-critic-patch loop"
+   ]
+  },
+  "FFmpeg 기반 크로스플랫폼 영상 트랜스코딩 웹앱": {
+   "t": "FFmpeg-Based Cross-Platform Video Transcoding Web App",
+   "e": "A full-stack video transcoding application with a Go (Gin + PostgreSQL) backend and a React (shadcn/ui) frontend that runs FFmpeg server-side. Encoding parameters are adjusted through the UI, and the generated FFmpeg command is shown as-is.",
+   "g": [
+    "#Go",
+    "#React",
+    "#FFmpeg"
+   ]
+  },
+  "콜센터 상담사향 한국어 TTS 시스템": {
+   "t": "Korean TTS System for Call Center Agents",
+   "e": "A Qwen3-TTS 1.7B-based speech synthesis system for call center agents, including Korean text normalization, streaming inference, and GRPO/DPO post-training. It ships with an inference server and a test suite.",
+   "g": [
+    "#Python",
+    "#Qwen3-TTS"
+   ]
+  },
+  "한국 기업 브랜드 테마 PPTX 데크 스킬": {
+   "t": "Korean Corporate Brand-Themed PPTX Deck Skill",
+   "e": "A skill collection for Claude Code and Cursor that generates PPTX decks themed using the publicly known brand colors of 23 major Korean companies. It includes no logo files and is an unofficial repository with no affiliation to any of the companies.",
+   "g": [
+    "#Python",
+    "#Shell"
+   ]
+  },
+  "AI 애니메이션 스티커 생성 파이프라인": {
+   "t": "AI Animated Sticker Generation Pipeline",
+   "e": "A Python pipeline that turns a photo or text prompt into a character sheet via an image generation model, then packages it into animated stickers for major messaging apps through a motion planner and alpha processing.",
+   "g": [
+    "#Python"
+   ]
+  },
+  "이모티콘에서 게임 스프라이트 변환 데모": {
+   "t": "Emoji-to-Game-Sprite Conversion Demo",
+   "e": "An interactive demo that turns a blog character into an emoji, then expands it into game sprites, letting you preview character actions and download a Unity bundle. Every sprite was actually generated through an image generation pipeline.",
+   "g": [
+    "#CSS",
+    "#JavaScript",
+    "#HTML"
+   ]
+  },
+  "강연 자막 화자정리·하이라이트 클립 도구": {
+   "t": "Lecture Subtitle Speaker-Sorting and Highlight-Clip Tool",
+   "e": "A 100% client-side tool that, given pre-diarized SRT or VTT subtitles, organizes them by speaker and generates highlight clip candidates along with ffmpeg cut commands. It performs no speech recognition or speaker diarization of its own.",
+   "g": [
+    "#JavaScript",
+    "#HTML",
+    "#CSS"
+   ]
+  },
+  "음성 인터뷰 기반 디지털 자아 복제 앱": {
+   "t": "Voice-Interview-Based Digital Self-Clone App",
+   "e": "A local-first macOS Tauri app that clones a user's speaking style, voice, and face from a voice interview to create a talking avatar from a single photo. Voice cloning and speech transcription were verified with real models.",
+   "g": [
+    "#Python",
+    "#TypeScript",
+    "#Tauri",
+    "#VoxCPM2",
+    "#Qwen3-ASR"
+   ]
+  },
+  "체인지로그 기반 X 스레드·카드 생성기": {
+   "t": "Changelog-Based X Thread and Card Generator",
+   "e": "A 100% client-side tool that turns a pasted CHANGELOG or GitHub release notes into a ready-to-post X (Twitter) thread draft and carousel card images per change item. It recognizes the Keep a Changelog format.",
+   "g": [
+    "#JavaScript",
+    "#HTML",
+    "#CSS"
+   ]
+  },
+  "문장 기반 픽셀 스프라이트 프로토타입 생성기": {
+   "t": "Sentence-Based Pixel Sprite Prototype Generator",
+   "e": "A tool that instantly generates a browser pixel-sprite prototype with walk and attack animations from a one-sentence description of a game character. Rather than AI image generation, it deterministically assembles silhouette templates by hashing the sentence.",
+   "g": [
+    "#JavaScript",
+    "#HTML",
+    "#CSS"
+   ]
+  },
+  "카메라 무빙 프리뷰·프롬프트 아틀라스": {
+   "t": "Camera Movement Preview and Prompt Atlas",
+   "e": "A free atlas that shows 8 representative camera movements as looping, parameter-driven 2D previews, filterable by mood and genre, so you can copy prompts for AI video generation right away. It lets you see terms like dolly-in and tracking shot visually before using them.",
+   "g": [
+    "#JavaScript",
+    "#HTML",
+    "#CSS"
+   ]
+  },
+  "마크다운 문서를 영상으로 변환하는 도구": {
+   "t": "Markdown-to-Video Conversion Tool",
+   "e": "A 100% client-side tool that converts pasted README or blog content into a video with timed slides, captions, and synthesized narration. It splits scenes by heading and computes playback duration from narration length.",
+   "g": [
+    "#JavaScript",
+    "#HTML",
+    "#CSS"
+   ]
+  },
+  "제품정보 기반 채널별 숏폼 생성": {
+   "t": "Channel-Specific Short-Form Video Generator from Product Info",
+   "e": "Automatically generates short-form video drafts from product text and images using ffmpeg, then applies channel-specific format conversion and brand templates, wired into the new-product registration process. A synthetic-data reference demo.",
+   "g": [
+    "#Python",
+    "#ffmpeg",
+    "#pytest"
+   ]
+  },
+  "참조 이미지 기반 로우폴리 3D 프롭 생성기": {
+   "t": "Reference-Image-Based Low-Poly 3D Prop Generator",
+   "e": "A 100% client-side tool that converts a single reference image into a low-poly GLB 3D prop for games. It deterministically handles background removal, silhouette extrusion, vertex color baking, 3-level LOD, and glTF 2.0 binary export.",
+   "g": [
+    "#JavaScript",
+    "#HTML",
+    "#CSS"
+   ]
+  },
+  "뉴스레터 메일함 팟캐스트 변환 도구": {
+   "t": "Newsletter Inbox-to-Podcast Conversion Tool",
+   "e": "A 100% client-side tool that parses unread newsletters (EML, MBOX) entirely in the browser and builds a private podcast feed with episodes grouped by sender and chapters grouped by issue. Playback is available immediately via the browser's built-in speech synthesis.",
+   "g": [
+    "#JavaScript",
+    "#HTML",
+    "#CSS"
+   ]
+  },
+  "키즈노트용 Stable Diffusion WebUI": {
+   "t": "Stable Diffusion WebUI for Kidsnote",
+   "e": "A deployment script for running Stable Diffusion WebUI on a GPU server for the Kidsnote service. Dormant, with no updates since 2024.",
+   "g": [
+    "#Python",
+    "#Stable Diffusion WebUI"
+   ]
+  },
+  "Stable Diffusion WebUI 운영 어드민": {
+   "t": "Stable Diffusion WebUI Production Admin",
+   "e": "An admin deployment script for running Stable Diffusion WebUI on a production GPU server. Dormant, with no updates since 2024.",
+   "g": [
+    "#Python",
+    "#Stable Diffusion WebUI"
+   ]
+  },
+  "개발용 Stable Diffusion WebUI 서버": {
+   "t": "Stable Diffusion WebUI Development Server",
+   "e": "A collection of deployment scripts for developing and running Stable Diffusion WebUI on a GPU server. Dormant, with no updates since 2024.",
+   "g": [
+    "#Python",
+    "#Stable Diffusion WebUI"
+   ]
+  },
+  "Stable Diffusion WebUI 서비스": {
+   "t": "Stable Diffusion WebUI Service",
+   "e": "A service deployment script for running Stable Diffusion WebUI on a GPU server. Dormant, with no updates since 2024.",
+   "g": [
+    "#Python",
+    "#Stable Diffusion WebUI"
+   ]
+  },
+  "스토리지 내구성 결함주입 실측 데모": {
+   "t": "Storage Durability Fault-Injection Measurement Demo",
+   "e": "Reproduces in code six fault-injection experiments that actually break quorum writes, checksum scrubbing, erasure coding, and placement, then layers an S3 gateway on top with a self-diagnosing harness. Measurements show that writing with W=1 loses all 20 objects, while W=2 or higher loses zero.",
+   "g": [
+    "#Go"
+   ]
+  },
+  "스토리지 주장 검증 진단 하네스": {
+   "t": "Storage Claim Verification Diagnostic Harness",
+   "e": "A harness that actually measures and verifies storage properties claimed by a provider, enforcing in code the rule that unmeasured items are never reported as passing. Includes an example that measures 11 items against a MinIO 4-drive erasure-coded configuration.",
+   "g": [
+    "#Python"
+   ]
+  },
+  "스토리지 청구서 원인분해 TCO 모델": {
+   "t": "Storage Bill Root-Cause Decomposition TCO Model",
+   "e": "Breaks down a storage bill by root cause rather than by SKU and calculates, per workload over a 3-to-5-year horizon, whether staying on the cloud or moving on-prem is cheaper. Decomposed a synthetic $37,053 monthly bill and identified $20,093 in measured savings potential.",
+   "g": [
+    "#Python"
+   ]
+  },
+  "온프렘 오브젝트 스토리지 코어": {
+   "t": "On-Prem Object Storage Core",
+   "e": "An on-prem object storage core implementing quorum replication, checksum scrubbing, erasure coding, and failure-domain placement in a form whose actual behavior can be measured with a fault-injection harness. Write success is returned only after fsync and rename complete, and writes are rejected if the number of available replicas falls below W.",
+   "g": [
+    "#Go",
+    "#crc32c",
+    "#Quorum Replication",
+    "#Erasure Coding"
+   ]
+  },
+  "실 청구서 파서 스토리지 비용 엔진": {
+   "t": "Real Bill Parser Storage Cost Engine",
+   "e": "A private repository that reads and normalizes real cloud bills and applies the formulas from the public 2i-case-18 model to produce bill analysis reports. It owns only the parser, provider adapters, and identifier masking, not the calculation logic itself.",
+   "g": [
+    "#Python"
+   ]
+  },
+  "스토리지 진단 하네스 확장 계층": {
+   "t": "Storage Diagnostic Harness Extension Layer",
+   "e": "A private extension layer that wraps the measurement and scoring logic of the public 2i-case-17 repository, adding field-environment adapters, report covers, and a regression ledger. It does not own the probe or scoring logic and references the public repository directly.",
+   "g": [
+    "#Python"
+   ]
+  },
+  "NAS 클러스터링 분산 스토리지 플랫폼": {
+   "t": "NAS Clustering Distributed Storage Platform",
+   "e": "An open-source platform that clusters commodity NAS devices to provide Ceph-like distributed storage functionality. It aims to deliver low-cost distributed storage as an alternative to Ceph, which requires at least 3 nodes.",
+   "g": [
+    "#Go",
+    "#TypeScript",
+    "#Shell"
+   ]
+  },
+  "전문직 상담·사례관리 로컬 SaaS 플랫폼": {
+   "t": "Local-First SaaS Platform for Professional Consulting and Case Management",
+   "e": "A local-first SaaS monorepo made up of 11 Tauri desktop apps for consulting and case management across 11 professional domains, including education, law, healthcare, insurance, welfare, HR, and franchising. Sensitive data is encrypted and stored locally in on-device SQLite with no external server.",
+   "g": [
+    "#Python",
+    "#TypeScript",
+    "#Tauri",
+    "#Turborepo"
+   ]
+  },
+  "AI 기반 영어 단어장 학습 웹앱": {
+   "t": "AI-Powered English Vocabulary Learning Web App",
+   "e": "An English vocabulary web app for Korean children that uses the Claude API to generate dictionary entries and an image generation API to create flashcard images. Includes spaced-repetition review and sentence-based study cards.",
+   "g": [
+    "#TypeScript",
+    "#Python",
+    "#pnpm monorepo"
+   ]
+  },
+  "학교 사진 기반 특수교육 시각자료 생성기": {
+   "t": "School-Photo-Based Special Education Visual Aid Generator",
+   "e": "A client-only tool for teachers and therapists that generates printable classroom-rule posters, special-education social stories, and vocabulary cards from a school photo. Photos never leave the browser, and EXIF data is automatically stripped.",
+   "g": [
+    "#Python",
+    "#TypeScript",
+    "#React"
+   ]
+  },
+  "공공기관 공문서 쉬운 설명 데스크톱 앱": {
+   "t": "Plain-Language Explainer for Public Agency Documents (Desktop App)",
+   "e": "An accessibility-first desktop app that explains difficult Korean public agency documents in plain Korean, builds a deadline-based checklist, and reads it aloud. Forked from accessible-kr-service-template.",
+   "g": [
+    "#Rust",
+    "#Tauri 2",
+    "#JavaScript"
+   ]
+  },
+  "전세 보증금 위험 진단 데스크톱 앱": {
+   "t": "Jeonse Deposit Risk Assessment Desktop App",
+   "e": "An accessibility-first desktop app that takes a property address and jeonse deposit amount, gathers registry, market price, and auction data, and presents a risk rating and red-flag checklist in plain Korean. Informational only, not legal advice.",
+   "g": [
+    "#Rust",
+    "#Tauri 2",
+    "#JavaScript"
+   ]
+  },
+  "고령자 복약 안전 확인 데스크톱 앱": {
+   "t": "Medication Safety Checker for Seniors (Desktop App)",
+   "e": "An accessibility-first desktop app for seniors that looks up official MFDS drug data and flags interactions among current medications with a traffic-light indicator (safe, caution, danger) and voice guidance. Forked from accessible-kr-service-template.",
+   "g": [
+    "#Rust",
+    "#Tauri 2",
+    "#JavaScript"
+   ]
+  },
+  "정부지원금·장학금 매칭 파인더 앱": {
+   "t": "Government Subsidy and Scholarship Matching Finder App",
+   "e": "An accessibility-first desktop app that takes a few inputs about a person's situation, such as unemployment, childbirth, or low income, and finds matching government subsidies, scholarships, and public housing notices, organized into a deadline calendar. Forked from accessible-kr-service-template.",
+   "g": [
+    "#Rust",
+    "#Tauri 2",
+    "#JavaScript"
+   ]
+  },
+  "실시간 혼잡도 확인 로컬 앱": {
+   "t": "Real-Time Crowding Checker App",
+   "e": "An app that shows real-time crowd levels, wait lines, and on-the-spot report photos for a shop or venue, ranking currently trending spots with a hotness score that combines the rate of crowd-level increase and recent report weight. Built with a Go+Fiber/PostGIS/Redis/NATS backend and an Expo React Native app.",
+   "g": [
+    "#Go",
+    "#PostGIS",
+    "#Redis",
+    "#NATS",
+    "#Expo React Native"
+   ]
+  },
+  "눈치맵 수요 검증 랜딩 페이지": {
+   "t": "Nunchimap Demand-Validation Landing Page",
+   "e": "A single static landing page introducing the concept of Nunchimap, the real-time crowding and wait-line local app, built to validate demand through click-through rate. A demo page that makes no launch commitment.",
+   "g": [
+    "#HTML"
+   ]
+  },
+  "방문요양 대화 돌봄기록 초안 도우미": {
+   "t": "Home Care Visit Conversation-to-Care-Record Draft Assistant",
+   "e": "A 100% browser-local tool that rule-based classifies a home care worker's conversation transcript into four categories, health status, notable observations, and requests, to draft a care record. Exports via print or download with no server transmission or account needed.",
+   "g": [
+    "#JavaScript",
+    "#HTML"
+   ]
+  },
+  "팀 데일리 스크럼 타이머 데스크톱 앱": {
+   "t": "Team Daily Scrum Timer Desktop App",
+   "e": "A 100% local desktop scrum timer that times registered speakers in order and keeps showing an alarm and elapsed overtime once their time runs out. Requires no server, login, or internet connection.",
+   "g": [
+    "#JavaScript",
+    "#Tauri (Rust)",
+    "#CSS"
+   ]
+  },
+  "키즈노트 API 서버": {
+   "t": "Kidsnote API Server",
+   "e": "An API server for Kidsnote, with a development environment configured via pyenv and Poetry and deployed on an EC2 instance. Dormant, with no updates since 2024.",
+   "g": [
+    "#Python",
+    "#Poetry",
+    "#EC2"
+   ]
+  },
+  "2i 키즈모델 스토어 웹앱": {
+   "t": "2i Kids Model Store Web App",
+   "e": "A Next.js storefront frontend for the 2i kids model domain. Appears to be in an early stage that hasn't diverged much from the create-next-app default template.",
+   "g": [
+    "#TypeScript",
+    "#Next.js"
+   ]
+  },
+  "이메일 인증 코드 발급 검증 서비스": {
+   "t": "Email Verification Code Issuance and Validation Service",
+   "e": "A Flask-based email verification system that generates and sends 6-digit codes, with daily send limits, retry limits, and enforced HTTPS. Dormant, with no updates since 2024.",
+   "g": [
+    "#Python",
+    "#Flask",
+    "#SQLite"
+   ]
+  },
+  "2i React Native 모바일 앱": {
+   "t": "2i React Native Mobile App",
+   "e": "A 2i React Native app built and deployed for iOS and Android via Expo EAS. Dormant, with no updates since 2024.",
+   "g": [
+    "#TypeScript",
+    "#React Native",
+    "#Expo"
+   ]
+  },
+  "2i 메인 API 서버": {
+   "t": "2i Main API Server",
+   "e": "The main API server for 2i, with a development environment configured via pyenv and Poetry. Dormant, with no updates since 2024.",
+   "g": [
+    "#Python",
+    "#Poetry"
+   ]
+  },
+  "2i 개발용 API 서버": {
+   "t": "2i Development API Server",
+   "e": "A FastAPI-based development API server configured via pyenv and Poetry. Dormant, with no updates since 2024.",
+   "g": [
+    "#Python",
+    "#FastAPI",
+    "#Poetry"
+   ]
+  },
+  "운영 백오피스 어드민 웹": {
+   "t": "Production Back-Office Admin Web",
+   "e": "A production back-office Next.js app with login via NextAuth and Google OAuth. Dormant, with no updates since 2024.",
+   "g": [
+    "#TypeScript",
+    "#Next.js",
+    "#NextAuth"
+   ]
+  },
+  "2i 메인 웹사이트": {
+   "t": "2i Main Website",
+   "e": "A Next.js project for 2i's main website. The README only has the default create-next-app instructions, so the actual UI composition needs to be checked directly in the code.",
+   "g": [
+    "#TypeScript",
+    "#Next.js"
+   ]
+  },
+  "2i 웹앱 홈페이지": {
+   "t": "2i Web App Homepage",
+   "e": "A Next.js project for 2i's web app homepage. The README only has the default create-next-app instructions, so the actual UI composition needs to be checked directly in the code.",
+   "g": [
+    "#TypeScript",
+    "#Next.js"
+   ]
+  },
+  "업로드 없이 도는 한국어 문서 뷰어 · 변환기": {
+   "t": "Upload-Free Korean Document Viewer & Converter",
+   "e": "A tool that opens and converts HWP, HWPX, PDF, images, and video in one place. Since the only real claim is that files never leave the device, 40 checks run the document through an actual browser each time to confirm zero outbound requests. Web and desktop share the same bundle, and the desktop binary ships with no networking library at all. A bug where HWP tables overflowed the right column was fixed by bisecting 358 commits in the upstream engine to find the regression point.",
+   "g": [
+    "#Documents",
+    "#LocalFirst",
+    "#WASM"
+   ]
+  },
+  "AI 지원 SQL 클라이언트 데스크톱 앱": {
+   "t": "AI-Assisted SQL Client Desktop App",
+   "e": "A lightweight, fast desktop SQL client with AI-powered querying that supports PostgreSQL, MySQL, SQL Server, and SQLite. It converts natural language into SQL and generates ER diagrams and charts.",
+   "g": [
+    "#TypeScript"
+   ]
+  },
+  "Cursor 스킬 템플릿 테스트 저장소": {
+   "t": "Cursor Skill Template Test Repository",
+   "e": "A test repository built from the ai-template Cursor IDE config repo, containing only the template structure with no actual product content.",
+   "g": [
+    "#Python",
+    "#JavaScript",
+    "#HTML"
+   ]
+  },
+  "디자인 도메인 Cursor 스킬 템플릿": {
+   "t": "Design-Domain Cursor Skill Template",
+   "e": "A repository forked from a reusable Cursor IDE configuration with 360+ agent skills and workflow rules, adapted for design-domain work. Design-specific deliverables are managed through DESIGN.md.",
+   "g": [
+    "#Python",
+    "#JavaScript",
+    "#Shell"
+   ]
+  },
+  "접근성 우선 공공서비스 앱 템플릿": {
+   "t": "Accessibility-First Public Service App Template",
+   "e": "An accessibility-first Tauri template that four Korean public-service desktop apps are forked from. It ships no domain logic, only an accessibility skeleton, a multilingual loader, local TTS/STT contracts, and PII masking. Built on Tauri 2 with Playwright and axe-core accessibility tests.",
+   "g": [
+    "#Rust",
+    "#Tauri2",
+    "#JavaScript",
+    "#Playwright"
+   ]
+  },
+  "클라이언트 사이드 웹 도구 스캐폴드": {
+   "t": "Client-Side Web Tool Scaffold",
+   "e": "A reusable template repository for 100% client-side static web tools, with a pure-logic core, independent audit tooling, CI, and GitHub Pages deployment. No server, keys, or login required.",
+   "g": [
+    "#JavaScript",
+    "#CSS"
+   ]
+  },
+  "개인 AI 에이전트 하네스 모노레포": {
+   "t": "Personal AI Agent Harness Monorepo",
+   "e": "A personal monorepo for AI platform strategy work that integrates numerous skills, rules, and submodules. It's a workspace that manages several product repositories as submodules, not a single standalone product.",
+   "g": [
+    "#Python",
+    "#JavaScript",
+    "#HTML"
+   ]
+  },
+  "시네마틱 웹사이트 제작 툴킷": {
+   "t": "Cinematic Website Toolkit",
+   "e": "A dark-luxury, motion-driven website toolkit made up of framework-agnostic TypeScript motion primitives, a working flagship template, a scaffolder, and a gallery. Includes a real-time 3D Three.js hero section.",
+   "g": [
+    "#TypeScript",
+    "#Three.js",
+    "#CSS"
+   ]
+  },
+  "이미지 격자 자동 배치 인쇄 도구": {
+   "t": "Image Grid Auto-Layout Print Tool",
+   "e": "A 100% client-side tool that arranges multiple images into a grid sized to fit a chosen page size and count, exporting to PNG or print-ready PDF. Images live only in browser memory and are fit into cells while preserving their original aspect ratio.",
+   "g": [
+    "#JavaScript",
+    "#HTML",
+    "#CSS"
+   ]
+  },
+  "README 기반 소셜 미리보기 썸네일 생성기": {
+   "t": "README-Based Social Preview Thumbnail Generator",
+   "e": "A tool that turns a public GitHub repo or pasted README text into a 1200x630 Open Graph image with title, description, language, and star count, in three layout templates. Downloads the PNG directly with no design tool, API key, or server.",
+   "g": [
+    "#JavaScript",
+    "#HTML",
+    "#CSS"
+   ]
+  },
+  "무료 호스팅 랜딩 SEO 스타터": {
+   "t": "Free-Hosting Landing Page SEO Starter",
+   "e": "A one-stop starter that statically generates and deploys a brand-toned responsive landing page on free hosting with no custom domain, adding baseline SEO and conversion elements like a contact form. A reference demo on GitHub Pages using synthetic data.",
+   "g": [
+    "#Python",
+    "#StaticSite",
+    "#SEO",
+    "#GitHubPages"
+   ]
+  },
+  "리서치·전략 작업용 개인 저장소": {
+   "t": "Personal Research & Strategy Workspace",
+   "e": "A personal research and strategy repository following the speckit template structure. The README has no product description; it only contains skills, memory, and output directories.",
+   "g": [
+    "#Python"
+   ]
+  },
+  "2i AX 사례 저작 워크스페이스": {
+   "t": "2i AX Case Study Authoring Workspace",
+   "e": "An internal workspace for managing research, planning, and recovery documents plus experiment outputs for the 2i AX case study. It's an authoring tool that works with cases.json and render scripts, not deployable code.",
+   "g": [
+    "#Python"
+   ]
+  },
+  "Cursor IDE 에이전트 스킬 설정 번들": {
+   "t": "Cursor IDE Agent Skill Configuration Bundle",
+   "e": "A reusable Cursor IDE configuration repository with 360+ agent skills, 320+ slash commands, and 28 workflow rules. Installs workflows spanning development, planning, finance, design, and more domains in one go.",
+   "g": [
+    "#Python",
+    "#JavaScript",
+    "#HTML"
+   ]
+  },
+  "GitHub 프로젝트-Notion 스프린트 동기화": {
+   "t": "GitHub Projects-to-Notion Sprint Sync",
+   "e": "A pipeline that syncs issues and PRs from GitHub Projects to a Notion database in real time to support a team's scrum process. Supports independent per-team configuration and automated daily sprint sync.",
+   "g": [
+    "#Python"
+   ]
+  },
+  "2i 사이트 저작 워크스페이스": {
+   "t": "2i Site Authoring Workspace",
+   "e": "An internal authoring workspace that builds the 2icorp.github.io case study pages from cases.json, a renderer, and deploy scripts. It also manages operational docs like the business plan, lead intake, and messaging spine.",
+   "g": [
+    "#HTML",
+    "#Python"
+   ]
+  },
+  "2icorp 공개 GitHub Pages 사이트": {
+   "t": "2icorp Public GitHub Pages Site",
+   "e": "The company's public website, containing case studies, papers, brochures, and demo pages. Renders cases.json and papers.json into static HTML via Python render scripts for deployment.",
+   "g": [
+    "#HTML",
+    "#Python"
+   ]
+  },
+  "개인 AI 에이전트 하네스 모노레포 (동기화본)": {
+   "t": "Personal AI Agent Harness Monorepo (Sync Copy)",
+   "e": "A sibling of ai-platform-strategy, this personal AI platform strategy monorepo syncs submodules along with skills and memory directories. It's a workspace, not a single standalone product.",
+   "g": [
+    "#Python",
+    "#JavaScript",
+    "#HTML"
+   ]
+  },
+  "키즈노트 API 클라이언트 예제 모음": {
+   "t": "Kidsnote API Client Examples",
+   "e": "API client examples written in six languages, Python, Node.js, Go, PHP, C++, and Java, demonstrating S3 upload and job creation. Dormant with no updates since 2024.",
+   "g": [
+    "#Python",
+    "#Node.js",
+    "#Go",
+    "#PHP",
+    "#C++"
+   ]
+  },
+  "웹사이트 CloudFront 초안": {
+   "t": "Website CloudFront Draft",
+   "e": "A draft website for CloudFront homepage deployment, still at the default create-next-app template state. Dormant with no updates since 2024.",
+   "g": [
+    "#TypeScript",
+    "#Next.js"
+   ]
+  },
+  "어드민 웹 CloudFront 초안": {
+   "t": "Admin Web CloudFront Draft",
+   "e": "A draft repository for an admin web app meant for CloudFront deployment, using the same NextAuth setup as admin-web. Dormant with no updates since 2024.",
+   "g": [
+    "#TypeScript",
+    "#Next.js"
+   ]
+  },
+  "2i 클라이언트 스텁": {
+   "t": "2i Client Stub",
+   "e": "An empty repository with only a one-line title and no verifiable substance. Dormant with no updates since 2024.",
+   "g": [
+    "#Python"
+   ]
+  },
+  "2i 웹앱 데모 스캐폴드": {
+   "t": "2i Web App Demo Scaffold",
+   "e": "A demo repository still exactly at the default create-next-app template state. Dormant with no updates since 2024.",
+   "g": [
+    "#TypeScript",
+    "#Next.js"
+   ]
+  },
+  "컨텍스트 엔지니어링 템플릿 실습": {
+   "t": "Context Engineering Template Exercise",
+   "e": "A template repository pulled in to learn context engineering techniques for AI coding assistants. A practice repo that's a direct clone of an external open-source template.",
+   "g": [
+    "#Python",
+    "#TypeScript"
+   ]
+  },
+  "Anthropic 공식 교육 코스 저장소": {
+   "t": "Anthropic Official Course Repository",
+   "e": "A repository holding Anthropic's public courses on the API, prompt engineering, and tool use, kept as-is. Not original content, just public material archived for study.",
+   "g": [
+    "#Jupyter Notebook",
+    "#Python"
+   ]
+  },
+  "여섯 언어 교차 검증 알고리즘 랩": {
+   "t": "Six-Language Cross-Validated Algorithm Lab",
+   "e": "26 algorithms plus 8 newly written problems, each independently implemented six times in Go, C, C++, Rust, Python, and Java, and cross-validated against 232 shared test vectors. Instead of treating one reference implementation as ground truth, it checks whether all six outputs match byte-for-byte, because the reference implementation is itself under test: if its tiebreak logic were reversed, the other five could be corrected to the same wrong answer and the tests would still pass green. Of 15 recorded defects, zero were caught by the compiler, type checker, or linter; the rest were found through brute-force comparison, the cross-agreement gate, and deliberately broken implementations. The repository also generates a learning site and a 51-page Korean explainer from its own source.",
+   "g": [
+    "#Algorithms",
+    "#CrossValidation",
+    "#Reproducibility"
+   ]
+  },
+  "매크로 팩터 대시보드 스캐폴드": {
+   "t": "Macro Factor Dashboard Scaffold",
+   "e": "An early-stage scaffold repository still at the default Next.js create-next-app template, with no actual implementation for a macro-economic factor dashboard documented in the README yet. An experimental scaffold stage.",
+   "g": [
+    "#Next.js",
+    "#TypeScript"
+   ]
+  },
+  "Dyad 생성 앱 스캐폴드": {
+   "t": "Dyad-Generated App Scaffold",
+   "e": "An early-stage scaffold repository generated by the Dyad app builder, with no product description in the README, an experimental scaffold stage. Only a Capacitor-based iOS/Android build configuration exists.",
+   "g": [
+    "#TypeScript",
+    "#Swift",
+    "#Capacitor"
+   ]
+  }
+ },
+ "fams": {
+  "techt-comms": {
+   "t": "Communications & Signal Processing",
+   "n": "6 repos",
+   "d": "RF fingerprinting, spectrum interference sources, physics-grounded receivers, air-gapped optical links. This axis works with the raw signal itself, without learning."
+  },
+  "techt-acoustic": {
+   "t": "Acoustics & Speech",
+   "n": "8 repos",
+   "d": "Sound fingerprinting, bioacoustics, equipment vibration, auscultation sounds, real-time translation. This is the side that makes judgments from sound."
+  },
+  "techt-recsys": {
+   "t": "Recommendation & Data",
+   "n": "8 repos",
+   "d": "Ranking and recommendation, and pulling scattered records together into a single basis for decisions."
+  },
+  "techt-agent": {
+   "t": "Agents & Automation Harnesses",
+   "n": "15 repos",
+   "d": "Skill systems, orchestrators, research and deployment automation. Procedures people used to repeat by hand, moved into code."
+  },
+  "techt-optim": {
+   "t": "NP-Hard Optimization & Scheduling",
+   "n": "5 repos",
+   "d": "CP-SAT-based assignment and scheduling: shift rosters, call-center staffing, league schedules, room allocation."
+  },
+  "techt-quant": {
+   "t": "LLM Quantization",
+   "n": "3 repos",
+   "d": "Running the same model more cheaply. Only entries verified through actual serving count."
+  },
+  "techt-distill": {
+   "t": "Small-Model Distillation & Fine-Tuning",
+   "n": "4 repos",
+   "d": "Splitting off the repetitive worker tasks into small models, and reserving large models for the parts that actually need judgment."
+  },
+  "techt-aiplatform": {
+   "t": "Paxis · Maxis · Metis",
+   "n": "5 repos",
+   "d": "The agent execution platform and the training and inference foundation underneath it: serving, GPU scheduling, experiment tracking, multi-tenancy."
+  },
+  "techt-vision": {
+   "t": "Vision & Imaging Diagnostics",
+   "n": "2 repos",
+   "d": "Low-data anomaly detection and a closed-loop medical imaging system. Both assume an environment where ground-truth labels are scarce."
+  },
+  "techt-mediagen": {
+   "t": "Video & Image Generation",
+   "n": "14 repos",
+   "d": "Video, image, and voice synthesis. Producing assets repeatedly without human hands."
+  },
+  "techt-marketing": {
+   "t": "Marketing & Content Operations",
+   "n": "4 repos",
+   "d": "Blog publishing, news intelligence, campaign assets. It automates all the way through to posting."
+  },
+  "techt-storage": {
+   "t": "Storage & Data Durability",
+   "n": "7 repos",
+   "d": "Quorum writes, checksum scrubbing, erasure coding, failure-domain placement. Only entries where faults were actually injected and counted make the cut."
+  },
+  "techt-product": {
+   "t": "Domain Services & Products",
+   "n": "21 repos",
+   "d": "Built as end-user-facing products across law, education, healthcare, finance, and daily life."
+  },
+  "techt-devtool": {
+   "t": "Developer Tools & Templates",
+   "n": "25 repos",
+   "d": "Repo templates, quality checkers, documentation, site authoring tools. The foundation that lets everything else get built quickly."
+  },
+  "techt-misc": {
+   "t": "Miscellaneous",
+   "n": "2 repos",
+   "d": "Things that don't fit neatly into the axes above. Not forced into a category."
+  }
+ }
+}
