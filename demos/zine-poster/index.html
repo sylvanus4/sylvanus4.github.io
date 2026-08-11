@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>무인 파이프라인 — 미니멀 진 포스터 3연작</title>
+<meta name="description" content="무인으로 도는 데이터 파이프라인의 세 상태(수집·정지·복구)를 종이 질감 미니멀 진 포스터 3연작으로 옮긴 디자인 실험. 스킬 기반 프롬프트 컴파일 + gpt-image-2 생성.">
+<style>
+  :root{
+    --bg:oklch(13% .022 265); --bg-2:oklch(16% .026 265);
+    --panel:oklch(17.5% .024 265 / .72); --line:oklch(30% .02 265); --line-soft:oklch(24% .018 265);
+    --fg:oklch(95% .008 265); --fg-2:oklch(82% .012 265); --fg-3:oklch(71% .014 265);
+    --am:oklch(80% .15 78); --cy:oklch(80% .145 195); --ok:oklch(76% .15 155); --rd:oklch(70% .17 25);
+    --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,sans-serif;
+    --mono:"JetBrains Mono","IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.65;
+       padding:0 clamp(1rem,4vw,3rem) 5rem}
+  main{max-width:1160px;margin:0 auto}
+  a{color:var(--cy)}
+  header.hero{padding:clamp(2.5rem,6vw,4.5rem) 0 1.6rem;border-bottom:1px solid var(--line-soft);margin-bottom:2.2rem}
+  .kicker{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;color:var(--am);text-transform:uppercase}
+  h1{font-size:clamp(1.7rem,1.1rem+2.6vw,2.9rem);line-height:1.2;margin:.5rem 0 .9rem}
+  .lede{color:var(--fg-2);max-width:64ch}
+  .lede-en{color:var(--fg-3);max-width:70ch;font-size:.88rem;margin-top:.55rem}
+  h2{font-size:clamp(1.2rem,1rem+1vw,1.6rem);margin:2.8rem 0 .9rem}
+  .refnote{background:var(--panel);border:1px solid var(--line-soft);border-radius:14px;
+           padding:1rem 1.2rem;margin:1.4rem 0;color:var(--fg-2);font-size:.93rem}
+
+  .grid{display:grid;gap:clamp(1.2rem,3vw,2.2rem);
+        grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:1.4rem}
+  figure{margin:0;background:var(--bg-2);border:1px solid var(--line-soft);border-radius:14px;
+         overflow:hidden;display:flex;flex-direction:column}
+  figure img{width:100%;height:auto;display:block;background:#eee}
+  figcaption{padding:.85rem 1rem 1.05rem;border-top:1px solid var(--line-soft)}
+  .state{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase}
+  .s-ok{color:var(--ok)} .s-stall{color:var(--rd)} .s-resume{color:var(--am)}
+  figcaption p{color:var(--fg-3);font-size:.86rem;margin-top:.3rem}
+
+  table{border-collapse:collapse;width:100%;margin-top:1rem;font-size:.9rem}
+  th,td{text-align:left;padding:.55rem .7rem;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  th{color:var(--fg-3);font-weight:600;font-size:.82rem}
+  code{font-family:var(--mono);font-size:.86em;color:var(--fg-2)}
+  footer{margin-top:3.4rem;padding-top:1.3rem;border-top:1px solid var(--line-soft);
+         color:var(--fg-3);font-size:.85rem}
+</style>
+</head>
+<body>
+<main>
+
+<header class="hero">
+  <p class="kicker">Design experiment · Minimal zine poster</p>
+  <h1>무인 파이프라인 — 3연작</h1>
+  <p class="lede">무인으로 도는 데이터 파이프라인에는 세 가지 상태밖에 없습니다. 계속 모으거나, 조용히 멈춰 있거나, 마지막 정상 지점에서 다시 시작하거나. 그 셋을 종이 질감 미니멀 진 포스터로 옮겼습니다.</p>
+  <p class="lede-en">Three states of an unattended pipeline — collecting, stalled, resuming — rendered as a minimal paper-texture zine poster series.</p>
+</header>
+
+<div class="refnote">
+  가운데 포스터가 이 연작의 출발점입니다. 매일 도는 파이프라인의 수집 단계는 멀쩡한데 실행 단계만 8일째 멈춰 있던 적이 있습니다. 겉으로는 아무 문제가 없어 보였습니다 — 로그도 쌓이고 후보도 늘어나고 있었으니까요. 조용한 정지가 시끄러운 실패보다 오래 간다는 게 이 시리즈의 주제입니다.
+</div>
+
+<section class="grid">
+  <figure>
+    <img src="media/collect.webp" width="1024" height="1536" loading="eager" fetchpriority="high"
+         alt="종이 질감 배경 가운데에 감긴 케이블을 위에서 찍은 작은 사진 크롭이 놓이고, 아래쪽에 COLLECT 글자가 낱자로 흩어져 있는 미니멀 포스터.">
+    <figcaption>
+      <span class="state s-ok">01 · collect</span>
+      <p>단일 스페시먼 레이아웃. 하단 마이크로텍스트는 실제 수집 잡의 발화 시각 여섯 개입니다.</p>
+    </figcaption>
+  </figure>
+  <figure>
+    <img src="media/stalled.webp" width="1024" height="1536" loading="lazy"
+         alt="왼쪽 아래에 찢긴 가장자리의 짙은 회색 블록이 놓이고 그 뒤로 STALLED 글자가 흐릿하게 반쯤 가려진 미니멀 포스터.">
+    <figcaption>
+      <span class="state s-stall">02 · stalled</span>
+      <p>엣지 카운터웨이트. 블록이 글자를 반쯤 가려서, 멈춰 있다는 사실 자체가 잘 안 읽히도록 했습니다.</p>
+    </figcaption>
+  </figure>
+  <figure>
+    <img src="media/resume.webp" width="1024" height="1536" loading="lazy"
+         alt="넓은 여백에 점 몇 개와 짧은 선이 흩어져 있고 아래쪽에 작은 새 실루엣과 resume from the last good checkpoint 문구가 놓인 미니멀 포스터.">
+    <figcaption>
+      <span class="state s-resume">03 · resume</span>
+      <p>닷 오빗. 여백을 가장 크게 두어 복구가 조용한 사건이라는 인상을 남깁니다.</p>
+    </figcaption>
+  </figure>
+</section>
+
+<h2>제작 방식</h2>
+<p class="lede">프롬프트를 손으로 쓰지 않았습니다. 레이아웃 패밀리·앵커 형태·타이포 모드·질감·무드·용지 톤·강조색을 고정된 어휘에서 고르는 스킬을 통해 조합을 정하고, 그 레시피를 프롬프트로 컴파일해 이미지 모델에 넘겼습니다. 자유 작문 대신 검증된 골격을 채우는 방식이라 세 장이 한 시리즈로 묶입니다.</p>
+
+<table>
+  <thead><tr><th>포스터</th><th>레이아웃</th><th>앵커</th><th>타이포</th><th>강조색</th></tr></thead>
+  <tbody>
+    <tr><td>01 collect</td><td>single-specimen</td><td>사진 크롭</td><td>분절 낱자 + 아카이브 마이크로텍스트</td><td>산화 오렌지 점 1개</td></tr>
+    <tr><td>02 stalled</td><td>edge-counterweight</td><td>찢긴 색 블록</td><td>저대비 고스트 텍스트</td><td>카드뮴 레드 헤어라인</td></tr>
+    <tr><td>03 resume</td><td>dot-orbit</td><td>플랫 실루엣</td><td>가장자리에 붙인 한 줄</td><td>페일 세이지 점 2개</td></tr>
+  </tbody>
+</table>
+
+<div class="refnote">
+  세로 A2 비율 · <code>1024×1536</code> 생성 후 웹용 WebP로 변환(3장 합계 508KB) · 원본 PNG는 인쇄용으로 별도 보관.
+</div>
+
+<footer>
+  포스터 스타일 시스템은 오픈소스 스킬 <a href="https://github.com/LiamGvchi/gc-minimal-zine-poster" rel="noopener">gc-minimal-zine-poster</a>(MIT)의 어휘를 따랐고, 이미지는 gpt-image-2로 생성했습니다. ·
+  <a href="../../demos.html">← 데모 목록</a>
+</footer>
+
+</main>
+</body>
+</html>
