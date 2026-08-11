@@ -49,6 +49,18 @@ async function worker() {
       if (!res || res.status() >= 400) throw new Error(`HTTP ${res && res.status()}`);
       // 클라이언트 계산 도구가 많다. 첫 계산이 끝나야 의미 있는 화면이 나온다.
       await page.waitForTimeout(3000);
+      // 소리를 내는 작품은 사용자 제스처 전까지 표지 화면에 머문다. 그 상태를 찍으면
+      // 카드가 빈 사각형이 되므로, enter 가 지정된 항목만 실제로 눌러서 동작 화면을 찍는다.
+      // 어디까지나 라이브 URL 을 그대로 조작하는 것이라 카드와 링크는 여전히 같은 화면이다.
+      if (d.enter) {
+        const target = page.locator(d.enter.click).first();
+        if (await target.count()) {
+          await target.click({ timeout: 5000 });
+          await page.waitForTimeout(d.enter.wait ?? 3500);
+        } else {
+          throw new Error(`enter.click 셀렉터를 못 찾음: ${d.enter.click}`);
+        }
+      }
       await page.evaluate(() => {
         document.documentElement.style.scrollbarWidth = "none";
         window.scrollTo(0, 0);

@@ -1,883 +1,958 @@
 [
- {
-  "slug": "19-nurse-roster",
-  "group": "sched",
-  "src": "hosted",
-  "title": "간호사 근무표 편성",
-  "url": "https://2icorp.github.io/demos/19-nurse-roster/",
-  "blurb": "11시간 연속휴식 같은 규칙을 걸고 근무표를 실제로 풉니다. 최적해를 노리기 전에 어떤 조건에서도 실행 가능한 해가 하나는 나오도록 모델을 짜고, 공정성과 선호는 그 위에 가중치로 얹습니다.",
-  "tech": [
-   "제약 최적화",
-   "CP-SAT",
-   "근로기준"
-  ],
-  "title_en": "Nurse rostering",
-  "blurb_en": "Solves a real roster under rules like an 11-hour rest gap. Before chasing an optimum it makes sure at least one feasible schedule exists under any setting, then tunes fairness and preference as weights on top.",
-  "tech_en": [
-   "Constraint optimization",
-   "CP-SAT",
-   "Labor rules"
-  ]
- },
- {
-  "slug": "20-contact-staffing",
-  "group": "sched",
-  "src": "hosted",
-  "title": "콜센터 인력 배치",
-  "url": "https://2icorp.github.io/demos/20-contact-staffing/",
-  "blurb": "시간대별 인입량에서 필요한 상담원 수를 뽑고 교대를 짭니다. 응대 목표를 한 단계 올리면 인원이 몇 명 더 드는지 그 자리에서 다시 계산합니다.",
-  "tech": [
-   "대기행렬",
-   "시프트 최적화"
-  ],
-  "title_en": "Contact center staffing",
-  "blurb_en": "Derives the agents needed per interval from arrival volume and builds the shifts. Raise the service target one notch and it recomputes how many more people that costs.",
-  "tech_en": [
-   "Queueing",
-   "Shift optimization"
-  ]
- },
- {
-  "slug": "21-league-fixture",
-  "group": "sched",
-  "src": "hosted",
-  "title": "리그 일정 편성",
-  "url": "https://2icorp.github.io/demos/21-league-fixture/",
-  "blurb": "홈과 원정 균형, 연속 경기 제한을 지키며 리그 일정을 만듭니다. 제약 하나를 풀었을 때 몇 경기가 편해지는지 비교로 보여줍니다.",
-  "tech": [
-   "조합 최적화",
-   "라운드로빈"
-  ],
-  "title_en": "League fixture scheduling",
-  "blurb_en": "Builds a league calendar while holding home and away balance and consecutive-game limits. Relax one constraint and it shows how many fixtures get easier.",
-  "tech_en": [
-   "Combinatorial optimization",
-   "Round robin"
-  ]
- },
- {
-  "slug": "22-room-assign",
-  "group": "sched",
-  "src": "hosted",
-  "title": "선호를 반영한 방 배정",
-  "url": "https://2icorp.github.io/demos/22-room-assign/",
-  "blurb": "같이 쓰고 싶은 사람과 피하고 싶은 사람을 함께 넣고 인원을 방에 배정합니다. 정원만 지킨 배정과 선호까지 맞춘 배정을 나란히 두고 차이를 셉니다.",
-  "tech": [
-   "지역탐색",
-   "이론 상한"
-  ],
-  "title_en": "Preference-aware room assignment",
-  "blurb_en": "Assigns people to rooms with both preferred and avoided companions in the model. It puts a capacity-only assignment next to an optimized one and counts the difference.",
-  "tech_en": [
-   "Local search",
-   "Theoretical bound"
-  ]
- },
- {
-  "slug": "25-crew-pairing",
-  "group": "sched",
-  "src": "hosted",
-  "title": "항공 승무원 페어링",
-  "url": "https://2icorp.github.io/demos/25-crew-pairing/",
-  "blurb": "비행 구간을 근무 묶음으로 엮으면서 규정 위반을 0으로 유지합니다. 집합분할로 모델링해 최적 증명이 되는 구간과 안 되는 구간을 구분해 보여줍니다.",
-  "tech": [
-   "집합분할",
-   "CP-SAT"
-  ],
-  "title_en": "Airline crew pairing",
-  "blurb_en": "Chains flight legs into duty pairings while keeping rule violations at zero. Modeled as set partitioning, and it separates the sizes it can prove optimal from the ones it cannot.",
-  "tech_en": [
-   "Set partitioning",
-   "CP-SAT"
-  ]
- },
- {
-  "slug": "26-timetable",
-  "group": "sched",
-  "src": "hosted",
-  "title": "학교 시간표 자동 편성",
-  "url": "https://2icorp.github.io/demos/26-timetable/",
-  "blurb": "교사와 교실, 학급 제약을 동시에 걸고 시간표를 만듭니다. 규모를 키우면 최적 증명이 어디서 끊기는지 감추지 않고 그대로 드러냅니다.",
-  "tech": [
-   "제약 최적화",
-   "스케줄링"
-  ],
-  "title_en": "School timetabling",
-  "blurb_en": "Builds a timetable under teacher, room and class constraints at once. Scale it up and it shows exactly where optimality proof stops, rather than hiding it.",
-  "tech_en": [
-   "Constraint optimization",
-   "Scheduling"
-  ]
- },
- {
-  "slug": "live-dispatch",
-  "group": "sched",
-  "src": "hosted",
-  "title": "실제 지도 위 라이브 배차",
-  "url": "https://2icorp.github.io/demos/live-dispatch/",
-  "blurb": "주문이 계속 들어오는 동안 기사 배정을 다시 짭니다. 한 번 짜고 끝내는 배차와 매 순간 고쳐 쓰는 배차가 어디서 갈라지는지 지도 위에서 비교합니다.",
-  "tech": [
-   "실시간 재최적화",
-   "라우팅"
-  ],
-  "title_en": "Live dispatch on a real map",
-  "blurb_en": "Reassigns drivers while orders keep arriving. It compares dispatch planned once against dispatch rewritten every moment, on an actual map.",
-  "tech_en": [
-   "Real-time re-optimization",
-   "Routing"
-  ]
- },
- {
-  "slug": "27-axis-coverage",
-  "group": "sched",
-  "src": "hosted",
-  "title": "테스트 축 커버리지",
-  "url": "https://2icorp.github.io/demos/27-axis-coverage/",
-  "blurb": "테스트가 실제로 밟는 조합을 세어 사각지대를 찾습니다. 프리셋을 고르면 그 설정이 못 잡는 결함이 몇 건인지 바로 나옵니다.",
-  "tech": [
-   "조합 커버리지",
-   "결함 주입"
-  ],
-  "title_en": "Test axis coverage",
-  "blurb_en": "Counts which combinations your tests actually exercise and finds the blind spots. Pick a preset and it tells you how many defects that configuration cannot catch.",
-  "tech_en": [
-   "Combinatorial coverage",
-   "Fault injection"
-  ]
- },
- {
-  "slug": "llm-selfhost-calculator",
-  "group": "serve",
-  "src": "own",
-  "title": "LLM 자체 호스팅 계산기",
-  "url": "https://sylvanus4.github.io/llm-selfhost-calculator/",
-  "repo": "https://github.com/sylvanus4/llm-selfhost-calculator",
-  "blurb": "이 모델이 내 GPU나 맥에 올라가는지, 그리고 API를 쓰는 것보다 싼지 계산합니다. 키도 서버도 없이 브라우저에서 끝나고 vLLM·SGLang·TensorRT-LLM 서빙 준비도까지 같이 봅니다.",
-  "tech": [
-   "VRAM 산정",
-   "TCO",
-   "vLLM"
-  ],
-  "title_en": "LLM self-hosting calculator",
-  "blurb_en": "Works out whether a model fits your GPU or Mac, and whether self-hosting beats the API. No keys and no server, and it reports vLLM, SGLang and TensorRT-LLM serving readiness alongside the cost.",
-  "tech_en": [
-   "VRAM sizing",
-   "TCO",
-   "vLLM"
-  ]
- },
- {
-  "slug": "finetune-method-picker",
-  "group": "serve",
-  "src": "own",
-  "title": "파인튜닝 방법 계산기",
-  "url": "https://sylvanus4.github.io/finetune-method-picker/",
-  "repo": "https://github.com/sylvanus4/finetune-method-picker",
-  "blurb": "가진 GPU로 이 모델을 어떻게 학습시킬 수 있는지 고릅니다. 학습 VRAM과 기법, 필요한 데이터와 시간을 계산 공식과 함께 보여줘서 결과만 믿지 않아도 됩니다.",
-  "tech": [
-   "LoRA · QLoRA",
-   "메모리 산정"
-  ],
-  "title_en": "Fine-tuning method picker",
-  "blurb_en": "Picks how you can train a given model on the GPU you actually have. It shows training VRAM, method, data and time together with the formulas, so you do not have to trust the number alone.",
-  "tech_en": [
-   "LoRA · QLoRA",
-   "Memory sizing"
-  ]
- },
- {
-  "slug": "agent-cost-sim",
-  "group": "serve",
-  "src": "own",
-  "title": "멀티에이전트 라우팅 비용",
-  "url": "https://sylvanus4.github.io/agent-cost-sim/",
-  "repo": "https://github.com/sylvanus4/agent-cost-sim",
-  "blurb": "역할별로 모델 등급을 나눠 태우면 파이프라인 비용이 얼마나 줄어드는지 계산합니다. 벤더 중립이고 실제 A/B 결과를 같이 실었습니다.",
-  "tech": [
-   "모델 라우팅",
-   "비용 모델"
-  ],
-  "title_en": "Multi-agent routing cost",
-  "blurb_en": "Calculates how much routing model tiers by role cuts pipeline cost. Vendor neutral, with a real A/B result included.",
-  "tech_en": [
-   "Model routing",
-   "Cost model"
-  ]
- },
- {
-  "slug": "voice-latency-budget",
-  "group": "serve",
-  "src": "own",
-  "title": "음성 에이전트 지연 예산",
-  "url": "https://sylvanus4.github.io/voice-latency-budget/",
-  "repo": "https://github.com/sylvanus4/voice-latency-budget",
-  "blurb": "실시간 음성 에이전트에서 ASR과 LLM, TTS가 각각 몇 밀리초를 쓰는지 배분하고 병목을 짚습니다. 참조 구간은 출처를 달아 두었습니다.",
-  "tech": [
-   "ASR · TTS",
-   "지연 예산"
-  ],
-  "title_en": "Voice agent latency budget",
-  "blurb_en": "Splits the millisecond budget across ASR, LLM and TTS for a real-time voice agent and names the bottleneck. Reference ranges carry their sources.",
-  "tech_en": [
-   "ASR · TTS",
-   "Latency budget"
-  ]
- },
- {
-  "slug": "15-edge-vlm-quant",
-  "group": "serve",
-  "src": "hosted",
-  "title": "온프렘 VLM 양자화 시뮬레이터",
-  "url": "https://2icorp.github.io/demos/15-edge-vlm-quant/",
-  "blurb": "비전 언어 모델을 양자화해 현장 장비에 올릴 때 정확도와 메모리, 동시처리량이 어떻게 맞바꿔지는지 계산합니다.",
-  "tech": [
-   "양자화",
-   "동시처리"
-  ],
-  "title_en": "On-prem VLM quantization",
-  "blurb_en": "Calculates how accuracy, memory and concurrency trade against each other when a vision language model is quantized onto on-site hardware.",
-  "tech_en": [
-   "Quantization",
-   "Concurrency"
-  ]
- },
- {
-  "slug": "11-agent-orchestrator",
-  "group": "agent",
-  "src": "hosted",
-  "title": "대화형 AI 오케스트레이터",
-  "url": "https://2icorp.github.io/demos/11-agent-orchestrator/",
-  "blurb": "요청 하나가 여러 도구를 거쳐 처리되는 과정을 단계별로 펼쳐 보여줍니다. 어디서 사람 승인이 필요한지도 흐름 안에 넣었습니다.",
-  "tech": [
-   "도구 오케스트레이션",
-   "승인 게이트"
-  ],
-  "title_en": "Conversational AI orchestrator",
-  "blurb_en": "Unfolds one request as it passes through several tools, step by step. Where a human approval is required is part of the flow, not an afterthought.",
-  "tech_en": [
-   "Tool orchestration",
-   "Approval gate"
-  ]
- },
- {
-  "slug": "decision-os",
-  "group": "agent",
-  "src": "hosted",
-  "title": "조합 최적화 의사결정",
-  "url": "https://2icorp.github.io/demos/decision-os/",
-  "blurb": "예산과 인력, 일정처럼 서로 물린 제약을 한 화면에 놓고 무엇을 얼마나 양보하면 되는지 봅니다. 제약을 움직이면 답이 즉시 다시 계산됩니다.",
-  "tech": [
-   "다목적 최적화",
-   "트레이드오프"
-  ],
-  "title_en": "Combinatorial decision support",
-  "blurb_en": "Puts interlocking budget, staffing and schedule constraints on one screen and shows what has to give. Move a constraint and the answer recomputes.",
-  "tech_en": [
-   "Multi-objective",
-   "Trade-off"
-  ]
- },
- {
-  "slug": "harness-quality-checker",
-  "group": "agent",
-  "src": "own",
-  "title": "에이전트 하네스 품질 검사",
-  "url": "https://sylvanus4.github.io/harness-quality-checker/",
-  "repo": "https://github.com/sylvanus4/harness-quality-checker",
-  "blurb": "시스템 프롬프트와 도구 스키마를 넣으면 루프·검증·추적·메모리·안전 다섯 축으로 채점합니다. 에이전트가 왜 안 도는지를 모델 탓하기 전에 하네스부터 보게 만드는 도구입니다.",
-  "tech": [
-   "정적 분석",
-   "5축 루브릭"
-  ],
-  "title_en": "Agent harness quality checker",
-  "blurb_en": "Feed it a system prompt and tool schema and it scores five axes: loop, verification, tracing, memory and safety. It exists so that a failing agent gets its harness inspected before the model gets blamed.",
-  "tech_en": [
-   "Static analysis",
-   "5-axis rubric"
-  ]
- },
- {
-  "slug": "skill-quality-checker",
-  "group": "agent",
-  "src": "own",
-  "title": "SKILL.md 품질 검사",
-  "url": "https://sylvanus4.github.io/skill-quality-checker/",
-  "repo": "https://github.com/sylvanus4/skill-quality-checker",
-  "blurb": "스킬 문서를 발견 가능성·범위·실행 가능성·가드레일·구조 다섯 축으로 채점합니다. 브라우저에서만 돌고 한국어와 영어를 모두 봅니다.",
-  "tech": [
-   "린터",
-   "한 · 영"
-  ],
-  "title_en": "SKILL.md quality checker",
-  "blurb_en": "Scores a skill document on discoverability, scope, actionability, guardrails and structure. Runs entirely in the browser and reads both Korean and English.",
-  "tech_en": [
-   "Linter",
-   "EN · KO"
-  ]
- },
- {
-  "slug": "agent-webtool-template",
-  "group": "agent",
-  "src": "own",
-  "title": "클라이언트 전용 웹툴 골격",
-  "url": "https://sylvanus4.github.io/agent-webtool-template/",
-  "repo": "https://github.com/sylvanus4/agent-webtool-template",
-  "blurb": "의존성 0으로 정적 웹툴을 만드는 템플릿입니다. 테스트 가능한 순수 코어와 독립 감사, CI, Pages 배포까지 묶어 뒀고 이 목록의 도구 상당수가 여기서 나왔습니다.",
-  "tech": [
-   "의존성 0",
-   "CI",
-   "템플릿"
-  ],
-  "title_en": "Client-side web tool skeleton",
-  "blurb_en": "A template for building static web tools with zero dependencies. Testable pure core, independent audit, CI and Pages deployment are bundled, and much of this list came out of it.",
-  "tech_en": [
-   "Zero deps",
-   "CI",
-   "Template"
-  ]
- },
- {
-  "slug": "03-vision-defect",
-  "group": "signal",
-  "src": "hosted",
-  "title": "외관 불량 검사",
-  "url": "https://2icorp.github.io/demos/03-vision-defect/",
-  "blurb": "검사원마다 갈리는 판정을 같은 기준으로 고정하면 무엇이 달라지는지 봅니다. 임계값을 올리고 내리면서 놓친 불량과 과검을 함께 셉니다.",
-  "tech": [
-   "컴퓨터 비전",
-   "임계 조정"
-  ],
-  "title_en": "Surface defect inspection",
-  "blurb_en": "Shows what changes when a judgment that varies by inspector is pinned to one standard. Move the threshold and it counts missed defects and false rejects together.",
-  "tech_en": [
-   "Computer vision",
-   "Threshold tuning"
-  ]
- },
- {
-  "slug": "06-sigprint-rf",
-  "group": "signal",
-  "src": "hosted",
-  "title": "무선 간섭 진단",
-  "url": "https://2icorp.github.io/demos/06-sigprint-rf/",
-  "blurb": "전파 환경에서 간섭원을 지문처럼 구분합니다. 신호 대 잡음비를 낮추면 어디서 판정이 무너지는지 경계를 보여줍니다.",
-  "tech": [
-   "신호처리",
-   "지문 인식"
-  ],
-  "title_en": "RF interference diagnosis",
-  "blurb_en": "Separates interference sources by their signature in the radio environment. Lower the signal to noise ratio and it shows where the judgment collapses.",
-  "tech_en": [
-   "Signal processing",
-   "Fingerprinting"
-  ]
- },
- {
-  "slug": "13-medimg-loop",
-  "group": "signal",
-  "src": "hosted",
-  "title": "의료영상 도구 운용 폐루프",
-  "url": "https://2icorp.github.io/demos/13-medimg-loop/",
-  "blurb": "판독 보조 도구가 사람 확인을 거쳐 다시 학습으로 돌아오는 폐루프를 그립니다. 연구용이며 진단 목적이 아니라는 점을 화면에도 명시했습니다.",
-  "tech": [
-   "폐루프",
-   "사람 검증"
-  ],
-  "title_en": "Medical imaging closed loop",
-  "blurb_en": "Traces a reading-assist tool through human confirmation and back into training. Research use, and the screen says so rather than implying diagnostic intent.",
-  "tech_en": [
-   "Closed loop",
-   "Human review"
-  ]
- },
- {
-  "slug": "30-acoustic-count",
-  "group": "signal",
-  "src": "hosted",
-  "title": "여분의 폰으로 차량 세기",
-  "url": "https://2icorp.github.io/demos/30-acoustic-count/",
-  "blurb": "카메라 없이 소리만으로 통행 차량을 셉니다. 공개 도로 녹음으로 실측했더니 최신 인코더가 계수에서는 2015년식 에너지 검출기를 못 이겼고, 그 결과를 그대로 실었습니다.",
-  "tech": [
-   "음향 계수",
-   "현장 보정"
-  ],
-  "title_en": "Counting vehicles with a spare phone",
-  "blurb_en": "Counts passing vehicles from sound alone, with no camera. Measured on public road recordings, a modern encoder failed to beat a 2015-era energy detector at counting, and that result is published as it came out.",
-  "tech_en": [
-   "Acoustic counting",
-   "Site calibration"
-  ]
- },
- {
-  "slug": "31-acoustic-link",
-  "group": "signal",
-  "src": "hosted",
-  "title": "소리로 넘기는 에어갭 링크",
-  "url": "https://2icorp.github.io/demos/31-acoustic-link/",
-  "blurb": "망이 끊긴 두 기기 사이로 근초음파를 써서 데이터를 넘깁니다. 잔향을 키우면 어느 지점에서 링크가 끊기는지 직접 확인할 수 있습니다.",
-  "tech": [
-   "근초음파",
-   "M-FSK"
-  ],
-  "title_en": "Air-gapped link over sound",
-  "blurb_en": "Moves data between two disconnected devices using near-ultrasound. Turn up reverberation and you can watch exactly where the link breaks.",
-  "tech_en": [
-   "Near-ultrasound",
-   "M-FSK"
-  ]
- },
- {
-  "slug": "23-airgap-diode",
-  "group": "signal",
-  "src": "hosted",
-  "title": "에어갭 데이터 다이오드",
-  "url": "https://2icorp.github.io/demos/23-airgap-diode/",
-  "blurb": "역채널 없이 한 방향으로만 데이터를 넘기는 장치를 브라우저에서 계산합니다. 분수부호와 peeling 복호기를 자바스크립트로 옮겨 손실 25퍼센트까지 복원되는 것을 그 자리에서 보여줍니다.",
-  "tech": [
-   "LT 분수부호",
-   "단방향 전송"
-  ],
-  "title_en": "Air-gapped data diode",
-  "blurb_en": "Computes one-way transfer with no return channel, in the browser. The fountain code and peeling decoder were ported to JavaScript, so you can watch 25 percent loss get reconstructed on the spot.",
-  "tech_en": [
-   "LT fountain code",
-   "One-way transfer"
-  ]
- },
- {
-  "slug": "01-data-dashboard",
-  "group": "data",
-  "src": "hosted",
-  "title": "경영 현황 대시보드",
-  "url": "https://2icorp.github.io/demos/01-data-dashboard/",
-  "blurb": "재고와 매출을 묻는 질문 하나가 반나절이 아니라 몇 초에 끝나는 형태를 보여줍니다. 숫자가 어디서 오는지 경로까지 같이 펼칩니다.",
-  "tech": [
-   "집계",
-   "지표 정의"
-  ],
-  "title_en": "Operations dashboard",
-  "blurb_en": "Shows the shape where a question about stock or revenue takes seconds instead of half a day. It also unfolds where each number came from.",
-  "tech_en": [
-   "Aggregation",
-   "Metric definition"
-  ]
- },
- {
-  "slug": "04-demand-forecast",
-  "group": "data",
-  "src": "hosted",
-  "title": "수요예측 · 발주 시뮬레이터",
-  "url": "https://2icorp.github.io/demos/04-demand-forecast/",
-  "blurb": "예측이 빗나갔을 때 재고와 결품이 각각 얼마나 늘어나는지 계산합니다. 안전재고를 올리면 비용이 어디로 옮겨가는지 함께 봅니다.",
-  "tech": [
-   "시계열",
-   "재고 정책"
-  ],
-  "title_en": "Demand forecast and ordering",
-  "blurb_en": "Calculates how much inventory and how many stockouts a miss actually costs. Raise safety stock and it shows where the cost moves to.",
-  "tech_en": [
-   "Time series",
-   "Inventory policy"
-  ]
- },
- {
-  "slug": "08-sales-signal",
-  "group": "data",
-  "src": "hosted",
-  "title": "영업 신호 레이더",
-  "url": "https://2icorp.github.io/demos/08-sales-signal/",
-  "blurb": "외부 신호에서 지금 연락할 이유가 있는 계정을 추려 냅니다. 신호 가중치를 바꾸면 추천 순서가 어떻게 흔들리는지 그대로 드러납니다.",
-  "tech": [
-   "스코어링",
-   "신호 융합"
-  ],
-  "title_en": "Sales signal radar",
-  "blurb_en": "Filters external signals down to the accounts worth contacting today. Change the signal weights and the ranking visibly shifts.",
-  "tech_en": [
-   "Scoring",
-   "Signal fusion"
-  ]
- },
- {
-  "slug": "28-popularity-gate",
-  "group": "data",
-  "src": "hosted",
-  "title": "추천 도입 전 인기순 게이트",
-  "url": "https://2icorp.github.io/demos/28-popularity-gate/",
-  "blurb": "추천 모델을 사기 전에 일주일이면 만드는 대조군을 넘는지부터 잽니다. 실제로 다섯 카테고리 중 셋에서 학습 모델이 동시등장 대조군을 못 넘었고, 그 결과를 지우지 않고 실었습니다.",
-  "tech": [
-   "대조군 설계",
-   "Recall@K"
-  ],
-  "title_en": "The gate before buying recommendations",
-  "blurb_en": "Measures whether a recommender beats a baseline you could build in a week. Across five categories the trained models failed to beat a co-occurrence baseline in three of them, and that result was published rather than dropped.",
-  "tech_en": [
-   "Baseline design",
-   "Recall@K"
-  ]
- },
- {
-  "slug": "29-geo-semantic-id",
-  "group": "data",
-  "src": "hosted",
-  "title": "지리 인식 시맨틱 ID",
-  "url": "https://2icorp.github.io/demos/29-geo-semantic-id/",
-  "blurb": "의미는 맞는데 갈 수 없는 가게를 추천하는 문제를 다룹니다. 공개 POI 6만 곳 실측에서 40킬로미터 초과 추천이 24퍼센트에서 0.3퍼센트로 내려갔습니다.",
-  "tech": [
-   "RQ-VAE",
-   "POI"
-  ],
-  "title_en": "Geo-aware semantic IDs",
-  "blurb_en": "Addresses recommending a store that fits the intent but cannot be reached. On 60,000 public POIs, recommendations beyond 40km fell from 24 percent to 0.3 percent.",
-  "tech_en": [
-   "RQ-VAE",
-   "POI"
-  ]
- },
- {
-  "slug": "02-doc-automation",
-  "group": "doc",
-  "src": "hosted",
-  "title": "문서 자동 인식 · 입력",
-  "url": "https://2icorp.github.io/demos/02-doc-automation/",
-  "blurb": "견적서와 발주서를 읽어 필드를 채우고 사람은 예외만 봅니다. 확신이 낮은 칸을 골라 내는 기준을 조절할 수 있습니다.",
-  "tech": [
-   "문서 파싱",
-   "예외 라우팅"
-  ],
-  "title_en": "Document capture and entry",
-  "blurb_en": "Reads quotes and purchase orders, fills the fields, and leaves people only the exceptions. The confidence threshold for what gets flagged is adjustable.",
-  "tech_en": [
-   "Document parsing",
-   "Exception routing"
-  ]
- },
- {
-  "slug": "05-support-chatbot",
-  "group": "doc",
-  "src": "hosted",
-  "title": "고객 문의 자동응대",
-  "url": "https://2icorp.github.io/demos/05-support-chatbot/",
-  "blurb": "문의를 분류해 답하고 못 답할 것은 넘깁니다. 모르는 것을 지어내지 않고 넘기는 경계를 어디에 둘지가 이 데모의 주제입니다.",
-  "tech": [
-   "의도 분류",
-   "이관 기준"
-  ],
-  "title_en": "Customer inquiry handling",
-  "blurb_en": "Classifies inquiries, answers what it can and escalates the rest. The subject of this demo is where to draw the line so it hands off instead of inventing an answer.",
-  "tech_en": [
-   "Intent classification",
-   "Escalation"
-  ]
- },
- {
-  "slug": "07-knowledge-rag",
-  "group": "doc",
-  "src": "hosted",
-  "title": "사내 지식 검색",
-  "url": "https://2icorp.github.io/demos/07-knowledge-rag/",
-  "blurb": "흩어진 문서에서 답과 근거 문단을 함께 꺼냅니다. 근거를 못 찾으면 답하지 않는 쪽을 기본으로 잡았습니다.",
-  "tech": [
-   "RAG",
-   "근거 인용"
-  ],
-  "title_en": "Internal knowledge search",
-  "blurb_en": "Pulls the answer and the supporting passage together out of scattered documents. Not answering when it cannot find support is the default.",
-  "tech_en": [
-   "RAG",
-   "Grounded citation"
-  ]
- },
- {
-  "slug": "daily-paper-digest",
-  "group": "doc",
-  "src": "own",
-  "title": "매일 5분 논문 다이제스트",
-  "url": "https://sylvanus4.github.io/daily-paper-digest/",
-  "repo": "https://github.com/sylvanus4/daily-paper-digest",
-  "blurb": "바쁜 엔지니어가 5분에 훑을 분량으로 그날의 논문을 줄입니다. 로컬 우선이고 LLM 키는 선택이며 키가 없어도 기능이 줄어들 뿐 멈추지 않습니다.",
-  "tech": [
-   "요약 파이프라인",
-   "로컬 우선"
-  ],
-  "title_en": "Five-minute paper digest",
-  "blurb_en": "Cuts the day's papers down to what a busy engineer reads in five minutes. Local first, the LLM key is optional, and without one it loses features rather than stopping.",
-  "tech_en": [
-   "Summarization pipeline",
-   "Local first"
-  ]
- },
- {
-  "slug": "16-storage-durability",
-  "group": "infra",
-  "src": "hosted",
-  "title": "복제는 내구성이 아니다",
-  "url": "https://2icorp.github.io/demos/16-storage-durability/",
-  "blurb": "복제본을 늘려도 막지 못하는 손실 경로를 시뮬레이션합니다. 결함을 실제로 주입해 세어 본 것만 남겼습니다.",
-  "tech": [
-   "내구성 모델",
-   "결함 주입"
-  ],
-  "title_en": "Replication is not durability",
-  "blurb_en": "Simulates the loss paths that adding replicas does not close. Only what was counted after injecting real faults is kept.",
-  "tech_en": [
-   "Durability model",
-   "Fault injection"
-  ]
- },
- {
-  "slug": "17-storage-proofkit",
-  "group": "infra",
-  "src": "hosted",
-  "title": "스토리지 진단 커버리지",
-  "url": "https://2icorp.github.io/demos/17-storage-proofkit/",
-  "blurb": "진단 항목이 실제로 어떤 실패를 덮는지 매핑합니다. 검사표가 길다고 커버리지가 넓은 것은 아니라는 점을 수치로 보여줍니다.",
-  "tech": [
-   "커버리지 매핑",
-   "하네스"
-  ],
-  "title_en": "Storage diagnostic coverage",
-  "blurb_en": "Maps which failures a diagnostic suite actually covers. It puts a number on the fact that a long checklist is not the same as wide coverage.",
-  "tech_en": [
-   "Coverage mapping",
-   "Harness"
-  ]
- },
- {
-  "slug": "18-storage-cost-model",
-  "group": "infra",
-  "src": "hosted",
-  "title": "스토리지 비용 모델",
-  "url": "https://2icorp.github.io/demos/18-storage-cost-model/",
-  "blurb": "용량과 복제, 이관 정책을 바꿔 가며 총비용을 계산합니다. 싸 보이는 구성이 복구 시점에 어떻게 비싸지는지 같이 봅니다.",
-  "tech": [
-   "TCO",
-   "계층 정책"
-  ],
-  "title_en": "Storage cost model",
-  "blurb_en": "Computes total cost while you vary capacity, replication and tiering policy. It also shows how the cheap-looking configuration gets expensive at recovery time.",
-  "tech_en": [
-   "TCO",
-   "Tiering policy"
-  ]
- },
- {
-  "slug": "09-promo-video",
-  "group": "media",
-  "src": "hosted",
-  "title": "이슈 연동 광고 영상 스튜디오",
-  "url": "https://2icorp.github.io/demos/09-promo-video/",
-  "blurb": "그날의 이슈를 받아 광고 소재를 반복 생산하는 흐름을 보여줍니다. 사람 손이 어디에 남아야 하는지 표시해 뒀습니다.",
-  "tech": [
-   "소재 생성",
-   "파이프라인"
-  ],
-  "title_en": "Issue-driven ad video studio",
-  "blurb_en": "Shows the flow that turns the day's news into ad creative on repeat. Where human hands need to stay is marked.",
-  "tech_en": [
-   "Asset generation",
-   "Pipeline"
-  ]
- },
- {
-  "slug": "10-web-marketing",
-  "group": "media",
-  "src": "hosted",
-  "title": "웹 존재감 진단",
-  "url": "https://2icorp.github.io/demos/10-web-marketing/",
-  "blurb": "검색과 콘텐츠, 전환을 한 화면에서 점검합니다. 점수를 매기는 것보다 다음에 무엇을 고칠지 고르는 데 초점을 뒀습니다.",
-  "tech": [
-   "SEO 진단",
-   "우선순위"
-  ],
-  "title_en": "Web presence audit",
-  "blurb_en": "Checks search, content and conversion on one screen. The focus is choosing what to fix next rather than producing a score.",
-  "tech_en": [
-   "SEO audit",
-   "Prioritization"
-  ]
- },
- {
-  "slug": "12-cad-blockout",
-  "group": "media",
-  "src": "hosted",
-  "title": "건축 블록아웃 폐루프",
-  "url": "https://2icorp.github.io/demos/12-cad-blockout/",
-  "blurb": "초기 배치안을 만들고 검증해서 다시 고치는 루프를 돌립니다. 사람이 조건을 바꾸면 다음 안이 즉시 따라옵니다.",
-  "tech": [
-   "생성 설계",
-   "폐루프"
-  ],
-  "title_en": "Architectural blockout loop",
-  "blurb_en": "Generates an early layout, checks it and revises. Change a condition and the next candidate follows immediately.",
-  "tech_en": [
-   "Generative design",
-   "Closed loop"
-  ]
- },
- {
-  "slug": "14-hospital-ops",
-  "group": "media",
-  "src": "hosted",
-  "title": "병원 운영 폐루프",
-  "url": "https://2icorp.github.io/demos/14-hospital-ops/",
-  "blurb": "외래와 병상, 인력이 서로 밀어내는 상황을 시뮬레이션합니다. 한 곳을 풀면 병목이 어디로 옮겨가는지 추적합니다.",
-  "tech": [
-   "운영 시뮬레이션",
-   "병목 이동"
-  ],
-  "title_en": "Hospital operations loop",
-  "blurb_en": "Simulates outpatient flow, beds and staffing pushing against each other. Relieve one and it tracks where the bottleneck moves.",
-  "tech_en": [
-   "Operations simulation",
-   "Bottleneck shift"
-  ]
- },
- {
-  "slug": "cinematic-web-forge",
-  "group": "media",
-  "src": "own",
-  "title": "시네마틱 웹 툴킷",
-  "url": "https://sylvanus4.github.io/cinematic-web-forge/",
-  "repo": "https://github.com/sylvanus4/cinematic-web-forge",
-  "blurb": "모션 프리미티브와 플래그십 템플릿, 스캐폴더를 묶은 툴킷입니다. 화면을 예쁘게 만드는 부분을 매번 다시 만들지 않으려고 정리했습니다.",
-  "tech": [
-   "모션",
-   "템플릿",
-   "TypeScript"
-  ],
-  "title_en": "Cinematic web toolkit",
-  "blurb_en": "Motion primitives, a flagship template and a scaffolder in one toolkit. Written so the part that makes a page feel expensive does not get rebuilt every time.",
-  "tech_en": [
-   "Motion",
-   "Template",
-   "TypeScript"
-  ]
- },
- {
-  "slug": "family-trip-planner",
-  "group": "media",
-  "src": "own",
-  "title": "가족여행 플래너",
-  "url": "https://sylvanus4.github.io/family-trip-planner/",
-  "repo": "https://github.com/sylvanus4/family-trip-planner",
-  "blurb": "아이와 가는 여행을 실제 지도 동선 위에서 짭니다. 숙소와 관광지 정보, 리뷰를 한자리에 놓고 일정이 물리적으로 가능한지부터 확인합니다.",
-  "tech": [
-   "지도 동선",
-   "일정 검증"
-  ],
-  "title_en": "Family trip planner",
-  "blurb_en": "Plans a trip with a child on real map routes. Lodging, sights and reviews sit in one place so you can check the itinerary is physically possible first.",
-  "tech_en": [
-   "Map routing",
-   "Feasibility"
-  ]
- },
- {
-  "slug": "nunchi-map-landing",
-  "group": "media",
-  "src": "own",
-  "title": "눈치맵 · 지금 거기 붐빌까",
-  "url": "https://sylvanus4.github.io/nunchi-map-landing/",
-  "repo": "https://github.com/sylvanus4/nunchi-map-landing",
-  "blurb": "실시간 혼잡도를 다루는 앱 컨셉의 수요 검증용 랜딩입니다. 만들기 전에 사람들이 실제로 원하는지 먼저 재려고 띄웠습니다.",
-  "tech": [
-   "수요 검증",
-   "랜딩"
-  ],
-  "title_en": "Nunchi Map · is it crowded right now",
-  "blurb_en": "A demand-validation landing page for a live crowding app concept. Put up to measure whether people actually want it before building it.",
-  "tech_en": [
-   "Demand validation",
-   "Landing"
-  ]
- },
- {
-  "slug": "motion-gfx-bench",
-  "group": "media",
-  "src": "own",
-  "title": "AI 모션그래픽 T2V 벤치",
-  "url": "https://sylvanus4.github.io/demos/motion-gfx/",
-  "repo": "https://github.com/sylvanus4/sylvanus4.github.io",
-  "blurb": "미니맥스 H3급 구조화 모션그래픽 프롬프트(타임코드 샷·타이포 주인공·사운드 동기)를 사내 B200에서 오픈 모델로 돌려 비교합니다. 같은 브리프에서 영문 타이포는 살고 일본어는 무너지는 지점, 키프레임 레퍼런스로 캐릭터를 고정하는 I2V 경로까지 실제 출력으로 보여줍니다.",
-  "tech": [
-   "Wan2.2 A14B",
-   "LTX-2.3",
-   "2×B200"
-  ],
-  "title_en": "AI motion-graphics T2V bench",
-  "blurb_en": "Runs a MiniMax H3-grade structured motion-graphics prompt (timed shots, typography-as-hero, synced sound) through open-weight models on an on-prem B200 pair. Real outputs show where Latin type survives and Japanese type collapses, plus an I2V route that locks character identity with a reference keyframe.",
-  "tech_en": [
-   "Wan2.2 A14B",
-   "LTX-2.3",
-   "2×B200"
-  ]
- },
- {
-  "slug": "hanji-download",
-  "group": "doc",
-  "src": "own",
-  "title": "hanji, 업로드 없는 문서 뷰어 · 변환기",
-  "url": "https://sylvanus4.github.io/hanji-download/",
-  "repo": "https://github.com/sylvanus4/hanji",
-  "cta": "내려받기 · 설치 안내",
-  "blurb": "HWP·HWPX·PDF·이미지·동영상을 열고 바꾸는 데스크탑 앱입니다. 파일이 기기를 떠나지 않고, 그 주장을 검사 40개로 매번 확인합니다. 이 링크는 macOS·Windows 설치 파일과 첫 실행 경고 우회 안내를 담은 배포 페이지입니다.",
-  "tech": [
-   "Tauri",
-   "WASM",
-   "로컬 처리"
-  ],
-  "title_en": "hanji, a document viewer and converter that never uploads",
-  "cta_en": "Download & install",
-  "blurb_en": "A desktop app for opening and converting HWP, HWPX, PDF, images and video. Files never leave the device, and 40 checks re-prove that claim on every run. This link is the release page with macOS and Windows installers plus first-launch warning steps.",
-  "tech_en": [
-   "Tauri",
-   "WASM",
-   "On-device"
-  ]
- },
- {
-  "slug": "gichul-seoan",
-  "group": "doc",
-  "src": "private",
-  "title": "기출 서안, 한능검 심화 기출 학습 데스크탑 앱",
-  "blurb": "한국사능력검정시험 심화 기출 스무 회차 1,000문항을 전수 파싱해 암기 카드 2,072장과 설명 채점 627개로 뒤집은 오프라인 앱입니다. 오답을 고르면 그 선지가 원래 어느 개념의 설명인지, 왜 틀렸는지, 어느 낱말을 바꾸면 맞는지를 보여줍니다. 기출 원문이 번들에 실려(공공누리 제4유형) 배포판과 저장소를 공개하지 않습니다 — 화면과 설계 기록만 남깁니다.",
-  "tech": [
-   "Tauri",
-   "완전 오프라인",
-   "SM-2 간격 반복",
-   "혼동쌍 그래프"
-  ],
-  "title_en": "Gichul Seoan, an offline desktop app for the Korean History Exam",
-  "blurb_en": "All 1,000 questions from twenty rounds of the advanced Korean History Exam, parsed in full and inverted into 2,072 spaced-repetition cards and 627 explain-back rubrics. Pick a wrong option and the app shows which concept that sentence actually describes, why it fails here, and the one word that would fix it. The bundle carries original exam text under a no-redistribution licence, so the build and repo stay private — only the screens and design record are shown.",
-  "tech_en": [
-   "Tauri",
-   "Fully offline",
-   "SM-2 spaced repetition",
-   "Confusion-pair graph"
-  ]
- },
- {
-  "slug": "algorithms-polyglot",
-  "group": "doc",
-  "src": "own",
-  "title": "여섯 언어 교차 검증 알고리즘 랩",
-  "url": "https://sylvanus4.github.io/algorithms-polyglot/",
-  "repo": "https://github.com/sylvanus4/algorithms-polyglot",
-  "cta": "학습 사이트 열기",
-  "blurb": "알고리즘 26개와 새로 쓴 문제 8개를 Go·C·C++·Rust·Python·Java 여섯 벌로 독립 구현하고 공유 벡터 232개로 교차 검증한 기록입니다. 결함 15건 중 컴파일러·타입 검사기·린터가 잡은 것은 0건이고 전부 상호일치 게이트와 브루트포스 대조가 찾았습니다. 이 링크는 저장소 소스에서 생성되는 학습 사이트라, 조작하는 데모가 아니라 읽는 면입니다.",
-  "tech": [
-   "6개 언어",
-   "교차 검증",
-   "골든 벡터 232개"
-  ],
-  "title_en": "A six-language cross-validation algorithms lab",
-  "cta_en": "Open the learning site",
-  "blurb_en": "26 algorithms plus 8 original problems, independently implemented six ways (Go, C, C++, Rust, Python, Java) and cross-checked against 232 shared vectors. Of 15 recorded defects, zero were caught by compilers, type checkers or linters. The agreement gate and brute-force comparison found them all. This link is the learning site generated from the repo: a page to read, not a demo to operate.",
-  "tech_en": [
-   "6 languages",
-   "Cross-validation",
-   "232 golden vectors"
-  ]
- }
+  {
+    "slug": "19-nurse-roster",
+    "group": "sched",
+    "src": "hosted",
+    "title": "간호사 근무표 편성",
+    "url": "https://2icorp.github.io/demos/19-nurse-roster/",
+    "blurb": "11시간 연속휴식 같은 규칙을 걸고 근무표를 실제로 풉니다. 최적해를 노리기 전에 어떤 조건에서도 실행 가능한 해가 하나는 나오도록 모델을 짜고, 공정성과 선호는 그 위에 가중치로 얹습니다.",
+    "tech": [
+      "제약 최적화",
+      "CP-SAT",
+      "근로기준"
+    ],
+    "title_en": "Nurse rostering",
+    "blurb_en": "Solves a real roster under rules like an 11-hour rest gap. Before chasing an optimum it makes sure at least one feasible schedule exists under any setting, then tunes fairness and preference as weights on top.",
+    "tech_en": [
+      "Constraint optimization",
+      "CP-SAT",
+      "Labor rules"
+    ]
+  },
+  {
+    "slug": "20-contact-staffing",
+    "group": "sched",
+    "src": "hosted",
+    "title": "콜센터 인력 배치",
+    "url": "https://2icorp.github.io/demos/20-contact-staffing/",
+    "blurb": "시간대별 인입량에서 필요한 상담원 수를 뽑고 교대를 짭니다. 응대 목표를 한 단계 올리면 인원이 몇 명 더 드는지 그 자리에서 다시 계산합니다.",
+    "tech": [
+      "대기행렬",
+      "시프트 최적화"
+    ],
+    "title_en": "Contact center staffing",
+    "blurb_en": "Derives the agents needed per interval from arrival volume and builds the shifts. Raise the service target one notch and it recomputes how many more people that costs.",
+    "tech_en": [
+      "Queueing",
+      "Shift optimization"
+    ]
+  },
+  {
+    "slug": "21-league-fixture",
+    "group": "sched",
+    "src": "hosted",
+    "title": "리그 일정 편성",
+    "url": "https://2icorp.github.io/demos/21-league-fixture/",
+    "blurb": "홈과 원정 균형, 연속 경기 제한을 지키며 리그 일정을 만듭니다. 제약 하나를 풀었을 때 몇 경기가 편해지는지 비교로 보여줍니다.",
+    "tech": [
+      "조합 최적화",
+      "라운드로빈"
+    ],
+    "title_en": "League fixture scheduling",
+    "blurb_en": "Builds a league calendar while holding home and away balance and consecutive-game limits. Relax one constraint and it shows how many fixtures get easier.",
+    "tech_en": [
+      "Combinatorial optimization",
+      "Round robin"
+    ]
+  },
+  {
+    "slug": "22-room-assign",
+    "group": "sched",
+    "src": "hosted",
+    "title": "선호를 반영한 방 배정",
+    "url": "https://2icorp.github.io/demos/22-room-assign/",
+    "blurb": "같이 쓰고 싶은 사람과 피하고 싶은 사람을 함께 넣고 인원을 방에 배정합니다. 정원만 지킨 배정과 선호까지 맞춘 배정을 나란히 두고 차이를 셉니다.",
+    "tech": [
+      "지역탐색",
+      "이론 상한"
+    ],
+    "title_en": "Preference-aware room assignment",
+    "blurb_en": "Assigns people to rooms with both preferred and avoided companions in the model. It puts a capacity-only assignment next to an optimized one and counts the difference.",
+    "tech_en": [
+      "Local search",
+      "Theoretical bound"
+    ]
+  },
+  {
+    "slug": "25-crew-pairing",
+    "group": "sched",
+    "src": "hosted",
+    "title": "항공 승무원 페어링",
+    "url": "https://2icorp.github.io/demos/25-crew-pairing/",
+    "blurb": "비행 구간을 근무 묶음으로 엮으면서 규정 위반을 0으로 유지합니다. 집합분할로 모델링해 최적 증명이 되는 구간과 안 되는 구간을 구분해 보여줍니다.",
+    "tech": [
+      "집합분할",
+      "CP-SAT"
+    ],
+    "title_en": "Airline crew pairing",
+    "blurb_en": "Chains flight legs into duty pairings while keeping rule violations at zero. Modeled as set partitioning, and it separates the sizes it can prove optimal from the ones it cannot.",
+    "tech_en": [
+      "Set partitioning",
+      "CP-SAT"
+    ]
+  },
+  {
+    "slug": "26-timetable",
+    "group": "sched",
+    "src": "hosted",
+    "title": "학교 시간표 자동 편성",
+    "url": "https://2icorp.github.io/demos/26-timetable/",
+    "blurb": "교사와 교실, 학급 제약을 동시에 걸고 시간표를 만듭니다. 규모를 키우면 최적 증명이 어디서 끊기는지 감추지 않고 그대로 드러냅니다.",
+    "tech": [
+      "제약 최적화",
+      "스케줄링"
+    ],
+    "title_en": "School timetabling",
+    "blurb_en": "Builds a timetable under teacher, room and class constraints at once. Scale it up and it shows exactly where optimality proof stops, rather than hiding it.",
+    "tech_en": [
+      "Constraint optimization",
+      "Scheduling"
+    ]
+  },
+  {
+    "slug": "live-dispatch",
+    "group": "sched",
+    "src": "hosted",
+    "title": "실제 지도 위 라이브 배차",
+    "url": "https://2icorp.github.io/demos/live-dispatch/",
+    "blurb": "주문이 계속 들어오는 동안 기사 배정을 다시 짭니다. 한 번 짜고 끝내는 배차와 매 순간 고쳐 쓰는 배차가 어디서 갈라지는지 지도 위에서 비교합니다.",
+    "tech": [
+      "실시간 재최적화",
+      "라우팅"
+    ],
+    "title_en": "Live dispatch on a real map",
+    "blurb_en": "Reassigns drivers while orders keep arriving. It compares dispatch planned once against dispatch rewritten every moment, on an actual map.",
+    "tech_en": [
+      "Real-time re-optimization",
+      "Routing"
+    ]
+  },
+  {
+    "slug": "27-axis-coverage",
+    "group": "sched",
+    "src": "hosted",
+    "title": "테스트 축 커버리지",
+    "url": "https://2icorp.github.io/demos/27-axis-coverage/",
+    "blurb": "테스트가 실제로 밟는 조합을 세어 사각지대를 찾습니다. 프리셋을 고르면 그 설정이 못 잡는 결함이 몇 건인지 바로 나옵니다.",
+    "tech": [
+      "조합 커버리지",
+      "결함 주입"
+    ],
+    "title_en": "Test axis coverage",
+    "blurb_en": "Counts which combinations your tests actually exercise and finds the blind spots. Pick a preset and it tells you how many defects that configuration cannot catch.",
+    "tech_en": [
+      "Combinatorial coverage",
+      "Fault injection"
+    ]
+  },
+  {
+    "slug": "llm-selfhost-calculator",
+    "group": "serve",
+    "src": "own",
+    "title": "LLM 자체 호스팅 계산기",
+    "url": "https://sylvanus4.github.io/llm-selfhost-calculator/",
+    "repo": "https://github.com/sylvanus4/llm-selfhost-calculator",
+    "blurb": "이 모델이 내 GPU나 맥에 올라가는지, 그리고 API를 쓰는 것보다 싼지 계산합니다. 키도 서버도 없이 브라우저에서 끝나고 vLLM·SGLang·TensorRT-LLM 서빙 준비도까지 같이 봅니다.",
+    "tech": [
+      "VRAM 산정",
+      "TCO",
+      "vLLM"
+    ],
+    "title_en": "LLM self-hosting calculator",
+    "blurb_en": "Works out whether a model fits your GPU or Mac, and whether self-hosting beats the API. No keys and no server, and it reports vLLM, SGLang and TensorRT-LLM serving readiness alongside the cost.",
+    "tech_en": [
+      "VRAM sizing",
+      "TCO",
+      "vLLM"
+    ]
+  },
+  {
+    "slug": "finetune-method-picker",
+    "group": "serve",
+    "src": "own",
+    "title": "파인튜닝 방법 계산기",
+    "url": "https://sylvanus4.github.io/finetune-method-picker/",
+    "repo": "https://github.com/sylvanus4/finetune-method-picker",
+    "blurb": "가진 GPU로 이 모델을 어떻게 학습시킬 수 있는지 고릅니다. 학습 VRAM과 기법, 필요한 데이터와 시간을 계산 공식과 함께 보여줘서 결과만 믿지 않아도 됩니다.",
+    "tech": [
+      "LoRA · QLoRA",
+      "메모리 산정"
+    ],
+    "title_en": "Fine-tuning method picker",
+    "blurb_en": "Picks how you can train a given model on the GPU you actually have. It shows training VRAM, method, data and time together with the formulas, so you do not have to trust the number alone.",
+    "tech_en": [
+      "LoRA · QLoRA",
+      "Memory sizing"
+    ]
+  },
+  {
+    "slug": "agent-cost-sim",
+    "group": "serve",
+    "src": "own",
+    "title": "멀티에이전트 라우팅 비용",
+    "url": "https://sylvanus4.github.io/agent-cost-sim/",
+    "repo": "https://github.com/sylvanus4/agent-cost-sim",
+    "blurb": "역할별로 모델 등급을 나눠 태우면 파이프라인 비용이 얼마나 줄어드는지 계산합니다. 벤더 중립이고 실제 A/B 결과를 같이 실었습니다.",
+    "tech": [
+      "모델 라우팅",
+      "비용 모델"
+    ],
+    "title_en": "Multi-agent routing cost",
+    "blurb_en": "Calculates how much routing model tiers by role cuts pipeline cost. Vendor neutral, with a real A/B result included.",
+    "tech_en": [
+      "Model routing",
+      "Cost model"
+    ]
+  },
+  {
+    "slug": "voice-latency-budget",
+    "group": "serve",
+    "src": "own",
+    "title": "음성 에이전트 지연 예산",
+    "url": "https://sylvanus4.github.io/voice-latency-budget/",
+    "repo": "https://github.com/sylvanus4/voice-latency-budget",
+    "blurb": "실시간 음성 에이전트에서 ASR과 LLM, TTS가 각각 몇 밀리초를 쓰는지 배분하고 병목을 짚습니다. 참조 구간은 출처를 달아 두었습니다.",
+    "tech": [
+      "ASR · TTS",
+      "지연 예산"
+    ],
+    "title_en": "Voice agent latency budget",
+    "blurb_en": "Splits the millisecond budget across ASR, LLM and TTS for a real-time voice agent and names the bottleneck. Reference ranges carry their sources.",
+    "tech_en": [
+      "ASR · TTS",
+      "Latency budget"
+    ]
+  },
+  {
+    "slug": "15-edge-vlm-quant",
+    "group": "serve",
+    "src": "hosted",
+    "title": "온프렘 VLM 양자화 시뮬레이터",
+    "url": "https://2icorp.github.io/demos/15-edge-vlm-quant/",
+    "blurb": "비전 언어 모델을 양자화해 현장 장비에 올릴 때 정확도와 메모리, 동시처리량이 어떻게 맞바꿔지는지 계산합니다.",
+    "tech": [
+      "양자화",
+      "동시처리"
+    ],
+    "title_en": "On-prem VLM quantization",
+    "blurb_en": "Calculates how accuracy, memory and concurrency trade against each other when a vision language model is quantized onto on-site hardware.",
+    "tech_en": [
+      "Quantization",
+      "Concurrency"
+    ]
+  },
+  {
+    "slug": "11-agent-orchestrator",
+    "group": "agent",
+    "src": "hosted",
+    "title": "대화형 AI 오케스트레이터",
+    "url": "https://2icorp.github.io/demos/11-agent-orchestrator/",
+    "blurb": "요청 하나가 여러 도구를 거쳐 처리되는 과정을 단계별로 펼쳐 보여줍니다. 어디서 사람 승인이 필요한지도 흐름 안에 넣었습니다.",
+    "tech": [
+      "도구 오케스트레이션",
+      "승인 게이트"
+    ],
+    "title_en": "Conversational AI orchestrator",
+    "blurb_en": "Unfolds one request as it passes through several tools, step by step. Where a human approval is required is part of the flow, not an afterthought.",
+    "tech_en": [
+      "Tool orchestration",
+      "Approval gate"
+    ]
+  },
+  {
+    "slug": "decision-os",
+    "group": "agent",
+    "src": "hosted",
+    "title": "조합 최적화 의사결정",
+    "url": "https://2icorp.github.io/demos/decision-os/",
+    "blurb": "예산과 인력, 일정처럼 서로 물린 제약을 한 화면에 놓고 무엇을 얼마나 양보하면 되는지 봅니다. 제약을 움직이면 답이 즉시 다시 계산됩니다.",
+    "tech": [
+      "다목적 최적화",
+      "트레이드오프"
+    ],
+    "title_en": "Combinatorial decision support",
+    "blurb_en": "Puts interlocking budget, staffing and schedule constraints on one screen and shows what has to give. Move a constraint and the answer recomputes.",
+    "tech_en": [
+      "Multi-objective",
+      "Trade-off"
+    ]
+  },
+  {
+    "slug": "harness-quality-checker",
+    "group": "agent",
+    "src": "own",
+    "title": "에이전트 하네스 품질 검사",
+    "url": "https://sylvanus4.github.io/harness-quality-checker/",
+    "repo": "https://github.com/sylvanus4/harness-quality-checker",
+    "blurb": "시스템 프롬프트와 도구 스키마를 넣으면 루프·검증·추적·메모리·안전 다섯 축으로 채점합니다. 에이전트가 왜 안 도는지를 모델 탓하기 전에 하네스부터 보게 만드는 도구입니다.",
+    "tech": [
+      "정적 분석",
+      "5축 루브릭"
+    ],
+    "title_en": "Agent harness quality checker",
+    "blurb_en": "Feed it a system prompt and tool schema and it scores five axes: loop, verification, tracing, memory and safety. It exists so that a failing agent gets its harness inspected before the model gets blamed.",
+    "tech_en": [
+      "Static analysis",
+      "5-axis rubric"
+    ]
+  },
+  {
+    "slug": "skill-quality-checker",
+    "group": "agent",
+    "src": "own",
+    "title": "SKILL.md 품질 검사",
+    "url": "https://sylvanus4.github.io/skill-quality-checker/",
+    "repo": "https://github.com/sylvanus4/skill-quality-checker",
+    "blurb": "스킬 문서를 발견 가능성·범위·실행 가능성·가드레일·구조 다섯 축으로 채점합니다. 브라우저에서만 돌고 한국어와 영어를 모두 봅니다.",
+    "tech": [
+      "린터",
+      "한 · 영"
+    ],
+    "title_en": "SKILL.md quality checker",
+    "blurb_en": "Scores a skill document on discoverability, scope, actionability, guardrails and structure. Runs entirely in the browser and reads both Korean and English.",
+    "tech_en": [
+      "Linter",
+      "EN · KO"
+    ]
+  },
+  {
+    "slug": "agent-webtool-template",
+    "group": "agent",
+    "src": "own",
+    "title": "클라이언트 전용 웹툴 골격",
+    "url": "https://sylvanus4.github.io/agent-webtool-template/",
+    "repo": "https://github.com/sylvanus4/agent-webtool-template",
+    "blurb": "의존성 0으로 정적 웹툴을 만드는 템플릿입니다. 테스트 가능한 순수 코어와 독립 감사, CI, Pages 배포까지 묶어 뒀고 이 목록의 도구 상당수가 여기서 나왔습니다.",
+    "tech": [
+      "의존성 0",
+      "CI",
+      "템플릿"
+    ],
+    "title_en": "Client-side web tool skeleton",
+    "blurb_en": "A template for building static web tools with zero dependencies. Testable pure core, independent audit, CI and Pages deployment are bundled, and much of this list came out of it.",
+    "tech_en": [
+      "Zero deps",
+      "CI",
+      "Template"
+    ]
+  },
+  {
+    "slug": "03-vision-defect",
+    "group": "signal",
+    "src": "hosted",
+    "title": "외관 불량 검사",
+    "url": "https://2icorp.github.io/demos/03-vision-defect/",
+    "blurb": "검사원마다 갈리는 판정을 같은 기준으로 고정하면 무엇이 달라지는지 봅니다. 임계값을 올리고 내리면서 놓친 불량과 과검을 함께 셉니다.",
+    "tech": [
+      "컴퓨터 비전",
+      "임계 조정"
+    ],
+    "title_en": "Surface defect inspection",
+    "blurb_en": "Shows what changes when a judgment that varies by inspector is pinned to one standard. Move the threshold and it counts missed defects and false rejects together.",
+    "tech_en": [
+      "Computer vision",
+      "Threshold tuning"
+    ]
+  },
+  {
+    "slug": "06-sigprint-rf",
+    "group": "signal",
+    "src": "hosted",
+    "title": "무선 간섭 진단",
+    "url": "https://2icorp.github.io/demos/06-sigprint-rf/",
+    "blurb": "전파 환경에서 간섭원을 지문처럼 구분합니다. 신호 대 잡음비를 낮추면 어디서 판정이 무너지는지 경계를 보여줍니다.",
+    "tech": [
+      "신호처리",
+      "지문 인식"
+    ],
+    "title_en": "RF interference diagnosis",
+    "blurb_en": "Separates interference sources by their signature in the radio environment. Lower the signal to noise ratio and it shows where the judgment collapses.",
+    "tech_en": [
+      "Signal processing",
+      "Fingerprinting"
+    ]
+  },
+  {
+    "slug": "13-medimg-loop",
+    "group": "signal",
+    "src": "hosted",
+    "title": "의료영상 도구 운용 폐루프",
+    "url": "https://2icorp.github.io/demos/13-medimg-loop/",
+    "blurb": "판독 보조 도구가 사람 확인을 거쳐 다시 학습으로 돌아오는 폐루프를 그립니다. 연구용이며 진단 목적이 아니라는 점을 화면에도 명시했습니다.",
+    "tech": [
+      "폐루프",
+      "사람 검증"
+    ],
+    "title_en": "Medical imaging closed loop",
+    "blurb_en": "Traces a reading-assist tool through human confirmation and back into training. Research use, and the screen says so rather than implying diagnostic intent.",
+    "tech_en": [
+      "Closed loop",
+      "Human review"
+    ]
+  },
+  {
+    "slug": "30-acoustic-count",
+    "group": "signal",
+    "src": "hosted",
+    "title": "여분의 폰으로 차량 세기",
+    "url": "https://2icorp.github.io/demos/30-acoustic-count/",
+    "blurb": "카메라 없이 소리만으로 통행 차량을 셉니다. 공개 도로 녹음으로 실측했더니 최신 인코더가 계수에서는 2015년식 에너지 검출기를 못 이겼고, 그 결과를 그대로 실었습니다.",
+    "tech": [
+      "음향 계수",
+      "현장 보정"
+    ],
+    "title_en": "Counting vehicles with a spare phone",
+    "blurb_en": "Counts passing vehicles from sound alone, with no camera. Measured on public road recordings, a modern encoder failed to beat a 2015-era energy detector at counting, and that result is published as it came out.",
+    "tech_en": [
+      "Acoustic counting",
+      "Site calibration"
+    ]
+  },
+  {
+    "slug": "31-acoustic-link",
+    "group": "signal",
+    "src": "hosted",
+    "title": "소리로 넘기는 에어갭 링크",
+    "url": "https://2icorp.github.io/demos/31-acoustic-link/",
+    "blurb": "망이 끊긴 두 기기 사이로 근초음파를 써서 데이터를 넘깁니다. 잔향을 키우면 어느 지점에서 링크가 끊기는지 직접 확인할 수 있습니다.",
+    "tech": [
+      "근초음파",
+      "M-FSK"
+    ],
+    "title_en": "Air-gapped link over sound",
+    "blurb_en": "Moves data between two disconnected devices using near-ultrasound. Turn up reverberation and you can watch exactly where the link breaks.",
+    "tech_en": [
+      "Near-ultrasound",
+      "M-FSK"
+    ]
+  },
+  {
+    "slug": "23-airgap-diode",
+    "group": "signal",
+    "src": "hosted",
+    "title": "에어갭 데이터 다이오드",
+    "url": "https://2icorp.github.io/demos/23-airgap-diode/",
+    "blurb": "역채널 없이 한 방향으로만 데이터를 넘기는 장치를 브라우저에서 계산합니다. 분수부호와 peeling 복호기를 자바스크립트로 옮겨 손실 25퍼센트까지 복원되는 것을 그 자리에서 보여줍니다.",
+    "tech": [
+      "LT 분수부호",
+      "단방향 전송"
+    ],
+    "title_en": "Air-gapped data diode",
+    "blurb_en": "Computes one-way transfer with no return channel, in the browser. The fountain code and peeling decoder were ported to JavaScript, so you can watch 25 percent loss get reconstructed on the spot.",
+    "tech_en": [
+      "LT fountain code",
+      "One-way transfer"
+    ]
+  },
+  {
+    "slug": "01-data-dashboard",
+    "group": "data",
+    "src": "hosted",
+    "title": "경영 현황 대시보드",
+    "url": "https://2icorp.github.io/demos/01-data-dashboard/",
+    "blurb": "재고와 매출을 묻는 질문 하나가 반나절이 아니라 몇 초에 끝나는 형태를 보여줍니다. 숫자가 어디서 오는지 경로까지 같이 펼칩니다.",
+    "tech": [
+      "집계",
+      "지표 정의"
+    ],
+    "title_en": "Operations dashboard",
+    "blurb_en": "Shows the shape where a question about stock or revenue takes seconds instead of half a day. It also unfolds where each number came from.",
+    "tech_en": [
+      "Aggregation",
+      "Metric definition"
+    ]
+  },
+  {
+    "slug": "04-demand-forecast",
+    "group": "data",
+    "src": "hosted",
+    "title": "수요예측 · 발주 시뮬레이터",
+    "url": "https://2icorp.github.io/demos/04-demand-forecast/",
+    "blurb": "예측이 빗나갔을 때 재고와 결품이 각각 얼마나 늘어나는지 계산합니다. 안전재고를 올리면 비용이 어디로 옮겨가는지 함께 봅니다.",
+    "tech": [
+      "시계열",
+      "재고 정책"
+    ],
+    "title_en": "Demand forecast and ordering",
+    "blurb_en": "Calculates how much inventory and how many stockouts a miss actually costs. Raise safety stock and it shows where the cost moves to.",
+    "tech_en": [
+      "Time series",
+      "Inventory policy"
+    ]
+  },
+  {
+    "slug": "08-sales-signal",
+    "group": "data",
+    "src": "hosted",
+    "title": "영업 신호 레이더",
+    "url": "https://2icorp.github.io/demos/08-sales-signal/",
+    "blurb": "외부 신호에서 지금 연락할 이유가 있는 계정을 추려 냅니다. 신호 가중치를 바꾸면 추천 순서가 어떻게 흔들리는지 그대로 드러납니다.",
+    "tech": [
+      "스코어링",
+      "신호 융합"
+    ],
+    "title_en": "Sales signal radar",
+    "blurb_en": "Filters external signals down to the accounts worth contacting today. Change the signal weights and the ranking visibly shifts.",
+    "tech_en": [
+      "Scoring",
+      "Signal fusion"
+    ]
+  },
+  {
+    "slug": "28-popularity-gate",
+    "group": "data",
+    "src": "hosted",
+    "title": "추천 도입 전 인기순 게이트",
+    "url": "https://2icorp.github.io/demos/28-popularity-gate/",
+    "blurb": "추천 모델을 사기 전에 일주일이면 만드는 대조군을 넘는지부터 잽니다. 실제로 다섯 카테고리 중 셋에서 학습 모델이 동시등장 대조군을 못 넘었고, 그 결과를 지우지 않고 실었습니다.",
+    "tech": [
+      "대조군 설계",
+      "Recall@K"
+    ],
+    "title_en": "The gate before buying recommendations",
+    "blurb_en": "Measures whether a recommender beats a baseline you could build in a week. Across five categories the trained models failed to beat a co-occurrence baseline in three of them, and that result was published rather than dropped.",
+    "tech_en": [
+      "Baseline design",
+      "Recall@K"
+    ]
+  },
+  {
+    "slug": "29-geo-semantic-id",
+    "group": "data",
+    "src": "hosted",
+    "title": "지리 인식 시맨틱 ID",
+    "url": "https://2icorp.github.io/demos/29-geo-semantic-id/",
+    "blurb": "의미는 맞는데 갈 수 없는 가게를 추천하는 문제를 다룹니다. 공개 POI 6만 곳 실측에서 40킬로미터 초과 추천이 24퍼센트에서 0.3퍼센트로 내려갔습니다.",
+    "tech": [
+      "RQ-VAE",
+      "POI"
+    ],
+    "title_en": "Geo-aware semantic IDs",
+    "blurb_en": "Addresses recommending a store that fits the intent but cannot be reached. On 60,000 public POIs, recommendations beyond 40km fell from 24 percent to 0.3 percent.",
+    "tech_en": [
+      "RQ-VAE",
+      "POI"
+    ]
+  },
+  {
+    "slug": "02-doc-automation",
+    "group": "doc",
+    "src": "hosted",
+    "title": "문서 자동 인식 · 입력",
+    "url": "https://2icorp.github.io/demos/02-doc-automation/",
+    "blurb": "견적서와 발주서를 읽어 필드를 채우고 사람은 예외만 봅니다. 확신이 낮은 칸을 골라 내는 기준을 조절할 수 있습니다.",
+    "tech": [
+      "문서 파싱",
+      "예외 라우팅"
+    ],
+    "title_en": "Document capture and entry",
+    "blurb_en": "Reads quotes and purchase orders, fills the fields, and leaves people only the exceptions. The confidence threshold for what gets flagged is adjustable.",
+    "tech_en": [
+      "Document parsing",
+      "Exception routing"
+    ]
+  },
+  {
+    "slug": "05-support-chatbot",
+    "group": "doc",
+    "src": "hosted",
+    "title": "고객 문의 자동응대",
+    "url": "https://2icorp.github.io/demos/05-support-chatbot/",
+    "blurb": "문의를 분류해 답하고 못 답할 것은 넘깁니다. 모르는 것을 지어내지 않고 넘기는 경계를 어디에 둘지가 이 데모의 주제입니다.",
+    "tech": [
+      "의도 분류",
+      "이관 기준"
+    ],
+    "title_en": "Customer inquiry handling",
+    "blurb_en": "Classifies inquiries, answers what it can and escalates the rest. The subject of this demo is where to draw the line so it hands off instead of inventing an answer.",
+    "tech_en": [
+      "Intent classification",
+      "Escalation"
+    ]
+  },
+  {
+    "slug": "07-knowledge-rag",
+    "group": "doc",
+    "src": "hosted",
+    "title": "사내 지식 검색",
+    "url": "https://2icorp.github.io/demos/07-knowledge-rag/",
+    "blurb": "흩어진 문서에서 답과 근거 문단을 함께 꺼냅니다. 근거를 못 찾으면 답하지 않는 쪽을 기본으로 잡았습니다.",
+    "tech": [
+      "RAG",
+      "근거 인용"
+    ],
+    "title_en": "Internal knowledge search",
+    "blurb_en": "Pulls the answer and the supporting passage together out of scattered documents. Not answering when it cannot find support is the default.",
+    "tech_en": [
+      "RAG",
+      "Grounded citation"
+    ]
+  },
+  {
+    "slug": "daily-paper-digest",
+    "group": "doc",
+    "src": "own",
+    "title": "매일 5분 논문 다이제스트",
+    "url": "https://sylvanus4.github.io/daily-paper-digest/",
+    "repo": "https://github.com/sylvanus4/daily-paper-digest",
+    "blurb": "바쁜 엔지니어가 5분에 훑을 분량으로 그날의 논문을 줄입니다. 로컬 우선이고 LLM 키는 선택이며 키가 없어도 기능이 줄어들 뿐 멈추지 않습니다.",
+    "tech": [
+      "요약 파이프라인",
+      "로컬 우선"
+    ],
+    "title_en": "Five-minute paper digest",
+    "blurb_en": "Cuts the day's papers down to what a busy engineer reads in five minutes. Local first, the LLM key is optional, and without one it loses features rather than stopping.",
+    "tech_en": [
+      "Summarization pipeline",
+      "Local first"
+    ]
+  },
+  {
+    "slug": "16-storage-durability",
+    "group": "infra",
+    "src": "hosted",
+    "title": "복제는 내구성이 아니다",
+    "url": "https://2icorp.github.io/demos/16-storage-durability/",
+    "blurb": "복제본을 늘려도 막지 못하는 손실 경로를 시뮬레이션합니다. 결함을 실제로 주입해 세어 본 것만 남겼습니다.",
+    "tech": [
+      "내구성 모델",
+      "결함 주입"
+    ],
+    "title_en": "Replication is not durability",
+    "blurb_en": "Simulates the loss paths that adding replicas does not close. Only what was counted after injecting real faults is kept.",
+    "tech_en": [
+      "Durability model",
+      "Fault injection"
+    ]
+  },
+  {
+    "slug": "17-storage-proofkit",
+    "group": "infra",
+    "src": "hosted",
+    "title": "스토리지 진단 커버리지",
+    "url": "https://2icorp.github.io/demos/17-storage-proofkit/",
+    "blurb": "진단 항목이 실제로 어떤 실패를 덮는지 매핑합니다. 검사표가 길다고 커버리지가 넓은 것은 아니라는 점을 수치로 보여줍니다.",
+    "tech": [
+      "커버리지 매핑",
+      "하네스"
+    ],
+    "title_en": "Storage diagnostic coverage",
+    "blurb_en": "Maps which failures a diagnostic suite actually covers. It puts a number on the fact that a long checklist is not the same as wide coverage.",
+    "tech_en": [
+      "Coverage mapping",
+      "Harness"
+    ]
+  },
+  {
+    "slug": "18-storage-cost-model",
+    "group": "infra",
+    "src": "hosted",
+    "title": "스토리지 비용 모델",
+    "url": "https://2icorp.github.io/demos/18-storage-cost-model/",
+    "blurb": "용량과 복제, 이관 정책을 바꿔 가며 총비용을 계산합니다. 싸 보이는 구성이 복구 시점에 어떻게 비싸지는지 같이 봅니다.",
+    "tech": [
+      "TCO",
+      "계층 정책"
+    ],
+    "title_en": "Storage cost model",
+    "blurb_en": "Computes total cost while you vary capacity, replication and tiering policy. It also shows how the cheap-looking configuration gets expensive at recovery time.",
+    "tech_en": [
+      "TCO",
+      "Tiering policy"
+    ]
+  },
+  {
+    "slug": "09-promo-video",
+    "group": "media",
+    "src": "hosted",
+    "title": "이슈 연동 광고 영상 스튜디오",
+    "url": "https://2icorp.github.io/demos/09-promo-video/",
+    "blurb": "그날의 이슈를 받아 광고 소재를 반복 생산하는 흐름을 보여줍니다. 사람 손이 어디에 남아야 하는지 표시해 뒀습니다.",
+    "tech": [
+      "소재 생성",
+      "파이프라인"
+    ],
+    "title_en": "Issue-driven ad video studio",
+    "blurb_en": "Shows the flow that turns the day's news into ad creative on repeat. Where human hands need to stay is marked.",
+    "tech_en": [
+      "Asset generation",
+      "Pipeline"
+    ]
+  },
+  {
+    "slug": "10-web-marketing",
+    "group": "media",
+    "src": "hosted",
+    "title": "웹 존재감 진단",
+    "url": "https://2icorp.github.io/demos/10-web-marketing/",
+    "blurb": "검색과 콘텐츠, 전환을 한 화면에서 점검합니다. 점수를 매기는 것보다 다음에 무엇을 고칠지 고르는 데 초점을 뒀습니다.",
+    "tech": [
+      "SEO 진단",
+      "우선순위"
+    ],
+    "title_en": "Web presence audit",
+    "blurb_en": "Checks search, content and conversion on one screen. The focus is choosing what to fix next rather than producing a score.",
+    "tech_en": [
+      "SEO audit",
+      "Prioritization"
+    ]
+  },
+  {
+    "slug": "12-cad-blockout",
+    "group": "media",
+    "src": "hosted",
+    "title": "건축 블록아웃 폐루프",
+    "url": "https://2icorp.github.io/demos/12-cad-blockout/",
+    "blurb": "초기 배치안을 만들고 검증해서 다시 고치는 루프를 돌립니다. 사람이 조건을 바꾸면 다음 안이 즉시 따라옵니다.",
+    "tech": [
+      "생성 설계",
+      "폐루프"
+    ],
+    "title_en": "Architectural blockout loop",
+    "blurb_en": "Generates an early layout, checks it and revises. Change a condition and the next candidate follows immediately.",
+    "tech_en": [
+      "Generative design",
+      "Closed loop"
+    ]
+  },
+  {
+    "slug": "14-hospital-ops",
+    "group": "media",
+    "src": "hosted",
+    "title": "병원 운영 폐루프",
+    "url": "https://2icorp.github.io/demos/14-hospital-ops/",
+    "blurb": "외래와 병상, 인력이 서로 밀어내는 상황을 시뮬레이션합니다. 한 곳을 풀면 병목이 어디로 옮겨가는지 추적합니다.",
+    "tech": [
+      "운영 시뮬레이션",
+      "병목 이동"
+    ],
+    "title_en": "Hospital operations loop",
+    "blurb_en": "Simulates outpatient flow, beds and staffing pushing against each other. Relieve one and it tracks where the bottleneck moves.",
+    "tech_en": [
+      "Operations simulation",
+      "Bottleneck shift"
+    ]
+  },
+  {
+    "slug": "cinematic-web-forge",
+    "group": "media",
+    "src": "own",
+    "title": "시네마틱 웹 툴킷",
+    "url": "https://sylvanus4.github.io/cinematic-web-forge/",
+    "repo": "https://github.com/sylvanus4/cinematic-web-forge",
+    "blurb": "모션 프리미티브와 플래그십 템플릿, 스캐폴더를 묶은 툴킷입니다. 화면을 예쁘게 만드는 부분을 매번 다시 만들지 않으려고 정리했습니다.",
+    "tech": [
+      "모션",
+      "템플릿",
+      "TypeScript"
+    ],
+    "title_en": "Cinematic web toolkit",
+    "blurb_en": "Motion primitives, a flagship template and a scaffolder in one toolkit. Written so the part that makes a page feel expensive does not get rebuilt every time.",
+    "tech_en": [
+      "Motion",
+      "Template",
+      "TypeScript"
+    ]
+  },
+  {
+    "slug": "family-trip-planner",
+    "group": "media",
+    "src": "own",
+    "title": "가족여행 플래너",
+    "url": "https://sylvanus4.github.io/family-trip-planner/",
+    "repo": "https://github.com/sylvanus4/family-trip-planner",
+    "blurb": "아이와 가는 여행을 실제 지도 동선 위에서 짭니다. 숙소와 관광지 정보, 리뷰를 한자리에 놓고 일정이 물리적으로 가능한지부터 확인합니다.",
+    "tech": [
+      "지도 동선",
+      "일정 검증"
+    ],
+    "title_en": "Family trip planner",
+    "blurb_en": "Plans a trip with a child on real map routes. Lodging, sights and reviews sit in one place so you can check the itinerary is physically possible first.",
+    "tech_en": [
+      "Map routing",
+      "Feasibility"
+    ]
+  },
+  {
+    "slug": "nunchi-map-landing",
+    "group": "media",
+    "src": "own",
+    "title": "눈치맵 · 지금 거기 붐빌까",
+    "url": "https://sylvanus4.github.io/nunchi-map-landing/",
+    "repo": "https://github.com/sylvanus4/nunchi-map-landing",
+    "blurb": "실시간 혼잡도를 다루는 앱 컨셉의 수요 검증용 랜딩입니다. 만들기 전에 사람들이 실제로 원하는지 먼저 재려고 띄웠습니다.",
+    "tech": [
+      "수요 검증",
+      "랜딩"
+    ],
+    "title_en": "Nunchi Map · is it crowded right now",
+    "blurb_en": "A demand-validation landing page for a live crowding app concept. Put up to measure whether people actually want it before building it.",
+    "tech_en": [
+      "Demand validation",
+      "Landing"
+    ]
+  },
+  {
+    "slug": "motion-gfx-bench",
+    "group": "media",
+    "src": "own",
+    "title": "AI 모션그래픽 T2V 벤치",
+    "url": "https://sylvanus4.github.io/demos/motion-gfx/",
+    "repo": "https://github.com/sylvanus4/sylvanus4.github.io",
+    "blurb": "미니맥스 H3급 구조화 모션그래픽 프롬프트(타임코드 샷·타이포 주인공·사운드 동기)를 사내 B200에서 오픈 모델로 돌려 비교합니다. 같은 브리프에서 영문 타이포는 살고 일본어는 무너지는 지점, 키프레임 레퍼런스로 캐릭터를 고정하는 I2V 경로까지 실제 출력으로 보여줍니다.",
+    "tech": [
+      "Wan2.2 A14B",
+      "LTX-2.3",
+      "2×B200"
+    ],
+    "title_en": "AI motion-graphics T2V bench",
+    "blurb_en": "Runs a MiniMax H3-grade structured motion-graphics prompt (timed shots, typography-as-hero, synced sound) through open-weight models on an on-prem B200 pair. Real outputs show where Latin type survives and Japanese type collapses, plus an I2V route that locks character identity with a reference keyframe.",
+    "tech_en": [
+      "Wan2.2 A14B",
+      "LTX-2.3",
+      "2×B200"
+    ]
+  },
+  {
+    "slug": "hanji-download",
+    "group": "doc",
+    "src": "own",
+    "title": "hanji, 업로드 없는 문서 뷰어 · 변환기",
+    "url": "https://sylvanus4.github.io/hanji-download/",
+    "repo": "https://github.com/sylvanus4/hanji",
+    "cta": "내려받기 · 설치 안내",
+    "blurb": "HWP·HWPX·PDF·이미지·동영상을 열고 바꾸는 데스크탑 앱입니다. 파일이 기기를 떠나지 않고, 그 주장을 검사 40개로 매번 확인합니다. 이 링크는 macOS·Windows 설치 파일과 첫 실행 경고 우회 안내를 담은 배포 페이지입니다.",
+    "tech": [
+      "Tauri",
+      "WASM",
+      "로컬 처리"
+    ],
+    "title_en": "hanji, a document viewer and converter that never uploads",
+    "cta_en": "Download & install",
+    "blurb_en": "A desktop app for opening and converting HWP, HWPX, PDF, images and video. Files never leave the device, and 40 checks re-prove that claim on every run. This link is the release page with macOS and Windows installers plus first-launch warning steps.",
+    "tech_en": [
+      "Tauri",
+      "WASM",
+      "On-device"
+    ]
+  },
+  {
+    "slug": "gichul-seoan",
+    "group": "doc",
+    "src": "private",
+    "title": "기출 서안, 한능검 심화 기출 학습 데스크탑 앱",
+    "blurb": "한국사능력검정시험 심화 기출 스무 회차 1,000문항을 전수 파싱해 암기 카드 2,072장과 설명 채점 627개로 뒤집은 오프라인 앱입니다. 오답을 고르면 그 선지가 원래 어느 개념의 설명인지, 왜 틀렸는지, 어느 낱말을 바꾸면 맞는지를 보여줍니다. 기출 원문이 번들에 실려(공공누리 제4유형) 배포판과 저장소를 공개하지 않습니다 — 화면과 설계 기록만 남깁니다.",
+    "tech": [
+      "Tauri",
+      "완전 오프라인",
+      "SM-2 간격 반복",
+      "혼동쌍 그래프"
+    ],
+    "title_en": "Gichul Seoan, an offline desktop app for the Korean History Exam",
+    "blurb_en": "All 1,000 questions from twenty rounds of the advanced Korean History Exam, parsed in full and inverted into 2,072 spaced-repetition cards and 627 explain-back rubrics. Pick a wrong option and the app shows which concept that sentence actually describes, why it fails here, and the one word that would fix it. The bundle carries original exam text under a no-redistribution licence, so the build and repo stay private — only the screens and design record are shown.",
+    "tech_en": [
+      "Tauri",
+      "Fully offline",
+      "SM-2 spaced repetition",
+      "Confusion-pair graph"
+    ]
+  },
+  {
+    "slug": "algorithms-polyglot",
+    "group": "doc",
+    "src": "own",
+    "title": "여섯 언어 교차 검증 알고리즘 랩",
+    "url": "https://sylvanus4.github.io/algorithms-polyglot/",
+    "repo": "https://github.com/sylvanus4/algorithms-polyglot",
+    "cta": "학습 사이트 열기",
+    "blurb": "알고리즘 26개와 새로 쓴 문제 8개를 Go·C·C++·Rust·Python·Java 여섯 벌로 독립 구현하고 공유 벡터 232개로 교차 검증한 기록입니다. 결함 15건 중 컴파일러·타입 검사기·린터가 잡은 것은 0건이고 전부 상호일치 게이트와 브루트포스 대조가 찾았습니다. 이 링크는 저장소 소스에서 생성되는 학습 사이트라, 조작하는 데모가 아니라 읽는 면입니다.",
+    "tech": [
+      "6개 언어",
+      "교차 검증",
+      "골든 벡터 232개"
+    ],
+    "title_en": "A six-language cross-validation algorithms lab",
+    "cta_en": "Open the learning site",
+    "blurb_en": "26 algorithms plus 8 original problems, independently implemented six ways (Go, C, C++, Rust, Python, Java) and cross-checked against 232 shared vectors. Of 15 recorded defects, zero were caught by compilers, type checkers or linters. The agreement gate and brute-force comparison found them all. This link is the learning site generated from the repo: a page to read, not a demo to operate.",
+    "tech_en": [
+      "6 languages",
+      "Cross-validation",
+      "232 golden vectors"
+    ]
+  },
+  {
+    "slug": "pcbang-2004",
+    "group": "media",
+    "src": "own",
+    "title": "피시방 2004",
+    "url": "https://sylvanus4.github.io/pcbang-2004/",
+    "repo": "https://github.com/sylvanus4/pcbang-2004",
+    "blurb": "2004년 새벽 두 시의 피시방을 소리로 복원합니다. 자리를 창가·구석·카운터 옆으로 옮기면 방이 다시 믹싱되고, 키보드 소리는 거리 세 단계로 흩어져 같은 패턴이 반복되지 않습니다. 녹음 파일은 한 개도 쓰지 않고 전부 브라우저에서 합성합니다.",
+    "tech": [
+      "Web Audio 합성",
+      "절차적 잔향",
+      "포아송 스케줄링"
+    ],
+    "title_en": "PC Bang 2004",
+    "blurb_en": "Rebuilds a Korean internet cafe at 2am in 2004 out of sound alone. Move between the window, corner and counter seats and the room re-mixes; the keyboards are scattered across three distance tiers so the clatter never loops. Not one recording is used, all of it is synthesized in the browser.",
+    "tech_en": [
+      "Web Audio synthesis",
+      "Procedural reverb",
+      "Poisson scheduling"
+    ],
+    "enter": {
+      "click": "#power-btn",
+      "wait": 5200
+    }
+  },
+  {
+    "slug": "midnight-dial",
+    "group": "media",
+    "src": "own",
+    "title": "심야 다이얼",
+    "url": "https://sylvanus4.github.io/midnight-dial/",
+    "repo": "https://github.com/sylvanus4/midnight-dial",
+    "blurb": "1997년의 FM 수신기입니다. 다이얼을 끌면 잡음 사이에 숨은 방송국 여섯 개가 잡히고, 각 방송은 그때그때 생성됩니다. 바늘은 스프링 감쇠로 움직이고 신호 미터는 실제 출력 레벨을 읽습니다.",
+    "tech": [
+      "생성 음악",
+      "AnalyserNode",
+      "스프링 감쇠"
+    ],
+    "title_en": "Midnight Dial",
+    "blurb_en": "A 1997 FM receiver. Drag the dial and six stations surface out of the static, each one generated on the spot rather than played back. The needle moves on a spring damper and the signal meter reads the real output level.",
+    "tech_en": [
+      "Generative audio",
+      "AnalyserNode",
+      "Spring damping"
+    ],
+    "enter": {
+      "click": "#power",
+      "wait": 4200
+    }
+  },
+  {
+    "slug": "grandmas-summer",
+    "group": "media",
+    "src": "own",
+    "title": "할머니 집, 여름",
+    "url": "https://sylvanus4.github.io/grandmas-summer/",
+    "repo": "https://github.com/sylvanus4/grandmas-summer",
+    "blurb": "1996년 할머니 집의 여름 하루가 조작 하나에 묶여 있습니다. 해를 끌면 소리와 빛과 그림자가 동시에 연속 변형됩니다. 매미는 대역통과 잡음을 진폭변조해 두 종을 열여섯 목소리로 흩었고, 밤이 되면 귀뚜라미와 옆방 텔레비전으로 넘어갑니다.",
+    "tech": [
+      "시간 보간",
+      "진폭변조 합성",
+      "SVG 장면"
+    ],
+    "title_en": "Grandma's Summer",
+    "blurb_en": "A summer day in 1996 tied to a single control. Drag the sun and sound, light and shadow all deform continuously together. The cicadas are amplitude-modulated bandpassed noise, two species across sixteen voices, and after dark they hand over to crickets and a television in the next room.",
+    "tech_en": [
+      "Time interpolation",
+      "AM synthesis",
+      "SVG scene"
+    ],
+    "enter": {
+      "click": "#begin",
+      "wait": 4200
+    }
+  }
 ]
