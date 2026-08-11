@@ -799,14 +799,14 @@
     "title": "AI 모션그래픽 T2V 벤치",
     "url": "https://sylvanus4.github.io/demos/motion-gfx/",
     "repo": "https://github.com/sylvanus4/sylvanus4.github.io",
-    "blurb": "미니맥스 H3급 구조화 모션그래픽 프롬프트(타임코드 샷·타이포 주인공·사운드 동기)를 사내 B200에서 오픈 모델로 돌려 비교합니다. 영문 타이포는 살고 일본어는 무너지는 지점, 키프레임으로 캐릭터를 고정하는 I2V 경로, 그리고 8개 스타일 테마(신스웨이브·클레이·스위스 그리드 등)를 같은 스키마로 스윕한 결과까지 실제 출력으로 보여줍니다.",
+    "blurb": "미니맥스 H3급 구조화 모션그래픽 프롬프트(타임코드 샷·타이포 주인공·사운드 동기)를 사내 B200에서 오픈 모델로 돌려 비교합니다. 영문 타이포는 살고 일본어는 무너지는 지점, 8개 스타일 테마 스윕, 그리고 텍스트프리 배경 생성 + 코드 오버레이 합성으로 CJK·데이터 수치를 100% 무결로 되살리는 하이브리드 파이프라인까지 실제 출력으로 보여줍니다.",
     "tech": [
       "Wan2.2 A14B",
       "LTX-2.3",
       "6×B200"
     ],
     "title_en": "AI motion-graphics T2V bench",
-    "blurb_en": "Runs a MiniMax H3-grade structured motion-graphics prompt (timed shots, typography-as-hero, synced sound) through open-weight models on on-prem B200s. Real outputs show where Latin type survives and Japanese type collapses, an I2V route that locks character identity with a reference keyframe, and an 8-theme style sweep (synthwave, claymation, Swiss grid...) from the same prompt schema.",
+    "blurb_en": "MiniMax H3-grade structured motion-graphics prompts (timecoded shots, typography-as-hero) run on in-house B200s with open models: where Latin type survives and CJK collapses, an 8-theme style sweep, and a hybrid pipeline (text-free backgrounds + deterministic code overlay) that restores CJK and data numerals to 100% integrity.",
     "tech_en": [
       "Wan2.2 A14B",
       "LTX-2.3",

@@ -215,6 +215,50 @@
   </article>
 </div>
 
+<h2>하이브리드 파이프라인 — 텍스트프리 생성 + 코드 오버레이 (3차)</h2>
+<div class="grid" id="hybrid-grid">
+  <article class="card">
+    <video src="media/overlay/jp-pop-ad-textfree.mp4" controls loop muted playsinline preload="none"></video>
+    <div class="body">
+      <h3>① 배경 — 플랫 페이퍼컷 광고 (모델 직출)</h3>
+      <div class="meta"><span>T2V</span><span>텍스트프리 프롬프트</span><span>720p·81f</span></div>
+      <p class="verdict"><span class="tag-ok">글리프 0</span> — 텍스트를 전면 금지하고 빈
+      배너·빈 칩·빈 엔드카드 원을 지시하자 모델이 자리만 완벽하게 비워둠. 마스코트·색면
+      와이프·페이퍼 질감은 그대로.</p>
+    </div>
+  </article>
+  <article class="card">
+    <video src="media/overlay/jp-pop-ad-hybrid.mp4" controls loop muted playsinline preload="none"></video>
+    <div class="body">
+      <h3>② 합성 — 한글 카피 오버레이 (최종)</h3>
+      <div class="meta"><span>하이브리드</span><span>Pillow+ffmpeg</span><span>Pretendard</span></div>
+      <p class="verdict"><span class="tag-ok">CJK 100% 무결</span> — "정보가 너무 많다? →
+      최신 AI 세미나 → 선착 1명"이 생성된 빈 패널 위에 타이밍 맞춰 안착. 1차에서 전면
+      붕괴했던 CJK 타이포가 코드 소유로 완전 해소.</p>
+    </div>
+  </article>
+  <article class="card">
+    <video src="media/overlay/infographic-textfree.mp4" controls loop muted playsinline preload="none"></video>
+    <div class="body">
+      <h3>① 배경 — 인포그래픽 차트 (모델 직출)</h3>
+      <div class="meta"><span>T2V</span><span>텍스트프리 프롬프트</span><span>720p·81f</span></div>
+      <p class="verdict"><span class="tag-warn">유령 축 라벨 잔존</span> — 글리프 전면 금지
+      negative로도 차트 구도가 좌측 축에 유사 숫자("C000"류)를 끌어냄. 차트-라벨 prior는
+      프롬프트만으로 완전히 못 지운다는 부수 발견. 바·트렌드선·칩은 깨끗.</p>
+    </div>
+  </article>
+  <article class="card">
+    <video src="media/overlay/infographic-hybrid.mp4" controls loop muted playsinline preload="none"></video>
+    <div class="body">
+      <h3>② 합성 — 데이터 텍스트 오버레이 (최종)</h3>
+      <div class="meta"><span>하이브리드</span><span>카운터 롤업 13스텝</span><span>Q1~Q4 라벨</span></div>
+      <p class="verdict"><span class="tag-ok">지시 수치 100% 준수</span> — 2차에서 0% 준수였던
+      "+248%"가 롤업 카운터로 정확히 출현, Q1~Q4 소형 라벨이 생성된 빈 칩 위에, "SEE DATA"는
+      그린 필을 버튼으로 전용. 밀집 데이터 텍스트 축도 코드 합성으로 해소.</p>
+    </div>
+  </article>
+</div>
+
 <h2>실측 요약</h2>
 <section class="findings">
   <p><strong>타이포그래피가 갈랐다.</strong> 같은 모델(Wan2.2-A14B)이 영문 킨네틱 타이포는 거의
@@ -233,6 +277,12 @@
   않았습니다. 실패한 2개의 공통점은 CJK가 아니라 <em>밀집된 소형 데이터 텍스트</em> — 차트
   라벨·훅 넘버는 전부 무작위 유사 텍스트로 붕괴했습니다. 오버레이 합성이 필요한 축이 "CJK"에서
   "CJK + 데이터 수치"로 넓어진 것이 이번 스윕의 핵심 발견입니다.</p>
+  <p><strong>하이브리드(3차): 실패 축 두 개를 모두 코드로 닫았다.</strong> 텍스트프리 프롬프트로
+  빈 배너·칩·패널만 생성시키고, 모든 글자는 결정론 합성기(Pillow 렌더 + ffmpeg 오버레이,
+  카운터 롤업·rise/fade 애니메이션)가 소유하는 파이프라인을 실증했습니다. 1차에서 붕괴한
+  CJK와 2차에서 0% 준수였던 지시 수치가 둘 다 100% 무결로 바뀝니다. 부수 발견: 글리프를
+  전면 금지해도 차트 구도는 축 유사 숫자를 남깁니다 — 라벨 prior까지 지우려면 구도 자체를
+  단순화해야 합니다.</p>
   <p><strong>인프라 노트.</strong> 모델 소싱은 사내 S3 레지스트리(117.5GB를 166초, 759MB/s),
   1차는 2×B200 병렬(Wan 클립당 ~21분, 720p/121f/40step, 프로브 값 guidance 4.0/3.5). 테마
   스윕은 6×B200 병렬(3파드×2GPU, 클립당 ~9분, 720p/81f/40step)로 돌렸고 파라미터는 Wan 공식
