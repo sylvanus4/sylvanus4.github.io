@@ -64,6 +64,22 @@
     "#Tauri"
    ],
    "q": "한능검 한국사 기출 지식그래프 srs 간격반복 앰기 tauri 오프라인 혼동쌍 유사문항 생성 게이트 quiz knowledge graph spaced repetition"
+  },
+  {
+   "fam": "tech-media",
+   "repo": "sylvanus4/ref2va-video-lora-lab",
+   "title": "레퍼런스 조건 영상 LoRA 랩",
+   "excerpt": "상용 API 뒤에 있던 subject 일관성 학습 레시피를 오픈 가중치 Wan2.2(MoE DiT)에 이식해 자체 GPU에서 재현한 실험 랩이다. 합성 인물 데이터셋 생성, per-token timestep 등 MoE 이식 계약을 GPU 없이 잡는 스모크 하네스, 사전등록 게이트 평가(ArcFace·CLIP-T), zero-shot 비교군(VACE)까지 담았다. identity +70%와 그 대가인 추종 하락 곡선을 함께 기록했고, 학습된 캐릭터로 43초 광고 한 편을 완성했다. 학습·평가 코드와 잡 로그가 실려 저장소는 비공개다.",
+   "lang": "Python",
+   "date": "2026.08.12",
+   "private": true,
+   "tags": [
+    "#영상생성",
+    "#LoRA",
+    "#평가게이트"
+   ],
+   "q": "레퍼런스 조건 영상 lora ref2va wan2.2 moe dit subject 일관성 identity arcface clip-t vace zero-shot 광고 캐릭터 video lora reference conditioning diffusion b200",
+   "url": "https://github.com/sylvanus4/ref2va-video-lora-lab"
   }
  ],
  "rewrite": [

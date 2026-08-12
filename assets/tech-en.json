@@ -1109,6 +1109,15 @@
     "#SpacedRepetition",
     "#Tauri"
    ]
+  },
+  "레퍼런스 조건 영상 LoRA 랩": {
+   "t": "Reference-Conditioned Video LoRA Lab",
+   "e": "An experiment lab that ports a commercial subject-consistency training recipe onto open-weight Wan2.2 (MoE DiT) and reproduces it on self-managed GPUs: synthetic-subject dataset synthesis, a GPU-free smoke harness that catches MoE porting contracts (per-token timesteps, fp32 islands), pre-registered evaluation gates (ArcFace, CLIP-T), and a zero-shot comparison arm (VACE). Records identity +70% together with the prompt-following cost curve, and closes with a finished 43-second ad film made with the trained character. Training/eval code and job logs live here, so the repository stays private.",
+   "g": [
+    "#VideoGen",
+    "#LoRA",
+    "#EvalGates"
+   ]
   }
  },
  "fams": {
