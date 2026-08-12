@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>레퍼런스 조건 영상 LoRA — 학습부터 광고 한 편까지</title>
+<meta name="description" content="상용 API 뒤에 있던 subject 일관성 학습 레시피를 오픈 가중치 Wan2.2에 이식해 사내 GPU에서 학습·측정·추론·광고 제작까지 실측한 데모. identity +70%, 트레이드오프 곡선, 43초 광고 완성본.">
+<style>
+  :root{
+    --bg:oklch(13% .022 265); --bg-2:oklch(16% .026 265);
+    --panel:oklch(17.5% .024 265 / .72); --panel-solid:oklch(17.5% .024 265);
+    --fg:oklch(95% .008 265); --fg-2:oklch(82% .012 265); --fg-3:oklch(71% .014 265);
+    --line:oklch(30% .02 265); --line-soft:oklch(24% .018 265);
+    --cy:oklch(80% .145 195); --am:oklch(80% .15 78); --vi:oklch(70% .175 300); --ok:oklch(76% .15 155);
+    --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,sans-serif;
+    --mono:"JetBrains Mono","IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.65;
+       padding:0 clamp(1rem,4vw,3rem) 5rem}
+  main{max-width:1160px;margin:0 auto}
+  a{color:var(--cy)}
+  header.hero{padding:clamp(2.5rem,6vw,4.5rem) 0 1.6rem;border-bottom:1px solid var(--line-soft);margin-bottom:2.2rem}
+  .kicker{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;color:var(--am);text-transform:uppercase}
+  h1{font-size:clamp(1.7rem,1.1rem+2.6vw,2.9rem);line-height:1.2;margin:.5rem 0 .9rem}
+  .lede{color:var(--fg-2);max-width:64ch}
+  .lede-en{color:var(--fg-3);max-width:70ch;font-size:.88rem;margin-top:.55rem}
+  h2{font-size:clamp(1.2rem,1rem+1vw,1.6rem);margin:2.6rem 0 .9rem}
+  .step{font-family:var(--mono);font-size:.75rem;color:var(--vi);letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:.2rem}
+  .refnote{background:var(--panel);border:1px solid var(--line-soft);border-radius:14px;
+           padding:1rem 1.2rem;margin:1.4rem 0;color:var(--fg-2)}
+  .refnote strong{color:var(--fg)}
+  .grid{display:grid;gap:1.3rem;grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
+  .grid.two{grid-template-columns:repeat(auto-fill,minmax(420px,1fr))}
+  .card{background:var(--panel-solid);border:1px solid var(--line-soft);border-radius:16px;overflow:hidden;
+        display:flex;flex-direction:column}
+  .card video,.card img{width:100%;background:#000;display:block}
+  .card video{aspect-ratio:16/9}
+  .card img{height:auto}
+  .card .body{padding:.95rem 1.05rem 1.15rem}
+  .card h3{font-size:1.02rem;margin-bottom:.3rem}
+  .meta{font-family:var(--mono);font-size:.72rem;color:var(--fg-3);display:flex;flex-wrap:wrap;gap:.5rem;margin:.35rem 0 .55rem}
+  .meta span{border:1px solid var(--line-soft);border-radius:999px;padding:.1rem .55rem}
+  .verdict{font-size:.86rem;color:var(--fg-2)}
+  .tag-ok{color:var(--ok)} .tag-warn{color:var(--am)} .tag-bad{color:oklch(70% .19 25)}
+  table.nums{border-collapse:collapse;width:100%;margin:1rem 0;font-size:.9rem}
+  table.nums th,table.nums td{border:1px solid var(--line-soft);padding:.5rem .7rem;text-align:left}
+  table.nums th{background:var(--bg-2);font-family:var(--mono);font-size:.76rem;color:var(--fg-3)}
+  table.nums td b{color:var(--ok)}
+  .findings{background:var(--panel);border:1px solid var(--line-soft);border-radius:16px;padding:1.3rem 1.5rem}
+  .findings p{margin:.55rem 0;color:var(--fg-2)}
+  .findings p strong{color:var(--fg)}
+  footer{margin-top:3rem;padding-top:1.2rem;border-top:1px solid var(--line-soft);
+         font-family:var(--mono);font-size:.74rem;color:var(--fg-3)}
+  .backlink{font-family:var(--mono);font-size:.78rem}
+</style>
+</head>
+<body>
+<main>
+<header class="hero">
+  <p class="backlink"><a href="../../demos.html">← 데모 목록</a></p>
+  <p class="kicker">Reference-Conditioned Video LoRA · On-prem GPU</p>
+  <h1>레퍼런스 조건 영상 LoRA — 학습부터 광고 한 편까지</h1>
+  <p class="lede">상용 트레이너(MiniMax H3 Ref2VA)가 API 뒤에 감춰 둔 subject 일관성 학습
+  레시피를 오픈 가중치 Wan2.2 T2V A14B(MoE DiT)에 이식해, 데이터셋 생성부터 LoRA 학습·측정·
+  추론·광고 제작까지 전 과정을 사내 GPU에서 닫았습니다. 아래는 그 실제 산출물입니다 —
+  identity는 70% 올랐고, 무엇을 내줬는지까지 곡선으로 공개합니다.</p>
+  <p class="lede-en">A commercial reference-conditioned training recipe ported onto open-weight
+  Wan2.2 (MoE DiT) and measured end-to-end on in-house GPUs: dataset synthesis, LoRA training,
+  pre-registered evaluation gates, inference operating points, and a finished 43-second ad film.
+  Identity +70%, with the trade-off curve published honestly.</p>
+</header>
+
+<section class="refnote">
+  <strong>공정 공개</strong> — subject는 완전 합성 인물(실존 인물 0), 브랜드는 가상(NUBO COFFEE)
+  입니다. 학습·평가 코드와 잡 로그 전량은 비공개 개인 저장소(<code>ref2va-video-lora-lab</code>,
+  private)에 아카이브했고, 방법과 측정은
+  <a href="https://thakicloud.com/tech-blog/ko/research/ref2va-reference-video-lora/" rel="noopener" target="_blank">블로그 ① 학습·측정 ↗</a> ·
+  <a href="https://thakicloud.com/tech-blog/ko/research/character-ad-film-a/" rel="noopener" target="_blank">블로그 ② 광고 제작 ↗</a>
+  두 편으로 공개되어 있습니다.
+</section>
+
+<h2><span class="step">Step 1 — 학습 (Training)</span>레퍼런스 4장을 조건으로 굽는다</h2>
+<div class="grid two">
+  <article class="card">
+    <img src="media/ref2va-reference-video-lora-refs.jpg" alt="학습에 투입된 두 합성 인물의 레퍼런스 스틸 4장" loading="lazy">
+    <div class="body">
+      <h3>학습 입력 — 합성 인물 레퍼런스 스틸</h3>
+      <div class="meta"><span>인물 2명 · 전부 합성</span><span>클립 16개</span><span>ArcFace 천장 0.712 / 0.606</span></div>
+      <p class="verdict">생성 클립 1개 → 스틸 6장 → I2V로 인물당 8클립을 만든 합성 데이터셋.
+      레퍼런스 스틸을 VAE latent로 인코딩해 denoising 시퀀스 앞에 <span class="tag-ok">노이즈 없이
+      고정(frozen, loss 제외)</span>하고, 매 샘플을 확률 p로만 조건화합니다(나머지는 일반 학습).</p>
+    </div>
+  </article>
+  <article class="card">
+    <div class="body">
+      <h3>이식하며 발견한 MoE 계약 3건</h3>
+      <div class="meta"><span>Wan2.2 A14B · MoE DiT</span><span>GPU 없는 스모크로 선검증</span></div>
+      <p class="verdict">① Diffusers Wan은 per-frame이 아니라 <span class="tag-warn">per-token
+      (frame-major) timestep</span>을 받는다 — 틀리면 조용히 broadcast로 강등. ② bf16 체크포인트에서도
+      time_embedder·norm은 fp32 유지(일괄 캐스팅 금지). ③ MoE 라우팅은 스텝 단위라 레퍼런스 anchor
+      t=0.999는 라우팅을 안 바꾸고 임베딩 태그로만 작동. 셋 다 실제 config 클래스를 축소
+      인스턴스화한 스모크가 GPU를 쓰기 전에 잡았습니다.</p>
+    </div>
+  </article>
+</div>
+
+<h2><span class="step">Step 2 — 측정 (Evaluation)</span>identity는 얻고, 추종을 내준다</h2>
+<div class="grid two">
+  <article class="card">
+    <img src="media/ref2va-reference-video-lora-results.webp" alt="운용점별 identity와 프롬프트 추종의 트레이드오프 전선 그래프" loading="lazy">
+    <div class="body">
+      <h3>운용점별 트레이드오프 전선</h3>
+      <div class="meta"><span>holdout 20프롬프트</span><span>ArcFace + CLIP-T</span><span>사전등록 게이트</span></div>
+      <p class="verdict"><span class="tag-ok">G1 통과</span>: identity 0.286 → 0.487(+70%, 기준의 2배).
+      <span class="tag-bad">G2 미충족</span>: CLIP-T −11~19% — 어느 운용점에서도 못 닫았고 그대로
+      보고합니다. p 스윕에서 <span class="tag-warn">p=1.0(전량 조건화)은 오히려 identity 붕괴</span> —
+      원 레시피가 남겨 둔 10% 무조건 학습이 결합 성립의 전제임을 실측으로 확인.</p>
+    </div>
+  </article>
+  <article class="card">
+    <div class="body">
+      <h3>숫자 요약</h3>
+      <table class="nums">
+        <tr><th>지표</th><th>베이스라인</th><th>조건화 (p=0.9)</th></tr>
+        <tr><td>identity (ArcFace mean)</td><td>0.286</td><td><b>0.487 (+70%)</b></td></tr>
+        <tr><td>프레임별 최악값</td><td>−0.081 (인물 상실)</td><td><b>+0.008</b></td></tr>
+        <tr><td>프롬프트 추종 (CLIP-T)</td><td>0.264</td><td>0.215 (−11~19%)</td></tr>
+      </table>
+      <p class="verdict">identity 피크는 p=0.8~0.9. 추론에서 어댑터 강도를 1.0→0.7로 낮추면 추종이
+      일부 돌아오지만 identity도 함께 내려갑니다 — 전선 위를 이동할 뿐 전선을 벗어나지 못합니다.</p>
+    </div>
+  </article>
+</div>
+
+<h2><span class="step">Step 3 — 추론 (Inference)</span>같은 프롬프트, 다른 얼굴 유지력</h2>
+<div class="grid two">
+  <article class="card">
+    <img src="media/ref2va-reference-video-lora-before-after.jpg" alt="레퍼런스 입력, 베이스라인 출력, 조건화 모델 출력의 전후 비교" loading="lazy">
+    <div class="body">
+      <h3>전후 비교 — 낯선 배경의 홀드아웃 프롬프트</h3>
+      <div class="meta"><span>왼쪽: 레퍼런스</span><span>가운데: 베이스라인</span><span>오른쪽: 조건화</span></div>
+      <p class="verdict">베이스라인은 프롬프트(해변·공원)는 잘 따르지만 <span class="tag-bad">얼굴이
+      다른 사람</span>이 되고, 조건화 모델은 <span class="tag-ok">얼굴을 지키는 대신</span> 배경이
+      학습 데이터 쪽으로 끌립니다. 트레이드오프가 이 한 장에 그대로 있습니다.</p>
+    </div>
+  </article>
+  <article class="card">
+    <video src="media/ref2va-compare-pa.mp4" controls loop muted playsinline preload="none"></video>
+    <div class="body">
+      <h3>인물 A — 베이스라인(좌) vs 조건화(우)</h3>
+      <div class="meta"><span>동일 홀드아웃 프롬프트</span><span>동일 시드</span></div>
+      <p class="verdict"><span class="tag-ok">조건화 모델은 컷 내내 같은 인물</span>을 유지합니다.
+      학습을 마친 어댑터는 추론 때 레퍼런스 이미지가 필요 없어, 대량 생산 파이프라인에서
+      클립마다 레퍼런스 자산을 관리하는 오버헤드가 사라집니다.</p>
+    </div>
+  </article>
+  <article class="card">
+    <video src="media/ref2va-compare-pb.mp4" controls loop muted playsinline preload="none"></video>
+    <div class="body">
+      <h3>인물 B — 베이스라인(좌) vs 조건화(우)</h3>
+      <div class="meta"><span>동일 홀드아웃 프롬프트</span><span>동일 시드</span></div>
+      <p class="verdict">데이터 천장(자기유사도 0.606)이 낮은 인물 B에서도 같은 방향의 개선 —
+      <span class="tag-ok">per-persona 0.168 → 0.449</span>.</p>
+    </div>
+  </article>
+</div>
+
+<h2><span class="step">Step 4 — 실전 (Production)</span>학습된 캐릭터로 광고 한 편</h2>
+<div class="grid two">
+  <article class="card">
+    <video src="media/nubo-film-a.mp4" controls playsinline preload="none"></video>
+    <div class="body">
+      <h3>NUBO COFFEE — 43초 · 8샷 · 같은 얼굴</h3>
+      <div class="meta"><span>가상 브랜드</span><span>8샷 × 강도 2벌 = 16클립</span><span>GPU 1장 ~80분</span></div>
+      <p class="verdict">아침 주방 → 도시 거리 → 사무실 → 카페 → 공원 → 루프탑 → 클로즈업,
+      8샷 전부에서 <span class="tag-ok">같은 인물이 유지</span>됩니다. 샷마다 어댑터 강도 1.0
+      (얼굴이 전부인 샷)과 0.7(장소가 말하는 샷)을 생성해 좋은 쪽을 골랐습니다(1.0 다섯 · 0.7 셋).
+      사람 손이 들어간 곳은 샷 리스트와 샷별 선택, 딱 두 군데입니다.</p>
+    </div>
+  </article>
+  <article class="card">
+    <img src="media/character-ad-film-a-shots.jpg" alt="최종 광고에 들어간 8개 샷의 스틸" loading="lazy">
+    <div class="body">
+      <h3>최종 8샷 스틸</h3>
+      <div class="meta"><span>장면·조명 변화</span><span>얼굴 유지</span></div>
+      <p class="verdict">측정에서 비용이던 것이 연출에서 자산이 되는 순간도 있었습니다 — 강도 1.0의
+      "학습 데이터 초록 셔츠가 계속 따라오는" 추종 하락이, 광고 문맥에서는
+      <span class="tag-ok">브랜드 유니폼 같은 일관성</span>으로 읽힙니다.</p>
+    </div>
+  </article>
+</div>
+
+<h2>실측 요약</h2>
+<section class="findings">
+  <p><strong>1 · 레시피는 identity 약속을 지켰다.</strong> 16클립 규모 합성 데이터셋에서
+  identity +70%(사전등록 게이트의 2배), 프레임별 최악값이 마이너스에서 플러스로 — 인물을 아예
+  놓치는 구간이 사라졌습니다.</p>
+  <p><strong>2 · 공짜가 아니다 — 비용은 곡선으로 공개.</strong> 프롬프트 추종 −11~19%는 어느
+  운용점에서도 못 닫았습니다. 어댑터 강도는 전선 위의 이동일 뿐이라, 용도별 운용점 선택
+  (클로즈업 1.0 / 장소 샷 0.7)이 현재 시점의 실전 요령입니다.</p>
+  <p><strong>3 · 전 과정이 데이터 주권 안에서 닫혔다.</strong> 데이터셋 생성(합성 인물 I2V) →
+  학습(MoE 이식 계약 포함) → 평가(ArcFace·CLIP-T 게이트) → 광고 제작까지 외부 API 0회,
+  전부 자체 GPU 클러스터 잡으로 실행. 학습을 마친 어댑터는 추론 때 레퍼런스가 필요 없습니다.</p>
+</section>
+
+<footer>
+  <p>측정 방법·곡선 전체: <a href="https://thakicloud.com/tech-blog/ko/research/ref2va-reference-video-lora/" rel="noopener" target="_blank">블로그 ① 학습·측정</a> ·
+  제작 파이프라인: <a href="https://thakicloud.com/tech-blog/ko/research/character-ad-film-a/" rel="noopener" target="_blank">블로그 ② 광고 제작</a></p>
+  <p>코드·잡 로그는 비공개 저장소(ref2va-video-lora-lab)에 아카이브. 영상·인물은 전부 합성이며 실존 인물·실제 브랜드가 아닙니다.</p>
+</footer>
+</main>
+</body>
+</html>
