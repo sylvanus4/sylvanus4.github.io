@@ -17,7 +17,7 @@ export const ko = {
     "2007년부터 공백 없이 19년째 컴퓨터 비전, 추천, 생성 AI, 엔터프라이즈 AI 플랫폼을 만들어 온 AI 시스템 엔지니어입니다.",
     "현재 ThakiCloud에서 추론(Metis), 학습(Maxis), 에이전트 자동화(Paxis) 세 플랫폼의 제품 전략과 아키텍처를 설계하고 팀을 이끕니다.",
     "생성 AI 콘텐츠 플랫폼을 직접 창업해 일본·대만·홍콩 3개 시장에서 유료 사용자 5만 명, 누적 매출 4억 원을 만든 경험이 있습니다.",
-    "한국어·영어·아랍어 3개 언어 기술 블로그를 운영하며 2,260편을 쓰고 608편을 공개했습니다. 동작하는 구현 사례 32건을 독립 연구로 축적했습니다.",
+    "한국어·영어·아랍어 3개 언어 기술 블로그를 운영하며 2,260편을 쓰고 608편을 공개했습니다. 동작하는 구현 사례 42건을 독립 연구로 축적했습니다.",
     "모델부터 인프라, 제품까지 직접 만들어 본 경험을 바탕으로 방향을 정하고, 필요한 부분은 지금도 직접 구현합니다."
   ],
 
@@ -238,7 +238,7 @@ export const ko = {
 
   rnd: {
     intro:
-      "비전, 신호 처리, 최적화, 추천처럼 제가 오래 다뤄 온 영역을 에이전트로 더 넓게 확장하며 직접 구현합니다. 무엇을 재야 답이 나오는지 이미 알기 때문에 논문을 읽는 자리에서 곧바로 실측 가능한 구현으로 넘어갑니다. 저장소 132개를 만들어 운영하며 그중 32건은 측정값이 붙은 완성 구현입니다.",
+      "비전, 신호 처리, 최적화, 추천처럼 제가 오래 다뤄 온 영역을 에이전트로 더 넓게 확장하며 직접 구현합니다. 무엇을 재야 답이 나오는지 이미 알기 때문에 논문을 읽는 자리에서 곧바로 실측 가능한 구현으로 넘어갑니다. 저장소 142개를 만들어 운영하며 그중 42건은 측정값이 붙은 완성 구현입니다.",
     groups: [
       {
         name: "최적화 · 스케줄링",
@@ -551,7 +551,7 @@ export const en = {
 
   rnd: {
     intro:
-      "Extends long-held domains, computer vision, signal processing, combinatorial optimization, and recommendation, through agent-driven development. Knowing the field is what makes the speed possible: I know which measurement settles the question, so a paper becomes a measured implementation rather than a summary. Owns and operates 132 repositories, 32 of them completed implementations with measured results.",
+      "Extends long-held domains, computer vision, signal processing, combinatorial optimization, and recommendation, through agent-driven development. Knowing the field is what makes the speed possible: I know which measurement settles the question, so a paper becomes a measured implementation rather than a summary. Owns and operates 142 repositories, 42 of them completed implementations with measured results.",
     groups: [
       {
         name: "Optimization & Scheduling",

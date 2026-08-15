@@ -1127,6 +1127,96 @@
         "#SonicBranding",
         "#DSP"
       ]
+    },
+    "SiliconPilot · 회로 설계공간 탐색": {
+      "t": "SiliconPilot — circuit design-space exploration",
+      "e": "A lab that had been exploring adder architectures and pipeline depths against a simulator, rewired to real logic synthesis. ripple_carry and carry_lookahead, which the simulator gave different areas, synthesize to identical netlists at every tested point: 46 cells and 17 levels at the baseline. One of the four tuning knobs turns out to move nothing once synthesis runs. What is not measured is written down too: real synthesis covers six points, and cell areas and ns-per-level are still declared constants.",
+      "g": [
+        "#EDA",
+        "#DesignSpaceExploration",
+        "#LogicSynthesis"
+      ]
+    },
+    "OrbitGuard · 위성 근접 스크리닝": {
+      "t": "OrbitGuard — satellite conjunction screening",
+      "e": "Rewired to pull real elements from a public orbital catalogue and propagate them with SGP4. Screening 210 pairs showed the top of the risk table was duplication rather than events: twelve of the twenty-one station-group objects are docked and publish identical element sets, so those pairs compute to 0.000 km and rank above the one genuine 40.8 km encounter. The 50 m/s co-orbital threshold is still declared rather than derived from the catalogue.",
+      "g": [
+        "#OrbitalMechanics",
+        "#SGP4",
+        "#ConjunctionScreening"
+      ]
+    },
+    "Embodied Lab · 로봇 정책 평가": {
+      "t": "Embodied Lab — robot policy evaluation",
+      "e": "MuJoCo was placed under an evaluation environment that had been scoring policies against simplified physics, and the same policies were run again. Under the physics engine the grasp-offset policy scores 25 of 40 and proportional control scores 4. Under the lightweight environment both score 4. The ranking did not reorder, the distinction disappeared, which means that environment cannot separate a transferable policy from one that only works in simulation. Kinematics remain simplified, and adaptive search winning at one budget and losing at another is left unresolved.",
+      "g": [
+        "#Robotics",
+        "#MuJoCo",
+        "#PolicyEvaluation"
+      ]
+    },
+    "BioProof · 구조 예측 신뢰도": {
+      "t": "BioProof — structure prediction reliability",
+      "e": "A lab measuring how well a protein structure model's own confidence tracks its actual accuracy. Folded from single sequences on self-managed GPUs, three of five targets succeed and two fail. On the failures the model's confidence halves from 0.955 to 0.510 while observed accuracy falls fourteenfold from 0.99 to 0.067, so it detects the failure without reporting it proportionally. Both failures are small, disulfide-rich proteins. With five targets this is recorded as an observation, not a result.",
+      "g": [
+        "#StructurePrediction",
+        "#Calibration",
+        "#Proteins"
+      ]
+    },
+    "GridMind · 마이크로그리드 급전": {
+      "t": "GridMind — microgrid dispatch",
+      "e": "Dispatch planning that had run on synthetic irradiance, remeasured against a public weather archive. Measured cloud has a lag-1 autocorrelation of +0.881 and a worst shortfall run of 15 hours; the generator gives -0.031 and 3 hours. Raising the cloud probability matches mean irradiance and leaves the autocorrelation at -0.006, so the gap is not a parameter to tune: the property that overcast persists is simply absent. Shortfall runs are broken by night, making 15 hours a floor, and array area and efficiency are still declared.",
+      "g": [
+        "#Microgrid",
+        "#DispatchPlanning",
+        "#TimeSeries"
+      ]
+    },
+    "VaultAI · 망분리 문서 작업대": {
+      "t": "VaultAI — air-gapped document workspace",
+      "e": "In a workspace where nothing leaves the boundary, an extract-only answerer and a local model were put on the same questions. The extractive side's zero unsupported figures is not skill but structure: it returns the source text. Its 60.5% recall comes from 807 characters holding 414 figures, at 12.6% precision. The model answers in 36 characters at 65.5% and pays 8 unsupported figures out of 58. The trade is guarantee against specificity. The disclosure gate still only detects; it does not block.",
+      "g": [
+        "#AirGapped",
+        "#Groundedness",
+        "#LocalLLM"
+      ]
+    },
+    "BlackBox · 에이전트 기록과 재생": {
+      "t": "BlackBox — agent record and replay",
+      "e": "A runtime that records agent decisions and replays them. Wired to a real model, the same input gives the same answer, so replay reported zero divergence across five runs. But permuting only the order of the offers changes the decision 45% of the time, and replay feeds the recorded order straight back. That separates, in numbers, replay reproducing a decision from a trace explaining it. The 100% reproducibility figure holds for this hardware and batch size.",
+      "g": [
+        "#AgentRuntime",
+        "#Replay",
+        "#DecisionStability"
+      ]
+    },
+    "Forge · 서빙 오토튜너와 양자화 실측": {
+      "t": "Forge — serving autotuner with measured quantization",
+      "e": "A measured layer added to a router that had been choosing serving settings from a constants table. Measured on self-managed GPUs, one four-bit row turned out to hold two schemes with different behaviour: the same four-bit weights differ by three points of quality retention, 0.9177 against 0.9482. The table had a single integer row and no floating-point four-bit row at all. Where no measurement exists the constant stays, and every result carries whether its number was measured or declared. p95 and p99 are not measured yet, so the maximum sits in that slot as an upper bound.",
+      "g": [
+        "#Quantization",
+        "#ServingTuning",
+        "#Measurement"
+      ]
+    },
+    "Helios · AI 인프라 배치 계획": {
+      "t": "Helios — AI infrastructure deployment planning",
+      "e": "Throughput and power were actually metered and fed into a tool that had been planning GPU placement and concurrency. Raising concurrency from 1 to 16 scales throughput 13.4x while inter-token latency stays flat at about 1.4 ms. Power saturates at 388 W, of which 247.8 W is drawn with no requests at all, so energy per token improving 9.2x is not efficiency appearing but an existing bill being shared. The conclusion holds only for one small model on a large card, and that caveat travels with it.",
+      "g": [
+        "#DeploymentPlanning",
+        "#PowerMeasurement",
+        "#Serving"
+      ]
+    },
+    "OmniIndex · 멀티모달 검색과 임계값": {
+      "t": "OmniIndex — multimodal retrieval and its threshold",
+      "e": "Images and audio in one index, pushed through real codecs to see what survives. Both hashes sail through JPEG quality 25 and a resize to 25%, then collapse on crop: taking 5% off each edge drops one to 44%. The harder result is the other one, which retrieves 100% under resize while no threshold separates its worst true match from its closest impostor. Retrieving correctly and being entitled to answer are different questions, and the separation gets worse as the index grows.",
+      "g": [
+        "#MultimodalRetrieval",
+        "#PerceptualHashing",
+        "#Thresholds"
+      ]
     }
   },
   "fams": {
@@ -1147,17 +1237,17 @@
     },
     "techt-agent": {
       "t": "Agents & Automation Harnesses",
-      "n": "15 repos",
+      "n": "17 repos",
       "d": "Skill systems, orchestrators, research and deployment automation. Procedures people used to repeat by hand, moved into code."
     },
     "techt-optim": {
       "t": "NP-Hard Optimization & Scheduling",
-      "n": "5 repos",
+      "n": "9 repos",
       "d": "CP-SAT-based assignment and scheduling: shift rosters, call-center staffing, league schedules, room allocation."
     },
     "techt-quant": {
       "t": "LLM Quantization",
-      "n": "3 repos",
+      "n": "4 repos",
       "d": "Running the same model more cheaply. Only entries verified through actual serving count."
     },
     "techt-distill": {
@@ -1172,12 +1262,12 @@
     },
     "techt-vision": {
       "t": "Vision & Imaging Diagnostics",
-      "n": "2 repos",
+      "n": "3 repos",
       "d": "Low-data anomaly detection and a closed-loop medical imaging system. Both assume an environment where ground-truth labels are scarce."
     },
     "techt-mediagen": {
       "t": "Video & Image Generation",
-      "n": "14 repos",
+      "n": "16 repos",
       "d": "Video, image, and voice synthesis. Producing assets repeatedly without human hands."
     },
     "techt-marketing": {
@@ -1192,7 +1282,7 @@
     },
     "techt-product": {
       "t": "Domain Services & Products",
-      "n": "21 repos",
+      "n": "23 repos",
       "d": "Built as end-user-facing products across law, education, healthcare, finance, and daily life."
     },
     "techt-devtool": {
@@ -1202,7 +1292,7 @@
     },
     "techt-misc": {
       "t": "Miscellaneous",
-      "n": "2 repos",
+      "n": "3 repos",
       "d": "Things that don't fit neatly into the axes above. Not forced into a category."
     }
   }

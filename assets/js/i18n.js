@@ -38,7 +38,7 @@ const UI = {
     "meta.desc":
       "19년차 AI 시스템 엔지니어 한효정. Daum, 삼성전자, Toss를 거쳐 지금은 ThakiCloud에서 추론·학습·에이전트 플랫폼을 설계합니다.",
     "meta.techTitle": "보유 기술 카탈로그 · 한효정",
-    "meta.demosTitle": "돌아가는 데모 53개 · 한효정",
+    "meta.demosTitle": "돌아가는 데모 54개 · 한효정",
 
     "skip": "본문으로 건너뛰기",
     "nav.aria": "주요 섹션",
@@ -98,7 +98,7 @@ const UI = {
     "tech.eyebrow": "Technology Catalog",
     "tech.h1": "쓰던 것을 다시 꺼내 씁니다",
     "tech.lede1":
-      "직접 만들어 굴리고 있는 저장소 <b id=\"techtotal\">132</b>개입니다. 새 과제를 받으면 백지에서 시작하지 않고 이 목록에서 맞는 조각을 먼저 찾습니다. 그래서 첫 결과가 빨리 나옵니다.",
+      "직접 만들어 굴리고 있는 저장소 <b id=\"techtotal\">142</b>개입니다. 새 과제를 받으면 백지에서 시작하지 않고 이 목록에서 맞는 조각을 먼저 찾습니다. 그래서 첫 결과가 빨리 나옵니다.",
     "tech.lede2":
       "105개는 2026년에 손댄 것이고 나머지는 휴면입니다. 111개는 비공개 저장소라 링크를 눌러도 코드가 보이지 않습니다. 무엇을 갖고 있는지에 대한 목록이지 코드를 공개하겠다는 뜻은 아닙니다.",
     "tech.langs": "주 사용 언어 · Python 66 · JavaScript 23 · TypeScript 12 · Rust 10 · HTML 6 · Go 4",
@@ -111,7 +111,7 @@ const UI = {
     "demos.eyebrow": "Live Demos",
     "demos.h1": "말로 설명하는 대신, 눌러 보시면 됩니다",
     "demos.lede":
-      "브라우저에서 그 자리에서 계산하는 데모 <b id=\"demototal\">53</b>개입니다. 영상도 슬라이드도 아니고 값을 바꾸면 결과가 다시 나옵니다. 제가 다루는 문제가 실제로 어떤 모양인지 보시는 게 가장 빠릅니다.",
+      "브라우저에서 그 자리에서 계산하는 데모 <b id=\"demototal\">54</b>개입니다. 영상도 슬라이드도 아니고 값을 바꾸면 결과가 다시 나옵니다. 제가 다루는 문제가 실제로 어떤 모양인지 보시는 게 가장 빠릅니다.",
     "demos.note":
       "12개는 제 개인 저장소에 소스까지 공개돼 있어 코드를 바로 열어 볼 수 있습니다. 나머지는 배포된 화면만 공개돼 있습니다.",
     "demos.loading": "데모 목록을 불러오는 중입니다.",
@@ -134,7 +134,7 @@ const UI = {
     "meta.desc":
       "Hyojung Han, AI systems engineer with 19 years of experience. Built recognition engines and ML platforms at Daum, Samsung Electronics and Toss. Now designs inference, training and agent platforms at ThakiCloud.",
     "meta.techTitle": "Technology Catalog · Hyojung Han",
-    "meta.demosTitle": "53 Live Demos · Hyojung Han",
+    "meta.demosTitle": "54 Live Demos · Hyojung Han",
 
     "skip": "Skip to content",
     "nav.aria": "Main sections",
@@ -194,7 +194,7 @@ const UI = {
     "tech.eyebrow": "Technology Catalog",
     "tech.h1": "I reuse what I have already built",
     "tech.lede1":
-      "<b id=\"techtotal\">132</b> repositories I built and still maintain. When a new problem arrives I do not start from a blank page. I look here first for a piece that fits, which is why the first result comes quickly.",
+      "<b id=\"techtotal\">142</b> repositories I built and still maintain. When a new problem arrives I do not start from a blank page. I look here first for a piece that fits, which is why the first result comes quickly.",
     "tech.lede2":
       "105 were touched in 2026 and the rest are dormant. 111 are private, so the links will not show you code. This is an inventory of what I have, not a promise to open source it.",
     "tech.langs": "Primary languages · Python 66 · JavaScript 23 · TypeScript 12 · Rust 10 · HTML 6 · Go 4",
@@ -207,7 +207,7 @@ const UI = {
     "demos.eyebrow": "Live Demos",
     "demos.h1": "Rather than explain it, you can just press it",
     "demos.lede":
-      "<b id=\"demototal\">53</b> demos that compute in your browser on the spot. Not a video and not a slide: change a value and the result is recomputed. The fastest way to see the shape of the problems I work on.",
+      "<b id=\"demototal\">54</b> demos that compute in your browser on the spot. Not a video and not a slide: change a value and the result is recomputed. The fastest way to see the shape of the problems I work on.",
     "demos.note":
       "12 of them ship their source in my own public repositories, so you can open the code directly. The rest are published as running screens only.",
     "demos.loading": "Loading the demo list.",
