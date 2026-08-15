@@ -41,7 +41,7 @@ async function run(name, ctxOpts, shots) {
     sceneReady: document.getElementById("scene")?.classList.contains("ready"),
     h1: document.querySelector("h1")?.textContent?.trim().slice(0, 40)
   }));
-  const expect = { stats: 4, layers: 5, cards: 13, tl: 6, sgroups: 7, slist: 5, contact: 3 };
+  const expect = { stats: 4, layers: 5, cards: 14, tl: 6, sgroups: 7, slist: 5, contact: 3 };
   for (const [k, v] of Object.entries(expect)) {
     counts[k] === v ? ok(`${k} = ${v}`) : bad(`${k} = ${counts[k]} (기대 ${v})`);
   }
@@ -395,7 +395,7 @@ async function langGate() {
   }));
 
   r.lang === "en" ? ok("html lang=en") : bad(`html lang=${r.lang}`);
-  r.cards === 13 ? ok(`영문 케이스 ${r.cards}개`) : bad(`영문 케이스 ${r.cards}개`);
+  r.cards === 14 ? ok(`영문 케이스 ${r.cards}개`) : bad(`영문 케이스 ${r.cards}개`);
   r.reels === 16 ? ok(`영문 영상 ${r.reels}개 (대표 1 + 그리드 15)`) : bad(`영문 영상 ${r.reels}개`);
   r.hangul.length === 0
     ? ok("영문 화면에 국문 잔류 없음")

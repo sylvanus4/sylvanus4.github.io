@@ -139,6 +139,32 @@ export const work = [
     featured: true
   },
   {
+    id: "music-gen-bench",
+    era: "2026",
+    org: "ThakiCloud",
+    title: "A music model from ingest to serving: 12.7x from the execution stack alone",
+    summary: "Brought a 57GB music generation model onto in-house GPUs two days after its release, then raised throughput 12.7x on the same card.",
+    problem:
+      "When a new multimodal model lands, the work usually stops at 'it runs'. To make it a product you need to know " +
+      "how many songs one GPU produces per hour and what a single song costs. Without those numbers you cannot price it or size it.",
+    approach:
+      "I measured the ingest path first. The official download client sustained 2.1MB/s; parallel HTTP reached 48MB/s. " +
+      "Staging the weights in internal object storage means every later job has the model in 75 seconds. " +
+      "Then I ran the same weights through two execution stacks, the reference pipeline and a serving engine, and compared them.",
+    result:
+      "The reference path produced 36 songs per hour, the serving stack 463. Same hardware, same weights, different execution. " +
+      "Cost lands near $0.007 per song, and I generated 17 tracks across five languages. " +
+      "I also recorded what did not hold: the model card promises five-minute songs and that never reproduced.",
+    metrics: [
+      { k: "Execution stack", v: "36 → 463 songs/hour" },
+      { k: "Cost per song", v: "~$0.007" },
+      { k: "Ingest time", v: "162 min → 75 s" }
+    ],
+    stack: ["B200", "Kubernetes", "diffusers", "SGLang", "Object storage"],
+    tags: ["Multimodal", "Benchmark", "Infrastructure"],
+    featured: true
+  },
+  {
     id: "hanji",
     era: "2026",
     org: "Personal project · Open source",
