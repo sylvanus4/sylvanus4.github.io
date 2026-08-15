@@ -27,7 +27,7 @@ export const profile = {
 export const stats = [
   { value: "19", unit: "yrs", label: "Building since 2007, no gaps" },
   { value: "608", unit: "posts", label: "Published across a three-language tech blog" },
-  { value: "131", unit: "repos", label: "Built and maintained personally" },
+  { value: "132", unit: "repos", label: "Built and maintained personally" },
   { value: "32", unit: "systems", label: "Finished builds with measured results" }
 ];
 
@@ -85,7 +85,7 @@ export const layers = [
     line: "I widen the fields I already know, much faster",
     body:
       "I take domains I have worked in for years and extend them with agents straight into implementation. " +
-      "That is how 131 repositories came to exist, 32 of them finished builds with measurements attached. " +
+      "That is how 132 repositories came to exist, 32 of them finished builds with measurements attached. " +
       "I report results as they came out, without dressing them up.",
     keys: ["Agent-driven research", "Rapid prototyping", "Honest measurement", "Reproducibility"]
   }
@@ -480,7 +480,7 @@ export const research = {
     "the agent, speed and depth rise together. I write results down as they came out. I have published one saying " +
     "the wall I hit turned out to be my own model.",
   counts: [
-    { k: "Repositories built", v: "131" },
+    { k: "Repositories built", v: "132" },
     { k: "Finished builds with measurements", v: "32" },
     { k: "Core domains", v: "Optimization · Infra · RecSys · Signal" }
   ],

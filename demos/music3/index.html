@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>소닉 브랜딩 — 코드가 만든 로고, 모델이 만든 편곡</title>
+<meta name="description" content="공개 이틀 된 57GB 음악 생성 모델을 사내 B200에 올리고, 소닉 로고는 결정론 코드로 합성해 브랜드 사운드 시스템과 광고 영상까지 만든 기록. 실제로 들어볼 수 있습니다.">
+<meta property="og:title" content="소닉 브랜딩 — 코드가 만든 로고, 모델이 만든 편곡">
+<meta property="og:description" content="정확해야 하는 것은 코드가, 풍부해야 하는 것은 모델이. 곡당 $0.007로 브랜드 사운드 시스템 전체를 만든 기록.">
+<style>
+  :root{
+    --bg:oklch(13% .022 265); --bg-2:oklch(16% .026 265);
+    --panel:oklch(17.5% .024 265 / .72); --line:oklch(30% .02 265); --line-soft:oklch(24% .018 265);
+    --fg:oklch(95% .008 265); --fg-2:oklch(82% .012 265); --fg-3:oklch(71% .014 265);
+    --am:oklch(80% .15 78); --cy:oklch(80% .145 195); --vi:oklch(76% .14 300); --ok:oklch(76% .15 155);
+    --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,sans-serif;
+    --mono:"JetBrains Mono","IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.65;
+       padding:0 clamp(1rem,4vw,3rem) 5rem}
+  main{max-width:1080px;margin:0 auto}
+  a{color:var(--cy)}
+  header.hero{padding:clamp(2.5rem,6vw,4.5rem) 0 1.6rem;border-bottom:1px solid var(--line-soft);margin-bottom:2rem}
+  .kicker{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;color:var(--am);text-transform:uppercase}
+  h1{font-size:clamp(1.7rem,1.1rem+2.6vw,2.9rem);line-height:1.2;margin:.5rem 0 .9rem}
+  .lede{color:var(--fg-2);max-width:64ch}
+  .lede-en{color:var(--fg-3);max-width:70ch;font-size:.88rem;margin-top:.55rem}
+  h2{font-size:clamp(1.2rem,1rem+1vw,1.65rem);margin:3rem 0 .5rem}
+  h2 + p.sub{color:var(--fg-3);font-size:.93rem;max-width:66ch;margin-bottom:1.1rem}
+  .note{background:var(--panel);border:1px solid var(--line-soft);border-radius:14px;
+        padding:1rem 1.2rem;margin:1.3rem 0;color:var(--fg-2);font-size:.93rem}
+  .note strong{color:var(--fg)}
+
+  video{width:100%;border-radius:14px;border:1px solid var(--line-soft);background:#000;display:block}
+
+  .players{display:grid;gap:.7rem;margin-top:1.1rem}
+  .pl{background:var(--bg-2);border:1px solid var(--line-soft);border-radius:12px;padding:.8rem 1rem}
+  .pl .row{display:flex;flex-wrap:wrap;gap:.6rem;align-items:baseline;justify-content:space-between}
+  .pl .nm{font-weight:600}
+  .pl .meta{font-family:var(--mono);font-size:.74rem;color:var(--fg-3)}
+  .pl p{color:var(--fg-3);font-size:.85rem;margin:.25rem 0 .5rem}
+  audio{width:100%;height:34px;margin-top:.35rem}
+
+  .grid2{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-top:1rem}
+
+  table{border-collapse:collapse;width:100%;margin-top:1rem;font-size:.9rem}
+  th,td{text-align:left;padding:.55rem .7rem;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  th{color:var(--fg-3);font-weight:600;font-size:.82rem}
+  td.n{text-align:right;font-family:var(--mono)}
+  code{font-family:var(--mono);font-size:.86em;color:var(--fg-2)}
+  .big{color:var(--cy);font-weight:700}
+  ul{margin:.6rem 0 0 1.1rem;color:var(--fg-2)} li{margin:.3rem 0}
+  footer{margin-top:3.4rem;padding-top:1.3rem;border-top:1px solid var(--line-soft);
+         color:var(--fg-3);font-size:.85rem}
+</style>
+</head>
+<body>
+<main>
+
+<header class="hero">
+  <p class="kicker">Sonic branding · Generative music on our own GPUs</p>
+  <h1>코드가 만든 로고, 모델이 만든 편곡</h1>
+  <p class="lede">공개 이틀 된 57GB 음악 생성 모델을 사내 B200에 올리고, 브랜드 사운드 시스템 전체와 광고 영상까지 만들었습니다. 소닉 로고는 생성 모델이 아니라 코드가 합성합니다. 이유는 아래에 있습니다. 전부 실제로 들어보실 수 있습니다.</p>
+  <p class="lede-en">A full sonic identity built on in-house GPUs: the mnemonic is synthesised deterministically in code, the arrangements come from a generative model. Everything on this page is playable.</p>
+</header>
+
+<h2>광고 영상</h2>
+<p class="sub">여는 소리와 닫는 소리가 소닉 로고, 그 사이가 생성 음악입니다. 화면의 카피와 제품 구성도 이 파이프라인이 함께 렌더했습니다.</p>
+<video controls preload="metadata" poster="" playsinline>
+  <source src="media/ad-16x9.mp4" type="video/mp4">
+</video>
+<div class="note">
+  54초, 1920×1080. 세로 30초 컷은 <a href="media/ad-9x16.mp4">여기</a>에 있습니다.
+  영상 안의 텍스트·도형·타이밍은 전부 파이썬이 프레임으로 굽고 ffmpeg이 합쳤습니다.
+  영상 편집 도구를 쓰지 않았습니다.
+</div>
+
+<h2>소닉 로고 — 왜 생성 모델이 아닌가</h2>
+<p class="sub">소닉 로고는 매번 똑같아야 인식이 쌓입니다. 생성 모델은 seed를 고정해도 버전이 바뀌면 달라지고, 무엇보다 "정확히 이 주파수"를 요구할 수 없습니다. 그래서 니모닉은 numpy가 소유하고 곡은 모델이 소유합니다.</p>
+
+<div class="note">
+  모티프는 <strong>B♭3 → F4 → B♭4</strong>, 근음과 5도와 옥타브입니다. 배음렬 그대로라
+  물리적으로 가장 기본적인 세 음이고, 쌓아 올리면 그대로 스택이 됩니다.
+  음색은 <strong>나무 말렛에서 시작해 정현파로 번집니다</strong> — 사람이 하던 일이
+  정확한 자동화로 넘어가는 소리로 잡았습니다. Netflix가 "스타트업처럼 테키한 소리"를
+  거부했던 기준을 우리도 따랐습니다. 서버랙 소리가 아니라 일이 되어 가는 소리여야 합니다.
+</div>
+
+<div class="players">
+  <div class="pl"><div class="row"><span class="nm">풀 버전</span><span class="meta">2.60s · 광고·영상 엔딩</span></div>
+    <audio controls preload="none" src="media/logo-full.mp3"></audio></div>
+  <div class="pl"><div class="row"><span class="nm">숏 버전</span><span class="meta">1.25s · 숏폼·프리롤</span></div>
+    <audio controls preload="none" src="media/logo-short.mp3"></audio></div>
+  <div class="pl"><div class="row"><span class="nm">UI 확인음</span><span class="meta">0.38s · 제품 인터랙션</span></div>
+    <audio controls preload="none" src="media/logo-ui.mp3"></audio></div>
+</div>
+
+<h2>같은 3음, 일곱 개의 편곡</h2>
+<p class="sub">브랜드 메시지가 "One Paxis. Many Workflows." 라면 소닉 아키텍처도 같은 모양이어야 합니다. 일곱 제품이 전부 같은 세 음을 쓰고 배음·잔향·바닥만 다릅니다. 연달아 들어보면 같은 곡의 다른 얼굴로 들립니다.</p>
+<div class="players">
+  <div class="pl"><div class="row"><span class="nm">Paxis</span><span class="meta">에이전트 자동화 · 기준이 되는 진술</span></div>
+    <audio controls preload="none" src="media/logo-paxis.mp3"></audio></div>
+  <div class="pl"><div class="row"><span class="nm">Metis</span><span class="meta">추론 · 밝고 빠르게 떨어진다</span></div>
+    <audio controls preload="none" src="media/logo-metis.mp3"></audio></div>
+  <div class="pl"><div class="row"><span class="nm">Maxis</span><span class="meta">학습 · 어둡고 길게 쌓인다</span></div>
+    <audio controls preload="none" src="media/logo-maxis.mp3"></audio></div>
+  <div class="pl"><div class="row"><span class="nm">Telox</span><span class="meta">GPUaaS · 잔향이 넓다</span></div>
+    <audio controls preload="none" src="media/logo-telox.mp3"></audio></div>
+  <div class="pl"><div class="row"><span class="nm">Velox</span><span class="meta">베어메탈 · 금속성, 잔향 없음</span></div>
+    <audio controls preload="none" src="media/logo-velox.mp3"></audio></div>
+  <div class="pl"><div class="row"><span class="nm">Aegis</span><span class="meta">온프렘 · 낮고 단단하다</span></div>
+    <audio controls preload="none" src="media/logo-aegis.mp3"></audio></div>
+  <div class="pl"><div class="row"><span class="nm">Signum</span><span class="meta">신원·감사 · 통과했다는 신호</span></div>
+    <audio controls preload="none" src="media/logo-signum.mp3"></audio></div>
+</div>
+
+<h2>브랜드 음악 — 모델이 만든 부분</h2>
+<p class="sub">캡션에 모티프를 말로 지시했습니다. "근음·5도·옥타브 세 음을 마림바가 진술하고 반복한다." 모델은 그 지시를 각 용도의 편성으로 풀어냈습니다.</p>
+<div class="players">
+  <div class="pl"><div class="row"><span class="nm">메인 광고 베드</span><span class="meta">96 BPM · B♭ major</span></div>
+    <p>비어 있게 시작해 3분의 2 지점에서 넓게 도착하고 유지합니다.</p>
+    <audio controls preload="none" src="media/brand-ad-main.mp3"></audio></div>
+  <div class="pl"><div class="row"><span class="nm">Metis 제품 영상</span><span class="meta">112 BPM · 잔향 짧게</span></div>
+    <p>빌드 없이 첫 마디부터 즉시. 응답이 바로 온다는 느낌.</p>
+    <audio controls preload="none" src="media/brand-product-metis.mp3"></audio></div>
+  <div class="pl"><div class="row"><span class="nm">Maxis 제품 영상</span><span class="meta">88 BPM · 길게 쌓임</span></div>
+    <p>거의 빈 채로 시작해 한 겹씩 늘어납니다. 시간이 걸리는 일.</p>
+    <audio controls preload="none" src="media/brand-product-maxis.mp3"></audio></div>
+  <div class="pl"><div class="row"><span class="nm">Aegis 제품 영상</span><span class="meta">84 BPM · B♭ minor</span></div>
+    <p>고음이 거의 없고 낮게 단단합니다. 닫힌 공간.</p>
+    <audio controls preload="none" src="media/brand-product-aegis.mp3"></audio></div>
+  <div class="pl"><div class="row"><span class="nm">행사 오프너</span><span class="meta">104 BPM · 한 방으로 끝</span></div>
+    <audio controls preload="none" src="media/brand-event-opener.mp3"></audio></div>
+  <div class="pl"><div class="row"><span class="nm">부스·대기화면 루프</span><span class="meta">72 BPM · 몇 시간 반복용</span></div>
+    <audio controls preload="none" src="media/brand-ambient-loop.mp3"></audio></div>
+</div>
+
+<h2>보컬 곡도 됩니다</h2>
+<p class="sub">브랜드용은 전부 인스트루멘탈이지만, 모델 자체는 가사와 보컬이 있는 완곡을 만듭니다. 5개 언어로 시험한 것 중 넷입니다.</p>
+<div class="players">
+  <div class="pl"><div class="row"><span class="nm">한국어 발라드</span><span class="meta">82.8s · 84 BPM</span></div>
+    <audio controls preload="none" src="media/hello-ko-60s.mp3"></audio></div>
+  <div class="pl"><div class="row"><span class="nm">트로트 × 멤피스 펑크</span><span class="meta">60.6s · 138 BPM · 퓨전</span></div>
+    <audio controls preload="none" src="media/viral-02-trot-phonk.mp3"></audio></div>
+  <div class="pl"><div class="row"><span class="nm">델타 블루스 — AI가 부르는 자기 이야기</span><span class="meta">42.4s · 68 BPM</span></div>
+    <audio controls preload="none" src="media/viral-01-delta-blues-ai.mp3"></audio></div>
+  <div class="pl"><div class="row"><span class="nm">일본어 시티팝</span><span class="meta">55.2s · 112 BPM</span></div>
+    <audio controls preload="none" src="media/viral-05-citypop-nostalgia.mp3"></audio></div>
+</div>
+
+<h2>실측</h2>
+<p class="sub">B200 한 장, bf16. 같은 GPU에 같은 가중치를 올리고 실행 스택만 바꿨습니다.</p>
+<table>
+  <thead><tr><th>항목</th><th class="n">값</th><th>비고</th></tr></thead>
+  <tbody>
+    <tr><td>레퍼런스 파이프라인 (단일 스트림)</td><td class="n">36.4곡/시간</td><td>RTF 1.62</td></tr>
+    <tr><td>같은 파이프라인 4-way</td><td class="n">109.9곡/시간</td><td>3.02× · GPU util 71.5%</td></tr>
+    <tr><td><strong>서빙 스택, 동시 4</strong></td><td class="n big">463.2곡/시간</td><td>RTF 0.597</td></tr>
+    <tr><td>peak VRAM</td><td class="n">24.5 GB</td><td>곡 길이와 무관하게 고정 (191.5GB 중 13%)</td></tr>
+    <tr><td>아이들 전력</td><td class="n">187 → 239 W</td><td>가중치 상주만으로 +52W</td></tr>
+    <tr><td>곡당 원가</td><td class="n">약 $0.007</td><td>GPU 시간당 $3.3 가정</td></tr>
+    <tr><td>모델 적재</td><td class="n">162분 → 75초</td><td>내부 스토리지 경유</td></tr>
+  </tbody>
+</table>
+
+<div class="note">
+  <strong>재현되지 않은 것도 적습니다.</strong> 모델 카드는 5분짜리 완곡을 약속하지만
+  240초를 요청해도 138초가 나왔습니다. <code>audio_duration</code>은 지시가 아니라 힌트입니다.
+  이 페이지의 광고 음악이 60초 요청에 22초로 나온 것도 같은 이유이고, 빌더가 크로스페이드
+  루프로 채웁니다.
+</div>
+
+<h2>왜 이 구조인가</h2>
+<ul>
+  <li><strong>정확해야 하는 것은 코드가.</strong> 로고의 세 음은 주파수까지 고정입니다. 다시 돌려도 바이트가 같습니다.</li>
+  <li><strong>풍부해야 하는 것은 모델이.</strong> 편곡·음색·전개는 캡션으로 지시하고 모델이 풉니다.</li>
+  <li><strong>브랜드 구조와 소닉 구조가 같은 모양.</strong> 하나의 모티프에서 일곱 편곡이 갈라지는 것이 "One Paxis. Many Workflows." 그 자체입니다.</li>
+  <li><strong>에이전시 대신 GPU.</strong> 소닉 브랜딩은 보통 6자리 달러 단위 용역입니다. 곡당 $0.007이면 시스템 전체를 하루에, 마음에 안 들면 다시 만듭니다.</li>
+</ul>
+
+<div class="note">
+  ⚠️ 이 페이지의 음악은 오픈 웨이트 모델로 생성했고 <strong>실존 아티스트의 목소리나 스타일을
+  모사하지 않았습니다</strong>. 캡션은 장르·BPM·악기·질감만 기술합니다. 상업 배포에는 별도의
+  라이선스·공시 검토가 필요하며 아직 어디에도 배포하지 않았습니다.
+</div>
+
+<footer>
+  생성 모델 MiniMax-Music3 (오픈 웨이트) · 소닉 로고는 numpy 합성 · 영상은 PIL + ffmpeg ·
+  실측은 NVIDIA B200 1장. 2026-08.
+</footer>
+
+</main>
+</body>
+</html>

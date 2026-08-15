@@ -238,7 +238,7 @@ export const ko = {
 
   rnd: {
     intro:
-      "비전, 신호 처리, 최적화, 추천처럼 제가 오래 다뤄 온 영역을 에이전트로 더 넓게 확장하며 직접 구현합니다. 무엇을 재야 답이 나오는지 이미 알기 때문에 논문을 읽는 자리에서 곧바로 실측 가능한 구현으로 넘어갑니다. 저장소 131개를 만들어 운영하며 그중 32건은 측정값이 붙은 완성 구현입니다.",
+      "비전, 신호 처리, 최적화, 추천처럼 제가 오래 다뤄 온 영역을 에이전트로 더 넓게 확장하며 직접 구현합니다. 무엇을 재야 답이 나오는지 이미 알기 때문에 논문을 읽는 자리에서 곧바로 실측 가능한 구현으로 넘어갑니다. 저장소 132개를 만들어 운영하며 그중 32건은 측정값이 붙은 완성 구현입니다.",
     groups: [
       {
         name: "최적화 · 스케줄링",
@@ -551,7 +551,7 @@ export const en = {
 
   rnd: {
     intro:
-      "Extends long-held domains, computer vision, signal processing, combinatorial optimization, and recommendation, through agent-driven development. Knowing the field is what makes the speed possible: I know which measurement settles the question, so a paper becomes a measured implementation rather than a summary. Owns and operates 131 repositories, 32 of them completed implementations with measured results.",
+      "Extends long-held domains, computer vision, signal processing, combinatorial optimization, and recommendation, through agent-driven development. Knowing the field is what makes the speed possible: I know which measurement settles the question, so a paper becomes a measured implementation rather than a summary. Owns and operates 132 repositories, 32 of them completed implementations with measured results.",
     groups: [
       {
         name: "Optimization & Scheduling",

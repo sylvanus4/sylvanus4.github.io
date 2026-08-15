@@ -1,309 +1,324 @@
 {
- "_note": "2i 원본에 없는 내 저장소를 카탈로그에 덧붙인다. port_tech.py 가 읽어 주입하고 개수도 다시 센다.",
- "cards": [
-  {
-   "fam": "tech-data",
-   "repo": "sylvanus4/recsys-gpu-lab",
-   "url": "https://github.com/sylvanus4/recsys-gpu-lab",
-   "title": "추천 아키텍처 재현 · 반증 랩",
-   "excerpt": "2026년 추천시스템 논문이 내세우는 아키텍처 주장을 자체 GPU에서 다시 돌려 확인하는 실험 랩이다. 인기순 대조군을 먼저 세워 기준을 잡고, semantic ID에 위치 정보가 빠지면 무엇이 깨지는지, 시드를 바꿔도 랭킹 순위가 유지되는지를 측정한다. 시드 하나로 나온 결과로는 순위를 주장하지 않는다.",
-   "lang": "Python",
-   "date": "2026.08.05",
-   "private": true,
-   "tags": [
-    "#추천",
-    "#랭킹",
-    "#재현성"
-   ],
-   "q": "추천 recsys recommendation 랭킹 ranking semantic id 인기순 대조군 baseline 재현 반증 gpu 실험 python"
-  },
-  {
-   "fam": "tech-product",
-   "repo": "sylvanus4/hanji",
-   "url": "https://github.com/sylvanus4/hanji",
-   "title": "업로드 없이 도는 한국어 문서 뷰어 · 변환기",
-   "excerpt": "HWP·HWPX·PDF·이미지·동영상을 한 자리에서 열고 바꾸는 도구다. 파일이 기기를 떠나지 않는 것이 유일한 주장이라, 실제 브라우저로 문서를 통과시키며 외부 요청이 0건인지 검사 40개로 매번 확인한다. 웹과 데스크탑이 같은 번들을 쓰고 데스크탑 바이너리에는 네트워크 라이브러리를 넣지 않았다. HWP 표가 우측 단을 넘던 결함은 상위 엔진 358커밋을 이분 탐색해 회귀 지점을 찾고 패치해 해결했다.",
-   "lang": "TypeScript",
-   "date": "2026.08.08",
-   "private": false,
-   "tags": [
-    "#문서",
-    "#로컬우선",
-    "#WASM"
-   ],
-   "q": "hanji 한지 hwp hwpx 한글 문서 변환 converter viewer 뷰어 pdf 이미지 동영상 gif 로컬 local-first 업로드없음 no-upload privacy 프라이버시 wasm tauri 데스크탑 desktop offline 오프라인 typescript rhwp"
-  },
-  {
-   "fam": "tech-devtool",
-   "repo": "sylvanus4/algorithms-polyglot",
-   "url": "https://github.com/sylvanus4/algorithms-polyglot",
-   "title": "여섯 언어 교차 검증 알고리즘 랩",
-   "excerpt": "알고리즘 26개와 새로 쓴 문제 8개를 Go·C·C++·Rust·Python·Java 여섯 벌로 독립 구현하고 공유 벡터 232개로 교차 검증한다. 기준 구현 하나를 정답으로 삼지 않고 여섯 출력이 서로 바이트 단위로 일치하는지를 본다. 기준 구현도 검사 대상이라, 거기서 타이브레이크가 거꾸로 돼 있으면 나머지 다섯을 같은 오답으로 교정하고도 테스트는 초록으로 통과하기 때문이다. 기록된 결함 15건 중 컴파일러와 타입 검사기, 린터가 잡은 것은 0건이고 나머지는 브루트포스 대조와 상호일치 게이트, 일부러 망가뜨린 구현으로 찾았다. 저장소 소스에서 생성되는 학습 사이트와 51쪽 한국어 해설서가 같이 나온다.",
-   "lang": "Polyglot",
-   "date": "2026.08.09",
-   "private": false,
-   "tags": [
-    "#알고리즘",
-    "#교차검증",
-    "#재현성"
-   ],
-   "q": "algorithms polyglot 알고리즘 교차검증 cross-validation conformance 상호일치 golden file 골든파일 dijkstra knapsack lcs lis mergesort quicksort backtracking dp greedy graph mst flow 벤치마크 benchmark 재현성 reproducibility 타이브레이크 tiebreak go c cpp rust python java erickson 코딩테스트 인터뷰 mutation testing 뮤테이션"
-  },
-  {
-   "fam": "tech-product",
-   "repo": "sylvanus4/korean-history-exam-lab",
-   "url": "https://github.com/sylvanus4/korean-history-exam-lab",
-   "title": "기출 서안 · 한능검 심화 기출 학습 앱",
-   "excerpt": "한국사능력검정시험 심화 기출 스무 회차 1,000문항을 전수 파싱해 지식 그래프(노드 963 · 오답 교정 4,001)로 뒤집고, 그 위에 SM-2 암기 카드 2,072장·설명 채점 627개·혼동쌍 기반 유사문항 생성을 얹은 오프라인 데스크탑 앱이다. 생성 문항은 코드 소유 3중 게이트(구조·자료 누설·사실 반증)를 통과한 것만 실린다. 기출 원문 저작권(공공누리 제4유형) 때문에 배포판과 저장소는 비공개다.",
-   "lang": "Python · Rust",
-   "date": "2026.08.10",
-   "private": true,
-   "tags": [
-    "#지식그래프",
-    "#간격반복",
-    "#Tauri"
-   ],
-   "q": "한능검 한국사 기출 지식그래프 srs 간격반복 앰기 tauri 오프라인 혼동쌍 유사문항 생성 게이트 quiz knowledge graph spaced repetition"
-  },
-  {
-   "fam": "tech-media",
-   "repo": "sylvanus4/ref2va-video-lora-lab",
-   "title": "레퍼런스 조건 영상 LoRA 랩",
-   "excerpt": "상용 API 뒤에 있던 subject 일관성 학습 레시피를 오픈 가중치 Wan2.2(MoE DiT)에 이식해 자체 GPU에서 재현한 실험 랩이다. 합성 인물 데이터셋 생성, per-token timestep 등 MoE 이식 계약을 GPU 없이 잡는 스모크 하네스, 사전등록 게이트 평가(ArcFace·CLIP-T), zero-shot 비교군(VACE)까지 담았다. identity +70%와 그 대가인 추종 하락 곡선을 함께 기록했고, 학습된 캐릭터로 43초 광고 한 편을 완성했다. 학습·평가 코드와 잡 로그가 실려 저장소는 비공개다.",
-   "lang": "Python",
-   "date": "2026.08.12",
-   "private": true,
-   "tags": [
-    "#영상생성",
-    "#LoRA",
-    "#평가게이트"
-   ],
-   "q": "레퍼런스 조건 영상 lora ref2va wan2.2 moe dit subject 일관성 identity arcface clip-t vace zero-shot 광고 캐릭터 video lora reference conditioning diffusion b200",
-   "url": "https://github.com/sylvanus4/ref2va-video-lora-lab"
-  }
- ],
- "rewrite": [
-  [
-   "고객이 주장하는 스토리지 성질을 실제로 측정해 검증하는 하네스로",
-   "공급자가 주장하는 스토리지 성질을 실제로 측정해 검증하는 하네스로"
+  "_note": "2i 원본에 없는 내 저장소를 카탈로그에 덧붙인다. port_tech.py 가 읽어 주입하고 개수도 다시 센다.",
+  "cards": [
+    {
+      "fam": "tech-data",
+      "repo": "sylvanus4/recsys-gpu-lab",
+      "url": "https://github.com/sylvanus4/recsys-gpu-lab",
+      "title": "추천 아키텍처 재현 · 반증 랩",
+      "excerpt": "2026년 추천시스템 논문이 내세우는 아키텍처 주장을 자체 GPU에서 다시 돌려 확인하는 실험 랩이다. 인기순 대조군을 먼저 세워 기준을 잡고, semantic ID에 위치 정보가 빠지면 무엇이 깨지는지, 시드를 바꿔도 랭킹 순위가 유지되는지를 측정한다. 시드 하나로 나온 결과로는 순위를 주장하지 않는다.",
+      "lang": "Python",
+      "date": "2026.08.05",
+      "private": true,
+      "tags": [
+        "#추천",
+        "#랭킹",
+        "#재현성"
+      ],
+      "q": "추천 recsys recommendation 랭킹 ranking semantic id 인기순 대조군 baseline 재현 반증 gpu 실험 python"
+    },
+    {
+      "fam": "tech-product",
+      "repo": "sylvanus4/hanji",
+      "url": "https://github.com/sylvanus4/hanji",
+      "title": "업로드 없이 도는 한국어 문서 뷰어 · 변환기",
+      "excerpt": "HWP·HWPX·PDF·이미지·동영상을 한 자리에서 열고 바꾸는 도구다. 파일이 기기를 떠나지 않는 것이 유일한 주장이라, 실제 브라우저로 문서를 통과시키며 외부 요청이 0건인지 검사 40개로 매번 확인한다. 웹과 데스크탑이 같은 번들을 쓰고 데스크탑 바이너리에는 네트워크 라이브러리를 넣지 않았다. HWP 표가 우측 단을 넘던 결함은 상위 엔진 358커밋을 이분 탐색해 회귀 지점을 찾고 패치해 해결했다.",
+      "lang": "TypeScript",
+      "date": "2026.08.08",
+      "private": false,
+      "tags": [
+        "#문서",
+        "#로컬우선",
+        "#WASM"
+      ],
+      "q": "hanji 한지 hwp hwpx 한글 문서 변환 converter viewer 뷰어 pdf 이미지 동영상 gif 로컬 local-first 업로드없음 no-upload privacy 프라이버시 wasm tauri 데스크탑 desktop offline 오프라인 typescript rhwp"
+    },
+    {
+      "fam": "tech-devtool",
+      "repo": "sylvanus4/algorithms-polyglot",
+      "url": "https://github.com/sylvanus4/algorithms-polyglot",
+      "title": "여섯 언어 교차 검증 알고리즘 랩",
+      "excerpt": "알고리즘 26개와 새로 쓴 문제 8개를 Go·C·C++·Rust·Python·Java 여섯 벌로 독립 구현하고 공유 벡터 232개로 교차 검증한다. 기준 구현 하나를 정답으로 삼지 않고 여섯 출력이 서로 바이트 단위로 일치하는지를 본다. 기준 구현도 검사 대상이라, 거기서 타이브레이크가 거꾸로 돼 있으면 나머지 다섯을 같은 오답으로 교정하고도 테스트는 초록으로 통과하기 때문이다. 기록된 결함 15건 중 컴파일러와 타입 검사기, 린터가 잡은 것은 0건이고 나머지는 브루트포스 대조와 상호일치 게이트, 일부러 망가뜨린 구현으로 찾았다. 저장소 소스에서 생성되는 학습 사이트와 51쪽 한국어 해설서가 같이 나온다.",
+      "lang": "Polyglot",
+      "date": "2026.08.09",
+      "private": false,
+      "tags": [
+        "#알고리즘",
+        "#교차검증",
+        "#재현성"
+      ],
+      "q": "algorithms polyglot 알고리즘 교차검증 cross-validation conformance 상호일치 golden file 골든파일 dijkstra knapsack lcs lis mergesort quicksort backtracking dp greedy graph mst flow 벤치마크 benchmark 재현성 reproducibility 타이브레이크 tiebreak go c cpp rust python java erickson 코딩테스트 인터뷰 mutation testing 뮤테이션"
+    },
+    {
+      "fam": "tech-product",
+      "repo": "sylvanus4/korean-history-exam-lab",
+      "url": "https://github.com/sylvanus4/korean-history-exam-lab",
+      "title": "기출 서안 · 한능검 심화 기출 학습 앱",
+      "excerpt": "한국사능력검정시험 심화 기출 스무 회차 1,000문항을 전수 파싱해 지식 그래프(노드 963 · 오답 교정 4,001)로 뒤집고, 그 위에 SM-2 암기 카드 2,072장·설명 채점 627개·혼동쌍 기반 유사문항 생성을 얹은 오프라인 데스크탑 앱이다. 생성 문항은 코드 소유 3중 게이트(구조·자료 누설·사실 반증)를 통과한 것만 실린다. 기출 원문 저작권(공공누리 제4유형) 때문에 배포판과 저장소는 비공개다.",
+      "lang": "Python · Rust",
+      "date": "2026.08.10",
+      "private": true,
+      "tags": [
+        "#지식그래프",
+        "#간격반복",
+        "#Tauri"
+      ],
+      "q": "한능검 한국사 기출 지식그래프 srs 간격반복 앰기 tauri 오프라인 혼동쌍 유사문항 생성 게이트 quiz knowledge graph spaced repetition"
+    },
+    {
+      "fam": "tech-media",
+      "repo": "sylvanus4/ref2va-video-lora-lab",
+      "title": "레퍼런스 조건 영상 LoRA 랩",
+      "excerpt": "상용 API 뒤에 있던 subject 일관성 학습 레시피를 오픈 가중치 Wan2.2(MoE DiT)에 이식해 자체 GPU에서 재현한 실험 랩이다. 합성 인물 데이터셋 생성, per-token timestep 등 MoE 이식 계약을 GPU 없이 잡는 스모크 하네스, 사전등록 게이트 평가(ArcFace·CLIP-T), zero-shot 비교군(VACE)까지 담았다. identity +70%와 그 대가인 추종 하락 곡선을 함께 기록했고, 학습된 캐릭터로 43초 광고 한 편을 완성했다. 학습·평가 코드와 잡 로그가 실려 저장소는 비공개다.",
+      "lang": "Python",
+      "date": "2026.08.12",
+      "private": true,
+      "tags": [
+        "#영상생성",
+        "#LoRA",
+        "#평가게이트"
+      ],
+      "q": "레퍼런스 조건 영상 lora ref2va wan2.2 moe dit subject 일관성 identity arcface clip-t vace zero-shot 광고 캐릭터 video lora reference conditioning diffusion b200",
+      "url": "https://github.com/sylvanus4/ref2va-video-lora-lab"
+    },
+    {
+      "fam": "tech-media",
+      "repo": "sylvanus4/sylvanus4.github.io",
+      "title": "소닉 브랜딩 — 코드 로고 + 생성 편곡",
+      "excerpt": "공개 이틀 된 57GB 음악 생성 모델을 자체 B200에 적재해 브랜드 사운드 시스템 전체와 54초 광고 영상까지 만든 작업이다. 소닉 로고 3음(근음·5도·옥타브)은 매번 바이트가 같아야 하므로 생성 모델이 아니라 numpy DSP가 합성하고, 편곡·음색·전개는 모델이 캡션 지시로 푼다. 같은 GPU에 같은 가중치를 올리고 실행 스택만 바꿔 36곡/시간에서 463곡/시간으로 12.7배를 실측했고, 곡당 원가는 약 $0.007이다. 로고 10종·브랜드 음악 6곡·보컬 곡 4곡을 데모 페이지에서 바로 들을 수 있다.",
+      "lang": "Python",
+      "date": "2026.08.15",
+      "tags": [
+        "#음악생성",
+        "#소닉브랜딩",
+        "#DSP"
+      ],
+      "q": "소닉 브랜딩 sonic branding 음악 생성 minimax music3 b200 sglang numpy dsp 광고 영상 로고 mnemonic 마림바 배음 브랜드 사운드",
+      "url": "https://sylvanus4.github.io/demos/music3/"
+    }
   ],
-  [
-   "고객 납품용 보고서를 만드는 비공개 저장소다",
-   "청구서 분석 보고서를 만드는 비공개 저장소다"
+  "rewrite": [
+    [
+      "고객이 주장하는 스토리지 성질을 실제로 측정해 검증하는 하네스로",
+      "공급자가 주장하는 스토리지 성질을 실제로 측정해 검증하는 하네스로"
+    ],
+    [
+      "고객 납품용 보고서를 만드는 비공개 저장소다",
+      "청구서 분석 보고서를 만드는 비공개 저장소다"
+    ],
+    [
+      "고객 환경 어댑터, 보고서 표지, 회귀 원장을 더한 비공개 납품 계층이다",
+      "현장 환경 어댑터, 보고서 표지, 회귀 원장을 더한 비공개 확장 계층이다"
+    ],
+    [
+      "고객 상호작용 전체 생애주기를 처리한다",
+      "통화 시작부터 후처리까지 상담 흐름 전체를 다룬다"
+    ],
+    [
+      "스토리지 진단 하네스 납품 계층",
+      "스토리지 진단 하네스 확장 계층"
+    ]
   ],
-  [
-   "고객 환경 어댑터, 보고서 표지, 회귀 원장을 더한 비공개 납품 계층이다",
-   "현장 환경 어댑터, 보고서 표지, 회귀 원장을 더한 비공개 확장 계층이다"
-  ],
-  [
-   "고객 상호작용 전체 생애주기를 처리한다",
-   "통화 시작부터 후처리까지 상담 흐름 전체를 다룬다"
-  ],
-  [
-   "스토리지 진단 하네스 납품 계층",
-   "스토리지 진단 하네스 확장 계층"
+  "_taxonomy_note": "영상 15편과 같은 축으로 카탈로그를 다시 나눈다. 카드는 하나도 버리지 않고 버킷만 옮긴다. rules 는 위에서부터 먼저 맞는 것이 이긴다(첫 매치 승).",
+  "taxonomy": [
+    {
+      "id": "tech-comms",
+      "title": "통신·신호처리",
+      "reel": "01-comms",
+      "desc": "RF 지문, 스펙트럼 간섭원, 물리 기반 수신기, 에어갭 광학 링크. 학습 없이 신호 자체를 다루는 축이다.",
+      "from": [
+        "comms"
+      ],
+      "any": [
+        "rf",
+        "iq",
+        "스펙트럼",
+        "간섭",
+        "수신기",
+        "에어갭",
+        "airgap",
+        "o-ran",
+        "oran",
+        "광학",
+        "optipay",
+        "cfar",
+        "무선"
+      ]
+    },
+    {
+      "id": "tech-acoustic",
+      "title": "음향·음성",
+      "reel": "07-acoustic",
+      "desc": "음원 지문, 생태 음향, 설비 진동, 청진음, 실시간 번역. 소리로 판단하는 쪽이다.",
+      "from": [
+        "comms"
+      ],
+      "any": []
+    },
+    {
+      "id": "tech-recsys",
+      "title": "추천·데이터",
+      "reel": "02-recsys",
+      "desc": "랭킹과 추천, 그리고 흩어진 기록을 하나의 판단 근거로 모으는 쪽이다.",
+      "from": [
+        "data"
+      ],
+      "any": []
+    },
+    {
+      "id": "tech-agent",
+      "title": "에이전트·자동화 하네스",
+      "reel": "03-agent",
+      "desc": "스킬 시스템, 오케스트레이터, 리서치와 배포 자동화. 사람이 반복하던 절차를 코드로 옮긴 것들이다.",
+      "from": [
+        "agent"
+      ],
+      "any": []
+    },
+    {
+      "id": "tech-optim",
+      "title": "NP-하드 최적화·스케줄링",
+      "reel": "04-nphard",
+      "desc": "CP-SAT 기반 배정과 편성. 근무표, 콜센터 인력, 리그 일정, 방배정.",
+      "from": [
+        "optim"
+      ],
+      "any": []
+    },
+    {
+      "id": "tech-quant",
+      "title": "LLM 양자화",
+      "reel": "05-quant",
+      "desc": "같은 모델을 더 싸게 굴리는 쪽. 서빙까지 확인한 것만 센다.",
+      "from": [
+        "llm"
+      ],
+      "any": [
+        "양자화",
+        "quant",
+        "nvfp4",
+        "w4a16",
+        "gptq",
+        "awq",
+        "압축"
+      ]
+    },
+    {
+      "id": "tech-distill",
+      "title": "소형 모델 증류·파인튜닝",
+      "reel": "06-distill",
+      "desc": "반복 워커만 떼어 작은 모델로 옮기고, 판단이 필요한 곳에만 큰 모델을 쓴다.",
+      "from": [
+        "llm"
+      ],
+      "any": [
+        "증류",
+        "distill",
+        "파인튜닝",
+        "finetune",
+        "lora",
+        "qlora",
+        "sft",
+        "dpo",
+        "grpo",
+        "학습"
+      ]
+    },
+    {
+      "id": "tech-aiplatform",
+      "title": "Paxis · Maxis · Metis",
+      "reel": "09-aiplatform",
+      "desc": "에이전트 실행 플랫폼과 그 밑을 받치는 학습·추론 기반. 서빙, GPU 스케줄링, 실험 추적, 멀티테넌시.",
+      "from": [
+        "llm"
+      ],
+      "any": []
+    },
+    {
+      "id": "tech-vision",
+      "title": "비전·영상 판정",
+      "reel": "08-vision",
+      "desc": "소량 데이터 이상탐지와 의료영상 폐루프. 정답 라벨이 귀한 환경을 전제로 한다.",
+      "from": [
+        "vision"
+      ],
+      "any": []
+    },
+    {
+      "id": "tech-mediagen",
+      "title": "영상·이미지 생성",
+      "reel": "10-mediagen",
+      "desc": "영상, 이미지, 음성 합성. 소재를 사람 손 없이 반복 생산한다.",
+      "from": [
+        "media"
+      ],
+      "any": [
+        "영상",
+        "video",
+        "이미지",
+        "image",
+        "스티커",
+        "ffmpeg",
+        "만화",
+        "comic",
+        "음성",
+        "tts",
+        "덱",
+        "deck",
+        "슬라이드",
+        "ppt",
+        "애니"
+      ]
+    },
+    {
+      "id": "tech-marketing",
+      "title": "마케팅·콘텐츠 운영",
+      "reel": "11-marketing",
+      "desc": "블로그 발행, 뉴스 인텔, 캠페인 소재. 게시까지 자동으로 간다.",
+      "from": [
+        "media"
+      ],
+      "any": []
+    },
+    {
+      "id": "tech-storage",
+      "title": "스토리지·데이터 내구성",
+      "reel": "12-storage",
+      "desc": "정족수 쓰기, 체크섬 스크럽, 소거부호, 장애도메인 배치. 결함을 실제로 주입해 세어 본 것만 남긴다.",
+      "from": [
+        "storage"
+      ],
+      "any": []
+    },
+    {
+      "id": "tech-product",
+      "title": "도메인 서비스·제품",
+      "reel": "13-product",
+      "desc": "법률, 교육, 의료, 금융, 생활 영역에서 끝단 사용자가 쓰는 형태로 만든 것들이다.",
+      "from": [
+        "product"
+      ],
+      "any": []
+    },
+    {
+      "id": "tech-devtool",
+      "title": "개발 도구·템플릿",
+      "reel": "14-devtool",
+      "desc": "레포 템플릿, 품질 검사기, 문서화, 사이트 저작 도구. 나머지 전부를 빠르게 만드는 바닥이다.",
+      "from": [
+        "devtool"
+      ],
+      "any": []
+    },
+    {
+      "id": "tech-misc",
+      "title": "기타",
+      "reel": null,
+      "desc": "위 축에 정확히 붙지 않는 것들이다. 억지로 분류하지 않는다.",
+      "from": [
+        "misc"
+      ],
+      "any": []
+    }
   ]
- ],
- "_taxonomy_note": "영상 15편과 같은 축으로 카탈로그를 다시 나눈다. 카드는 하나도 버리지 않고 버킷만 옮긴다. rules 는 위에서부터 먼저 맞는 것이 이긴다(첫 매치 승).",
- "taxonomy": [
-  {
-   "id": "tech-comms",
-   "title": "통신·신호처리",
-   "reel": "01-comms",
-   "desc": "RF 지문, 스펙트럼 간섭원, 물리 기반 수신기, 에어갭 광학 링크. 학습 없이 신호 자체를 다루는 축이다.",
-   "from": [
-    "comms"
-   ],
-   "any": [
-    "rf",
-    "iq",
-    "스펙트럼",
-    "간섭",
-    "수신기",
-    "에어갭",
-    "airgap",
-    "o-ran",
-    "oran",
-    "광학",
-    "optipay",
-    "cfar",
-    "무선"
-   ]
-  },
-  {
-   "id": "tech-acoustic",
-   "title": "음향·음성",
-   "reel": "07-acoustic",
-   "desc": "음원 지문, 생태 음향, 설비 진동, 청진음, 실시간 번역. 소리로 판단하는 쪽이다.",
-   "from": [
-    "comms"
-   ],
-   "any": []
-  },
-  {
-   "id": "tech-recsys",
-   "title": "추천·데이터",
-   "reel": "02-recsys",
-   "desc": "랭킹과 추천, 그리고 흩어진 기록을 하나의 판단 근거로 모으는 쪽이다.",
-   "from": [
-    "data"
-   ],
-   "any": []
-  },
-  {
-   "id": "tech-agent",
-   "title": "에이전트·자동화 하네스",
-   "reel": "03-agent",
-   "desc": "스킬 시스템, 오케스트레이터, 리서치와 배포 자동화. 사람이 반복하던 절차를 코드로 옮긴 것들이다.",
-   "from": [
-    "agent"
-   ],
-   "any": []
-  },
-  {
-   "id": "tech-optim",
-   "title": "NP-하드 최적화·스케줄링",
-   "reel": "04-nphard",
-   "desc": "CP-SAT 기반 배정과 편성. 근무표, 콜센터 인력, 리그 일정, 방배정.",
-   "from": [
-    "optim"
-   ],
-   "any": []
-  },
-  {
-   "id": "tech-quant",
-   "title": "LLM 양자화",
-   "reel": "05-quant",
-   "desc": "같은 모델을 더 싸게 굴리는 쪽. 서빙까지 확인한 것만 센다.",
-   "from": [
-    "llm"
-   ],
-   "any": [
-    "양자화",
-    "quant",
-    "nvfp4",
-    "w4a16",
-    "gptq",
-    "awq",
-    "압축"
-   ]
-  },
-  {
-   "id": "tech-distill",
-   "title": "소형 모델 증류·파인튜닝",
-   "reel": "06-distill",
-   "desc": "반복 워커만 떼어 작은 모델로 옮기고, 판단이 필요한 곳에만 큰 모델을 쓴다.",
-   "from": [
-    "llm"
-   ],
-   "any": [
-    "증류",
-    "distill",
-    "파인튜닝",
-    "finetune",
-    "lora",
-    "qlora",
-    "sft",
-    "dpo",
-    "grpo",
-    "학습"
-   ]
-  },
-  {
-   "id": "tech-aiplatform",
-   "title": "Paxis · Maxis · Metis",
-   "reel": "09-aiplatform",
-   "desc": "에이전트 실행 플랫폼과 그 밑을 받치는 학습·추론 기반. 서빙, GPU 스케줄링, 실험 추적, 멀티테넌시.",
-   "from": [
-    "llm"
-   ],
-   "any": []
-  },
-  {
-   "id": "tech-vision",
-   "title": "비전·영상 판정",
-   "reel": "08-vision",
-   "desc": "소량 데이터 이상탐지와 의료영상 폐루프. 정답 라벨이 귀한 환경을 전제로 한다.",
-   "from": [
-    "vision"
-   ],
-   "any": []
-  },
-  {
-   "id": "tech-mediagen",
-   "title": "영상·이미지 생성",
-   "reel": "10-mediagen",
-   "desc": "영상, 이미지, 음성 합성. 소재를 사람 손 없이 반복 생산한다.",
-   "from": [
-    "media"
-   ],
-   "any": [
-    "영상",
-    "video",
-    "이미지",
-    "image",
-    "스티커",
-    "ffmpeg",
-    "만화",
-    "comic",
-    "음성",
-    "tts",
-    "덱",
-    "deck",
-    "슬라이드",
-    "ppt",
-    "애니"
-   ]
-  },
-  {
-   "id": "tech-marketing",
-   "title": "마케팅·콘텐츠 운영",
-   "reel": "11-marketing",
-   "desc": "블로그 발행, 뉴스 인텔, 캠페인 소재. 게시까지 자동으로 간다.",
-   "from": [
-    "media"
-   ],
-   "any": []
-  },
-  {
-   "id": "tech-storage",
-   "title": "스토리지·데이터 내구성",
-   "reel": "12-storage",
-   "desc": "정족수 쓰기, 체크섬 스크럽, 소거부호, 장애도메인 배치. 결함을 실제로 주입해 세어 본 것만 남긴다.",
-   "from": [
-    "storage"
-   ],
-   "any": []
-  },
-  {
-   "id": "tech-product",
-   "title": "도메인 서비스·제품",
-   "reel": "13-product",
-   "desc": "법률, 교육, 의료, 금융, 생활 영역에서 끝단 사용자가 쓰는 형태로 만든 것들이다.",
-   "from": [
-    "product"
-   ],
-   "any": []
-  },
-  {
-   "id": "tech-devtool",
-   "title": "개발 도구·템플릿",
-   "reel": "14-devtool",
-   "desc": "레포 템플릿, 품질 검사기, 문서화, 사이트 저작 도구. 나머지 전부를 빠르게 만드는 바닥이다.",
-   "from": [
-    "devtool"
-   ],
-   "any": []
-  },
-  {
-   "id": "tech-misc",
-   "title": "기타",
-   "reel": null,
-   "desc": "위 축에 정확히 붙지 않는 것들이다. 억지로 분류하지 않는다.",
-   "from": [
-    "misc"
-   ],
-   "any": []
-  }
- ]
 }

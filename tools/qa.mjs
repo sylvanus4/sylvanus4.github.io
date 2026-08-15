@@ -205,7 +205,7 @@ async function runTech(name, ctxOpts) {
   await page.waitForTimeout(1400);
 
   const cards = await page.locator("#techboard .pcard").count();
-  cards === 131 ? ok(`카드 ${cards}개`) : bad(`카드 ${cards}개 (기대 131)`);
+  cards === 132 ? ok(`카드 ${cards}개`) : bad(`카드 ${cards}개 (기대 132)`);
   const fams = await page.locator("#techboard .fam").count();
   fams === 15 ? ok(`분류 ${fams}개`) : bad(`분류 ${fams}개 (기대 15)`);
 
@@ -218,7 +218,7 @@ async function runTech(name, ctxOpts) {
   await page.fill("#techq", "양자화");
   await page.waitForTimeout(400);
   const shown = await page.evaluate(() => [...document.querySelectorAll("#techboard .pcard")].filter((c) => !c.hidden).length);
-  shown > 0 && shown < 131 ? ok(`검색 필터 동작 (${shown}개)`) : bad(`검색 필터 이상 (${shown}개)`);
+  shown > 0 && shown < 132 ? ok(`검색 필터 동작 (${shown}개)`) : bad(`검색 필터 이상 (${shown}개)`);
   await page.fill("#techq", "");
   await page.waitForTimeout(300);
 
@@ -246,9 +246,9 @@ async function techEnGate() {
     const en = JSON.parse(readFileSync("assets/tech-en.json", "utf8"));
     const titles = [...body.matchAll(/pcard__title">([^<]+)</g)].map((m) => m[1]);
     const missing = titles.filter((t) => !en.cards[t]);
-    titles.length >= 131
+    titles.length >= 132
       ? ok(`body 제목 ${titles.length}개 (regex 기준)`)
-      : bad(`body 제목 ${titles.length}개 — 131 미만, 추출 회귀 의심`);
+      : bad(`body 제목 ${titles.length}개 — 132 미만, 추출 회귀 의심`);
     missing.length === 0
       ? ok("영문 오버레이 커버리지 전량")
       : bad(`영문 오버레이 누락 ${missing.length}개: ${missing.slice(0, 3).join(" / ")}`);
@@ -286,7 +286,7 @@ async function techEnGate() {
         (/[가-힣]/.test(document.querySelector("#techq")?.placeholder || "") ? 1 : 0)
     };
   });
-  r.cards === 131 ? ok(`영문 화면 카드 ${r.cards}개`) : bad(`영문 화면 카드 ${r.cards}개 (기대 131)`);
+  r.cards === 132 ? ok(`영문 화면 카드 ${r.cards}개`) : bad(`영문 화면 카드 ${r.cards}개 (기대 132)`);
   const leaks = r.title + r.excerpt + r.tags + r.cat + r.fam + r.chips + r.search;
   leaks === 0
     ? ok("영문 카드·계열·칩·검색에 국문 잔류 0")
