@@ -1026,26 +1026,26 @@
     "slug": "flagship",
     "group": "infra",
     "src": "hosted",
-    "title": "플래그십 10종 — 재 보고 나서 달라진 것들",
+    "title": "플래그십 10종 — 직접 만든 시스템을 눌러 봅니다",
     "url": "https://sylvanus4.github.io/demos/flagship/",
-    "blurb": "열 개 도메인에서 돌아가던 시뮬레이터를 실제 백엔드로 바꿔 다시 잰 기록입니다. 논리합성을 붙이자 서로 다르다던 두 회로가 같은 넷리스트로 나왔고, 공개 궤도 카탈로그를 붙이자 근접 경보 상위가 전부 같은 물체를 두 번 센 것이었으며, 전력을 재 보니 최대 부하에서도 63.8%가 유휴분이었습니다. 프로젝트마다 그 발견의 모양을 그린 3D 씬과, 아직 답하지 못한 30건을 함께 놓았습니다. 구현 코드는 비공개입니다.",
+    "blurb": "반도체 설계 탐색, 위성 충돌 회피, 로봇 신뢰성 평가, 단백질 예측 검증, 마이크로그리드 운영, 망분리 문서 작업대, 에이전트 런타임, 서빙 오토튜너, AI 클라우드 배치, 멀티모달 검색. 열 개 시스템을 각각 조작해 볼 수 있습니다. 구조를 바꾸면 합성 결과가, 트래픽을 올리면 배치 계획이, 결함을 주입하면 에이전트의 결정이 그 자리에서 달라집니다. 화면의 숫자는 전부 그 시스템을 실제로 돌려 나온 값이고, 구현 코드는 비공개입니다.",
     "tech": [
-      "WebGL2",
-      "의존성 0",
-      "MuJoCo",
+      "실제 논리합성",
       "SGP4",
-      "논리합성",
-      "자체 GPU 실측"
+      "MuJoCo",
+      "로컬 LLM",
+      "자체 GPU 실측",
+      "WebGL2 · 의존성 0"
     ],
-    "title_en": "Ten flagship systems — what changed once it was measured",
-    "blurb_en": "Ten domains whose simulators were replaced with real backends and measured again. Synthesis collapsed two supposedly different adders into one netlist, a public orbital catalogue turned the top of the conjunction table into the same object counted twice, and metered power showed 63.8% of peak draw is idle. Each project gets a 3D scene shaped like its finding, next to the thirty questions still open. The implementations stay private.",
+    "title_en": "Ten flagship systems, operable in the browser",
+    "blurb_en": "Chip design-space search, satellite collision avoidance, robot reliability, protein prediction QA, microgrid operation, an air-gapped document workstation, an agent runtime, a serving autotuner, AI cloud placement, multimodal retrieval. Each one can be operated here: change the architecture and the synthesis result moves, raise the traffic and the deployment plan changes, inject a fault and the agent decides differently. Every number came out of actually running that system. The implementations stay private.",
     "tech_en": [
-      "WebGL2",
-      "Zero dependencies",
-      "MuJoCo",
+      "Real logic synthesis",
       "SGP4",
-      "Logic synthesis",
-      "In-house GPU measurement"
+      "MuJoCo",
+      "Local LLM",
+      "In-house GPU measurement",
+      "WebGL2 · zero deps"
     ]
   }
 ]

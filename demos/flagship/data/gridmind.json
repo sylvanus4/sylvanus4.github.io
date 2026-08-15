@@ -1,0 +1,365 @@
+{
+  "id": "gridmind",
+  "product": {
+    "ko": "GridMind는 태양광·건물 수요·배터리·EV 충전·전력 가격을 함께 예측하고, 매 시점 제약 최적화(LP)와 롤링 MPC로 24시간 마이크로그리드 운영 계획을 다시 세우며, 정전·설비 고장·가격 급등 같은 장애 속에서도 필수부하를 지키는 자율 마이크로그리드 디지털 트윈이다.",
+    "en": "GridMind is a self-driving microgrid digital twin: it forecasts solar and building demand, replans a 24-hour dispatch schedule across battery, EV charging, and the grid using constrained optimization and rolling MPC, and is judged on whether it keeps critical load alive through outages, equipment failure, and price spikes."
+  },
+  "howto": {
+    "ko": "배터리 용량, 시나리오(평시 vs 정전·장애), 제어 정책(규칙 기반 vs 재계획형 MPC)을 바꿔가며 비용과 필수부하 생존 여부가 어떻게 달라지는지 확인해 보세요.",
+    "en": "Change the battery capacity, the scenario (nominal vs an injected outage/failure event), and the control policy (rule-based baseline vs rolling MPC) to see how cost and critical-load survival move."
+  },
+  "controls": [
+    {
+      "key": "battery_capacity_kwh",
+      "label": {
+        "ko": "배터리 용량",
+        "en": "Battery capacity"
+      },
+      "type": "select",
+      "options": [
+        {
+          "value": "200",
+          "label": {
+            "ko": "200 kWh",
+            "en": "200 kWh"
+          }
+        },
+        {
+          "value": "400",
+          "label": {
+            "ko": "400 kWh",
+            "en": "400 kWh"
+          }
+        },
+        {
+          "value": "600",
+          "label": {
+            "ko": "600 kWh",
+            "en": "600 kWh"
+          }
+        },
+        {
+          "value": "800",
+          "label": {
+            "ko": "800 kWh",
+            "en": "800 kWh"
+          }
+        }
+      ]
+    },
+    {
+      "key": "scenario",
+      "label": {
+        "ko": "시나리오",
+        "en": "Scenario"
+      },
+      "type": "select",
+      "options": [
+        {
+          "value": "nominal",
+          "label": {
+            "ko": "평시",
+            "en": "Nominal"
+          }
+        },
+        {
+          "value": "chaos",
+          "label": {
+            "ko": "정전 + 장애 (Chaos)",
+            "en": "Grid outage + chaos"
+          }
+        }
+      ]
+    },
+    {
+      "key": "controller",
+      "label": {
+        "ko": "제어 정책",
+        "en": "Control policy"
+      },
+      "type": "select",
+      "options": [
+        {
+          "value": "baseline",
+          "label": {
+            "ko": "규칙 기반",
+            "en": "Rule-based baseline"
+          }
+        },
+        {
+          "value": "mpc",
+          "label": {
+            "ko": "재계획형 (MPC)",
+            "en": "Rolling MPC"
+          }
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "key": "total_cost",
+      "label": {
+        "ko": "총 비용",
+        "en": "Total cost"
+      },
+      "unit": "$",
+      "better": "lower"
+    },
+    {
+      "key": "peak_import_kw",
+      "label": {
+        "ko": "최대 계통 수전",
+        "en": "Peak grid import"
+      },
+      "unit": "kW",
+      "better": "lower"
+    },
+    {
+      "key": "total_unserved_kwh",
+      "label": {
+        "ko": "미공급 에너지",
+        "en": "Unserved energy"
+      },
+      "unit": "kWh",
+      "better": "lower"
+    },
+    {
+      "key": "critical_load_survived",
+      "label": {
+        "ko": "필수부하 생존",
+        "en": "Critical load survived"
+      },
+      "unit": "",
+      "better": "higher"
+    }
+  ],
+  "runs": [
+    {
+      "in": {
+        "battery_capacity_kwh": "200",
+        "scenario": "nominal",
+        "controller": "baseline"
+      },
+      "out": {
+        "total_cost": 235.61,
+        "peak_import_kw": 136.65,
+        "total_unserved_kwh": 0.0,
+        "critical_load_survived": true
+      }
+    },
+    {
+      "in": {
+        "battery_capacity_kwh": "200",
+        "scenario": "nominal",
+        "controller": "mpc"
+      },
+      "out": {
+        "total_cost": 204.73,
+        "peak_import_kw": 136.65,
+        "total_unserved_kwh": 0.0,
+        "critical_load_survived": true
+      }
+    },
+    {
+      "in": {
+        "battery_capacity_kwh": "200",
+        "scenario": "chaos",
+        "controller": "baseline"
+      },
+      "out": {
+        "total_cost": 218.08,
+        "peak_import_kw": 136.65,
+        "total_unserved_kwh": 177.83,
+        "critical_load_survived": false
+      }
+    },
+    {
+      "in": {
+        "battery_capacity_kwh": "200",
+        "scenario": "chaos",
+        "controller": "mpc"
+      },
+      "out": {
+        "total_cost": 175.68,
+        "peak_import_kw": 136.65,
+        "total_unserved_kwh": 297.96,
+        "critical_load_survived": false
+      },
+      "note": {
+        "ko": "재계획형이 비용은 더 낮추지만 미공급 에너지는 오히려 더 크다. 정전을 못 미리 알고 세운 충전 계획을 그대로 실행한 탓",
+        "en": "MPC lowers cost but leaves more energy unserved, it keeps executing a charge plan made before the outage was known"
+      }
+    },
+    {
+      "in": {
+        "battery_capacity_kwh": "400",
+        "scenario": "nominal",
+        "controller": "baseline"
+      },
+      "out": {
+        "total_cost": 210.75,
+        "peak_import_kw": 136.65,
+        "total_unserved_kwh": 0.0,
+        "critical_load_survived": true
+      }
+    },
+    {
+      "in": {
+        "battery_capacity_kwh": "400",
+        "scenario": "nominal",
+        "controller": "mpc"
+      },
+      "out": {
+        "total_cost": 160.72,
+        "peak_import_kw": 136.65,
+        "total_unserved_kwh": 0.0,
+        "critical_load_survived": true
+      }
+    },
+    {
+      "in": {
+        "battery_capacity_kwh": "400",
+        "scenario": "chaos",
+        "controller": "baseline"
+      },
+      "out": {
+        "total_cost": 193.22,
+        "peak_import_kw": 136.65,
+        "total_unserved_kwh": 177.83,
+        "critical_load_survived": false
+      }
+    },
+    {
+      "in": {
+        "battery_capacity_kwh": "400",
+        "scenario": "chaos",
+        "controller": "mpc"
+      },
+      "out": {
+        "total_cost": 125.48,
+        "peak_import_kw": 136.65,
+        "total_unserved_kwh": 352.02,
+        "critical_load_survived": false
+      }
+    },
+    {
+      "in": {
+        "battery_capacity_kwh": "600",
+        "scenario": "nominal",
+        "controller": "baseline"
+      },
+      "out": {
+        "total_cost": 183.45,
+        "peak_import_kw": 136.65,
+        "total_unserved_kwh": 0.0,
+        "critical_load_survived": true
+      }
+    },
+    {
+      "in": {
+        "battery_capacity_kwh": "600",
+        "scenario": "nominal",
+        "controller": "mpc"
+      },
+      "out": {
+        "total_cost": 126.88,
+        "peak_import_kw": 136.65,
+        "total_unserved_kwh": 0.0,
+        "critical_load_survived": true
+      }
+    },
+    {
+      "in": {
+        "battery_capacity_kwh": "600",
+        "scenario": "chaos",
+        "controller": "baseline"
+      },
+      "out": {
+        "total_cost": 165.92,
+        "peak_import_kw": 136.65,
+        "total_unserved_kwh": 177.83,
+        "critical_load_survived": false
+      }
+    },
+    {
+      "in": {
+        "battery_capacity_kwh": "600",
+        "scenario": "chaos",
+        "controller": "mpc"
+      },
+      "out": {
+        "total_cost": 91.65,
+        "peak_import_kw": 136.65,
+        "total_unserved_kwh": 350.85,
+        "critical_load_survived": false
+      }
+    },
+    {
+      "in": {
+        "battery_capacity_kwh": "800",
+        "scenario": "nominal",
+        "controller": "baseline"
+      },
+      "out": {
+        "total_cost": 156.83,
+        "peak_import_kw": 136.65,
+        "total_unserved_kwh": 0.0,
+        "critical_load_survived": true
+      }
+    },
+    {
+      "in": {
+        "battery_capacity_kwh": "800",
+        "scenario": "nominal",
+        "controller": "mpc"
+      },
+      "out": {
+        "total_cost": 108.94,
+        "peak_import_kw": 138.32,
+        "total_unserved_kwh": 0.0,
+        "critical_load_survived": true
+      }
+    },
+    {
+      "in": {
+        "battery_capacity_kwh": "800",
+        "scenario": "chaos",
+        "controller": "baseline"
+      },
+      "out": {
+        "total_cost": 139.3,
+        "peak_import_kw": 136.65,
+        "total_unserved_kwh": 177.83,
+        "critical_load_survived": false
+      }
+    },
+    {
+      "in": {
+        "battery_capacity_kwh": "800",
+        "scenario": "chaos",
+        "controller": "mpc"
+      },
+      "out": {
+        "total_cost": 76.48,
+        "peak_import_kw": 138.32,
+        "total_unserved_kwh": 323.14,
+        "critical_load_survived": false
+      },
+      "note": {
+        "ko": "가장 큰 배터리 + 재계획형 조합도 이 정전 구간에서는 필수부하를 지키지 못한다. 비용은 가장 낮지만 생존은 실패, 배터리를 키우는 것만으로는 이 장애를 못 이긴다",
+        "en": "Even the largest battery with MPC does not survive this outage, cost is the lowest of all 16 runs, but survival still fails; more battery alone does not beat this event"
+      }
+    }
+  ],
+  "verdict": {
+    "ko": "실측 결과 배터리 용량은 비용을 꾸준히 낮추지만(평시 시나리오 기준 200kWh 대비 800kWh에서 총 비용이 규칙 기반 33%, MPC 47% 감소) 필수부하 생존을 좌우하지는 못한다. 이 정전 시나리오는 200~800kWh 어떤 조합, 어떤 정책으로도 견디지 못했고, 심지어 재계획형 MPC는 정전을 미리 몰랐던 충전 계획을 그대로 밀어붙여 규칙 기반보다 미공급 에너지가 더 큰 경우도 있었다.",
+    "en": "Across real runs, more battery steadily lowers cost (in the nominal scenario, total cost falls 33% for the rule-based baseline and 47% for MPC going from 200 to 800 kWh) but does not by itself save critical load, no capacity or policy combination survives this particular outage, and the replanning MPC controller sometimes leaves more energy unserved than the naive rule-based baseline because it keeps executing a charge plan it made before the outage was known."
+  },
+  "provenance": {
+    "backend": "gridmind 라이브러리 실제 코드 실행: run_baseline / solve_dispatch 기반 run_mpc / compute_kpis. 태양광 실측치는 서울(37.5665,126.978) 2026-07-15 실측 일사량(공개 기상 아카이브, 무인증)을 declared 1000㎡/20% 효율 어레이로 환산한 값이며, 통제군(controller의 사전 계획)은 이 실측치를 모른 채 만든 합성 예보다. 배터리 용량 4단계 x 시나리오 2종 x 정책 2종 = 16회 전부 실제로 실행해 얻은 값이다.",
+    "command": "cd flagship/gridmind-microgrid && PYTHONPATH=src .venv/bin/python scripts/demo_battery_scenario_grid.py --out /tmp/gm_final.json",
+    "generated": "2026-08-15",
+    "measured": true
+  }
+}

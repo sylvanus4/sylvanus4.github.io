@@ -1,0 +1,343 @@
+{
+  "id": "forge",
+  "product": {
+    "ko": "Hugging Face 호환 모델과 목표 GPU를 입력하면 precision·runtime·parallelism·batch 조합을 자동으로 실험해, accuracy·latency·memory·cost의 Pareto frontier와 그 결과를 제3자가 재현할 수 있는 Serving Certificate를 발급하는 모델-투-서빙 자동 튜너입니다.",
+    "en": "A model-to-serving autotuner: given a Hugging Face compatible model and a target GPU, it automatically explores precision, runtime, parallelism, and batch combinations, and issues a Pareto frontier of accuracy/latency/memory/cost plus a Serving Certificate a third party can reproduce."
+  },
+  "howto": {
+    "ko": "품질 기준(허용 손실률)과 서빙 부하(동시성)를 골라, Qwen3-0.6B를 실제 in-house GPU 한 장에서 서빙·평가한 커밋된 측정치 위에서 Forge가 어떤 정밀도를 추천하는지, 그리고 각 수치가 이 모델에서 실측된 것인지 아니면 다른 모델의 라우터 상수를 그대로 쓴 값인지 확인해 보세요.",
+    "en": "Pick a quality goal (allowed loss) and a serving load (concurrency), and see which precision Forge recommends on top of committed real measurements of Qwen3-0.6B on one in-house GPU, and whether each number was actually measured for this model or is a router constant borrowed from a different one."
+  },
+  "controls": [
+    {
+      "key": "quality_floor",
+      "label": {
+        "ko": "품질 기준 (허용 손실)",
+        "en": "Quality goal (allowed loss)"
+      },
+      "type": "select",
+      "options": [
+        {
+          "value": "strict_1pct",
+          "label": {
+            "ko": "엄격함 (품질 손실 1% 이내)",
+            "en": "Strict (quality loss within 1%)"
+          }
+        },
+        {
+          "value": "moderate_3pct",
+          "label": {
+            "ko": "보통 (품질 손실 3% 이내)",
+            "en": "Moderate (quality loss within 3%)"
+          }
+        },
+        {
+          "value": "permissive_10pct",
+          "label": {
+            "ko": "관대함 (품질 손실 10% 이내)",
+            "en": "Permissive (quality loss within 10%)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "concurrency",
+      "label": {
+        "ko": "서빙 부하 (동시 요청 수)",
+        "en": "Serving load (concurrency)"
+      },
+      "type": "select",
+      "options": [
+        {
+          "value": "1",
+          "label": {
+            "ko": "동시 요청 1",
+            "en": "Concurrency 1"
+          }
+        },
+        {
+          "value": "2",
+          "label": {
+            "ko": "동시 요청 2",
+            "en": "Concurrency 2"
+          }
+        },
+        {
+          "value": "4",
+          "label": {
+            "ko": "동시 요청 4",
+            "en": "Concurrency 4"
+          }
+        },
+        {
+          "value": "8",
+          "label": {
+            "ko": "동시 요청 8",
+            "en": "Concurrency 8"
+          }
+        },
+        {
+          "value": "16",
+          "label": {
+            "ko": "동시 요청 16",
+            "en": "Concurrency 16"
+          }
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "key": "eligible_precision_count",
+      "label": {
+        "ko": "품질 기준을 통과한 정밀도 수",
+        "en": "Precisions passing the quality goal"
+      },
+      "unit": "",
+      "better": "higher"
+    },
+    {
+      "key": "best_alt_precision",
+      "label": {
+        "ko": "추천 대안 정밀도 (bf16 제외 최선)",
+        "en": "Best alternative precision (non-bf16)"
+      },
+      "unit": "",
+      "better": "n/a"
+    },
+    {
+      "key": "best_alt_quality_delta_pct",
+      "label": {
+        "ko": "그 대안의 품질 델타 (%, 음수=손실)",
+        "en": "That alternative's quality delta (%, negative = loss)"
+      },
+      "unit": "%",
+      "better": "higher"
+    },
+    {
+      "key": "best_alt_evidence",
+      "label": {
+        "ko": "품질 델타의 근거",
+        "en": "Evidence behind that quality delta"
+      },
+      "unit": "",
+      "better": "n/a"
+    },
+    {
+      "key": "bf16_measured_tok_s",
+      "label": {
+        "ko": "bf16 실측 처리량",
+        "en": "bf16 measured throughput"
+      },
+      "unit": "tok/s",
+      "better": "higher"
+    }
+  ],
+  "runs": [
+    {
+      "in": {
+        "quality_floor": "strict_1pct",
+        "concurrency": "1"
+      },
+      "out": {
+        "eligible_precision_count": 2,
+        "best_alt_precision": "fp8",
+        "best_alt_quality_delta_pct": 0.66,
+        "best_alt_evidence": "declared (router constant, different model)",
+        "bf16_measured_tok_s": 694.0
+      }
+    },
+    {
+      "in": {
+        "quality_floor": "strict_1pct",
+        "concurrency": "2"
+      },
+      "out": {
+        "eligible_precision_count": 2,
+        "best_alt_precision": "fp8",
+        "best_alt_quality_delta_pct": 0.66,
+        "best_alt_evidence": "declared (router constant, different model)",
+        "bf16_measured_tok_s": 1284.9
+      }
+    },
+    {
+      "in": {
+        "quality_floor": "strict_1pct",
+        "concurrency": "4"
+      },
+      "out": {
+        "eligible_precision_count": 2,
+        "best_alt_precision": "fp8",
+        "best_alt_quality_delta_pct": 0.66,
+        "best_alt_evidence": "declared (router constant, different model)",
+        "bf16_measured_tok_s": 2585.9
+      }
+    },
+    {
+      "in": {
+        "quality_floor": "strict_1pct",
+        "concurrency": "8"
+      },
+      "out": {
+        "eligible_precision_count": 2,
+        "best_alt_precision": "fp8",
+        "best_alt_quality_delta_pct": 0.66,
+        "best_alt_evidence": "declared (router constant, different model)",
+        "bf16_measured_tok_s": 5088.5
+      }
+    },
+    {
+      "in": {
+        "quality_floor": "strict_1pct",
+        "concurrency": "16"
+      },
+      "out": {
+        "eligible_precision_count": 2,
+        "best_alt_precision": "fp8",
+        "best_alt_quality_delta_pct": 0.66,
+        "best_alt_evidence": "declared (router constant, different model)",
+        "bf16_measured_tok_s": 9300.4
+      }
+    },
+    {
+      "in": {
+        "quality_floor": "moderate_3pct",
+        "concurrency": "1"
+      },
+      "out": {
+        "eligible_precision_count": 2,
+        "best_alt_precision": "fp8",
+        "best_alt_quality_delta_pct": 0.66,
+        "best_alt_evidence": "declared (router constant, different model)",
+        "bf16_measured_tok_s": 694.0
+      }
+    },
+    {
+      "in": {
+        "quality_floor": "moderate_3pct",
+        "concurrency": "2"
+      },
+      "out": {
+        "eligible_precision_count": 2,
+        "best_alt_precision": "fp8",
+        "best_alt_quality_delta_pct": 0.66,
+        "best_alt_evidence": "declared (router constant, different model)",
+        "bf16_measured_tok_s": 1284.9
+      }
+    },
+    {
+      "in": {
+        "quality_floor": "moderate_3pct",
+        "concurrency": "4"
+      },
+      "out": {
+        "eligible_precision_count": 2,
+        "best_alt_precision": "fp8",
+        "best_alt_quality_delta_pct": 0.66,
+        "best_alt_evidence": "declared (router constant, different model)",
+        "bf16_measured_tok_s": 2585.9
+      }
+    },
+    {
+      "in": {
+        "quality_floor": "moderate_3pct",
+        "concurrency": "8"
+      },
+      "out": {
+        "eligible_precision_count": 2,
+        "best_alt_precision": "fp8",
+        "best_alt_quality_delta_pct": 0.66,
+        "best_alt_evidence": "declared (router constant, different model)",
+        "bf16_measured_tok_s": 5088.5
+      }
+    },
+    {
+      "in": {
+        "quality_floor": "moderate_3pct",
+        "concurrency": "16"
+      },
+      "out": {
+        "eligible_precision_count": 2,
+        "best_alt_precision": "fp8",
+        "best_alt_quality_delta_pct": 0.66,
+        "best_alt_evidence": "declared (router constant, different model)",
+        "bf16_measured_tok_s": 9300.4
+      }
+    },
+    {
+      "in": {
+        "quality_floor": "permissive_10pct",
+        "concurrency": "1"
+      },
+      "out": {
+        "eligible_precision_count": 4,
+        "best_alt_precision": "nvfp4",
+        "best_alt_quality_delta_pct": -5.18,
+        "best_alt_evidence": "measured (this model)",
+        "bf16_measured_tok_s": 694.0
+      }
+    },
+    {
+      "in": {
+        "quality_floor": "permissive_10pct",
+        "concurrency": "2"
+      },
+      "out": {
+        "eligible_precision_count": 4,
+        "best_alt_precision": "nvfp4",
+        "best_alt_quality_delta_pct": -5.18,
+        "best_alt_evidence": "measured (this model)",
+        "bf16_measured_tok_s": 1284.9
+      }
+    },
+    {
+      "in": {
+        "quality_floor": "permissive_10pct",
+        "concurrency": "4"
+      },
+      "out": {
+        "eligible_precision_count": 4,
+        "best_alt_precision": "nvfp4",
+        "best_alt_quality_delta_pct": -5.18,
+        "best_alt_evidence": "measured (this model)",
+        "bf16_measured_tok_s": 2585.9
+      }
+    },
+    {
+      "in": {
+        "quality_floor": "permissive_10pct",
+        "concurrency": "8"
+      },
+      "out": {
+        "eligible_precision_count": 4,
+        "best_alt_precision": "nvfp4",
+        "best_alt_quality_delta_pct": -5.18,
+        "best_alt_evidence": "measured (this model)",
+        "bf16_measured_tok_s": 5088.5
+      }
+    },
+    {
+      "in": {
+        "quality_floor": "permissive_10pct",
+        "concurrency": "16"
+      },
+      "out": {
+        "eligible_precision_count": 4,
+        "best_alt_precision": "nvfp4",
+        "best_alt_quality_delta_pct": -5.18,
+        "best_alt_evidence": "measured (this model)",
+        "bf16_measured_tok_s": 9300.4
+      }
+    }
+  ],
+  "verdict": {
+    "ko": "품질 기준을 풀어도 처리량 수치는 bf16만 실측이다. nvfp4·w4a16은 이 모델에서 실측된 품질 손실(각각 -5.18%, -8.23%)은 갖고 있지만 이 하드웨어에서 서빙 처리량을 잰 적이 없어 Forge는 이를 certify하지 못한다. 반대로 fp8의 +0.66%는 '측정됨'으로 표시되지만 실제로는 Qwen3-0.6B가 아니라 다른 모델(Qwen3-Coder-30B-A3B)에서 잰 라우터 상수다. 같은 '측정됨' 라벨이 서로 다른 신뢰도를 가릴 수 있다는 것을 그대로 보여준다.",
+    "en": "Loosening the quality goal never gets you a measured throughput number for anything but bf16, nvfp4 and w4a16 carry real quality losses measured on this exact model (-5.18% and -8.23%), but neither was ever served on this hardware, so Forge cannot certify their performance. Conversely fp8's +0.66% shows up as \"measured\" even though it was evaluated on a different model (Qwen3-Coder-30B-A3B, not Qwen3-0.6B), the same badge can hide very different confidence."
+  },
+  "provenance": {
+    "backend": "forge library (src/forge/adapters: router_matrix.RouterMatrix, quality_overlay.MeasuredQualityOverlay, measured.MeasuredHarness) run locally on CPython 3.12 against the two committed artifacts under data/measured/*.json (in-house GPU, Qwen3-0.6B); no GPU job submitted",
+    "command": "cd flagship/forge-autotuner && FORGE_ASSETS=<repo-root> PYTHONPATH=src .venv/bin/python scripts/build_demo_grid.py",
+    "generated": "2026-08-15",
+    "measured": true
+  }
+}

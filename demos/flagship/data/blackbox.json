@@ -1,0 +1,498 @@
+{
+  "id": "blackbox",
+  "product": {
+    "ko": "에이전트의 모든 판단·툴 호출·부작용을 이벤트 소싱 trace로 기록하고, 그 trace를 재생·분기·결함 주입·정책 검증까지 할 수 있게 하는 검증 가능한 에이전트 런타임입니다.",
+    "en": "A verifiable agent runtime that records every agent decision, tool call, and side effect as an event-sourced trace, and lets you replay, fork, fault-inject, and policy-verify that trace."
+  },
+  "howto": {
+    "ko": "항공권 예약 베이스라인 실행을 포크 지점에서 결함·예산 정책·항공권 제시 순서를 바꿔가며 21가지 조합으로 돌려보고, 최종 결정이 바뀌는지와 리플레이/diff 엔진이 그 분기를 실제로 잡아내는지 확인해 보세요.",
+    "en": "Take the baseline flight-booking run and fork it while varying the injected fault, the budget policy, or the offer order across 21 combinations, then see whether the decision changes and whether the replay/diff engine actually catches the divergence."
+  },
+  "controls": [
+    {
+      "key": "variant",
+      "label": {
+        "ko": "포크에서 바꿀 것",
+        "en": "What changes at the fork"
+      },
+      "type": "select",
+      "options": [
+        {
+          "value": "none",
+          "label": {
+            "ko": "변경 없음 (그대로 재현)",
+            "en": "No change (pure re-run)"
+          }
+        },
+        {
+          "value": "timeout_book",
+          "label": {
+            "ko": "결제 도구에 타임아웃 주입",
+            "en": "Inject a timeout on booking"
+          }
+        },
+        {
+          "value": "exception_book",
+          "label": {
+            "ko": "결제 도구에 예외 주입",
+            "en": "Inject an exception on booking"
+          }
+        },
+        {
+          "value": "crash_book",
+          "label": {
+            "ko": "결제 도구에서 프로세스 크래시 주입",
+            "en": "Inject a process crash on booking"
+          }
+        },
+        {
+          "value": "wrong_result_budget_reject",
+          "label": {
+            "ko": "예산 체크 결과를 강제로 거부로 조작",
+            "en": "Force the budget check to return rejected"
+          }
+        },
+        {
+          "value": "truncated_search_keep0",
+          "label": {
+            "ko": "검색 결과를 빈 목록으로 절단",
+            "en": "Truncate search results to empty"
+          }
+        },
+        {
+          "value": "reordered_offers_position_decider",
+          "label": {
+            "ko": "제시 순서를 뒤집고 첫 항목을 고르는 의사결정으로 교체",
+            "en": "Reverse offer order and switch to a position-based decider"
+          }
+        }
+      ]
+    },
+    {
+      "key": "policy",
+      "label": {
+        "ko": "예산 정책",
+        "en": "Budget policy"
+      },
+      "type": "select",
+      "options": [
+        {
+          "value": "permissive_400",
+          "label": {
+            "ko": "관대함 (400)",
+            "en": "Permissive (400)"
+          }
+        },
+        {
+          "value": "tight_150",
+          "label": {
+            "ko": "타이트함 (150, 최저가는 통과)",
+            "en": "Tight (150, still approves the cheapest fare)"
+          }
+        },
+        {
+          "value": "reject_100",
+          "label": {
+            "ko": "거부 (100, 최저가도 초과)",
+            "en": "Rejects (100, below even the cheapest fare)"
+          }
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "key": "chosen_flight",
+      "label": {
+        "ko": "선택된 항공편",
+        "en": "Chosen flight"
+      },
+      "unit": "",
+      "better": "n/a"
+    },
+    {
+      "key": "outcome",
+      "label": {
+        "ko": "실행 결과",
+        "en": "Run outcome"
+      },
+      "unit": "",
+      "better": "n/a"
+    },
+    {
+      "key": "decision_changed",
+      "label": {
+        "ko": "베이스라인 대비 결정 변화",
+        "en": "Decision changed vs baseline"
+      },
+      "unit": "",
+      "better": "n/a"
+    },
+    {
+      "key": "first_divergence_step",
+      "label": {
+        "ko": "첫 분기 지점",
+        "en": "First divergence"
+      },
+      "unit": "",
+      "better": "n/a"
+    },
+    {
+      "key": "fault_fired",
+      "label": {
+        "ko": "주입한 결함이 실제로 발동했는가",
+        "en": "Did the injected fault actually fire"
+      },
+      "unit": "",
+      "better": "n/a"
+    }
+  ],
+  "runs": [
+    {
+      "in": {
+        "variant": "none",
+        "policy": "permissive_400"
+      },
+      "out": {
+        "chosen_flight": "FL1",
+        "outcome": "completed",
+        "decision_changed": false,
+        "first_divergence_step": {
+          "ko": "분기 없음",
+          "en": "none"
+        },
+        "fault_fired": false
+      }
+    },
+    {
+      "in": {
+        "variant": "none",
+        "policy": "tight_150"
+      },
+      "out": {
+        "chosen_flight": "FL1",
+        "outcome": "completed",
+        "decision_changed": false,
+        "first_divergence_step": {
+          "ko": "6번째 이벤트",
+          "en": "event 6"
+        },
+        "fault_fired": false
+      }
+    },
+    {
+      "in": {
+        "variant": "none",
+        "policy": "reject_100"
+      },
+      "out": {
+        "chosen_flight": "FL1",
+        "outcome": "aborted",
+        "decision_changed": true,
+        "first_divergence_step": {
+          "ko": "6번째 이벤트",
+          "en": "event 6"
+        },
+        "fault_fired": false
+      }
+    },
+    {
+      "in": {
+        "variant": "timeout_book",
+        "policy": "permissive_400"
+      },
+      "out": {
+        "chosen_flight": "FL1",
+        "outcome": "failed",
+        "decision_changed": true,
+        "first_divergence_step": {
+          "ko": "12번째 이벤트",
+          "en": "event 12"
+        },
+        "fault_fired": true
+      }
+    },
+    {
+      "in": {
+        "variant": "timeout_book",
+        "policy": "tight_150"
+      },
+      "out": {
+        "chosen_flight": "FL1",
+        "outcome": "failed",
+        "decision_changed": true,
+        "first_divergence_step": {
+          "ko": "6번째 이벤트",
+          "en": "event 6"
+        },
+        "fault_fired": true
+      }
+    },
+    {
+      "in": {
+        "variant": "timeout_book",
+        "policy": "reject_100"
+      },
+      "out": {
+        "chosen_flight": "FL1",
+        "outcome": "aborted",
+        "decision_changed": true,
+        "first_divergence_step": {
+          "ko": "6번째 이벤트",
+          "en": "event 6"
+        },
+        "fault_fired": false
+      }
+    },
+    {
+      "in": {
+        "variant": "exception_book",
+        "policy": "permissive_400"
+      },
+      "out": {
+        "chosen_flight": "FL1",
+        "outcome": "failed",
+        "decision_changed": true,
+        "first_divergence_step": {
+          "ko": "12번째 이벤트",
+          "en": "event 12"
+        },
+        "fault_fired": true
+      }
+    },
+    {
+      "in": {
+        "variant": "exception_book",
+        "policy": "tight_150"
+      },
+      "out": {
+        "chosen_flight": "FL1",
+        "outcome": "failed",
+        "decision_changed": true,
+        "first_divergence_step": {
+          "ko": "6번째 이벤트",
+          "en": "event 6"
+        },
+        "fault_fired": true
+      }
+    },
+    {
+      "in": {
+        "variant": "exception_book",
+        "policy": "reject_100"
+      },
+      "out": {
+        "chosen_flight": "FL1",
+        "outcome": "aborted",
+        "decision_changed": true,
+        "first_divergence_step": {
+          "ko": "6번째 이벤트",
+          "en": "event 6"
+        },
+        "fault_fired": false
+      }
+    },
+    {
+      "in": {
+        "variant": "crash_book",
+        "policy": "permissive_400"
+      },
+      "out": {
+        "chosen_flight": "FL1",
+        "outcome": "crashed",
+        "decision_changed": true,
+        "first_divergence_step": {
+          "ko": "12번째 이벤트",
+          "en": "event 12"
+        },
+        "fault_fired": true
+      }
+    },
+    {
+      "in": {
+        "variant": "crash_book",
+        "policy": "tight_150"
+      },
+      "out": {
+        "chosen_flight": "FL1",
+        "outcome": "crashed",
+        "decision_changed": true,
+        "first_divergence_step": {
+          "ko": "6번째 이벤트",
+          "en": "event 6"
+        },
+        "fault_fired": true
+      }
+    },
+    {
+      "in": {
+        "variant": "crash_book",
+        "policy": "reject_100"
+      },
+      "out": {
+        "chosen_flight": "FL1",
+        "outcome": "aborted",
+        "decision_changed": true,
+        "first_divergence_step": {
+          "ko": "6번째 이벤트",
+          "en": "event 6"
+        },
+        "fault_fired": false
+      }
+    },
+    {
+      "in": {
+        "variant": "wrong_result_budget_reject",
+        "policy": "permissive_400"
+      },
+      "out": {
+        "chosen_flight": "FL1",
+        "outcome": "aborted",
+        "decision_changed": true,
+        "first_divergence_step": {
+          "ko": "8번째 이벤트",
+          "en": "event 8"
+        },
+        "fault_fired": true
+      }
+    },
+    {
+      "in": {
+        "variant": "wrong_result_budget_reject",
+        "policy": "tight_150"
+      },
+      "out": {
+        "chosen_flight": "FL1",
+        "outcome": "aborted",
+        "decision_changed": true,
+        "first_divergence_step": {
+          "ko": "6번째 이벤트",
+          "en": "event 6"
+        },
+        "fault_fired": true
+      }
+    },
+    {
+      "in": {
+        "variant": "wrong_result_budget_reject",
+        "policy": "reject_100"
+      },
+      "out": {
+        "chosen_flight": "FL1",
+        "outcome": "aborted",
+        "decision_changed": true,
+        "first_divergence_step": {
+          "ko": "6번째 이벤트",
+          "en": "event 6"
+        },
+        "fault_fired": true
+      }
+    },
+    {
+      "in": {
+        "variant": "truncated_search_keep0",
+        "policy": "permissive_400"
+      },
+      "out": {
+        "chosen_flight": "n/a",
+        "outcome": "unhandled_exception:ValueError",
+        "decision_changed": true,
+        "first_divergence_step": {
+          "ko": "4번째 이벤트",
+          "en": "event 4"
+        },
+        "fault_fired": true
+      }
+    },
+    {
+      "in": {
+        "variant": "truncated_search_keep0",
+        "policy": "tight_150"
+      },
+      "out": {
+        "chosen_flight": "n/a",
+        "outcome": "unhandled_exception:ValueError",
+        "decision_changed": true,
+        "first_divergence_step": {
+          "ko": "4번째 이벤트",
+          "en": "event 4"
+        },
+        "fault_fired": true
+      }
+    },
+    {
+      "in": {
+        "variant": "truncated_search_keep0",
+        "policy": "reject_100"
+      },
+      "out": {
+        "chosen_flight": "n/a",
+        "outcome": "unhandled_exception:ValueError",
+        "decision_changed": true,
+        "first_divergence_step": {
+          "ko": "4번째 이벤트",
+          "en": "event 4"
+        },
+        "fault_fired": true
+      }
+    },
+    {
+      "in": {
+        "variant": "reordered_offers_position_decider",
+        "policy": "permissive_400"
+      },
+      "out": {
+        "chosen_flight": "FL2",
+        "outcome": "completed",
+        "decision_changed": true,
+        "first_divergence_step": {
+          "ko": "4번째 이벤트",
+          "en": "event 4"
+        },
+        "fault_fired": false
+      }
+    },
+    {
+      "in": {
+        "variant": "reordered_offers_position_decider",
+        "policy": "tight_150"
+      },
+      "out": {
+        "chosen_flight": "FL2",
+        "outcome": "aborted",
+        "decision_changed": true,
+        "first_divergence_step": {
+          "ko": "4번째 이벤트",
+          "en": "event 4"
+        },
+        "fault_fired": false
+      }
+    },
+    {
+      "in": {
+        "variant": "reordered_offers_position_decider",
+        "policy": "reject_100"
+      },
+      "out": {
+        "chosen_flight": "FL2",
+        "outcome": "aborted",
+        "decision_changed": true,
+        "first_divergence_step": {
+          "ko": "4번째 이벤트",
+          "en": "event 4"
+        },
+        "fault_fired": false
+      }
+    }
+  ],
+  "verdict": {
+    "ko": "포크 지점 이후 무엇을 바꾸든 diff 엔진은 원본과 포크의 첫 분기를 이벤트 단위로 정확히 짚어낸다. 정책을 살짝만 조여도(150) 최종 선택은 안 바뀌지만 예산 체크 호출의 인자 변화는 여전히 잡아내고, 가격은 그대로 둔 채 제시 순서만 뒤집어도 선택되는 항공편이 바뀐다.",
+    "en": "Whatever changes at the fork point, the diff engine pinpoints the first divergence event by event: a slightly tighter budget (150) leaves the final pick unchanged but the diff still flags the budget-check call's changed arguments, and merely reversing offer order flips the chosen flight even though price never moved."
+  },
+  "provenance": {
+    "backend": "blackbox library (src/blackbox: run_agent, fork_run, diff_runs) run locally on CPython 3.12, stdlib only, no network/GPU",
+    "command": "cd flagship/blackbox-agent-runtime && PYTHONPATH=src .venv/bin/python scripts/build_demo_grid.py",
+    "generated": "2026-08-15",
+    "measured": true
+  }
+}

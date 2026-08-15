@@ -373,21 +373,21 @@
           <div class="pcard__tags"><span>2icorp/2i-case-14-hospital-ops-twin</span><span>#Python</span><span>#이산사건 시뮬레이션</span><span>#observe-critic-patch loop</span><span class="pcard__go">GitHub →</span></div>
         </div>
       </a>
-      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#embodied" data-cat="agent" data-q="embodied lab 로봇 정책 평가 mujoco 파지 grasp 물리 시뮬레이션 sim2real 벤치마크 평가환경 sylvanus4/embodied-lab Embodied Lab · 로봇 정책 평가" target="_blank" rel="noopener">
+      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#embodied" data-cat="agent" data-q="embodied lab 로봇 정책 평가 mujoco 파지 grasp 물리 시뮬레이션 sim2real 벤치마크 평가환경 sylvanus4/embodied-lab Embodied Lab · 로봇 신뢰성 평가 플랫폼" target="_blank" rel="noopener">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__embodied-lab.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.15</span></div>
-          <h3 class="pcard__title">Embodied Lab · 로봇 정책 평가</h3>
-          <p class="pcard__excerpt">단순화한 물리로 정책을 채점하던 평가 환경 위에 MuJoCo를 얹고 같은 정책을 다시 돌렸다. 물리 엔진에서는 파지 오프셋 정책이 40회 중 25회, 비례 제어가 4회 성공한다. 가벼운 환경에서는 둘 다 4회다. 순위가 바뀐 것이 아니라 구분 자체가 사라졌다는 뜻이라, 그 환경으로는 옮겨 쓸 수 있는 정책과 시뮬레이터에서만 되는 정책을 가려낼 수 없다. 기구학은 아직 단순화되어 있고 적응형 탐색이 예산에 따라 이겼다 졌다 하는 것은 미해결로 남겼다.</p>
+          <h3 class="pcard__title">Embodied Lab · 로봇 신뢰성 평가 플랫폼</h3>
+          <p class="pcard__excerpt">로봇 정책을 잘 나오는 장면 몇 개로 시연하는 대신, 조명과 마찰, 가림, 센서 노이즈, 지시 모호성, 그리퍼 결함을 대규모로 주입해 정책이 무너지는 영역을 자동으로 찾아내는 평가 인프라다. 실패를 최소 재현 시나리오로 줄이고 대표 사례를 실제 로봇 팔에서 확인하는 데까지 간다. 물리 엔진을 붙이자 평가 환경 자체가 갈렸다 — 단순화한 환경에서는 두 정책이 똑같이 실패하는데 실제 물리에서는 하나가 여섯 배 성공한다.</p>
           <div class="pcard__tags"><span>sylvanus4/embodied-lab</span><span>#로보틱스</span><span>#MuJoCo</span><span>#정책평가</span><span class="pcard__go">GitHub →</span></div>
         </div>
       </a>
-      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#blackbox" data-cat="agent" data-q="blackbox agent runtime 기록 재생 replay 결정 안정성 순서 불변성 order invariance 감사 추적 fork sylvanus4/blackbox-agent-runtime BlackBox · 에이전트 기록과 재생" target="_blank" rel="noopener">
+      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#blackbox" data-cat="agent" data-q="blackbox agent runtime 기록 재생 replay 결정 안정성 순서 불변성 order invariance 감사 추적 fork sylvanus4/blackbox-agent-runtime Blackbox · 검증 가능한 에이전트 런타임" target="_blank" rel="noopener">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__blackbox-agent-runtime.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.15</span></div>
-          <h3 class="pcard__title">BlackBox · 에이전트 기록과 재생</h3>
-          <p class="pcard__excerpt">에이전트의 결정을 기록해 두고 그대로 재생하는 런타임이다. 실제 모델을 물려 보니 같은 입력에 같은 답이 나와 재생은 어긋남을 다섯 번 중 0건으로 보고했다. 그런데 선택지 순서만 바꾸면 45%의 경우 결정이 달라지고, 재생은 기록해 둔 그 순서를 그대로 다시 먹인다. 재생이 통과했다는 것은 결정이 재현된다는 뜻이지 기록이 이유를 설명한다는 뜻이 아니라는 것을 수치로 갈라 놓았다. 재현성 100%는 이 하드웨어와 배치 크기에서의 값이다.</p>
+          <h3 class="pcard__title">Blackbox · 검증 가능한 에이전트 런타임</h3>
+          <p class="pcard__excerpt">에이전트의 모든 결정과 툴 호출, 부작용, 메모리 변경을 이벤트 소싱 트레이스로 남기고 재생과 fork, 결함 주입, 정책 검증까지 수행하는 런타임이다. 관찰만 제공하는 트레이싱과 달리 특정 스텝에서 다시 실행하고 조건을 바꿔 비교할 수 있으며, 재시도와 중복 전달이 결제나 삭제 같은 부작용을 두 번 실행시키는 사고를 막는 것이 목적이다. 실제 모델을 물려 보니 재생은 어긋남 0건을 보고하는데 선택지 순서만 바꾸면 45%에서 결정이 달라졌다 — 재생 통과가 곧 기록이 이유를 설명한다는 뜻은 아니다.</p>
           <div class="pcard__tags"><span>sylvanus4/blackbox-agent-runtime</span><span>#에이전트런타임</span><span>#재생</span><span>#결정안정성</span><span class="pcard__go">GitHub →</span></div>
         </div>
       </a>
@@ -445,39 +445,39 @@
           <div class="pcard__tags"><span>2icorp/work-scheduling-lab</span><span>#Python</span><span>#OR-Tools CP-SAT</span><span class="pcard__go">GitHub →</span></div>
         </div>
       </a>
-      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#siliconpilot" data-cat="optim" data-q="siliconpilot eda 설계공간 탐색 논리합성 yosys 넷리스트 덧셈기 ripple carry lookahead 셀 레벨 파이프라인 dse sylvanus4/siliconpilot-eda SiliconPilot · 회로 설계공간 탐색" target="_blank" rel="noopener">
+      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#siliconpilot" data-cat="optim" data-q="siliconpilot eda 설계공간 탐색 논리합성 yosys 넷리스트 덧셈기 ripple carry lookahead 셀 레벨 파이프라인 dse sylvanus4/siliconpilot-eda SiliconPilot · 자율 회로 설계공간 최적화" target="_blank" rel="noopener">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__siliconpilot-eda.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.15</span></div>
-          <h3 class="pcard__title">SiliconPilot · 회로 설계공간 탐색</h3>
-          <p class="pcard__excerpt">덧셈기 아키텍처와 파이프라인 깊이를 바꿔 가며 탐색하던 랩에 실제 논리합성을 붙였다. 시뮬레이터가 서로 다른 면적을 매기던 ripple carry와 carry lookahead가 시험한 모든 지점에서 완전히 같은 넷리스트로 합성됐다. 기준 설정에서 셀 46개, 레벨 17개로 동일하다. 튜닝 손잡이 네 개 중 하나는 합성을 거치고 나면 아무것도 움직이지 않는 값이었다. 남은 것도 같이 적었다. 실제 합성이 덮은 지점은 여섯 개이고 셀 면적과 레벨당 지연은 아직 선언한 상수다.</p>
+          <h3 class="pcard__title">SiliconPilot · 자율 회로 설계공간 최적화</h3>
+          <p class="pcard__excerpt">자연어 설계 목표와 RTL seed 를 주면 LLM 에이전트와 고전 최적화기, 제약 검사기, 합성 도구 피드백을 폐루프로 엮어 기능 동등성을 지킨 채 면적과 지연을 개선하는 설계공간 최적화기다. 값싼 게이트(컴파일·시뮬레이션)로 무효 후보를 먼저 떨어뜨리고 살아남은 후보만 비싼 물리 실행으로 승격시켜 예산을 아낀다. 실제 논리합성을 붙여 돌려 보니 시뮬레이터가 서로 다르다고 하던 두 덧셈기 구조가 시험한 모든 지점에서 같은 넷리스트로 합성됐고, 튜닝 손잡이 네 개 중 하나는 합성 뒤에는 아무것도 움직이지 않는 값이었다.</p>
           <div class="pcard__tags"><span>sylvanus4/siliconpilot-eda</span><span>#EDA</span><span>#설계공간탐색</span><span>#논리합성</span><span class="pcard__go">GitHub →</span></div>
         </div>
       </a>
-      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#orbitguard" data-cat="optim" data-q="orbitguard 궤도 위성 conjunction 근접 스크리닝 sgp4 tle 카탈로그 도킹 분리거리 우주물체 충돌 sylvanus4/orbitguard-twin OrbitGuard · 위성 근접 스크리닝" target="_blank" rel="noopener">
+      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#orbitguard" data-cat="optim" data-q="orbitguard 궤도 위성 conjunction 근접 스크리닝 sgp4 tle 카탈로그 도킹 분리거리 우주물체 충돌 sylvanus4/orbitguard-twin OrbitGuard · 위성 충돌회피 디지털 트윈" target="_blank" rel="noopener">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__orbitguard-twin.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.15</span></div>
-          <h3 class="pcard__title">OrbitGuard · 위성 근접 스크리닝</h3>
-          <p class="pcard__excerpt">공개 궤도 카탈로그와 SGP4 전파기로 실제 요소를 받아 근접 쌍을 걸러내게 바꿨다. 210쌍을 훑어 보니 위험도 상위가 사건이 아니라 중복이었다. 정거장 군집 21개 객체 중 12개는 도킹 상태라 동일한 요소를 발표하고, 그 쌍들이 분리거리 0.000 km로 계산되어 40.8 km까지 접근하는 유일한 진짜 사건보다 전부 위에 올라온다. 동반궤도 판정 임계값 50 m/s는 카탈로그에서 유도한 값이 아니라 아직 선언한 값이다.</p>
+          <h3 class="pcard__title">OrbitGuard · 위성 충돌회피 디지털 트윈</h3>
+          <p class="pcard__excerpt">공개 궤도 데이터로 다수 위성을 전파해 근접 접근을 탐지하고, 충돌 위험만이 아니라 연료와 임무 중단, 기동 이후 생기는 2차 접근까지 함께 놓고 회피기동 후보를 제안하는 디지털 트윈이다. 어느 카탈로그 스냅숏에서 출발했고 왜 그 후보가 기각됐는지를 재현 가능한 형태로 남기는 것을 시각화만큼 중요한 요구사항으로 잡았다. 실제 카탈로그를 물려 210쌍을 스크리닝하니 위험도 상위가 사건이 아니라 중복이었다 — 도킹 상태라 같은 요소를 발표하는 12개 객체가 분리거리 0으로 계산돼 진짜 접근보다 위에 올라왔다.</p>
           <div class="pcard__tags"><span>sylvanus4/orbitguard-twin</span><span>#궤도역학</span><span>#SGP4</span><span>#근접스크리닝</span><span class="pcard__go">GitHub →</span></div>
         </div>
       </a>
-      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#gridmind" data-cat="optim" data-q="gridmind 마이크로그리드 급전 dispatch 배터리 일사량 태양광 자기상관 기상 관측 아카이브 시계열 부족 sylvanus4/gridmind-microgrid GridMind · 마이크로그리드 급전" target="_blank" rel="noopener">
+      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#gridmind" data-cat="optim" data-q="gridmind 마이크로그리드 급전 dispatch 배터리 일사량 태양광 자기상관 기상 관측 아카이브 시계열 부족 sylvanus4/gridmind-microgrid GridMind · 자율 마이크로그리드 운영" target="_blank" rel="noopener">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__gridmind-microgrid.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.15</span></div>
-          <h3 class="pcard__title">GridMind · 마이크로그리드 급전</h3>
-          <p class="pcard__excerpt">합성 일사량으로 급전 계획을 세우던 것을 공개 기상 관측 아카이브로 바꿔 다시 쟀다. 실측 구름은 한 시간 지연 자기상관이 +0.881이고 최악 부족 구간이 15시간 이어지는데 생성기는 -0.031에 3시간이다. 구름 확률을 올려 평균 일사량을 맞춰도 자기상관은 -0.006에 머문다. 파라미터로 좁힐 수 있는 차이가 아니라 흐린 날이 이어진다는 성질 자체가 없는 것이다. 부족 구간이 밤에 끊기므로 15시간은 최악이 아니라 하한이고, 어레이 면적과 효율은 아직 선언값이다.</p>
+          <h3 class="pcard__title">GridMind · 자율 마이크로그리드 운영</h3>
+          <p class="pcard__excerpt">태양광과 건물 수요, 배터리, EV 충전, 전력 가격, 정전을 함께 예측하고 매 시점 제약 최적화와 MPC 로 24시간 운영계획을 다시 세우는 마이크로그리드 디지털 트윈이다. 맑은 날 평균 비용만 보지 않고 태양광 급감이나 배터리 고장, 계통 단절 같은 혼돈 시나리오에서 핵심 부하를 지키는지 같은 잣대로 잰다. 공개 기상 관측을 붙이자 합성 일사량이 구조적으로 다르다는 게 드러났다 — 실제 흐림은 이어지는데 생성기의 흐림은 매 시각 새로 뽑혀 최악 부족 구간이 15시간 대 3시간으로 갈린다.</p>
           <div class="pcard__tags"><span>sylvanus4/gridmind-microgrid</span><span>#마이크로그리드</span><span>#급전계획</span><span>#시계열</span><span class="pcard__go">GitHub →</span></div>
         </div>
       </a>
-      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#helios" data-cat="optim" data-q="helios 배치 계획 deployment planning gpu 동시성 concurrency 처리량 throughput 전력 idle 유휴 토큰당 에너지 sylvanus4/helios-ai-cloud Helios · AI 인프라 배치 계획" target="_blank" rel="noopener">
+      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#helios" data-cat="optim" data-q="helios 배치 계획 deployment planning gpu 동시성 concurrency 처리량 throughput 전력 idle 유휴 토큰당 에너지 sylvanus4/helios-ai-cloud Helios · 자율 AI 클라우드 control plane" target="_blank" rel="noopener">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__helios-ai-cloud.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.15</span></div>
-          <h3 class="pcard__title">Helios · AI 인프라 배치 계획</h3>
-          <p class="pcard__excerpt">GPU 배치와 동시성을 계획하던 도구에 처리량과 전력을 실제로 재서 넣었다. 동시성을 1에서 16으로 올리면 처리량이 13.4배가 되는데 토큰 사이 지연은 1.4밀리초에서 평평하다. 전력은 388W에서 포화하고 그중 247.8W는 요청이 없어도 나가던 몫이라, 토큰당 에너지가 9.2배 좋아진 것은 효율이 생긴 것이 아니라 이미 내던 전력을 나눠 쓴 결과였다. 큰 카드에 작은 모델 하나라는 조건에서만 성립하는 결론이라 그 단서도 같이 적었다.</p>
+          <h3 class="pcard__title">Helios · 자율 AI 클라우드 control plane</h3>
+          <p class="pcard__excerpt">모델과 트래픽, SLO, 예산, 가용 클러스터를 입력하면 하드웨어와 정밀도, 런타임, 병렬화, 서빙 토폴로지, replica 구성을 탐색해 근거와 불확실성, 롤백 조건을 담은 배치 계획을 내는 control plane 이다. 정적 YAML 로 배포를 정하는 대신 후보를 만들고 안전한 벤치마크로 검증해 고르는 폐루프로 문제를 다시 정의했다. 처리량과 전력을 실제로 재 보니 동시성을 16배로 올려도 토큰 사이 지연은 평평했고, 최대 부하에서도 전력의 63.8%는 요청이 없어도 나가던 몫이었다.</p>
           <div class="pcard__tags"><span>sylvanus4/helios-ai-cloud</span><span>#배치계획</span><span>#전력실측</span><span>#서빙</span><span class="pcard__go">GitHub →</span></div>
         </div>
       </a>
@@ -517,12 +517,12 @@
           <div class="pcard__tags"><span>#Shell</span><span>#Python</span></div>
         </div>
       </div>
-      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#forge" data-cat="llm" data-q="forge autotuner 서빙 오토튜너 양자화 quantization nvfp4 w4a16 int4 fp4 품질 보존 처리량 라우팅 상수표 sylvanus4/forge-autotuner Forge · 서빙 오토튜너와 양자화 실측" target="_blank" rel="noopener">
+      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#forge" data-cat="llm" data-q="forge autotuner 서빙 오토튜너 양자화 quantization nvfp4 w4a16 int4 fp4 품질 보존 처리량 라우팅 상수표 sylvanus4/forge-autotuner Forge · 모델-서빙 오토튜너" target="_blank" rel="noopener">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__forge-autotuner.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.15</span></div>
-          <h3 class="pcard__title">Forge · 서빙 오토튜너와 양자화 실측</h3>
-          <p class="pcard__excerpt">서빙 설정을 상수표로 고르던 라우터에 실측 계층을 얹었다. 자체 GPU에서 재 보니 4비트라는 한 줄에 성질이 다른 두 방식이 묶여 있었다. 가중치를 똑같이 4비트로 줄이는데 품질 보존율이 0.9177과 0.9482로 3포인트 벌어진다. 상수표에는 정수형 한 줄뿐이고 부동소수점 4비트 줄은 아예 없었다. 실측이 없는 자리는 상수를 그대로 두고 값이 잰 것인지 선언한 것인지 결과에 같이 실어 보내게 했다. p95와 p99는 아직 재지 않아 최댓값을 상한으로 넣어 두었다.</p>
+          <h3 class="pcard__title">Forge · 모델-서빙 오토튜너</h3>
+          <p class="pcard__excerpt">모델과 목표 GPU 를 주면 정밀도와 런타임, 병렬화, 컨텍스트·배치 프로파일을 자동으로 실험해 정확도와 지연, 메모리, 비용의 Pareto frontier 를 만들고 제3자가 같은 조건에서 재현할 수 있도록 지문을 박은 Serving Certificate 로 봉인하는 오토튜너다. 가장 빠른 구성 하나가 아니라 품질 손실까지 함께 담는 것이 산출물이다. 실측을 얹자 상수표의 4비트 한 줄에 성질이 다른 두 방식이 묶여 있었고 품질 보존율이 3포인트 벌어졌다.</p>
           <div class="pcard__tags"><span>sylvanus4/forge-autotuner</span><span>#양자화</span><span>#서빙튜닝</span><span>#실측</span><span class="pcard__go">GitHub →</span></div>
         </div>
       </a>
@@ -652,12 +652,12 @@
           <div class="pcard__tags"><span>2icorp/2i-case-13-medimg-loop-agent</span><span>#Python</span><span>#의료영상 분할</span><span>#observe-critic-patch loop</span><span class="pcard__go">GitHub →</span></div>
         </div>
       </a>
-      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#omniindex" data-cat="vision" data-q="omniindex 멀티모달 검색 이미지 해시 dhash ahash 오디오 지문 코덱 크롭 임계값 threshold 색인 retrieval sylvanus4/omniindex-search OmniIndex · 멀티모달 검색과 임계값" target="_blank" rel="noopener">
+      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#omniindex" data-cat="vision" data-q="omniindex 멀티모달 검색 이미지 해시 dhash ahash 오디오 지문 코덱 크롭 임계값 threshold 색인 retrieval sylvanus4/omniindex-search OmniIndex · 통합 지각 검색 엔진" target="_blank" rel="noopener">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__omniindex-search.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.15</span></div>
-          <h3 class="pcard__title">OmniIndex · 멀티모달 검색과 임계값</h3>
-          <p class="pcard__excerpt">이미지와 오디오를 같은 색인에 넣고 실제 코덱을 통과시켜 무엇이 살아남는지 쟀다. 두 해시 모두 JPEG 품질 25와 25% 축소를 무사히 통과하고 크롭에서 무너진다. 가장자리를 5%씩만 잘라도 한쪽은 44%로 떨어진다. 더 곤란한 것은 다른 한쪽인데, 축소에서 100%를 찾아내면서도 진짜 짝의 최악값과 남의 것 중 가장 가까운 값을 갈라 놓을 임계값이 존재하지 않는다. 검색이 맞았다는 것과 답해도 된다는 것이 다른 문제라는 뜻이다. 색인이 커질수록 이 분리는 나빠진다.</p>
+          <h3 class="pcard__title">OmniIndex · 통합 지각 검색 엔진</h3>
+          <p class="pcard__excerpt">텍스트와 이미지, 영상, 음성, 음악을 정확·지각 지문과 멀티모달 임베딩으로 함께 색인하고, 질의 라우터가 '이게 정확히 그것인가'와 '이것과 비슷한 게 뭔가'를 갈라 통합 검색하는 엔진이다. 결과가 어떤 영상인지가 아니라 그 영상의 몇 초 지점인지까지 가리키도록 시간·공간 계보를 색인 설계 단계부터 보존한다. 실제 코덱을 통과시켜 보니 지문은 압축과 축소를 견디고 크롭에서 무너졌으며, 진짜 짝과 남의 것을 가를 임계값이 존재하지 않는 구간이 드러났다.</p>
           <div class="pcard__tags"><span>sylvanus4/omniindex-search</span><span>#멀티모달검색</span><span>#지각해시</span><span>#임계값</span><span class="pcard__go">GitHub →</span></div>
         </div>
       </a>
@@ -1138,12 +1138,12 @@
           <div class="pcard__tags"><span>sylvanus4/korean-history-exam-lab</span><span>#지식그래프</span><span>#간격반복</span><span>#Tauri</span><span class="pcard__go">GitHub →</span></div>
         </div>
       </a>
-      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#vaultai" data-cat="product" data-q="vaultai 망분리 airgap 에어갭 문서 rag 근거 faithfulness 재현율 정밀도 유출 탐지 egress 로컬 모델 sylvanus4/vaultai-workstation VaultAI · 망분리 문서 작업대" target="_blank" rel="noopener">
+      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#vaultai" data-cat="product" data-q="vaultai 망분리 airgap 에어갭 문서 rag 근거 faithfulness 재현율 정밀도 유출 탐지 egress 로컬 모델 sylvanus4/vaultai-workstation VaultAI · 망분리 AI 작업대" target="_blank" rel="noopener">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__vaultai-workstation.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.15</span></div>
-          <h3 class="pcard__title">VaultAI · 망분리 문서 작업대</h3>
-          <p class="pcard__excerpt">망 밖으로 아무것도 내보내지 않는 문서 작업대에서, 발췌만 하는 응답기와 로컬 모델을 같은 질문으로 붙여 봤다. 발췌형이 근거 없는 수치를 0건 낸 것은 잘해서가 아니라 원문을 그대로 돌려주기 때문이었다. 재현율 60.5%는 807자 안에 수치 414개를 담아 얻은 값이고 정밀도는 12.6%다. 모델은 36자로 65.5%를 답하는 대신 수치 58개 중 8개를 근거 없이 쓴다. 보증과 구체성을 맞바꾸는 거래다. 유출 탐지 게이트는 아직 찾아내기만 하고 차단은 하지 않는다.</p>
+          <h3 class="pcard__title">VaultAI · 망분리 AI 작업대</h3>
+          <p class="pcard__excerpt">문서와 이미지, 음성, 영상의 분석과 OCR, 임베딩 검색, 음성 인식, 개인정보 마스킹, 로컬 요약을 전부 기기 안에서 처리하고 외부 네트워크 요청이 0건임을 오프라인 E2E 테스트로 반복 증명하는 작업대다. '서버에 안 보낸다'는 설명이 아니라 망을 끊은 상태에서 업무가 끝까지 도는지를 증거로 삼는다. 발췌형 응답과 로컬 모델을 같은 질문에 붙여 보니 근거 없는 수치 0건은 잘해서가 아니라 원문을 통째로 돌려주기 때문이었고, 정밀도는 12.6% 였다.</p>
           <div class="pcard__tags"><span>sylvanus4/vaultai-workstation</span><span>#망분리</span><span>#근거검증</span><span>#로컬LLM</span><span class="pcard__go">GitHub →</span></div>
         </div>
       </a>
@@ -1407,12 +1407,12 @@
           <div class="pcard__tags"><span>#TypeScript</span><span>#Swift</span><span>#Capacitor</span></div>
         </div>
       </div>
-      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#bioproof" data-cat="misc" data-q="bioproof 단백질 구조 예측 pldd 신뢰도 보정 calibration ece rmsd 폴딩 folding 아카이브 gpu sylvanus4/bioproof-lab BioProof · 구조 예측 신뢰도" target="_blank" rel="noopener">
+      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#bioproof" data-cat="misc" data-q="bioproof 단백질 구조 예측 pldd 신뢰도 보정 calibration ece rmsd 폴딩 folding 아카이브 gpu sylvanus4/bioproof-lab BioProof · 생체분자 예측 신뢰도 QA" target="_blank" rel="noopener">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__bioproof-lab.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.15</span></div>
-          <h3 class="pcard__title">BioProof · 구조 예측 신뢰도</h3>
-          <p class="pcard__excerpt">단백질 구조 예측 모델이 스스로 매긴 신뢰도가 실제 정확도를 얼마나 따라가는지 잰 랩이다. 자체 GPU에서 단일 서열로 접어 보니 다섯 표적 중 셋은 성공하고 둘은 실패했는데, 실패한 쪽에서 모델의 신뢰도는 0.955에서 0.510으로 절반이 되는 동안 실제 정확도는 0.99에서 0.067로 열네 배 떨어졌다. 실패를 감지는 하되 그 크기만큼 보고하지 못한다는 뜻이다. 실패한 둘은 모두 이황화 결합이 많은 작은 단백질이었다. 표적 다섯 개라 결과가 아니라 관측으로 적었다.</p>
+          <h3 class="pcard__title">BioProof · 생체분자 예측 신뢰도 QA</h3>
+          <p class="pcard__excerpt">공개 벤치마크 단백질을 여러 예측기로 반복 실행해 구조와 신뢰도의 모델 간 일치도, 실험 구조 대비 오차, 섭동 민감도, 버전과 하드웨어 재현성을 한 파이프라인에서 평가하고 신뢰도 리포트를 내는 과학 AI QA 플랫폼이다. 신약을 설계하지도 임상 결론을 내지도 않는다. 자체 GPU 로 접어 보니 실패한 표적에서 모델의 신뢰도는 절반으로 내려가는데 실제 정확도는 열네 배 떨어졌다 — 실패를 감지는 하되 그 크기만큼 보고하지는 못한다.</p>
           <div class="pcard__tags"><span>sylvanus4/bioproof-lab</span><span>#구조예측</span><span>#신뢰도보정</span><span>#단백질</span><span class="pcard__go">GitHub →</span></div>
         </div>
       </a>

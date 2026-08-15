@@ -101,32 +101,67 @@ console.log("\n[flagship · 국문 데스크탑]");
   }).catch(() => -1);
   ink > 0.0005 ? ok(`씬 픽셀 ${(ink * 100).toFixed(2)}%`) : bad(`씬이 비었다 (lit ${ink})`);
 
-  const open = await p.$$eval("#open li", (e) => e.length);
-  open === 3 ? ok(`남은 항목 ${open}건 (첫 프로젝트)`) : bad(`남은 항목 ${open}건 (기대 3)`);
+  // 제품 설명과 조작 패널이 있어야 데모다. 측정 결과만 있으면 실험 노트다.
+  await p.waitForSelector('.demo .opt', { timeout: 8000 });
+  const first = await p.evaluate(() => ({
+    product: (document.getElementById('product').textContent || '').trim().length,
+    ctls: document.querySelectorAll('.demo .ctl').length,
+    outs: document.querySelectorAll('.demo .oc').length,
+  }));
+  first.product > 30 ? ok(`제품 설명 ${first.product}자`) : bad(`제품 설명이 없거나 짧다 (${first.product}자)`);
+  first.ctls >= 1 && first.outs >= 2
+    ? ok(`조작 ${first.ctls}축 · 결과 ${first.outs}개`)
+    : bad(`조작 패널 빈약: 축 ${first.ctls} / 결과 ${first.outs}`);
 
-  // 전 프로젝트 순회: 탭마다 본문·범례·남은 항목이 실제로 바뀌는가
-  const seen = new Set(); let openTotal = 0; let legendMiss = 0;
+  // 전 프로젝트 순회: 각 시스템이 제품 설명 + 조작 가능한 표를 갖는가,
+  // 그리고 조작하면 결과가 실제로 바뀌는가(바뀌지 않으면 조회표가 아니라 그림이다).
+  const seen = new Set(); let noChange = [], noTable = [], thin = [];
   for (const name of tabs) {
     await p.click(`.tab:has-text("${name}")`);
-    await p.waitForTimeout(120);
+    await p.waitForTimeout(160);
+    const has = await p.waitForSelector('.demo .opt', { timeout: 8000 }).catch(() => null);
+    if (!has) { noTable.push(name); continue; }
     const r = await p.evaluate(() => ({
-      h2: document.getElementById("proj-name").textContent.trim(),
-      finding: document.getElementById("finding").textContent.trim().length,
-      legend: document.getElementById("legend").textContent.trim().length,
-      open: document.querySelectorAll("#open li").length,
-      chips: document.querySelectorAll("#open .chip").length,
+      h2: document.getElementById('proj-name').textContent.trim(),
+      product: (document.getElementById('product').textContent || '').trim().length,
+      verdict: (document.getElementById('verdict').textContent || '').trim().length,
+      legend: document.getElementById('legend').textContent.trim().length,
+      prov: (document.querySelector('.dprov')?.textContent || '').trim().length,
+      record: (document.getElementById('prov')?.textContent || '').trim().length,
       hash: location.hash,
     }));
     seen.add(r.h2);
-    openTotal += r.open;
-    if (r.legend < 20) legendMiss++;
-    if (r.finding < 80) bad(`${name}: 본문이 너무 짧다 (${r.finding}자)`);
-    if (r.open !== r.chips) bad(`${name}: 항목 ${r.open} / 분류칩 ${r.chips} 불일치`);
+    if (r.product < 30 || r.verdict < 20) thin.push(`${name}(설명 ${r.product}/판정 ${r.verdict})`);
+    if (r.prov < 10) thin.push(`${name}(출처 없음)`);
+    // 재현 경로는 접혀 있어도 존재해야 한다. 접었다고 사라지면 근거 없는 표가 된다.
+    if (r.record < 40) thin.push(`${name}(재현 기록 없음)`);
+    if (r.legend < 20) thin.push(`${name}(범례 없음)`);
     if (!r.hash) bad(`${name}: 해시 딥링크 없음`);
+
+    // 두 번째 선택지를 눌러 결과가 바뀌는지 본다.
+    const changed = await p.evaluate(() => {
+      const read = () => [...document.querySelectorAll('.demo .ov')].map((e) => e.textContent).join('|');
+      const before = read();
+      const offs = [...document.querySelectorAll('.demo .opt')].filter((b) => !b.classList.contains('on'));
+      if (!offs.length) return null;
+      // 옵션 하나가 결과를 안 바꾸는 것은 정상일 수 있다(같은 넷리스트로 합성되는 두
+      // 구조처럼). 표가 죽은 것은 어떤 옵션을 눌러도 안 바뀔 때다.
+      for (const o of offs) {
+        o.click();
+        if (read() !== before) return true;
+      }
+      return false;
+    });
+    if (changed === null || changed === false) noChange.push(name);
   }
-  seen.size === 10 ? ok("탭 10개 모두 다른 본문") : bad(`본문 ${seen.size}종 (기대 10)`);
-  openTotal === 30 ? ok(`남은 항목 합계 ${openTotal}건`) : bad(`남은 항목 합계 ${openTotal}건 (기대 30)`);
-  legendMiss === 0 ? ok("범례 10개 전부 존재") : bad(`범례 누락 ${legendMiss}건`);
+  seen.size === 10 ? ok("탭 10개 모두 다른 제품") : bad(`제품 ${seen.size}종 (기대 10)`);
+  noTable.length === 0 ? ok("조작표 10개 전부 로드") : bad(`조작표 없음: ${noTable.join(", ")}`);
+  noChange.length === 0 ? ok("조작하면 결과가 바뀐다 (10/10)") : bad(`조작해도 결과가 그대로: ${noChange.join(", ")}`);
+  thin.length === 0 ? ok("설명·판정·출처·범례 전부 있음") : bad(`빈약: ${thin.slice(0, 4).join(" / ")}`);
+
+  // 실험 노트 프레이밍이 남아 있지 않은지
+  const scratch = await p.evaluate(() => document.body.innerText.includes('아직 답하지 못한'));
+  scratch ? bad("공개면에 미해결 목록이 남아 있다") : ok("미해결 목록 없음");
 
   // 딥링크 복원
   await p.goto(`${URL_KO}#helios`, { waitUntil: "networkidle" });
@@ -150,8 +185,8 @@ console.log("\n[flagship · 국문 데스크탑]");
   await p.goto(URL_KO, { waitUntil: "networkidle" });
   await p.waitForTimeout(300);
   await p.keyboard.press("Tab");
-  const first = await p.evaluate(() => document.activeElement.className);
-  first.includes("skip") ? ok("스킵 링크가 첫 Tab 정지점") : bad(`첫 Tab이 스킵 링크가 아님 (${first})`);
+  const firstStop = await p.evaluate(() => document.activeElement.className);
+  firstStop.includes("skip") ? ok("스킵 링크가 첫 Tab 정지점") : bad(`첫 Tab이 스킵 링크가 아님 (${firstStop})`);
 
   // 포커스 표시가 실제로 그려지나
   const focusRing = await p.evaluate(() => {
@@ -247,13 +282,15 @@ console.log("\n[flagship · 감축 모션 / WebGL 부재]");
   });
   await p.goto(URL_KO, { waitUntil: "networkidle" });
   await p.waitForTimeout(400);
+  await p.waitForSelector(".demo .opt", { timeout: 8000 }).catch(() => null);
   const r = await p.evaluate(() => ({
-    finding: (document.getElementById("finding").textContent || "").length,
-    open: document.querySelectorAll("#open li").length,
+    product: (document.getElementById("product").textContent || "").length,
+    opts: document.querySelectorAll(".demo .opt").length,
+    outs: document.querySelectorAll(".demo .oc").length,
     legend: (document.getElementById("legend").textContent || "").length,
   }));
-  r.finding > 80 && r.open === 3 && r.legend > 20
-    ? ok("WebGL 없어도 본문·항목·안내 유지")
+  r.product > 30 && r.opts >= 2 && r.outs >= 2 && r.legend > 20
+    ? ok("WebGL 없어도 제품 설명과 조작표 유지")
     : bad(`WebGL 부재 폴백 실패 ${JSON.stringify(r)}`);
   errors.length ? bad(`폴백 콘솔 에러: ${errors[0]}`) : ok("폴백 콘솔 에러 0");
   await ctx.close();

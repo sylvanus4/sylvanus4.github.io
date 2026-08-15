@@ -7,22 +7,19 @@
 
 import { SceneView, reducedMotion } from './gl.js';
 import { buildScene } from './scenes.js';
-import { PROJECTS, KIND } from './data.js';
+import { PROJECTS } from './data.js';
+import { DemoPanel } from './demo.js';
 
 const UI = {
   ko: {
     htmlLang: 'ko',
     toggle: 'English',
-    title: '재 보고 나서 달라진 것들',
-    lede: '열 개 도메인에서 각자 진짜 백엔드를 붙여 다시 쟀습니다. 합성기, 물리 엔진, 공개 궤도 카탈로그, 기상 관측 아카이브, 자체 GPU 위의 모델로 시뮬레이터를 갈아 끼우자 결론이 달라졌습니다. 각 시스템이 무엇을 쟀고 무엇을 아직 모르는지 함께 놓았습니다.',
-    facts: (n, r) => [`시스템 <b>${n}</b>개`, `실측 백엔드 <b>${n}</b>종`, `아직 답하지 못한 것 ${r}건`, '실행 코드 비공개'],
-    proof: [
-      { id: 'siliconpilot', n: '46 / 17', w: '두 구조가 같은 넷리스트로 합성됩니다', go: 'SiliconPilot 보기' },
-      { id: 'orbitguard', n: '31 / 210', w: '근접 경보 상위는 같은 물체를 두 번 센 것입니다', go: 'OrbitGuard 보기' },
-      { id: 'helios', n: '63.8%', w: '최대 부하에서도 전력의 이만큼이 유휴분입니다', go: 'Helios 보기' },
-    ],
-    openH: (n) => `아직 답하지 못한 것 ${n}건`,
-    hint: '끌어서 돌리고, 휠로 확대합니다.',
+    title: '직접 만든 열 개 시스템',
+    lede: '반도체 설계 탐색, 위성 충돌 회피, 로봇 신뢰성, 단백질 예측 검증, 마이크로그리드 운영, 망분리 문서 작업대, 에이전트 런타임, 서빙 오토튜너, AI 클라우드 배치, 멀티모달 검색. 각각 무엇을 하는 시스템인지 읽는 대신 여기서 직접 조작해 보실 수 있습니다. 화면의 숫자는 전부 그 시스템을 실제로 돌려 나온 값입니다.',
+    facts: (n) => [`시스템 <b>${n}</b>개`, '전부 조작 가능', '실제 백엔드 실행 결과', '코드 비공개'],
+      hint: '끌어서 돌리고, 휠로 확대합니다.',
+    more: '측정 기록 보기',
+    loading: '불러오는 중',
     nogl: '이 브라우저에서는 WebGL2를 쓸 수 없어 그림을 건너뜁니다. 아래 측정값은 그대로 읽으실 수 있습니다.',
     note: '<strong>코드는 비공개입니다.</strong> 열 저장소는 공개하지 않고, 대신 각 시스템이 무엇을 하는지 이 페이지에서 직접 눌러 보실 수 있게 했습니다. 소스를 함께 보셔야 하는 자리라면 말씀해 주시면 그 자리에서 열어 드립니다.',
     foot: '수치는 전부 실측입니다. 계산으로 채운 값과 선언한 상수는 위에 그렇게 적어 두었습니다.',
@@ -33,16 +30,12 @@ const UI = {
   en: {
     htmlLang: 'en',
     toggle: '한국어',
-    title: 'What changed once it was measured',
-    lede: 'Ten domains, each rewired to a real backend and measured again. A synthesis tool, a physics engine, a public orbital catalogue, a weather archive, models on in-house GPUs. Swapping the simulator for the real thing changed the answer. What each system measured sits next to what it still cannot answer.',
-    facts: (n, r) => [`<b>${n}</b> systems`, `<b>${n}</b> real backends`, `${r} questions still open`, 'code private'],
-    proof: [
-      { id: 'siliconpilot', n: '46 / 17', w: 'two architectures, one identical netlist', go: 'Open SiliconPilot' },
-      { id: 'orbitguard', n: '31 / 210', w: 'screened pairs that are one object counted twice', go: 'Open OrbitGuard' },
-      { id: 'helios', n: '63.8%', w: 'of the power at peak load is idle draw', go: 'Open Helios' },
-    ],
-    openH: (n) => `Still open (${n})`,
+    title: 'Ten systems I built',
+    lede: 'Chip design-space search, satellite collision avoidance, robot reliability, protein prediction QA, microgrid operation, an air-gapped document workstation, an agent runtime, a serving autotuner, AI cloud placement, multimodal retrieval. Rather than read about them, operate them here. Every number on screen came out of actually running that system.',
+    facts: (n) => [`<b>${n}</b> systems`, 'all operable here', 'real backend output', 'code private'],
     hint: 'Drag to orbit, scroll to zoom.',
+    more: 'Measurement record',
+    loading: 'Loading',
     nogl: 'This browser has no WebGL2, so the scene is skipped. The measurements below read the same.',
     note: '<strong>The code is private.</strong> The ten repositories are not published. What each system does is on this page instead, and you can operate it here. If a conversation calls for reading the source, say so and I will open it there.',
     foot: 'Every figure here is measured. Values that are computed or declared are labelled as such above.',
@@ -53,7 +46,7 @@ const UI = {
 };
 
 const $ = (id) => document.getElementById(id);
-const state = { lang: 'ko', project: PROJECTS[0], view: null };
+const state = { lang: 'ko', project: PROJECTS[0], view: null, demo: null };
 
 /* ---------- language ---------- */
 
@@ -82,18 +75,12 @@ function setLang(lang) {
 
 function renderChrome() {
   const t = UI[state.lang];
-  const openCount = PROJECTS.reduce((n, p) => n + p.remaining.length, 0);
   document.title = state.lang === 'ko'
     ? `플래그십 10종 — ${t.title}`
     : `Ten flagship systems — ${t.title}`;
   $('title').textContent = t.title;
   $('lede').textContent = t.lede;
-  $('facts').innerHTML = t.facts(PROJECTS.length, openCount).map((f) => `<li>${f}</li>`).join('');
-  // The loudest thing on the page should be the evidence, not the framing, and
-  // each number should take the reader to the project it came from.
-  $('proof').innerHTML = t.proof.map((p) =>
-    `<li><a href="#${p.id}"><span class="n">${esc(p.n)}</span><span class="w">${esc(p.w)}</span>` +
-    `<span class="go">${esc(p.go)} →</span></a></li>`).join('');
+  $('facts').innerHTML = t.facts(PROJECTS.length).map((f) => `<li>${f}</li>`).join('');
   $('lang').textContent = t.toggle;
   $('lang').setAttribute('aria-label', state.lang === 'ko' ? 'Read this page in English' : '이 페이지를 한국어로 보기');
   $('note').innerHTML = t.note;
@@ -159,13 +146,14 @@ function renderProject(p) {
     return `<div class="stat"><dt>${esc(s.k[lang])}</dt><dd>${esc(v)}</dd></div>`;
   }).join('');
 
-  $('open-h').textContent = t.openH(p.remaining.length);
-  $('open').innerHTML = p.remaining.map((r) => {
-    const k = KIND[r.kind];
-    // The chip carries the word, not just the colour: a reader who cannot
-    // separate the border colours still gets the classification.
-    return `<li class="k-${r.kind}"><span class="chip">${esc(k[lang])}</span><span>${esc(r[lang])}</span></li>`;
-  }).join('');
+  $('more-s').textContent = t.more;
+
+  // The demo table is fetched per project rather than shipped in one blob: ten
+  // lookup tables in the first payload would make the page slow to open for a
+  // reader who only ever looks at two of them.
+  $('product').textContent = '';
+  $('verdict').textContent = '';
+  loadDemo(p, lang);
 
   const legend = $('legend');
   if (state.view) {
@@ -180,6 +168,39 @@ function renderProject(p) {
   }
 }
 
+const demoCache = new Map();
+
+async function loadDemo(p, lang) {
+  const t = UI[lang];
+  state.demo.root.innerHTML = `<p class="dhow">${esc(t.loading)}…</p>`;
+  let data = demoCache.get(p.id);
+  if (!data) {
+    try {
+      const res = await fetch(`./data/${p.id}.json`, { cache: 'no-cache' });
+      if (!res.ok) throw new Error(String(res.status));
+      data = await res.json();
+      demoCache.set(p.id, data);
+    } catch {
+      // A missing table is stated, not hidden behind an empty panel.
+      state.demo.root.innerHTML = `<p class="hole">${esc(lang === 'ko'
+        ? '이 시스템의 조작표는 아직 올라오지 않았습니다.'
+        : 'The lookup table for this system is not published yet.')}</p>`;
+      return;
+    }
+  }
+  // The visitor may have switched projects while this was in flight.
+  if (state.project.id !== p.id) return;
+  $('product').textContent = data.product[lang];
+  $('verdict').textContent = data.verdict[lang];
+  state.demo.load(data);
+  // 어떻게 쟀는지는 접힌 기록 안에 둔다. 없애지는 않는다 -- 재현 경로가 없는
+  // 수치는 싣지 않는다는 규칙이 이 화면에도 그대로 적용된다.
+  const prov = data.provenance || {};
+  $('prov').innerHTML =
+    `<dt>${lang === 'ko' ? '무엇을 돌렸나' : 'What ran'}</dt><dd>${esc(prov.backend || '')}</dd>` +
+    `<dt>${lang === 'ko' ? '재현 명령' : 'Reproduce'}</dt><dd><code>${esc(prov.command || '')}</code></dd>`;
+}
+
 function esc(s) {
   return String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 }
@@ -187,6 +208,7 @@ function esc(s) {
 /* ---------- boot ---------- */
 
 function boot() {
+  state.demo = new DemoPanel($('demo'), () => state.lang);
   const canvas = $('gl');
   try {
     state.view = new SceneView(canvas);

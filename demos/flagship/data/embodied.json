@@ -1,0 +1,262 @@
+{
+  "id": "embodied",
+  "product": {
+    "ko": "Embodied Lab은 조명, 마찰, occlusion, 센서 noise, gripper failure 같은 환경 perturbation을 대규모로 주입해 로봇 policy가 실제로 무너지는 조건을 자동으로 찾아내는 Physical AI reliability platform이다.",
+    "en": "Embodied Lab injects environment perturbations at scale, lighting, friction, occlusion, sensor noise, gripper failure, to automatically find where a robot policy actually breaks."
+  },
+  "howto": {
+    "ko": "제어기를 고르고 gripper 결함 확률을 올려 보면서 성공률이 무너지는 지점을 확인하세요.",
+    "en": "Pick a controller and raise the gripper-failure probability to see where its success rate collapses."
+  },
+  "controls": [
+    {
+      "key": "policy",
+      "label": {
+        "ko": "제어기",
+        "en": "Controller"
+      },
+      "type": "select",
+      "options": [
+        {
+          "value": "proportional",
+          "label": {
+            "ko": "단순 비례 제어기",
+            "en": "Naive proportional"
+          }
+        },
+        {
+          "value": "grasp_offset",
+          "label": {
+            "ko": "그립-오프셋 보정 제어기",
+            "en": "Grasp-offset-aware"
+          }
+        }
+      ]
+    },
+    {
+      "key": "gripper_failure_probability",
+      "label": {
+        "ko": "gripper 결함 확률",
+        "en": "Gripper failure probability"
+      },
+      "type": "range",
+      "options": [
+        {
+          "value": 0.0,
+          "label": {
+            "ko": "0%",
+            "en": "0%"
+          }
+        },
+        {
+          "value": 0.15,
+          "label": {
+            "ko": "15%",
+            "en": "15%"
+          }
+        },
+        {
+          "value": 0.3,
+          "label": {
+            "ko": "30%",
+            "en": "30%"
+          }
+        },
+        {
+          "value": 0.45,
+          "label": {
+            "ko": "45%",
+            "en": "45%"
+          }
+        },
+        {
+          "value": 0.6,
+          "label": {
+            "ko": "60%",
+            "en": "60%"
+          }
+        },
+        {
+          "value": 0.75,
+          "label": {
+            "ko": "75%",
+            "en": "75%"
+          }
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "key": "success_rate",
+      "label": {
+        "ko": "성공률",
+        "en": "Success rate"
+      },
+      "unit": "",
+      "better": "higher"
+    },
+    {
+      "key": "mean_steps",
+      "label": {
+        "ko": "평균 스텝 수",
+        "en": "Mean steps to termination"
+      },
+      "unit": "steps",
+      "better": "lower"
+    },
+    {
+      "key": "gripper_fault_share_of_failures",
+      "label": {
+        "ko": "실패 중 gripper 결함 비중",
+        "en": "Gripper-fault share of failures"
+      },
+      "unit": "",
+      "better": "lower"
+    }
+  ],
+  "runs": [
+    {
+      "in": {
+        "policy": "proportional",
+        "gripper_failure_probability": 0.0
+      },
+      "out": {
+        "success_rate": 0.0625,
+        "mean_steps": 141.4,
+        "gripper_fault_share_of_failures": 0.0
+      }
+    },
+    {
+      "in": {
+        "policy": "proportional",
+        "gripper_failure_probability": 0.15
+      },
+      "out": {
+        "success_rate": 0.0625,
+        "mean_steps": 141.2,
+        "gripper_fault_share_of_failures": 0.4667
+      }
+    },
+    {
+      "in": {
+        "policy": "proportional",
+        "gripper_failure_probability": 0.3
+      },
+      "out": {
+        "success_rate": 0.125,
+        "mean_steps": 133.8,
+        "gripper_fault_share_of_failures": 0.4286
+      }
+    },
+    {
+      "in": {
+        "policy": "proportional",
+        "gripper_failure_probability": 0.45
+      },
+      "out": {
+        "success_rate": 0.0625,
+        "mean_steps": 141.4,
+        "gripper_fault_share_of_failures": 0.6
+      }
+    },
+    {
+      "in": {
+        "policy": "proportional",
+        "gripper_failure_probability": 0.6
+      },
+      "out": {
+        "success_rate": 0.0625,
+        "mean_steps": 141.8,
+        "gripper_fault_share_of_failures": 0.6
+      }
+    },
+    {
+      "in": {
+        "policy": "proportional",
+        "gripper_failure_probability": 0.75
+      },
+      "out": {
+        "success_rate": 0.0,
+        "mean_steps": 150.0,
+        "gripper_fault_share_of_failures": 0.875
+      }
+    },
+    {
+      "in": {
+        "policy": "grasp_offset",
+        "gripper_failure_probability": 0.0
+      },
+      "out": {
+        "success_rate": 1.0,
+        "mean_steps": 28.8,
+        "gripper_fault_share_of_failures": 0.0
+      }
+    },
+    {
+      "in": {
+        "policy": "grasp_offset",
+        "gripper_failure_probability": 0.15
+      },
+      "out": {
+        "success_rate": 0.875,
+        "mean_steps": 51.0,
+        "gripper_fault_share_of_failures": 1.0
+      }
+    },
+    {
+      "in": {
+        "policy": "grasp_offset",
+        "gripper_failure_probability": 0.3
+      },
+      "out": {
+        "success_rate": 0.8125,
+        "mean_steps": 54.8,
+        "gripper_fault_share_of_failures": 1.0
+      }
+    },
+    {
+      "in": {
+        "policy": "grasp_offset",
+        "gripper_failure_probability": 0.45
+      },
+      "out": {
+        "success_rate": 0.375,
+        "mean_steps": 106.6,
+        "gripper_fault_share_of_failures": 1.0
+      }
+    },
+    {
+      "in": {
+        "policy": "grasp_offset",
+        "gripper_failure_probability": 0.6
+      },
+      "out": {
+        "success_rate": 0.375,
+        "mean_steps": 106.9,
+        "gripper_fault_share_of_failures": 1.0
+      }
+    },
+    {
+      "in": {
+        "policy": "grasp_offset",
+        "gripper_failure_probability": 0.75
+      },
+      "out": {
+        "success_rate": 0.375,
+        "mean_steps": 104.3,
+        "gripper_fault_share_of_failures": 1.0
+      }
+    }
+  ],
+  "verdict": {
+    "ko": "grasp-offset 보정이 없는 단순 비례 제어기는 실제 강체 물리에서 결함 확률과 무관하게 대부분 실패한다(파지 후 손이 아니라 물체를 목표로 몰아야 하는데 그러지 않기 때문). 보정된 제어기는 무결함 조건에서는 안정적이지만 gripper 결함 확률이 오르면 성공률이 선형에 가깝게 무너진다. 이 좁은 실패 영역은 성공 장면 몇 개만 보는 데모로는 드러나지 않는다.",
+    "en": "A naive proportional controller mostly fails on the real rigid-body physics regardless of fault probability, because it drives the hand (not the grasped object) to the goal. The offset-aware controller is robust at zero fault probability but degrades roughly linearly as gripper-failure probability rises, a narrow failure region a handful of demo clips would never surface."
+  },
+  "provenance": {
+    "backend": "MuJoCo 3.11 rigid-body simulation (embodied_lab.adapters.mujoco_env.MuJoCoReachGraspEnv) -- real contact-resolved physics, not the physics-lite rule-based environment. Each cell aggregates 16 independently-seeded episodes actually executed on in-house CPU (no GPU job).",
+    "command": "cd embodied-lab && PYTHONPATH=src python scripts/gen_demo_data.py",
+    "generated": "2026-08-15",
+    "measured": true
+  }
+}

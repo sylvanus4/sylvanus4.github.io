@@ -1,0 +1,384 @@
+{
+  "id": "vaultai",
+  "product": {
+    "ko": "VaultAI는 문서·이미지·음성을 전부 로컬에서 파싱·OCR·임베딩·검색·요약하고, 외부 네트워크 요청이 0건임을 자동화된 egress 테스트로 반복 증명하는 에어갭 AI 워크스테이션이다.",
+    "en": "VaultAI is an air-gapped AI workstation: it parses, OCRs, embeds, searches, and summarizes documents entirely on-device, and repeatedly proves zero external network requests with an automated egress test rather than a claim."
+  },
+  "howto": {
+    "ko": "질문과 답변 방식(원문을 그대로 인용하는 추출형 vs 로컬 LLM이 생성하는 답변)을 바꿔가며, 정답을 맞혔는지와 정밀도, 그리고 검색된 문맥에 없는 숫자를 답으로 냈는지(미근거 수치)를 비교해 보세요.",
+    "en": "Pick a question and switch between the extractive answerer (verbatim quotes) and the local LLM (generated prose) to compare whether each got the right figure, how precise the answer was, and whether it asserted a number the retrieved context does not actually support."
+  },
+  "controls": [
+    {
+      "key": "question",
+      "label": {
+        "ko": "질문",
+        "en": "Question"
+      },
+      "type": "select",
+      "options": [
+        {
+          "value": "q1",
+          "label": {
+            "ko": "정밀도 수치",
+            "en": "A precision percentage from an evaluation report"
+          }
+        },
+        {
+          "value": "q2",
+          "label": {
+            "ko": "로컬 LLM 정밀도 수치",
+            "en": "The local-LLM's precision percentage in an evaluation report"
+          }
+        },
+        {
+          "value": "q3",
+          "label": {
+            "ko": "빈 텍스트일 때 fidelity score 값",
+            "en": "The fidelity score value when text is empty"
+          }
+        },
+        {
+          "value": "q4",
+          "label": {
+            "ko": "빈 슬라이드 경고 임계값",
+            "en": "The empty-slide warning threshold"
+          }
+        },
+        {
+          "value": "q5",
+          "label": {
+            "ko": "지원하는 HWP 버전 번호",
+            "en": "The supported HWP version number"
+          }
+        },
+        {
+          "value": "q6",
+          "label": {
+            "ko": "PRD 목차 번호, 기능요구사항 절",
+            "en": "PRD table-of-contents number, functional requirements section"
+          }
+        },
+        {
+          "value": "q7",
+          "label": {
+            "ko": "PRD 목차 번호, 로드맵 절",
+            "en": "PRD table-of-contents number, roadmap section"
+          }
+        },
+        {
+          "value": "q8",
+          "label": {
+            "ko": "PRD 목차 번호, 공개 산출물 절",
+            "en": "PRD table-of-contents number, public deliverables section"
+          }
+        }
+      ]
+    },
+    {
+      "key": "answerer",
+      "label": {
+        "ko": "답변 방식",
+        "en": "Answerer"
+      },
+      "type": "select",
+      "options": [
+        {
+          "value": "extractive",
+          "label": {
+            "ko": "추출형 (원문 인용)",
+            "en": "Extractive (verbatim quote)"
+          }
+        },
+        {
+          "value": "local_llm",
+          "label": {
+            "ko": "로컬 LLM (Qwen3-1.7B, 생성형)",
+            "en": "Local LLM (Qwen3-1.7B, generated)"
+          }
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "key": "correct",
+      "label": {
+        "ko": "정답 회수 성공",
+        "en": "Recalled correct figure"
+      },
+      "unit": "",
+      "better": "higher"
+    },
+    {
+      "key": "precision",
+      "label": {
+        "ko": "정밀도",
+        "en": "Precision"
+      },
+      "unit": "%",
+      "better": "higher"
+    },
+    {
+      "key": "unsupported_figures",
+      "label": {
+        "ko": "미근거 수치 개수",
+        "en": "Unsupported figures"
+      },
+      "unit": "",
+      "better": "lower"
+    }
+  ],
+  "runs": [
+    {
+      "in": {
+        "question": "q1",
+        "answerer": "extractive"
+      },
+      "out": {
+        "correct": true,
+        "precision": 6.7,
+        "unsupported_figures": 0
+      },
+      "note": {
+        "ko": "답변: “## 실측 (flagship 문서 54편, 1,110 청크, 452K자, 프로브 86개) | | 추출형 | 로컬 LLM | |, -|, -:|, -:| | 답변한 프로브 | 86 | 86 | | 주장한 figure 총수 | 414 | 58 | | 검색 문맥에 없던 figure | **0** | **8 (13.8%)** | | 코퍼스 어디에도 없던 figur.” (기대값 12.6)",
+        "en": "Answer: “## 실측 (flagship 문서 54편, 1,110 청크, 452K자, 프로브 86개) | | 추출형 | 로컬 LLM | |, -|, -:|, -:| | 답변한 프로브 | 86 | 86 | | 주장한 figure 총수 | 414 | 58 | | 검색 문맥에 없던 figure | **0** | **8 (13.8%)** | | 코퍼스 어디에도 없던 figur.” (expected 12.6)"
+      }
+    },
+    {
+      "in": {
+        "question": "q1",
+        "answerer": "local_llm"
+      },
+      "out": {
+        "correct": true,
+        "precision": 100.0,
+        "unsupported_figures": 0
+      },
+      "note": {
+        "ko": "답변: “12.6%” (기대값 12.6)",
+        "en": "Answer: “12.6%” (expected 12.6)"
+      }
+    },
+    {
+      "in": {
+        "question": "q2",
+        "answerer": "extractive"
+      },
+      "out": {
+        "correct": true,
+        "precision": 9.7,
+        "unsupported_figures": 0
+      },
+      "note": {
+        "ko": "답변: “## 실측 (flagship 문서 54편, 1,110 청크, 452K자, 프로브 86개) | | 추출형 | 로컬 LLM | |, -|, -:|, -:| | 답변한 프로브 | 86 | 86 | | 주장한 figure 총수 | 414 | 58 | | 검색 문맥에 없던 figure | **0** | **8 (13.8%)** | | 코퍼스 어디에도 없던 figur.” (기대값 65.5)",
+        "en": "Answer: “## 실측 (flagship 문서 54편, 1,110 청크, 452K자, 프로브 86개) | | 추출형 | 로컬 LLM | |, -|, -:|, -:| | 답변한 프로브 | 86 | 86 | | 주장한 figure 총수 | 414 | 58 | | 검색 문맥에 없던 figure | **0** | **8 (13.8%)** | | 코퍼스 어디에도 없던 figur.” (expected 65.5)"
+      }
+    },
+    {
+      "in": {
+        "question": "q2",
+        "answerer": "local_llm"
+      },
+      "out": {
+        "correct": false,
+        "precision": 0.0,
+        "unsupported_figures": 0
+      },
+      "note": {
+        "ko": "답변: “52개를 맞혔다. 주장한 숫자의 12.6% 만 물어본 답이다.” (기대값 65.5)",
+        "en": "Answer: “52개를 맞혔다. 주장한 숫자의 12.6% 만 물어본 답이다.” (expected 65.5)"
+      }
+    },
+    {
+      "in": {
+        "question": "q3",
+        "answerer": "extractive"
+      },
+      "out": {
+        "correct": true,
+        "precision": 50.0,
+        "unsupported_figures": 0
+      },
+      "note": {
+        "ko": "답변: “## fidelity score 는 \"짧은 문서\"와 \"못 읽은 문서\"를 가른다 `score = parsed_parts / seen_parts` (텍스트가 0이면 0.0). 빈 슬라이드가 섞인 덱은 `score < 1.0` 과 note 를 낸다. - [x] 포맷별 fidelity score 계산 로직을 `core/parser-hub/`에 공통 유틸로 추가 -.” (기대값 0.0)",
+        "en": "Answer: “## fidelity score 는 \"짧은 문서\"와 \"못 읽은 문서\"를 가른다 `score = parsed_parts / seen_parts` (텍스트가 0이면 0.0). 빈 슬라이드가 섞인 덱은 `score < 1.0` 과 note 를 낸다. - [x] 포맷별 fidelity score 계산 로직을 `core/parser-hub/`에 공통 유틸로 추가 -.” (expected 0.0)"
+      }
+    },
+    {
+      "in": {
+        "question": "q3",
+        "answerer": "local_llm"
+      },
+      "out": {
+        "correct": true,
+        "precision": 100.0,
+        "unsupported_figures": 0
+      },
+      "note": {
+        "ko": "답변: “0.0” (기대값 0.0)",
+        "en": "Answer: “0.0” (expected 0.0)"
+      }
+    },
+    {
+      "in": {
+        "question": "q4",
+        "answerer": "extractive"
+      },
+      "out": {
+        "correct": true,
+        "precision": 50.0,
+        "unsupported_figures": 0
+      },
+      "note": {
+        "ko": "답변: “빈 슬라이드가 섞인 덱은 `score < 1.0` 과 note 를 낸다. ## fidelity score 는 \"짧은 문서\"와 \"못 읽은 문서\"를 가른다 `score = parsed_parts / seen_parts` (텍스트가 0이면 0.0). - [x] Office/HWP 각각에 대한 fixture 문서를 추가, `tests/e2e/fixtures/d.” (기대값 1.0)",
+        "en": "Answer: “빈 슬라이드가 섞인 덱은 `score < 1.0` 과 note 를 낸다. ## fidelity score 는 \"짧은 문서\"와 \"못 읽은 문서\"를 가른다 `score = parsed_parts / seen_parts` (텍스트가 0이면 0.0). - [x] Office/HWP 각각에 대한 fixture 문서를 추가, `tests/e2e/fixtures/d.” (expected 1.0)"
+      }
+    },
+    {
+      "in": {
+        "question": "q4",
+        "answerer": "local_llm"
+      },
+      "out": {
+        "correct": false,
+        "precision": 0.0,
+        "unsupported_figures": 1
+      },
+      "note": {
+        "ko": "답변: “3.0” (기대값 1.0)",
+        "en": "Answer: “3.0” (expected 1.0)"
+      }
+    },
+    {
+      "in": {
+        "question": "q5",
+        "answerer": "extractive"
+      },
+      "out": {
+        "correct": true,
+        "precision": 25.0,
+        "unsupported_figures": 0
+      },
+      "note": {
+        "ko": "답변: “**이번에 하지 않았다.** HWP 5.0 은 OOXML 과 달리 CFB(복합 문서) 컨테이너에 zlib 압축 레코드 스트림이라 stdlib 만으로는 상당한 구현이 필요하고, 대충 만든 파서는 위 \"조용한 실패\" 계약을 정면으로 어긴다. - [x] Office/HWP 각각에 대한 fixture 문서를 추가, `tests/e2e/fixtures/docum.” (기대값 5.0)",
+        "en": "Answer: “**이번에 하지 않았다.** HWP 5.0 은 OOXML 과 달리 CFB(복합 문서) 컨테이너에 zlib 압축 레코드 스트림이라 stdlib 만으로는 상당한 구현이 필요하고, 대충 만든 파서는 위 \"조용한 실패\" 계약을 정면으로 어긴다. - [x] Office/HWP 각각에 대한 fixture 문서를 추가, `tests/e2e/fixtures/docum.” (expected 5.0)"
+      }
+    },
+    {
+      "in": {
+        "question": "q5",
+        "answerer": "local_llm"
+      },
+      "out": {
+        "correct": false,
+        "precision": 0.0,
+        "unsupported_figures": 1
+      },
+      "note": {
+        "ko": "답변: “14” (기대값 5.0)",
+        "en": "Answer: “14” (expected 5.0)"
+      }
+    },
+    {
+      "in": {
+        "question": "q6",
+        "answerer": "extractive"
+      },
+      "out": {
+        "correct": true,
+        "precision": 100.0,
+        "unsupported_figures": 0
+      },
+      "note": {
+        "ko": "답변: “Functional Requirements 기능 요구사항 비기능 요구사항 6. - [x] Office/HWP 각각에 대한 fixture 문서를 추가, `tests/e2e/fixtures/documents/`가 아니라 `tests/ooxml_fixtures.py`/`tests/hwp_fixtures.py`(실제 바이너리를 커밋하는 대신, stdlib만으로.” (기대값 6)",
+        "en": "Answer: “Functional Requirements 기능 요구사항 비기능 요구사항 6. - [x] Office/HWP 각각에 대한 fixture 문서를 추가, `tests/e2e/fixtures/documents/`가 아니라 `tests/ooxml_fixtures.py`/`tests/hwp_fixtures.py`(실제 바이너리를 커밋하는 대신, stdlib만으로.” (expected 6)"
+      }
+    },
+    {
+      "in": {
+        "question": "q6",
+        "answerer": "local_llm"
+      },
+      "out": {
+        "correct": false,
+        "precision": 0.0,
+        "unsupported_figures": 1
+      },
+      "note": {
+        "ko": "답변: “The exact figure is 414.” (기대값 6)",
+        "en": "Answer: “The exact figure is 414.” (expected 6)"
+      }
+    },
+    {
+      "in": {
+        "question": "q7",
+        "answerer": "extractive"
+      },
+      "out": {
+        "correct": false,
+        "precision": 0.0,
+        "unsupported_figures": 0
+      },
+      "note": {
+        "ko": "답변: “- [x] Office/HWP 각각에 대한 fixture 문서를 추가, `tests/e2e/fixtures/documents/`가 아니라 `tests/ooxml_fixtures.py`/`tests/hwp_fixtures.py`(실제 바이너리를 커밋하는 대신, stdlib만으로 진짜 OOXML/CFB 컨테이너를 코드로 조립하는 헬퍼)로 구현 - [x] 포.” (기대값 12)",
+        "en": "Answer: “- [x] Office/HWP 각각에 대한 fixture 문서를 추가, `tests/e2e/fixtures/documents/`가 아니라 `tests/ooxml_fixtures.py`/`tests/hwp_fixtures.py`(실제 바이너리를 커밋하는 대신, stdlib만으로 진짜 OOXML/CFB 컨테이너를 코드로 조립하는 헬퍼)로 구현 - [x] 포.” (expected 12)"
+      }
+    },
+    {
+      "in": {
+        "question": "q7",
+        "answerer": "local_llm"
+      },
+      "out": {
+        "correct": false,
+        "precision": 0.0,
+        "unsupported_figures": 0
+      },
+      "note": {
+        "ko": "답변: “The exact figure is not provided in the context.” (기대값 12)",
+        "en": "Answer: “The exact figure is not provided in the context.” (expected 12)"
+      }
+    },
+    {
+      "in": {
+        "question": "q8",
+        "answerer": "extractive"
+      },
+      "out": {
+        "correct": true,
+        "precision": 100.0,
+        "unsupported_figures": 0
+      },
+      "note": {
+        "ko": "답변: “공개 산출물 offline E2E test suite와 network-block fixture network egress evidence report model bundle manifest와 content hashes 지원 device/backend matrix 문서/이미지/오디오 cross-search demo PII redaction accuracy t.” (기대값 13)",
+        "en": "Answer: “공개 산출물 offline E2E test suite와 network-block fixture network egress evidence report model bundle manifest와 content hashes 지원 device/backend matrix 문서/이미지/오디오 cross-search demo PII redaction accuracy t.” (expected 13)"
+      }
+    },
+    {
+      "in": {
+        "question": "q8",
+        "answerer": "local_llm"
+      },
+      "out": {
+        "correct": false,
+        "precision": 0.0,
+        "unsupported_figures": 0
+      },
+      "note": {
+        "ko": "답변: “공개 산출물 offline E2E test suite와 network-block fixture network egress evidence report model bundle manifest와 content hashes 지원 device/backend matrix 문서/이미지/오디오 cross-search demo PII redaction accuracy t.” (기대값 13)",
+        "en": "Answer: “공개 산출물 offline E2E test suite와 network-block fixture network egress evidence report model bundle manifest와 content hashes 지원 device/backend matrix 문서/이미지/오디오 cross-search demo PII redaction accuracy t.” (expected 13)"
+      }
+    }
+  ],
+  "verdict": {
+    "ko": "실측 결과 추출형은 8문항 중 7문항에서 정답 수치를 포함했지만(회수율 87.5%) 답이 인용 원문 그대로라 정밀도는 문항별 6.7~100%로 대부분 낮았다. 로컬 LLM(Qwen3-1.7B)은 정답률이 2/8(25%)로 더 낮은 대신 맞힐 때는 정밀도가 100%였고, 8문항 중 3문항에서는 검색된 문맥에 없는 숫자를 그대로 답으로 냈다. faithfulness 체커가 실제로 잡아낸 미근거(unsupported) 수치다.",
+    "en": "Across real runs, the extractive answerer recalled the right figure in 7 of 8 questions (87.5%) but its precision was low (6.7-100% per question, mostly under 50%) because it quotes whole retrieved passages verbatim. The local LLM (Qwen3-1.7B) recalled only 2 of 8 (25%) but was 100% precise whenever it was right, and in 3 of 8 questions it asserted a figure the retrieved context did not contain, an unsupported claim the faithfulness checker actually caught rather than a label anyone asserted."
+  },
+  "provenance": {
+    "backend": "vaultai 라이브러리 실제 코드 실행: ExtractiveAnswerer / LocalLLMAnswerer(Qwen/Qwen3-1.7B, 로컬 캐시에서 로드, HF_HUB_OFFLINE=1) / faithfulness.check_answer. 질문 8개는 손으로 쓴 것이 아니라 vaultai.grounding_run.numeric_probes가 저장소 docs/(PRD.md, ARCHITECTURE.md, IMPLEMENTATION_PLAN.md, P1_FINDINGS.md, ASSETS.md, 5개 문서 112개 청크) 안의 실제 문장에서 수치 하나를 기계적으로 빈칸 처리해 만들었다. 별도로 vaultai egress-probe(8개 알려진 우회 경로 실제 시도)를 돌려 leaked=0, structurally_unobservable=2(서브프로세스/사전 바인딩 참조, in-process 계측 구조적 한계로 리포트에 명시)를 확인했다 -- egress 0은 라벨이 아니라 이 실제 실행 결과다.",
+    "command": "cd flagship/vaultai-workstation && PYTHONPATH=src .venv/bin/python scripts/demo_answerer_grid.py --out /tmp/vault_grid.json && PYTHONPATH=src .venv/bin/python -m vaultai egress-probe",
+    "generated": "2026-08-15",
+    "measured": true
+  }
+}

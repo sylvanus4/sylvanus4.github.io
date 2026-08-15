@@ -4,16 +4,10 @@
 // two files is how a list quietly grows an entry on one side only, which has
 // already happened twice on other pages here.
 //
-// Every `finding` below is a measurement taken against a real backend, not a
-// simulator and not a projection. What is NOT measured is listed under
-// `remaining` rather than left for the reader to discover.
-
-export const KIND = {
-  gap:      { ko: '구멍',   en: 'Gap',      hue: 'bad'  },
-  coverage: { ko: '커버리지', en: 'Coverage', hue: 'warn' },
-  declared: { ko: '선언값',  en: 'Declared', hue: 'warn' },
-  caveat:   { ko: '단서',    en: 'Caveat',   hue: 'dim'  },
-};
+// `finding` is a measurement taken against a real backend, not a simulator and
+// not a projection. The open backlog for each system lives in the private
+// console, not here: a portfolio shows what a system does, and the work still
+// queued behind it is not the visitor's business.
 
 export const PROJECTS = [
   {
@@ -37,11 +31,6 @@ export const PROJECTS = [
       { k: { ko: '레벨', en: 'Levels' }, v: '17' },
       { k: { ko: '합성 지점', en: 'Synthesized points' }, v: '6' },
     ],
-    remaining: [
-      { kind: 'coverage', ko: '실제 합성은 6개 지점만 덮습니다. 나머지 공간은 여전히 시뮬레이터입니다.', en: 'Real synthesis covers six points; the rest of the space is still simulator-only.' },
-      { kind: 'declared', ko: '셀 면적과 레벨당 지연은 잰 값이 아니라 선언한 상수입니다.', en: 'Cell areas and ns-per-level are declared constants, not measured.' },
-      { kind: 'gap', ko: '선택 편향은 시뮬레이터에서만 쟀고 합성 결과에서는 아직 재지 않았습니다.', en: 'Selection bias is measured on the simulator, not on synthesized results.' },
-    ],
   },
   {
     id: 'orbitguard',
@@ -63,11 +52,6 @@ export const PROJECTS = [
       { k: { ko: '스크리닝 쌍', en: 'Pairs screened' }, v: '210' },
       { k: { ko: '중복 쌍', en: 'Duplicate pairs' }, v: '31' },
       { k: { ko: '진짜 최근접', en: 'Real closest approach' }, v: '40.8 km' },
-    ],
-    remaining: [
-      { kind: 'gap', ko: '라이브 카탈로그 수신은 환경변수 뒤에 있습니다. 받을 때마다 피드가 달라집니다.', en: 'The live catalogue fetch sits behind an env flag, and the feed changes between fetches.' },
-      { kind: 'declared', ko: '동반궤도 판정 임계값 50 m/s는 카탈로그에서 유도한 값이 아니라 선언한 값입니다.', en: 'The 50 m/s co-orbital threshold is declared, not derived from the catalogue.' },
-      { kind: 'coverage', ko: '합성 카탈로그와 이체문제 전파기는 별도 경로로 남아 있습니다.', en: 'The synthetic catalogue and the two-body propagator remain as a separate pair.' },
     ],
   },
   {
@@ -91,11 +75,6 @@ export const PROJECTS = [
       { k: { ko: '단순 환경', en: 'Lite env' }, v: '4 / 40 · 4 / 40' },
       { k: { ko: '시행', en: 'Trials' }, v: '40' },
     ],
-    remaining: [
-      { kind: 'coverage', ko: '기구학은 아직 단순화되어 있습니다. MuJoCo가 덮는 것은 동역학이지 팔 전체가 아닙니다.', en: 'Kinematics are still simplified; MuJoCo covers dynamics, not the full arm.' },
-      { kind: 'gap', ko: '적응형 탐색이 예산 80에서는 이기고 160에서는 집니다. 아직 설명하지 못했습니다.', en: 'Adaptive search wins at budget 80 and loses at 160, and that is unresolved.' },
-      { kind: 'caveat', ko: '위험 대비 커버리지 판정은 가중치에 민감합니다. 가중치와 무관한 지표는 희귀 시그니처 하나뿐입니다.', en: 'Risk-coverage verdicts are weighting-sensitive; only the rare-signature metric is weight-free.' },
-    ],
   },
   {
     id: 'bioproof',
@@ -117,11 +96,6 @@ export const PROJECTS = [
       { k: { ko: '신뢰도', en: 'Confidence' }, v: '0.955 → 0.510' },
       { k: { ko: '정확도', en: 'Accuracy' }, v: '0.99 → 0.067' },
       { k: { ko: '보정 오차', en: 'Calibration error' }, v: '0.043 → 0.443' },
-    ],
-    remaining: [
-      { kind: 'coverage', ko: '표적은 다섯 개입니다. 결과라기보다 관측입니다.', en: 'Five targets. An observation, not a result.' },
-      { kind: 'caveat', ko: '우리 폴딩은 단일 서열이고 아카이브는 전체 파이프라인이라 정확도를 나란히 놓을 수 없습니다.', en: 'Our fold ran single-sequence while the archive used a full pipeline, so accuracy is not directly comparable.' },
-      { kind: 'caveat', ko: '표적 하나는 임계값에 붙어 있어 그 보정 오차는 상한을 잰 것에 가깝습니다.', en: 'One target saturates the threshold, so its calibration error measures a ceiling.' },
     ],
   },
   {
@@ -145,11 +119,6 @@ export const PROJECTS = [
       { k: { ko: '합성 자기상관', en: 'Synthetic lag-1' }, v: '-0.031' },
       { k: { ko: '최악 부족 구간', en: 'Worst shortfall run' }, v: '15 h · 3 h' },
     ],
-    remaining: [
-      { kind: 'coverage', ko: '한 지점, 반년 치입니다. 사막이나 해안은 다르게 나옵니다.', en: 'One location and half a year. Desert and coastal sites will differ.' },
-      { kind: 'caveat', ko: '부족 구간은 밤에 끊깁니다. 그래서 15시간은 최악이 아니라 하한입니다.', en: 'Runs are broken by night, so 15 hours is a floor rather than the worst case.' },
-      { kind: 'declared', ko: '어레이 면적과 효율, 온도 계수는 잰 값이 아니라 선언한 값입니다.', en: 'Array area, efficiency and temperature coefficient are declared, not measured.' },
-    ],
   },
   {
     id: 'vaultai',
@@ -171,11 +140,6 @@ export const PROJECTS = [
       { k: { ko: '발췌형', en: 'Extractive' }, v: '60.5% / 12.6%' },
       { k: { ko: '모델', en: 'Model' }, v: { ko: '65.5% / 36자', en: '65.5% / 36ch' } },
       { k: { ko: '근거 없는 수치', en: 'Unsupported figures' }, v: '0 · 8 / 58' },
-    ],
-    remaining: [
-      { kind: 'gap', ko: '유출 탐지 게이트는 찾아내기만 합니다. 차단과 마스킹은 이 저장소가 갖지 않은 정책입니다.', en: 'The disclosure gate only detects. Blocking and masking are policy this repository does not own.' },
-      { kind: 'gap', ko: '외부 통신 분류는 호출자가 넘겨주는 정책이 있어야 합니다. 여기서는 어떤 허용 경로도 만들지 않습니다.', en: 'Egress classification needs a policy supplied by the caller. No allow path is created here.' },
-      { kind: 'coverage', ko: '모델 하나, 코퍼스 하나, 그리고 일부러 최소한으로 쓴 프롬프트입니다.', en: 'One model, one corpus and a deliberately minimal prompt.' },
     ],
   },
   {
@@ -199,11 +163,6 @@ export const PROJECTS = [
       { k: { ko: '순서 불변성', en: 'Order invariance' }, v: '54.5%' },
       { k: { ko: '재생 어긋남', en: 'Replay divergence' }, v: '0 / 5' },
     ],
-    remaining: [
-      { kind: 'gap', ko: '실제 운영 원장에는 아직 재생도 결함 주입도 없습니다.', en: 'The live operations ledger still has neither replay nor fault injection.' },
-      { kind: 'coverage', ko: '모델 하나, 문제 형태 하나, 집합당 순열은 여섯 개로 제한했습니다.', en: 'One model, one problem shape, permutations capped at six per set.' },
-      { kind: 'caveat', ko: '재현성 100%는 이 하드웨어와 이 배치 크기에서의 값입니다.', en: 'The 100% reproducibility is for this hardware and this batch size.' },
-    ],
   },
   {
     id: 'forge',
@@ -225,11 +184,6 @@ export const PROJECTS = [
       { k: { ko: '정수 4비트', en: 'Integer 4-bit' }, v: '0.9177' },
       { k: { ko: '부동 4비트', en: 'Float 4-bit' }, v: '0.9482' },
       { k: { ko: '차이', en: 'Delta' }, v: '3.05 pt' },
-    ],
-    remaining: [
-      { kind: 'declared', ko: '8비트 계열과 이 모델 외의 모든 조합은 여전히 상수입니다.', en: 'The eight-bit formats and every model beyond this one are still constants.' },
-      { kind: 'declared', ko: 'p95와 p99는 재지 않았습니다. 최댓값을 상한으로 그 자리에 넣어 두었습니다.', en: 'p95 and p99 are not measured; the maximum is carried in that slot as an upper bound.' },
-      { kind: 'gap', ko: 'VRAM은 프로브하지 않습니다. 닫힌 식으로 계산한 값이 아직 그 자리를 차지합니다.', en: 'VRAM is not probed; a closed-form estimate still owns that number.' },
     ],
   },
   {
@@ -253,11 +207,6 @@ export const PROJECTS = [
       { k: { ko: '토큰 간 지연', en: 'Inter-token latency' }, v: '~1.4 ms' },
       { k: { ko: '유휴 전력', en: 'Idle draw' }, v: '247.8 / 388 W' },
     ],
-    remaining: [
-      { kind: 'coverage', ko: '실측 코퍼스는 두 종류의 GPU만 덮습니다. 나머지 세대는 아직 없습니다.', en: 'The measured corpus covers two GPU classes; other generations are absent.' },
-      { kind: 'caveat', ko: '큰 GPU에 작은 모델 하나입니다. 유휴가 지배한다는 결론은 모델이 카드를 채우지 못할 때만 성립합니다.', en: 'One small model on a large GPU. The idle-dominance conclusion holds only when the model cannot fill the card.' },
-      { kind: 'caveat', ko: '품질 채점은 표준 하네스가 아니라 서빙 엔진의 확률값으로 했습니다. 그래서 비율만 주장합니다.', en: 'Quality was scored from serving-engine log-probabilities rather than a standard harness, so only the ratio is claimed.' },
-    ],
   },
   {
     id: 'omniindex',
@@ -279,11 +228,6 @@ export const PROJECTS = [
       { k: { ko: '코덱 통과', en: 'Survives codecs' }, v: 'JPEG q25 · 25%' },
       { k: { ko: '크롭 5%', en: 'Crop 5%' }, v: '44%' },
       { k: { ko: '사용 가능한 임계값', en: 'Usable threshold' }, v: { ko: '없음', en: 'None' } },
-    ],
-    remaining: [
-      { kind: 'caveat', ko: '흑백 8x8 해시입니다. 크기를 키우면 분리는 좋아지지만 크롭 민감도는 그대로 남습니다.', en: 'Grayscale 8x8 hashes. A larger hash improves separation and leaves the crop sensitivity untouched.' },
-      { kind: 'coverage', ko: '남의 것 여덟 개는 임계값을 그리기에 작은 표본입니다.', en: 'Eight held-out impostors is a small sample for drawing a threshold.' },
-      { kind: 'gap', ko: '게이트는 라우터에 붙어 있지만 임계값을 어디에 둘지 정하는 주체가 아직 없습니다.', en: 'The gate is wired to the router, but nothing decides where the threshold sits.' },
     ],
   },
 ];

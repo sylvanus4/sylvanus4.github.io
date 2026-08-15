@@ -1,0 +1,448 @@
+{
+  "id": "omniindex",
+  "product": {
+    "ko": "OmniIndex는 텍스트, 이미지, 영상, 음성, 음악을 지각 지문과 의미 임베딩으로 함께 색인하고, 질의 라우터가 이게 정확히 그것인지와 이것과 비슷한 게 무엇인지를 갈라 답하는 통합 검색 엔진입니다.",
+    "en": "OmniIndex indexes text, images, video, speech and music with both perceptual fingerprints and semantic embeddings, and routes each query to whichever side answers it. fingerprints for is this exactly that, embeddings for what is similar to this."
+  },
+  "howto": {
+    "ko": "해시 방식과 이미지에 가한 변형을 골라 보면, 색인이 같은 이미지를 계속 찾아내는지와 그 판정을 임계값 하나로 안전하게 자를 수 있는지가 함께 나옵니다.",
+    "en": "Pick a hash and a transformation, and see both whether the index still finds the same image and whether a single distance threshold could safely make that call."
+  },
+  "controls": [
+    {
+      "key": "hash",
+      "label": {
+        "ko": "해시 알고리즘",
+        "en": "Hash algorithm"
+      },
+      "type": "select",
+      "options": [
+        {
+          "value": "ahash",
+          "label": {
+            "ko": "평균 해시 (aHash)",
+            "en": "Average hash (aHash)"
+          }
+        },
+        {
+          "value": "dhash",
+          "label": {
+            "ko": "차분 해시 (dHash)",
+            "en": "Difference hash (dHash)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "degradation",
+      "label": {
+        "ko": "적용할 변형",
+        "en": "Transformation"
+      },
+      "type": "select",
+      "options": [
+        {
+          "value": "identity",
+          "label": {
+            "ko": "원본 그대로",
+            "en": "No transform (identity)"
+          }
+        },
+        {
+          "value": "jpeg_q75",
+          "label": {
+            "ko": "JPEG 재압축 (품질 75)",
+            "en": "JPEG recompress (q75)"
+          }
+        },
+        {
+          "value": "jpeg_q25",
+          "label": {
+            "ko": "JPEG 재압축 (품질 25)",
+            "en": "JPEG recompress (q25)"
+          }
+        },
+        {
+          "value": "resize_50pct",
+          "label": {
+            "ko": "50%로 축소",
+            "en": "Resize to 50%"
+          }
+        },
+        {
+          "value": "resize_25pct",
+          "label": {
+            "ko": "25%로 축소",
+            "en": "Resize to 25%"
+          }
+        },
+        {
+          "value": "brightness_1.2x",
+          "label": {
+            "ko": "밝기 1.2배",
+            "en": "Brightness x1.2"
+          }
+        },
+        {
+          "value": "noise_sigma8",
+          "label": {
+            "ko": "가우시안 노이즈 (sigma=8)",
+            "en": "Gaussian noise (sigma=8)"
+          }
+        },
+        {
+          "value": "crop_5pct",
+          "label": {
+            "ko": "가장자리 5% 크롭",
+            "en": "Crop 5% off the edges"
+          }
+        },
+        {
+          "value": "crop_10pct",
+          "label": {
+            "ko": "가장자리 10% 크롭",
+            "en": "Crop 10% off the edges"
+          }
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "key": "accuracy_pct",
+      "label": {
+        "ko": "재식별 정확도",
+        "en": "Re-identification accuracy"
+      },
+      "unit": "%",
+      "better": "higher"
+    },
+    {
+      "key": "mean_true_distance_bits",
+      "label": {
+        "ko": "평균 진짜 매치 거리",
+        "en": "Mean true-match distance"
+      },
+      "unit": "bits",
+      "better": "lower"
+    },
+    {
+      "key": "min_impostor_distance_bits",
+      "label": {
+        "ko": "최소 오탐 거리, 임계 기준선",
+        "en": "Min impostor distance, threshold floor"
+      },
+      "unit": "bits",
+      "better": "higher"
+    },
+    {
+      "key": "separated",
+      "label": {
+        "ko": "임계값으로 분리 가능, 1이면 가능",
+        "en": "Separable by a threshold, 1 means yes"
+      },
+      "unit": "",
+      "better": "higher"
+    }
+  ],
+  "runs": [
+    {
+      "in": {
+        "hash": "ahash",
+        "degradation": "identity"
+      },
+      "out": {
+        "accuracy_pct": 100.0,
+        "mean_true_distance_bits": 0.0,
+        "min_impostor_distance_bits": 4,
+        "separated": 1
+      },
+      "note": {
+        "ko": "32/32건 정확히 원본을 찾음. 임계값으로 오탐 배제 가능.",
+        "en": "32/32 queries matched the correct original. A distance threshold can rule out false positives."
+      }
+    },
+    {
+      "in": {
+        "hash": "ahash",
+        "degradation": "jpeg_q75"
+      },
+      "out": {
+        "accuracy_pct": 93.75,
+        "mean_true_distance_bits": 0.812,
+        "min_impostor_distance_bits": 4,
+        "separated": 0
+      },
+      "note": {
+        "ko": "30/32건 정확히 원본을 찾음. 임계값만으로는 오탐을 완전히 배제 못 함.",
+        "en": "30/32 queries matched the correct original. No fixed threshold fully rules out false positives."
+      }
+    },
+    {
+      "in": {
+        "hash": "ahash",
+        "degradation": "jpeg_q25"
+      },
+      "out": {
+        "accuracy_pct": 65.62,
+        "mean_true_distance_bits": 3.062,
+        "min_impostor_distance_bits": 4,
+        "separated": 0
+      },
+      "note": {
+        "ko": "21/32건 정확히 원본을 찾음. 임계값만으로는 오탐을 완전히 배제 못 함.",
+        "en": "21/32 queries matched the correct original. No fixed threshold fully rules out false positives."
+      }
+    },
+    {
+      "in": {
+        "hash": "ahash",
+        "degradation": "resize_50pct"
+      },
+      "out": {
+        "accuracy_pct": 81.25,
+        "mean_true_distance_bits": 2.25,
+        "min_impostor_distance_bits": 4,
+        "separated": 0
+      },
+      "note": {
+        "ko": "26/32건 정확히 원본을 찾음. 임계값만으로는 오탐을 완전히 배제 못 함.",
+        "en": "26/32 queries matched the correct original. No fixed threshold fully rules out false positives."
+      }
+    },
+    {
+      "in": {
+        "hash": "ahash",
+        "degradation": "resize_25pct"
+      },
+      "out": {
+        "accuracy_pct": 65.62,
+        "mean_true_distance_bits": 4.344,
+        "min_impostor_distance_bits": 4,
+        "separated": 0
+      },
+      "note": {
+        "ko": "21/32건 정확히 원본을 찾음. 임계값만으로는 오탐을 완전히 배제 못 함.",
+        "en": "21/32 queries matched the correct original. No fixed threshold fully rules out false positives."
+      }
+    },
+    {
+      "in": {
+        "hash": "ahash",
+        "degradation": "brightness_1.2x"
+      },
+      "out": {
+        "accuracy_pct": 15.62,
+        "mean_true_distance_bits": 3.625,
+        "min_impostor_distance_bits": 4,
+        "separated": 0
+      },
+      "note": {
+        "ko": "5/32건 정확히 원본을 찾음. 임계값만으로는 오탐을 완전히 배제 못 함.",
+        "en": "5/32 queries matched the correct original. No fixed threshold fully rules out false positives."
+      }
+    },
+    {
+      "in": {
+        "hash": "ahash",
+        "degradation": "noise_sigma8"
+      },
+      "out": {
+        "accuracy_pct": 62.5,
+        "mean_true_distance_bits": 12.375,
+        "min_impostor_distance_bits": 4,
+        "separated": 0
+      },
+      "note": {
+        "ko": "20/32건 정확히 원본을 찾음. 임계값만으로는 오탐을 완전히 배제 못 함.",
+        "en": "20/32 queries matched the correct original. No fixed threshold fully rules out false positives."
+      }
+    },
+    {
+      "in": {
+        "hash": "ahash",
+        "degradation": "crop_5pct"
+      },
+      "out": {
+        "accuracy_pct": 12.5,
+        "mean_true_distance_bits": 8.625,
+        "min_impostor_distance_bits": 4,
+        "separated": 0
+      },
+      "note": {
+        "ko": "4/32건 정확히 원본을 찾음. 임계값만으로는 오탐을 완전히 배제 못 함.",
+        "en": "4/32 queries matched the correct original. No fixed threshold fully rules out false positives."
+      }
+    },
+    {
+      "in": {
+        "hash": "ahash",
+        "degradation": "crop_10pct"
+      },
+      "out": {
+        "accuracy_pct": 12.5,
+        "mean_true_distance_bits": 16.062,
+        "min_impostor_distance_bits": 4,
+        "separated": 0
+      },
+      "note": {
+        "ko": "4/32건 정확히 원본을 찾음. 임계값만으로는 오탐을 완전히 배제 못 함.",
+        "en": "4/32 queries matched the correct original. No fixed threshold fully rules out false positives."
+      }
+    },
+    {
+      "in": {
+        "hash": "dhash",
+        "degradation": "identity"
+      },
+      "out": {
+        "accuracy_pct": 100.0,
+        "mean_true_distance_bits": 0.0,
+        "min_impostor_distance_bits": 3,
+        "separated": 1
+      },
+      "note": {
+        "ko": "32/32건 정확히 원본을 찾음. 임계값으로 오탐 배제 가능.",
+        "en": "32/32 queries matched the correct original. A distance threshold can rule out false positives."
+      }
+    },
+    {
+      "in": {
+        "hash": "dhash",
+        "degradation": "jpeg_q75"
+      },
+      "out": {
+        "accuracy_pct": 100.0,
+        "mean_true_distance_bits": 0.875,
+        "min_impostor_distance_bits": 3,
+        "separated": 0
+      },
+      "note": {
+        "ko": "32/32건 정확히 원본을 찾음. 임계값만으로는 오탐을 완전히 배제 못 함.",
+        "en": "32/32 queries matched the correct original. No fixed threshold fully rules out false positives."
+      }
+    },
+    {
+      "in": {
+        "hash": "dhash",
+        "degradation": "jpeg_q25"
+      },
+      "out": {
+        "accuracy_pct": 90.62,
+        "mean_true_distance_bits": 3.438,
+        "min_impostor_distance_bits": 3,
+        "separated": 0
+      },
+      "note": {
+        "ko": "29/32건 정확히 원본을 찾음. 임계값만으로는 오탐을 완전히 배제 못 함.",
+        "en": "29/32 queries matched the correct original. No fixed threshold fully rules out false positives."
+      }
+    },
+    {
+      "in": {
+        "hash": "dhash",
+        "degradation": "resize_50pct"
+      },
+      "out": {
+        "accuracy_pct": 93.75,
+        "mean_true_distance_bits": 3.688,
+        "min_impostor_distance_bits": 3,
+        "separated": 0
+      },
+      "note": {
+        "ko": "30/32건 정확히 원본을 찾음. 임계값만으로는 오탐을 완전히 배제 못 함.",
+        "en": "30/32 queries matched the correct original. No fixed threshold fully rules out false positives."
+      }
+    },
+    {
+      "in": {
+        "hash": "dhash",
+        "degradation": "resize_25pct"
+      },
+      "out": {
+        "accuracy_pct": 68.75,
+        "mean_true_distance_bits": 6.906,
+        "min_impostor_distance_bits": 3,
+        "separated": 0
+      },
+      "note": {
+        "ko": "22/32건 정확히 원본을 찾음. 임계값만으로는 오탐을 완전히 배제 못 함.",
+        "en": "22/32 queries matched the correct original. No fixed threshold fully rules out false positives."
+      }
+    },
+    {
+      "in": {
+        "hash": "dhash",
+        "degradation": "brightness_1.2x"
+      },
+      "out": {
+        "accuracy_pct": 31.25,
+        "mean_true_distance_bits": 3.219,
+        "min_impostor_distance_bits": 3,
+        "separated": 0
+      },
+      "note": {
+        "ko": "10/32건 정확히 원본을 찾음. 임계값만으로는 오탐을 완전히 배제 못 함.",
+        "en": "10/32 queries matched the correct original. No fixed threshold fully rules out false positives."
+      }
+    },
+    {
+      "in": {
+        "hash": "dhash",
+        "degradation": "noise_sigma8"
+      },
+      "out": {
+        "accuracy_pct": 43.75,
+        "mean_true_distance_bits": 23.344,
+        "min_impostor_distance_bits": 3,
+        "separated": 0
+      },
+      "note": {
+        "ko": "14/32건 정확히 원본을 찾음. 임계값만으로는 오탐을 완전히 배제 못 함.",
+        "en": "14/32 queries matched the correct original. No fixed threshold fully rules out false positives."
+      }
+    },
+    {
+      "in": {
+        "hash": "dhash",
+        "degradation": "crop_5pct"
+      },
+      "out": {
+        "accuracy_pct": 12.5,
+        "mean_true_distance_bits": 8.094,
+        "min_impostor_distance_bits": 3,
+        "separated": 0
+      },
+      "note": {
+        "ko": "4/32건 정확히 원본을 찾음. 임계값만으로는 오탐을 완전히 배제 못 함.",
+        "en": "4/32 queries matched the correct original. No fixed threshold fully rules out false positives."
+      }
+    },
+    {
+      "in": {
+        "hash": "dhash",
+        "degradation": "crop_10pct"
+      },
+      "out": {
+        "accuracy_pct": 6.25,
+        "mean_true_distance_bits": 10.031,
+        "min_impostor_distance_bits": 3,
+        "separated": 0
+      },
+      "note": {
+        "ko": "2/32건 정확히 원본을 찾음. 임계값만으로는 오탐을 완전히 배제 못 함.",
+        "en": "2/32 queries matched the correct original. No fixed threshold fully rules out false positives."
+      }
+    }
+  ],
+  "verdict": {
+    "ko": "크롭이 가장 크게 무너뜨립니다. 5%만 잘라도 두 해시 모두 정확도가 절반 아래로 떨어지고, 10% 크롭에서는 dhash가 한 자릿수 퍼센트까지 내려갑니다. JPEG 재압축과 리사이즈는 훨씬 잘 견딥니다. 더 곤란한 점은, 정확도가 100%인 무변형 구간을 빼면 거의 모든 칸에서 진짜 짝의 거리와 남의 것 중 가장 가까운 거리가 겹쳐서, 고정 임계값 하나로는 오탐 없이 자를 수 없다는 것입니다. 찾아내는 것과 그 답을 믿어도 되는 것은 다른 문제입니다.",
+    "en": "Cropping breaks it hardest. Taking just 5% off the edges already drops both hashes below half accuracy, and at 10% dhash falls into single digits. JPEG recompression and resizing hold up far better. The harder finding is that outside the untouched case, almost every cell has the true-match distance overlapping the nearest impostor distance, so no single fixed threshold cuts cleanly without false positives. Retrieving the right answer and being entitled to trust it are different questions."
+  },
+  "provenance": {
+    "backend": "omniindex.adapters.real_images, aHash and dHash computed over real PIL-decoded images from this portfolio's own demo thumbnail set, not a company or third-party asset. Real JPEG re-encode, resize, brightness, noise and crop transforms applied, then rehashed. 40 images indexed with 8 held out as impostors. No GPU job submitted.",
+    "command": "PYTHONPATH=src python -m omniindex real-images <image-dir> --limit 40 --holdout 8 --out data/real-image-robustness-portfolio-corpus.json",
+    "generated": "2026-08-15",
+    "measured": true
+  }
+}

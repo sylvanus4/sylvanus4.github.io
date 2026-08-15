@@ -1,0 +1,516 @@
+{
+  "id": "siliconpilot",
+  "product": {
+    "ko": "SiliconPilot은 자연어 설계 목표와 RTL seed를 받아, LLM agent와 classical optimizer를 실제 로직 합성(synthesis) 결과에 근거한 폐루프로 연결해 기능 동등성을 지킨 채 area/timing/power를 개선하는 autonomous chip design-space optimizer다.",
+    "en": "SiliconPilot takes a natural-language design goal and an RTL seed, then closes the loop between an LLM agent, a classical optimizer, and real logic-synthesis feedback to improve area/timing/power while provably preserving functional equivalence."
+  },
+  "howto": {
+    "ko": "덧셈기 구조, 파이프라인 단계 수, 병렬 레인 수를 바꿔가며 실제 Yosys 합성이 만들어내는 셀 수와 임계 경로가 어떻게 달라지는지 확인해 보세요.",
+    "en": "Change the adder architecture, pipeline depth, and unroll factor to see how real Yosys synthesis output, cell count and critical path, actually moves."
+  },
+  "controls": [
+    {
+      "key": "arch",
+      "label": {
+        "ko": "덧셈기 구조",
+        "en": "Adder architecture"
+      },
+      "type": "select",
+      "options": [
+        {
+          "value": "ripple_carry",
+          "label": {
+            "ko": "리플 캐리",
+            "en": "Ripple carry"
+          }
+        },
+        {
+          "value": "carry_lookahead",
+          "label": {
+            "ko": "캐리 예측(CLA)",
+            "en": "Carry lookahead (CLA)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "pipeline_depth",
+      "label": {
+        "ko": "파이프라인 단계 수",
+        "en": "Pipeline depth"
+      },
+      "type": "range",
+      "options": [
+        {
+          "value": 1,
+          "label": {
+            "ko": "1단계",
+            "en": "1 stage"
+          }
+        },
+        {
+          "value": 2,
+          "label": {
+            "ko": "2단계",
+            "en": "2 stages"
+          }
+        },
+        {
+          "value": 3,
+          "label": {
+            "ko": "3단계",
+            "en": "3 stages"
+          }
+        },
+        {
+          "value": 4,
+          "label": {
+            "ko": "4단계",
+            "en": "4 stages"
+          }
+        }
+      ]
+    },
+    {
+      "key": "unroll_factor",
+      "label": {
+        "ko": "병렬 레인 수",
+        "en": "Unroll factor (parallel lanes)"
+      },
+      "type": "range",
+      "options": [
+        {
+          "value": 1,
+          "label": {
+            "ko": "1레인",
+            "en": "1 lane"
+          }
+        },
+        {
+          "value": 2,
+          "label": {
+            "ko": "2레인",
+            "en": "2 lanes"
+          }
+        },
+        {
+          "value": 3,
+          "label": {
+            "ko": "3레인",
+            "en": "3 lanes"
+          }
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "key": "cells",
+      "label": {
+        "ko": "합성된 셀 수",
+        "en": "Synthesized cells"
+      },
+      "unit": "",
+      "better": "lower"
+    },
+    {
+      "key": "logic_levels",
+      "label": {
+        "ko": "임계 경로 로직 레벨",
+        "en": "Critical-path logic levels"
+      },
+      "unit": "",
+      "better": "lower"
+    },
+    {
+      "key": "area_au",
+      "label": {
+        "ko": "면적 (도구 산출, 임의 단위)",
+        "en": "Area (tool-derived, arbitrary units)"
+      },
+      "unit": "au",
+      "better": "lower"
+    },
+    {
+      "key": "slack_ns",
+      "label": {
+        "ko": "타이밍 slack (2.0ns 클록 기준)",
+        "en": "Timing slack (vs 2.0 ns clock)"
+      },
+      "unit": "ns",
+      "better": "higher"
+    }
+  ],
+  "runs": [
+    {
+      "in": {
+        "arch": "ripple_carry",
+        "pipeline_depth": 1,
+        "unroll_factor": 1
+      },
+      "out": {
+        "cells": 46,
+        "logic_levels": 17,
+        "area_au": 287.0,
+        "slack_ns": 0.47
+      }
+    },
+    {
+      "in": {
+        "arch": "ripple_carry",
+        "pipeline_depth": 1,
+        "unroll_factor": 2
+      },
+      "out": {
+        "cells": 92,
+        "logic_levels": 17,
+        "area_au": 574.0,
+        "slack_ns": 0.47
+      }
+    },
+    {
+      "in": {
+        "arch": "ripple_carry",
+        "pipeline_depth": 1,
+        "unroll_factor": 3
+      },
+      "out": {
+        "cells": 138,
+        "logic_levels": 17,
+        "area_au": 861.0,
+        "slack_ns": 0.47
+      }
+    },
+    {
+      "in": {
+        "arch": "ripple_carry",
+        "pipeline_depth": 2,
+        "unroll_factor": 1
+      },
+      "out": {
+        "cells": 54,
+        "logic_levels": 18,
+        "area_au": 383.0,
+        "slack_ns": 0.38
+      }
+    },
+    {
+      "in": {
+        "arch": "ripple_carry",
+        "pipeline_depth": 2,
+        "unroll_factor": 2
+      },
+      "out": {
+        "cells": 108,
+        "logic_levels": 18,
+        "area_au": 766.0,
+        "slack_ns": 0.38
+      }
+    },
+    {
+      "in": {
+        "arch": "ripple_carry",
+        "pipeline_depth": 2,
+        "unroll_factor": 3
+      },
+      "out": {
+        "cells": 162,
+        "logic_levels": 18,
+        "area_au": 1149.0,
+        "slack_ns": 0.38
+      }
+    },
+    {
+      "in": {
+        "arch": "ripple_carry",
+        "pipeline_depth": 3,
+        "unroll_factor": 1
+      },
+      "out": {
+        "cells": 62,
+        "logic_levels": 19,
+        "area_au": 479.0,
+        "slack_ns": 0.29
+      }
+    },
+    {
+      "in": {
+        "arch": "ripple_carry",
+        "pipeline_depth": 3,
+        "unroll_factor": 2
+      },
+      "out": {
+        "cells": 124,
+        "logic_levels": 19,
+        "area_au": 958.0,
+        "slack_ns": 0.29
+      }
+    },
+    {
+      "in": {
+        "arch": "ripple_carry",
+        "pipeline_depth": 3,
+        "unroll_factor": 3
+      },
+      "out": {
+        "cells": 186,
+        "logic_levels": 19,
+        "area_au": 1437.0,
+        "slack_ns": 0.29
+      }
+    },
+    {
+      "in": {
+        "arch": "ripple_carry",
+        "pipeline_depth": 4,
+        "unroll_factor": 1
+      },
+      "out": {
+        "cells": 70,
+        "logic_levels": 20,
+        "area_au": 575.0,
+        "slack_ns": 0.2
+      }
+    },
+    {
+      "in": {
+        "arch": "ripple_carry",
+        "pipeline_depth": 4,
+        "unroll_factor": 2
+      },
+      "out": {
+        "cells": 140,
+        "logic_levels": 20,
+        "area_au": 1150.0,
+        "slack_ns": 0.2
+      }
+    },
+    {
+      "in": {
+        "arch": "ripple_carry",
+        "pipeline_depth": 4,
+        "unroll_factor": 3
+      },
+      "out": {
+        "cells": 210,
+        "logic_levels": 20,
+        "area_au": 1725.0,
+        "slack_ns": 0.2
+      }
+    },
+    {
+      "in": {
+        "arch": "carry_lookahead",
+        "pipeline_depth": 1,
+        "unroll_factor": 1
+      },
+      "out": {
+        "cells": 46,
+        "logic_levels": 17,
+        "area_au": 287.0,
+        "slack_ns": 0.47
+      },
+      "note": {
+        "ko": "리플 캐리와 완전히 동일한 넷리스트 (Yosys 로직 최적화가 구조 선택을 소거함)",
+        "en": "Identical netlist to ripple carry (Yosys logic optimization erases the structural choice)"
+      }
+    },
+    {
+      "in": {
+        "arch": "carry_lookahead",
+        "pipeline_depth": 1,
+        "unroll_factor": 2
+      },
+      "out": {
+        "cells": 92,
+        "logic_levels": 17,
+        "area_au": 574.0,
+        "slack_ns": 0.47
+      },
+      "note": {
+        "ko": "리플 캐리와 완전히 동일한 넷리스트 (Yosys 로직 최적화가 구조 선택을 소거함)",
+        "en": "Identical netlist to ripple carry (Yosys logic optimization erases the structural choice)"
+      }
+    },
+    {
+      "in": {
+        "arch": "carry_lookahead",
+        "pipeline_depth": 1,
+        "unroll_factor": 3
+      },
+      "out": {
+        "cells": 138,
+        "logic_levels": 17,
+        "area_au": 861.0,
+        "slack_ns": 0.47
+      },
+      "note": {
+        "ko": "리플 캐리와 완전히 동일한 넷리스트 (Yosys 로직 최적화가 구조 선택을 소거함)",
+        "en": "Identical netlist to ripple carry (Yosys logic optimization erases the structural choice)"
+      }
+    },
+    {
+      "in": {
+        "arch": "carry_lookahead",
+        "pipeline_depth": 2,
+        "unroll_factor": 1
+      },
+      "out": {
+        "cells": 54,
+        "logic_levels": 18,
+        "area_au": 383.0,
+        "slack_ns": 0.38
+      },
+      "note": {
+        "ko": "리플 캐리와 완전히 동일한 넷리스트 (Yosys 로직 최적화가 구조 선택을 소거함)",
+        "en": "Identical netlist to ripple carry (Yosys logic optimization erases the structural choice)"
+      }
+    },
+    {
+      "in": {
+        "arch": "carry_lookahead",
+        "pipeline_depth": 2,
+        "unroll_factor": 2
+      },
+      "out": {
+        "cells": 108,
+        "logic_levels": 18,
+        "area_au": 766.0,
+        "slack_ns": 0.38
+      },
+      "note": {
+        "ko": "리플 캐리와 완전히 동일한 넷리스트 (Yosys 로직 최적화가 구조 선택을 소거함)",
+        "en": "Identical netlist to ripple carry (Yosys logic optimization erases the structural choice)"
+      }
+    },
+    {
+      "in": {
+        "arch": "carry_lookahead",
+        "pipeline_depth": 2,
+        "unroll_factor": 3
+      },
+      "out": {
+        "cells": 162,
+        "logic_levels": 18,
+        "area_au": 1149.0,
+        "slack_ns": 0.38
+      },
+      "note": {
+        "ko": "리플 캐리와 완전히 동일한 넷리스트 (Yosys 로직 최적화가 구조 선택을 소거함)",
+        "en": "Identical netlist to ripple carry (Yosys logic optimization erases the structural choice)"
+      }
+    },
+    {
+      "in": {
+        "arch": "carry_lookahead",
+        "pipeline_depth": 3,
+        "unroll_factor": 1
+      },
+      "out": {
+        "cells": 62,
+        "logic_levels": 19,
+        "area_au": 479.0,
+        "slack_ns": 0.29
+      },
+      "note": {
+        "ko": "리플 캐리와 완전히 동일한 넷리스트 (Yosys 로직 최적화가 구조 선택을 소거함)",
+        "en": "Identical netlist to ripple carry (Yosys logic optimization erases the structural choice)"
+      }
+    },
+    {
+      "in": {
+        "arch": "carry_lookahead",
+        "pipeline_depth": 3,
+        "unroll_factor": 2
+      },
+      "out": {
+        "cells": 124,
+        "logic_levels": 19,
+        "area_au": 958.0,
+        "slack_ns": 0.29
+      },
+      "note": {
+        "ko": "리플 캐리와 완전히 동일한 넷리스트 (Yosys 로직 최적화가 구조 선택을 소거함)",
+        "en": "Identical netlist to ripple carry (Yosys logic optimization erases the structural choice)"
+      }
+    },
+    {
+      "in": {
+        "arch": "carry_lookahead",
+        "pipeline_depth": 3,
+        "unroll_factor": 3
+      },
+      "out": {
+        "cells": 186,
+        "logic_levels": 19,
+        "area_au": 1437.0,
+        "slack_ns": 0.29
+      },
+      "note": {
+        "ko": "리플 캐리와 완전히 동일한 넷리스트 (Yosys 로직 최적화가 구조 선택을 소거함)",
+        "en": "Identical netlist to ripple carry (Yosys logic optimization erases the structural choice)"
+      }
+    },
+    {
+      "in": {
+        "arch": "carry_lookahead",
+        "pipeline_depth": 4,
+        "unroll_factor": 1
+      },
+      "out": {
+        "cells": 70,
+        "logic_levels": 20,
+        "area_au": 575.0,
+        "slack_ns": 0.2
+      },
+      "note": {
+        "ko": "리플 캐리와 완전히 동일한 넷리스트 (Yosys 로직 최적화가 구조 선택을 소거함)",
+        "en": "Identical netlist to ripple carry (Yosys logic optimization erases the structural choice)"
+      }
+    },
+    {
+      "in": {
+        "arch": "carry_lookahead",
+        "pipeline_depth": 4,
+        "unroll_factor": 2
+      },
+      "out": {
+        "cells": 140,
+        "logic_levels": 20,
+        "area_au": 1150.0,
+        "slack_ns": 0.2
+      },
+      "note": {
+        "ko": "리플 캐리와 완전히 동일한 넷리스트 (Yosys 로직 최적화가 구조 선택을 소거함)",
+        "en": "Identical netlist to ripple carry (Yosys logic optimization erases the structural choice)"
+      }
+    },
+    {
+      "in": {
+        "arch": "carry_lookahead",
+        "pipeline_depth": 4,
+        "unroll_factor": 3
+      },
+      "out": {
+        "cells": 210,
+        "logic_levels": 20,
+        "area_au": 1725.0,
+        "slack_ns": 0.2
+      },
+      "note": {
+        "ko": "리플 캐리와 완전히 동일한 넷리스트 (Yosys 로직 최적화가 구조 선택을 소거함)",
+        "en": "Identical netlist to ripple carry (Yosys logic optimization erases the structural choice)"
+      }
+    }
+  ],
+  "verdict": {
+    "ko": "실제 Yosys 합성에서는 파이프라인 단계와 레인 수가 셀 수와 임계 경로를 그대로 바꾸지만, 두 덧셈기 구조(리플 캐리 vs 캐리 예측)는 로직 최적화 단계에서 완전히 동일한 넷리스트로 수렴한다. RTL 소스 구조의 차이가 항상 물리적 합성 결과의 차이로 이어지는 것은 아니라는 것을, 시뮬레이션이 아니라 실제 합성 결과가 보여준다. 이는 SiliconPilot이 시뮬레이션 PPA 모델이 아니라 실제 tool feedback을 승격 기준으로 삼는 이유이기도 하다.",
+    "en": "Under real Yosys synthesis, pipeline depth and lane count genuinely move cell count and critical path, but the two adder architectures (ripple carry vs. carry lookahead) collapse into an identical netlist once logic optimization runs, a structural RTL difference does not always survive into a physical difference, and it takes a real toolchain, not a simulator, to see that. This is exactly why SiliconPilot promotes candidates on real tool evidence rather than an analytical PPA model."
+  },
+  "provenance": {
+    "backend": "yowasp-yosys (real, WASM-packaged Yosys logic synthesis, run in-process) via siliconpilot.adapters.yosys_backend.YosysBackend -- cell count and critical-path logic-level count are measured directly from the synthesized netlist (Yosys `stat`/`ltp`). Area (arbitrary units) and timing slack are computed from those measured quantities using declared per-cell-area and per-logic-level-delay constants documented in the same module (not a PDK/liberty file) -- the split is stated explicitly rather than presented as physical micrometres/nanoseconds.",
+    "command": "cd flagship/siliconpilot-eda && PYTHONPATH=src python -c \"[grid of arch x pipeline_depth x unroll_factor through YosysBackend().synthesize(), clock_period_target_ns=2.0]\" (adapted from scripts/real_vs_simulated.py)",
+    "generated": "2026-08-15",
+    "measured": true
+  }
+}

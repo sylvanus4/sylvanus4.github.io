@@ -1,0 +1,587 @@
+{
+  "id": "helios",
+  "product": {
+    "ko": "Helios는 모델, 트래픽, SLO, 예산, 가용 클러스터를 입력하면 하드웨어·정밀도·런타임·병렬화·replica 구성을 탐색해 근거와 함께 배포 플랜을 내놓는 자율 AI Cloud 제어 평면이다.",
+    "en": "Helios is a self-driving AI Cloud control plane: given a model, traffic shape, SLO, budget and available clusters, it searches hardware, precision, runtime, parallelism and replica count and returns a deployment plan with evidence."
+  },
+  "howto": {
+    "ko": "동시 요청 수(트래픽)와 목표 지연(SLO)을 골라 보면, 실제 B200 서빙 프로브에서 측정된 처리량·TTFT·소비전력·비용과 그 조합이 SLO를 통과하는지를 보여준다.",
+    "en": "Pick a concurrency (traffic) and a target latency (SLO) and see the measured throughput, TTFT, power and cost from a real B200 serving probe, plus whether that combination clears the SLO."
+  },
+  "controls": [
+    {
+      "key": "concurrency",
+      "label": {
+        "ko": "동시 요청 수",
+        "en": "Concurrency"
+      },
+      "type": "select",
+      "options": [
+        {
+          "value": 1,
+          "label": {
+            "ko": "1",
+            "en": "1"
+          }
+        },
+        {
+          "value": 2,
+          "label": {
+            "ko": "2",
+            "en": "2"
+          }
+        },
+        {
+          "value": 4,
+          "label": {
+            "ko": "4",
+            "en": "4"
+          }
+        },
+        {
+          "value": 8,
+          "label": {
+            "ko": "8",
+            "en": "8"
+          }
+        },
+        {
+          "value": 16,
+          "label": {
+            "ko": "16",
+            "en": "16"
+          }
+        }
+      ]
+    },
+    {
+      "key": "latency_target_ms",
+      "label": {
+        "ko": "목표 E2E 지연 (ms)",
+        "en": "Target E2E latency (ms)"
+      },
+      "type": "select",
+      "options": [
+        {
+          "value": 150,
+          "label": {
+            "ko": "150ms",
+            "en": "150ms"
+          }
+        },
+        {
+          "value": 190,
+          "label": {
+            "ko": "190ms",
+            "en": "190ms"
+          }
+        },
+        {
+          "value": 210,
+          "label": {
+            "ko": "210ms",
+            "en": "210ms"
+          }
+        },
+        {
+          "value": 230,
+          "label": {
+            "ko": "230ms",
+            "en": "230ms"
+          }
+        },
+        {
+          "value": 300,
+          "label": {
+            "ko": "300ms",
+            "en": "300ms"
+          }
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "key": "throughput_tok_s",
+      "label": {
+        "ko": "처리량",
+        "en": "Throughput"
+      },
+      "unit": "tok/s",
+      "better": "higher"
+    },
+    {
+      "key": "ttft_ms",
+      "label": {
+        "ko": "TTFT",
+        "en": "TTFT"
+      },
+      "unit": "ms",
+      "better": "lower"
+    },
+    {
+      "key": "power_w",
+      "label": {
+        "ko": "소비전력",
+        "en": "Power"
+      },
+      "unit": "W",
+      "better": "lower"
+    },
+    {
+      "key": "cost_per_1m_tokens",
+      "label": {
+        "ko": "토큰당 비용",
+        "en": "Cost per 1M tokens"
+      },
+      "unit": "USD/1M tok",
+      "better": "lower"
+    },
+    {
+      "key": "e2e_ms_p95",
+      "label": {
+        "ko": "실측 E2E 지연",
+        "en": "Measured E2E latency"
+      },
+      "unit": "ms",
+      "better": "lower"
+    }
+  ],
+  "runs": [
+    {
+      "in": {
+        "concurrency": 1,
+        "latency_target_ms": 150
+      },
+      "out": {
+        "throughput_tok_s": 694.0,
+        "ttft_ms": 9.0,
+        "power_w": 269.5,
+        "cost_per_1m_tokens": 1.3208,
+        "e2e_ms_p95": 180.0
+      },
+      "note": {
+        "ko": "실측 E2E 180ms 라 목표 150ms 를 넘깁니다. 이 조합은 계획에서 탈락합니다.",
+        "en": "Measured end to end 180ms misses the 150ms target, so this combination is rejected."
+      }
+    },
+    {
+      "in": {
+        "concurrency": 1,
+        "latency_target_ms": 190
+      },
+      "out": {
+        "throughput_tok_s": 694.0,
+        "ttft_ms": 9.0,
+        "power_w": 269.5,
+        "cost_per_1m_tokens": 1.3208,
+        "e2e_ms_p95": 180.0
+      },
+      "note": {
+        "ko": "실측 E2E 180ms 로 목표 190ms 를 지킵니다. 커밋된 서빙 프로브 측정값을 그대로 재생한 결과입니다.",
+        "en": "Measured end to end 180ms meets the 190ms target, replayed from the committed serving probe."
+      }
+    },
+    {
+      "in": {
+        "concurrency": 1,
+        "latency_target_ms": 210
+      },
+      "out": {
+        "throughput_tok_s": 694.0,
+        "ttft_ms": 9.0,
+        "power_w": 269.5,
+        "cost_per_1m_tokens": 1.3208,
+        "e2e_ms_p95": 180.0
+      },
+      "note": {
+        "ko": "실측 E2E 180ms 로 목표 210ms 를 지킵니다. 커밋된 서빙 프로브 측정값을 그대로 재생한 결과입니다.",
+        "en": "Measured end to end 180ms meets the 210ms target, replayed from the committed serving probe."
+      }
+    },
+    {
+      "in": {
+        "concurrency": 1,
+        "latency_target_ms": 230
+      },
+      "out": {
+        "throughput_tok_s": 694.0,
+        "ttft_ms": 9.0,
+        "power_w": 269.5,
+        "cost_per_1m_tokens": 1.3208,
+        "e2e_ms_p95": 180.0
+      },
+      "note": {
+        "ko": "실측 E2E 180ms 로 목표 230ms 를 지킵니다. 커밋된 서빙 프로브 측정값을 그대로 재생한 결과입니다.",
+        "en": "Measured end to end 180ms meets the 230ms target, replayed from the committed serving probe."
+      }
+    },
+    {
+      "in": {
+        "concurrency": 1,
+        "latency_target_ms": 300
+      },
+      "out": {
+        "throughput_tok_s": 694.0,
+        "ttft_ms": 9.0,
+        "power_w": 269.5,
+        "cost_per_1m_tokens": 1.3208,
+        "e2e_ms_p95": 180.0
+      },
+      "note": {
+        "ko": "실측 E2E 180ms 로 목표 300ms 를 지킵니다. 커밋된 서빙 프로브 측정값을 그대로 재생한 결과입니다.",
+        "en": "Measured end to end 180ms meets the 300ms target, replayed from the committed serving probe."
+      }
+    },
+    {
+      "in": {
+        "concurrency": 2,
+        "latency_target_ms": 150
+      },
+      "out": {
+        "throughput_tok_s": 1284.9,
+        "ttft_ms": 17.0,
+        "power_w": 345.8,
+        "cost_per_1m_tokens": 0.7134,
+        "e2e_ms_p95": 200.0
+      },
+      "note": {
+        "ko": "실측 E2E 200ms 라 목표 150ms 를 넘깁니다. 이 조합은 계획에서 탈락합니다.",
+        "en": "Measured end to end 200ms misses the 150ms target, so this combination is rejected."
+      }
+    },
+    {
+      "in": {
+        "concurrency": 2,
+        "latency_target_ms": 190
+      },
+      "out": {
+        "throughput_tok_s": 1284.9,
+        "ttft_ms": 17.0,
+        "power_w": 345.8,
+        "cost_per_1m_tokens": 0.7134,
+        "e2e_ms_p95": 200.0
+      },
+      "note": {
+        "ko": "실측 E2E 200ms 라 목표 190ms 를 넘깁니다. 이 조합은 계획에서 탈락합니다.",
+        "en": "Measured end to end 200ms misses the 190ms target, so this combination is rejected."
+      }
+    },
+    {
+      "in": {
+        "concurrency": 2,
+        "latency_target_ms": 210
+      },
+      "out": {
+        "throughput_tok_s": 1284.9,
+        "ttft_ms": 17.0,
+        "power_w": 345.8,
+        "cost_per_1m_tokens": 0.7134,
+        "e2e_ms_p95": 200.0
+      },
+      "note": {
+        "ko": "실측 E2E 200ms 로 목표 210ms 를 지킵니다. 커밋된 서빙 프로브 측정값을 그대로 재생한 결과입니다.",
+        "en": "Measured end to end 200ms meets the 210ms target, replayed from the committed serving probe."
+      }
+    },
+    {
+      "in": {
+        "concurrency": 2,
+        "latency_target_ms": 230
+      },
+      "out": {
+        "throughput_tok_s": 1284.9,
+        "ttft_ms": 17.0,
+        "power_w": 345.8,
+        "cost_per_1m_tokens": 0.7134,
+        "e2e_ms_p95": 200.0
+      },
+      "note": {
+        "ko": "실측 E2E 200ms 로 목표 230ms 를 지킵니다. 커밋된 서빙 프로브 측정값을 그대로 재생한 결과입니다.",
+        "en": "Measured end to end 200ms meets the 230ms target, replayed from the committed serving probe."
+      }
+    },
+    {
+      "in": {
+        "concurrency": 2,
+        "latency_target_ms": 300
+      },
+      "out": {
+        "throughput_tok_s": 1284.9,
+        "ttft_ms": 17.0,
+        "power_w": 345.8,
+        "cost_per_1m_tokens": 0.7134,
+        "e2e_ms_p95": 200.0
+      },
+      "note": {
+        "ko": "실측 E2E 200ms 로 목표 300ms 를 지킵니다. 커밋된 서빙 프로브 측정값을 그대로 재생한 결과입니다.",
+        "en": "Measured end to end 200ms meets the 300ms target, replayed from the committed serving probe."
+      }
+    },
+    {
+      "in": {
+        "concurrency": 4,
+        "latency_target_ms": 150
+      },
+      "out": {
+        "throughput_tok_s": 2585.9,
+        "ttft_ms": 18.0,
+        "power_w": 378.8,
+        "cost_per_1m_tokens": 0.3545,
+        "e2e_ms_p95": 200.0
+      },
+      "note": {
+        "ko": "실측 E2E 200ms 라 목표 150ms 를 넘깁니다. 이 조합은 계획에서 탈락합니다.",
+        "en": "Measured end to end 200ms misses the 150ms target, so this combination is rejected."
+      }
+    },
+    {
+      "in": {
+        "concurrency": 4,
+        "latency_target_ms": 190
+      },
+      "out": {
+        "throughput_tok_s": 2585.9,
+        "ttft_ms": 18.0,
+        "power_w": 378.8,
+        "cost_per_1m_tokens": 0.3545,
+        "e2e_ms_p95": 200.0
+      },
+      "note": {
+        "ko": "실측 E2E 200ms 라 목표 190ms 를 넘깁니다. 이 조합은 계획에서 탈락합니다.",
+        "en": "Measured end to end 200ms misses the 190ms target, so this combination is rejected."
+      }
+    },
+    {
+      "in": {
+        "concurrency": 4,
+        "latency_target_ms": 210
+      },
+      "out": {
+        "throughput_tok_s": 2585.9,
+        "ttft_ms": 18.0,
+        "power_w": 378.8,
+        "cost_per_1m_tokens": 0.3545,
+        "e2e_ms_p95": 200.0
+      },
+      "note": {
+        "ko": "실측 E2E 200ms 로 목표 210ms 를 지킵니다. 커밋된 서빙 프로브 측정값을 그대로 재생한 결과입니다.",
+        "en": "Measured end to end 200ms meets the 210ms target, replayed from the committed serving probe."
+      }
+    },
+    {
+      "in": {
+        "concurrency": 4,
+        "latency_target_ms": 230
+      },
+      "out": {
+        "throughput_tok_s": 2585.9,
+        "ttft_ms": 18.0,
+        "power_w": 378.8,
+        "cost_per_1m_tokens": 0.3545,
+        "e2e_ms_p95": 200.0
+      },
+      "note": {
+        "ko": "실측 E2E 200ms 로 목표 230ms 를 지킵니다. 커밋된 서빙 프로브 측정값을 그대로 재생한 결과입니다.",
+        "en": "Measured end to end 200ms meets the 230ms target, replayed from the committed serving probe."
+      }
+    },
+    {
+      "in": {
+        "concurrency": 4,
+        "latency_target_ms": 300
+      },
+      "out": {
+        "throughput_tok_s": 2585.9,
+        "ttft_ms": 18.0,
+        "power_w": 378.8,
+        "cost_per_1m_tokens": 0.3545,
+        "e2e_ms_p95": 200.0
+      },
+      "note": {
+        "ko": "실측 E2E 200ms 로 목표 300ms 를 지킵니다. 커밋된 서빙 프로브 측정값을 그대로 재생한 결과입니다.",
+        "en": "Measured end to end 200ms meets the 300ms target, replayed from the committed serving probe."
+      }
+    },
+    {
+      "in": {
+        "concurrency": 8,
+        "latency_target_ms": 150
+      },
+      "out": {
+        "throughput_tok_s": 5088.5,
+        "ttft_ms": 19.0,
+        "power_w": 384.1,
+        "cost_per_1m_tokens": 0.1801,
+        "e2e_ms_p95": 200.0
+      },
+      "note": {
+        "ko": "실측 E2E 200ms 라 목표 150ms 를 넘깁니다. 이 조합은 계획에서 탈락합니다.",
+        "en": "Measured end to end 200ms misses the 150ms target, so this combination is rejected."
+      }
+    },
+    {
+      "in": {
+        "concurrency": 8,
+        "latency_target_ms": 190
+      },
+      "out": {
+        "throughput_tok_s": 5088.5,
+        "ttft_ms": 19.0,
+        "power_w": 384.1,
+        "cost_per_1m_tokens": 0.1801,
+        "e2e_ms_p95": 200.0
+      },
+      "note": {
+        "ko": "실측 E2E 200ms 라 목표 190ms 를 넘깁니다. 이 조합은 계획에서 탈락합니다.",
+        "en": "Measured end to end 200ms misses the 190ms target, so this combination is rejected."
+      }
+    },
+    {
+      "in": {
+        "concurrency": 8,
+        "latency_target_ms": 210
+      },
+      "out": {
+        "throughput_tok_s": 5088.5,
+        "ttft_ms": 19.0,
+        "power_w": 384.1,
+        "cost_per_1m_tokens": 0.1801,
+        "e2e_ms_p95": 200.0
+      },
+      "note": {
+        "ko": "실측 E2E 200ms 로 목표 210ms 를 지킵니다. 커밋된 서빙 프로브 측정값을 그대로 재생한 결과입니다.",
+        "en": "Measured end to end 200ms meets the 210ms target, replayed from the committed serving probe."
+      }
+    },
+    {
+      "in": {
+        "concurrency": 8,
+        "latency_target_ms": 230
+      },
+      "out": {
+        "throughput_tok_s": 5088.5,
+        "ttft_ms": 19.0,
+        "power_w": 384.1,
+        "cost_per_1m_tokens": 0.1801,
+        "e2e_ms_p95": 200.0
+      },
+      "note": {
+        "ko": "실측 E2E 200ms 로 목표 230ms 를 지킵니다. 커밋된 서빙 프로브 측정값을 그대로 재생한 결과입니다.",
+        "en": "Measured end to end 200ms meets the 230ms target, replayed from the committed serving probe."
+      }
+    },
+    {
+      "in": {
+        "concurrency": 8,
+        "latency_target_ms": 300
+      },
+      "out": {
+        "throughput_tok_s": 5088.5,
+        "ttft_ms": 19.0,
+        "power_w": 384.1,
+        "cost_per_1m_tokens": 0.1801,
+        "e2e_ms_p95": 200.0
+      },
+      "note": {
+        "ko": "실측 E2E 200ms 로 목표 300ms 를 지킵니다. 커밋된 서빙 프로브 측정값을 그대로 재생한 결과입니다.",
+        "en": "Measured end to end 200ms meets the 300ms target, replayed from the committed serving probe."
+      }
+    },
+    {
+      "in": {
+        "concurrency": 16,
+        "latency_target_ms": 150
+      },
+      "out": {
+        "throughput_tok_s": 9300.4,
+        "ttft_ms": 26.0,
+        "power_w": 390.5,
+        "cost_per_1m_tokens": 0.0986,
+        "e2e_ms_p95": 220.0
+      },
+      "note": {
+        "ko": "실측 E2E 220ms 라 목표 150ms 를 넘깁니다. 이 조합은 계획에서 탈락합니다.",
+        "en": "Measured end to end 220ms misses the 150ms target, so this combination is rejected."
+      }
+    },
+    {
+      "in": {
+        "concurrency": 16,
+        "latency_target_ms": 190
+      },
+      "out": {
+        "throughput_tok_s": 9300.4,
+        "ttft_ms": 26.0,
+        "power_w": 390.5,
+        "cost_per_1m_tokens": 0.0986,
+        "e2e_ms_p95": 220.0
+      },
+      "note": {
+        "ko": "실측 E2E 220ms 라 목표 190ms 를 넘깁니다. 이 조합은 계획에서 탈락합니다.",
+        "en": "Measured end to end 220ms misses the 190ms target, so this combination is rejected."
+      }
+    },
+    {
+      "in": {
+        "concurrency": 16,
+        "latency_target_ms": 210
+      },
+      "out": {
+        "throughput_tok_s": 9300.4,
+        "ttft_ms": 26.0,
+        "power_w": 390.5,
+        "cost_per_1m_tokens": 0.0986,
+        "e2e_ms_p95": 220.0
+      },
+      "note": {
+        "ko": "실측 E2E 220ms 라 목표 210ms 를 넘깁니다. 이 조합은 계획에서 탈락합니다.",
+        "en": "Measured end to end 220ms misses the 210ms target, so this combination is rejected."
+      }
+    },
+    {
+      "in": {
+        "concurrency": 16,
+        "latency_target_ms": 230
+      },
+      "out": {
+        "throughput_tok_s": 9300.4,
+        "ttft_ms": 26.0,
+        "power_w": 390.5,
+        "cost_per_1m_tokens": 0.0986,
+        "e2e_ms_p95": 220.0
+      },
+      "note": {
+        "ko": "실측 E2E 220ms 로 목표 230ms 를 지킵니다. 커밋된 서빙 프로브 측정값을 그대로 재생한 결과입니다.",
+        "en": "Measured end to end 220ms meets the 230ms target, replayed from the committed serving probe."
+      }
+    },
+    {
+      "in": {
+        "concurrency": 16,
+        "latency_target_ms": 300
+      },
+      "out": {
+        "throughput_tok_s": 9300.4,
+        "ttft_ms": 26.0,
+        "power_w": 390.5,
+        "cost_per_1m_tokens": 0.0986,
+        "e2e_ms_p95": 220.0
+      },
+      "note": {
+        "ko": "실측 E2E 220ms 로 목표 300ms 를 지킵니다. 커밋된 서빙 프로브 측정값을 그대로 재생한 결과입니다.",
+        "en": "Measured end to end 220ms meets the 300ms target, replayed from the committed serving probe."
+      }
+    }
+  ],
+  "verdict": {
+    "ko": "동시성을 1에서 16으로 16배 올려도 측정된 E2E 지연은 180ms에서 220ms로 22%만 늘어나는 반면 처리량은 13배(694→9,300 tok/s)로 뛴다. 이 모델·하드웨어 조합에서는 동시성을 올리는 쪽이 거의 공짜다. 다만 목표 지연을 190ms 밑으로 좁히면 동시성 1을 제외한 모든 조합이 SLO를 위반한다. 정밀도(fp4/int4) 검색축은 품질 손실은 실측(각각 5.18%·8.23%)했지만 그 정밀도에서의 처리량은 측정되지 않아 이 조작판에는 넣지 않았다.",
+    "en": "Pushing concurrency 16x (1 to 16) only raises measured e2e latency 22% (180ms to 220ms) while throughput jumps 13x (694 to 9,300 tok/s), for this model/hardware pair, raising concurrency is nearly free. But tighten the target below 190ms and every concurrency level except 1 breaches the SLO. The precision axis (fp4/int4) has measured quality loss (5.18% and 8.23%) but no matching throughput measurement at those precisions, so it is left out of this control panel rather than filled in."
+  },
+  "provenance": {
+    "backend": "helios.adapters.measured.MeasuredBenchmark reading the committed B200 probe artifact (data/measured/2026-08-15-b200-qwen3-0p6b.json, evidence_type='replayed'); helios.replay._violates_slo for the SLO gate. No GPU job submitted. The full hardware/precision search could not run for this GPU because B200 is not yet listed in helios.capability.GPU_SPECS, a gap documented in docs/ASSETS.md. This demo calls the measured-benchmark adapter directly instead of the constrained-search pipeline. cost_per_1m_tokens uses the adapter's declared price ($3.30/GPU-hour), not a measurement.",
+    "command": "PYTHONPATH=src .venv/bin/python scripts/demo_data_grid.py",
+    "generated": "2026-08-15",
+    "measured": true
+  }
+}

@@ -1,0 +1,592 @@
+{
+  "id": "bioproof",
+  "product": {
+    "ko": "BioProof는 공개 benchmark 단백질을 여러 biomolecular predictor로 실행해 실험 구조 대비 오차와 모델 자신의 confidence가 얼마나 일치하는지 자동 평가하는 scientific AI QA platform이다.",
+    "en": "BioProof runs benchmark proteins through multiple biomolecular predictors and automatically evaluates how well each model's own confidence tracks its actual error against experimental structures."
+  },
+  "howto": {
+    "ko": "표적 단백질과 predictor를 고르고, '정답' 기준 거리를 바꿔가며 예측 오차와 신뢰도 격차를 확인하세요.",
+    "en": "Pick a target protein and a predictor, then vary the correctness distance to see the prediction error next to its confidence gap."
+  },
+  "controls": [
+    {
+      "key": "target",
+      "label": {
+        "ko": "표적 단백질",
+        "en": "Target protein"
+      },
+      "type": "select",
+      "options": [
+        {
+          "value": "1LYZ",
+          "label": {
+            "ko": "1LYZ (라이소자임)",
+            "en": "1LYZ (lysozyme C)"
+          }
+        },
+        {
+          "value": "1UBQ",
+          "label": {
+            "ko": "1UBQ (유비퀴틴)",
+            "en": "1UBQ (ubiquitin)"
+          }
+        },
+        {
+          "value": "3RN3",
+          "label": {
+            "ko": "3RN3 (리보뉴클레아제 A)",
+            "en": "3RN3 (ribonuclease A)"
+          }
+        },
+        {
+          "value": "5PTI",
+          "label": {
+            "ko": "5PTI (BPTI)",
+            "en": "5PTI (BPTI)"
+          }
+        },
+        {
+          "value": "1CRN",
+          "label": {
+            "ko": "1CRN (크램빈)",
+            "en": "1CRN (crambin)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "predictor",
+      "label": {
+        "ko": "predictor",
+        "en": "Predictor"
+      },
+      "type": "select",
+      "options": [
+        {
+          "value": "boltz2",
+          "label": {
+            "ko": "Boltz-2 (자체 GPU, 단일 서열)",
+            "en": "Boltz-2 (in-house GPU, single sequence)"
+          }
+        },
+        {
+          "value": "alphafold_db",
+          "label": {
+            "ko": "AlphaFold DB (공개 아카이브, full pipeline)",
+            "en": "AlphaFold DB (public archive, full pipeline)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "correctness_threshold_angstrom",
+      "label": {
+        "ko": "정답 판정 거리",
+        "en": "Correctness distance"
+      },
+      "type": "range",
+      "options": [
+        {
+          "value": 1.5,
+          "label": {
+            "ko": "1.5 Å",
+            "en": "1.5 Å"
+          }
+        },
+        {
+          "value": 2.0,
+          "label": {
+            "ko": "2.0 Å",
+            "en": "2.0 Å"
+          }
+        },
+        {
+          "value": 3.0,
+          "label": {
+            "ko": "3.0 Å",
+            "en": "3.0 Å"
+          }
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "key": "rmsd_angstrom",
+      "label": {
+        "ko": "RMSD",
+        "en": "RMSD"
+      },
+      "unit": "Å",
+      "better": "lower"
+    },
+    {
+      "key": "mean_confidence",
+      "label": {
+        "ko": "평균 신뢰도",
+        "en": "Mean confidence"
+      },
+      "unit": "",
+      "better": "higher"
+    },
+    {
+      "key": "observed_accuracy",
+      "label": {
+        "ko": "실측 정확도",
+        "en": "Observed accuracy"
+      },
+      "unit": "",
+      "better": "higher"
+    },
+    {
+      "key": "confidence_gap",
+      "label": {
+        "ko": "신뢰도 격차 (주장-실측)",
+        "en": "Confidence gap (claimed - observed)"
+      },
+      "unit": "",
+      "better": "lower"
+    },
+    {
+      "key": "expected_calibration_error",
+      "label": {
+        "ko": "Expected Calibration Error",
+        "en": "Expected Calibration Error"
+      },
+      "unit": "",
+      "better": "lower"
+    }
+  ],
+  "runs": [
+    {
+      "in": {
+        "target": "1LYZ",
+        "predictor": "boltz2",
+        "correctness_threshold_angstrom": 1.5
+      },
+      "out": {
+        "rmsd_angstrom": 0.612,
+        "mean_confidence": 0.9801,
+        "observed_accuracy": 0.9767,
+        "confidence_gap": 0.0034,
+        "expected_calibration_error": 0.0034
+      }
+    },
+    {
+      "in": {
+        "target": "1LYZ",
+        "predictor": "alphafold_db",
+        "correctness_threshold_angstrom": 1.5
+      },
+      "out": {
+        "rmsd_angstrom": 0.539,
+        "mean_confidence": 0.9822,
+        "observed_accuracy": 0.9922,
+        "confidence_gap": -0.0101,
+        "expected_calibration_error": 0.0101
+      }
+    },
+    {
+      "in": {
+        "target": "1LYZ",
+        "predictor": "boltz2",
+        "correctness_threshold_angstrom": 2.0
+      },
+      "out": {
+        "rmsd_angstrom": 0.612,
+        "mean_confidence": 0.9801,
+        "observed_accuracy": 1.0,
+        "confidence_gap": -0.0199,
+        "expected_calibration_error": 0.0199
+      }
+    },
+    {
+      "in": {
+        "target": "1LYZ",
+        "predictor": "alphafold_db",
+        "correctness_threshold_angstrom": 2.0
+      },
+      "out": {
+        "rmsd_angstrom": 0.539,
+        "mean_confidence": 0.9822,
+        "observed_accuracy": 1.0,
+        "confidence_gap": -0.0178,
+        "expected_calibration_error": 0.0178
+      }
+    },
+    {
+      "in": {
+        "target": "1LYZ",
+        "predictor": "boltz2",
+        "correctness_threshold_angstrom": 3.0
+      },
+      "out": {
+        "rmsd_angstrom": 0.612,
+        "mean_confidence": 0.9801,
+        "observed_accuracy": 1.0,
+        "confidence_gap": -0.0199,
+        "expected_calibration_error": 0.0199
+      }
+    },
+    {
+      "in": {
+        "target": "1LYZ",
+        "predictor": "alphafold_db",
+        "correctness_threshold_angstrom": 3.0
+      },
+      "out": {
+        "rmsd_angstrom": 0.539,
+        "mean_confidence": 0.9822,
+        "observed_accuracy": 1.0,
+        "confidence_gap": -0.0178,
+        "expected_calibration_error": 0.0178
+      }
+    },
+    {
+      "in": {
+        "target": "1UBQ",
+        "predictor": "boltz2",
+        "correctness_threshold_angstrom": 1.5
+      },
+      "out": {
+        "rmsd_angstrom": 1.583,
+        "mean_confidence": 0.929,
+        "observed_accuracy": 0.9605,
+        "confidence_gap": -0.0315,
+        "expected_calibration_error": 0.0667
+      }
+    },
+    {
+      "in": {
+        "target": "1UBQ",
+        "predictor": "alphafold_db",
+        "correctness_threshold_angstrom": 1.5
+      },
+      "out": {
+        "rmsd_angstrom": 0.77,
+        "mean_confidence": 0.8702,
+        "observed_accuracy": 0.9474,
+        "confidence_gap": -0.0772,
+        "expected_calibration_error": 0.1303
+      }
+    },
+    {
+      "in": {
+        "target": "1UBQ",
+        "predictor": "boltz2",
+        "correctness_threshold_angstrom": 2.0
+      },
+      "out": {
+        "rmsd_angstrom": 1.583,
+        "mean_confidence": 0.929,
+        "observed_accuracy": 0.9605,
+        "confidence_gap": -0.0315,
+        "expected_calibration_error": 0.0667
+      }
+    },
+    {
+      "in": {
+        "target": "1UBQ",
+        "predictor": "alphafold_db",
+        "correctness_threshold_angstrom": 2.0
+      },
+      "out": {
+        "rmsd_angstrom": 0.77,
+        "mean_confidence": 0.8702,
+        "observed_accuracy": 0.9605,
+        "confidence_gap": -0.0904,
+        "expected_calibration_error": 0.1291
+      }
+    },
+    {
+      "in": {
+        "target": "1UBQ",
+        "predictor": "boltz2",
+        "correctness_threshold_angstrom": 3.0
+      },
+      "out": {
+        "rmsd_angstrom": 1.583,
+        "mean_confidence": 0.929,
+        "observed_accuracy": 0.9737,
+        "confidence_gap": -0.0447,
+        "expected_calibration_error": 0.0571
+      }
+    },
+    {
+      "in": {
+        "target": "1UBQ",
+        "predictor": "alphafold_db",
+        "correctness_threshold_angstrom": 3.0
+      },
+      "out": {
+        "rmsd_angstrom": 0.77,
+        "mean_confidence": 0.8702,
+        "observed_accuracy": 0.9868,
+        "confidence_gap": -0.1167,
+        "expected_calibration_error": 0.1268
+      }
+    },
+    {
+      "in": {
+        "target": "3RN3",
+        "predictor": "boltz2",
+        "correctness_threshold_angstrom": 1.5
+      },
+      "out": {
+        "rmsd_angstrom": 0.58,
+        "mean_confidence": 0.9569,
+        "observed_accuracy": 0.9677,
+        "confidence_gap": -0.0108,
+        "expected_calibration_error": 0.0178
+      }
+    },
+    {
+      "in": {
+        "target": "3RN3",
+        "predictor": "alphafold_db",
+        "correctness_threshold_angstrom": 1.5
+      },
+      "out": {
+        "rmsd_angstrom": 0.357,
+        "mean_confidence": 0.983,
+        "observed_accuracy": 1.0,
+        "confidence_gap": -0.017,
+        "expected_calibration_error": 0.017
+      }
+    },
+    {
+      "in": {
+        "target": "3RN3",
+        "predictor": "boltz2",
+        "correctness_threshold_angstrom": 2.0
+      },
+      "out": {
+        "rmsd_angstrom": 0.58,
+        "mean_confidence": 0.9569,
+        "observed_accuracy": 1.0,
+        "confidence_gap": -0.0431,
+        "expected_calibration_error": 0.0431
+      }
+    },
+    {
+      "in": {
+        "target": "3RN3",
+        "predictor": "alphafold_db",
+        "correctness_threshold_angstrom": 2.0
+      },
+      "out": {
+        "rmsd_angstrom": 0.357,
+        "mean_confidence": 0.983,
+        "observed_accuracy": 1.0,
+        "confidence_gap": -0.017,
+        "expected_calibration_error": 0.017
+      }
+    },
+    {
+      "in": {
+        "target": "3RN3",
+        "predictor": "boltz2",
+        "correctness_threshold_angstrom": 3.0
+      },
+      "out": {
+        "rmsd_angstrom": 0.58,
+        "mean_confidence": 0.9569,
+        "observed_accuracy": 1.0,
+        "confidence_gap": -0.0431,
+        "expected_calibration_error": 0.0431
+      }
+    },
+    {
+      "in": {
+        "target": "3RN3",
+        "predictor": "alphafold_db",
+        "correctness_threshold_angstrom": 3.0
+      },
+      "out": {
+        "rmsd_angstrom": 0.357,
+        "mean_confidence": 0.983,
+        "observed_accuracy": 1.0,
+        "confidence_gap": -0.017,
+        "expected_calibration_error": 0.017
+      }
+    },
+    {
+      "in": {
+        "target": "5PTI",
+        "predictor": "boltz2",
+        "correctness_threshold_angstrom": 1.5
+      },
+      "out": {
+        "rmsd_angstrom": 6.902,
+        "mean_confidence": 0.5393,
+        "observed_accuracy": 0.0345,
+        "confidence_gap": 0.5048,
+        "expected_calibration_error": 0.5048
+      }
+    },
+    {
+      "in": {
+        "target": "5PTI",
+        "predictor": "alphafold_db",
+        "correctness_threshold_angstrom": 1.5
+      },
+      "out": {
+        "rmsd_angstrom": 1.116,
+        "mean_confidence": 0.9697,
+        "observed_accuracy": 0.9655,
+        "confidence_gap": 0.0041,
+        "expected_calibration_error": 0.0483
+      }
+    },
+    {
+      "in": {
+        "target": "5PTI",
+        "predictor": "boltz2",
+        "correctness_threshold_angstrom": 2.0
+      },
+      "out": {
+        "rmsd_angstrom": 6.902,
+        "mean_confidence": 0.5393,
+        "observed_accuracy": 0.069,
+        "confidence_gap": 0.4703,
+        "expected_calibration_error": 0.4703
+      }
+    },
+    {
+      "in": {
+        "target": "5PTI",
+        "predictor": "alphafold_db",
+        "correctness_threshold_angstrom": 2.0
+      },
+      "out": {
+        "rmsd_angstrom": 1.116,
+        "mean_confidence": 0.9697,
+        "observed_accuracy": 0.9655,
+        "confidence_gap": 0.0041,
+        "expected_calibration_error": 0.0483
+      }
+    },
+    {
+      "in": {
+        "target": "5PTI",
+        "predictor": "boltz2",
+        "correctness_threshold_angstrom": 3.0
+      },
+      "out": {
+        "rmsd_angstrom": 6.902,
+        "mean_confidence": 0.5393,
+        "observed_accuracy": 0.2414,
+        "confidence_gap": 0.2979,
+        "expected_calibration_error": 0.2979
+      }
+    },
+    {
+      "in": {
+        "target": "5PTI",
+        "predictor": "alphafold_db",
+        "correctness_threshold_angstrom": 3.0
+      },
+      "out": {
+        "rmsd_angstrom": 1.116,
+        "mean_confidence": 0.9697,
+        "observed_accuracy": 0.9828,
+        "confidence_gap": -0.0131,
+        "expected_calibration_error": 0.0365
+      }
+    },
+    {
+      "in": {
+        "target": "1CRN",
+        "predictor": "boltz2",
+        "correctness_threshold_angstrom": 1.5
+      },
+      "out": {
+        "rmsd_angstrom": 6.781,
+        "mean_confidence": 0.4806,
+        "observed_accuracy": 0.0217,
+        "confidence_gap": 0.4589,
+        "expected_calibration_error": 0.4589
+      }
+    },
+    {
+      "in": {
+        "target": "1CRN",
+        "predictor": "alphafold_db",
+        "correctness_threshold_angstrom": 1.5
+      },
+      "out": {
+        "rmsd_angstrom": 0.439,
+        "mean_confidence": 0.9341,
+        "observed_accuracy": 1.0,
+        "confidence_gap": -0.0659,
+        "expected_calibration_error": 0.0659
+      }
+    },
+    {
+      "in": {
+        "target": "1CRN",
+        "predictor": "boltz2",
+        "correctness_threshold_angstrom": 2.0
+      },
+      "out": {
+        "rmsd_angstrom": 6.781,
+        "mean_confidence": 0.4806,
+        "observed_accuracy": 0.0652,
+        "confidence_gap": 0.4154,
+        "expected_calibration_error": 0.4154
+      }
+    },
+    {
+      "in": {
+        "target": "1CRN",
+        "predictor": "alphafold_db",
+        "correctness_threshold_angstrom": 2.0
+      },
+      "out": {
+        "rmsd_angstrom": 0.439,
+        "mean_confidence": 0.9341,
+        "observed_accuracy": 1.0,
+        "confidence_gap": -0.0659,
+        "expected_calibration_error": 0.0659
+      }
+    },
+    {
+      "in": {
+        "target": "1CRN",
+        "predictor": "boltz2",
+        "correctness_threshold_angstrom": 3.0
+      },
+      "out": {
+        "rmsd_angstrom": 6.781,
+        "mean_confidence": 0.4806,
+        "observed_accuracy": 0.1739,
+        "confidence_gap": 0.3067,
+        "expected_calibration_error": 0.3067
+      }
+    },
+    {
+      "in": {
+        "target": "1CRN",
+        "predictor": "alphafold_db",
+        "correctness_threshold_angstrom": 3.0
+      },
+      "out": {
+        "rmsd_angstrom": 0.439,
+        "mean_confidence": 0.9341,
+        "observed_accuracy": 1.0,
+        "confidence_gap": -0.0659,
+        "expected_calibration_error": 0.0659
+      }
+    }
+  ],
+  "verdict": {
+    "ko": "같은 실험 구조, 같은 정렬, 같은 판정 기준으로 자체 GPU에서 접은 Boltz-2와 공개 아카이브의 AlphaFold 예측을 나란히 놓으면 confidence 신뢰도가 target마다 다르게 갈린다: 5개 표적 중 3개(1LYZ/3RN3/1UBQ)는 Boltz-2가 잘 접었고 신뢰도도 겸손한 반면(gap 음수), 이황화결합이 많은 나머지 2개(5PTI/1CRN)는 구조가 크게 무너졌는데도 confidence는 절반만 떨어져 과신(gap 양수, ECE 급증)으로 드러난다. 단, 두 predictor는 조건이 다르다. 자체 폴딩은 MSA 없이 단일 서열로 돌았고 아카이브는 full pipeline이라 정확도 자체는 직접 비교 대상이 아니다.",
+    "en": "Placing our own in-house-GPU Boltz-2 fold next to the public AlphaFold-DB prediction, against the same experimental structure, the same alignment, and the same threshold, shows confidence reliability split by target: on three of five targets (1LYZ/3RN3/1UBQ) Boltz-2 folds well and stays modestly confident (negative gap); on the two disulfide-rich targets (5PTI/1CRN) the structure collapses far more than its confidence does, showing up as overconfidence (positive gap, ECE spikes). The two predictors ran under different conditions, ours single-sequence, the archive's full pipeline, so raw accuracy is not a fair head-to-head; the confidence-vs-error relationship is the fair one."
+  },
+  "provenance": {
+    "backend": "Real predicted structures on both sides: Boltz-2 folds already committed at data/folded/*_boltz.pdb (run once on in-house GPU, not re-run here) scored against the real RCSB experimental structure; AlphaFold DB predictions and RCSB experimental structures fetched live from the public archives over the network (CPU only, no GPU job). Per-residue error, calibration and RMSD/GDT_TS computed by bioproof.predictor_comparison.score().",
+    "command": "cd bioproof-lab && PYTHONPATH=src python scripts/gen_demo_data.py",
+    "generated": "2026-08-15",
+    "measured": true
+  }
+}

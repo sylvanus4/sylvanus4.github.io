@@ -1,0 +1,384 @@
+{
+  "id": "orbitguard",
+  "product": {
+    "ko": "OrbitGuard는 공개 궤도 요소(TLE) 카탈로그를 실제 SGP4로 전파해 다수 위성·잔해 간 근접 접근(conjunction)을 탐지하고, 불확실성을 포함한 충돌 위험과 연료·임무 손실·2차 conjunction까지 함께 고려해 회피기동 후보를 제안하는 자율 위성 충돌회피 디지털 트윈이다.",
+    "en": "OrbitGuard is a collision-avoidance digital twin that propagates a public two-line-element catalogue with real SGP4, screens for close approaches (conjunctions) among many satellites, and ranks avoidance-maneuver candidates against fuel cost, mission loss, and secondary conjunctions, not just a single risk number."
+  },
+  "howto": {
+    "ko": "근접 접근(miss distance) 경보 임계값과, 도킹/결합된 물체(co-orbital)를 걸러낼지 여부를 바꿔가며 실제 공개 궤도 데이터에서 어떤 물체쌍이 경보로 잡히는지 확인해 보세요.",
+    "en": "Change the miss-distance alert threshold and whether co-orbital (docked/bolted-together) duplicates are filtered, and see which real object pairs actually trigger an alert."
+  },
+  "controls": [
+    {
+      "key": "miss_distance_threshold_km",
+      "label": {
+        "ko": "근접 접근 경보 임계값",
+        "en": "Miss-distance alert threshold"
+      },
+      "type": "range",
+      "options": [
+        {
+          "value": 0.001,
+          "label": {
+            "ko": "1 m",
+            "en": "1 m"
+          }
+        },
+        {
+          "value": 60,
+          "label": {
+            "ko": "60 km",
+            "en": "60 km"
+          }
+        },
+        {
+          "value": 100,
+          "label": {
+            "ko": "100 km",
+            "en": "100 km"
+          }
+        },
+        {
+          "value": 300,
+          "label": {
+            "ko": "300 km",
+            "en": "300 km"
+          }
+        },
+        {
+          "value": 600,
+          "label": {
+            "ko": "600 km",
+            "en": "600 km"
+          }
+        },
+        {
+          "value": 1000,
+          "label": {
+            "ko": "1000 km",
+            "en": "1000 km"
+          }
+        },
+        {
+          "value": 5000,
+          "label": {
+            "ko": "5000 km",
+            "en": "5000 km"
+          }
+        },
+        {
+          "value": 15000,
+          "label": {
+            "ko": "15000 km",
+            "en": "15000 km"
+          }
+        }
+      ]
+    },
+    {
+      "key": "filter_co_orbital",
+      "label": {
+        "ko": "결합/도킹 물체(co-orbital) 제외",
+        "en": "Filter co-orbital (docked) duplicates"
+      },
+      "type": "select",
+      "options": [
+        {
+          "value": true,
+          "label": {
+            "ko": "제외함 (권장)",
+            "en": "Excluded (recommended)"
+          }
+        },
+        {
+          "value": false,
+          "label": {
+            "ko": "포함함 (필터 없음)",
+            "en": "Included (no filter)"
+          }
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "key": "alert_count",
+      "label": {
+        "ko": "경보로 잡힌 물체쌍 수",
+        "en": "Object pairs alerted"
+      },
+      "unit": "pairs",
+      "better": ""
+    },
+    {
+      "key": "co_orbital_in_alerts",
+      "label": {
+        "ko": "그중 결합/도킹 중복(진짜 위험 아님)",
+        "en": "Of those, co-orbital duplicates (not real risk)"
+      },
+      "unit": "pairs",
+      "better": "lower"
+    },
+    {
+      "key": "closest_miss_km",
+      "label": {
+        "ko": "최근접 거리",
+        "en": "Closest miss distance"
+      },
+      "unit": "km",
+      "better": "higher"
+    }
+  ],
+  "runs": [
+    {
+      "in": {
+        "miss_distance_threshold_km": 0.001,
+        "filter_co_orbital": true
+      },
+      "out": {
+        "alert_count": 0,
+        "co_orbital_in_alerts": 0,
+        "closest_miss_km": null
+      },
+      "note": {
+        "ko": "이 조건에서는 경보 없음",
+        "en": "No alerts under this setting"
+      }
+    },
+    {
+      "in": {
+        "miss_distance_threshold_km": 60,
+        "filter_co_orbital": true
+      },
+      "out": {
+        "alert_count": 1,
+        "co_orbital_in_alerts": 0,
+        "closest_miss_km": 57.486
+      },
+      "note": {
+        "ko": "최근접 경보: KNACKSAT-2 / UITMSAT-2 (57.486 km)",
+        "en": "Closest alert: KNACKSAT-2 / UITMSAT-2 (57.486 km)"
+      }
+    },
+    {
+      "in": {
+        "miss_distance_threshold_km": 100,
+        "filter_co_orbital": true
+      },
+      "out": {
+        "alert_count": 9,
+        "co_orbital_in_alerts": 0,
+        "closest_miss_km": 57.486
+      },
+      "note": {
+        "ko": "최근접 경보: KNACKSAT-2 / UITMSAT-2 (57.486 km)",
+        "en": "Closest alert: KNACKSAT-2 / UITMSAT-2 (57.486 km)"
+      }
+    },
+    {
+      "in": {
+        "miss_distance_threshold_km": 300,
+        "filter_co_orbital": true
+      },
+      "out": {
+        "alert_count": 17,
+        "co_orbital_in_alerts": 0,
+        "closest_miss_km": 57.486
+      },
+      "note": {
+        "ko": "최근접 경보: KNACKSAT-2 / UITMSAT-2 (57.486 km)",
+        "en": "Closest alert: KNACKSAT-2 / UITMSAT-2 (57.486 km)"
+      }
+    },
+    {
+      "in": {
+        "miss_distance_threshold_km": 600,
+        "filter_co_orbital": true
+      },
+      "out": {
+        "alert_count": 22,
+        "co_orbital_in_alerts": 0,
+        "closest_miss_km": 57.486
+      },
+      "note": {
+        "ko": "최근접 경보: KNACKSAT-2 / UITMSAT-2 (57.486 km)",
+        "en": "Closest alert: KNACKSAT-2 / UITMSAT-2 (57.486 km)"
+      }
+    },
+    {
+      "in": {
+        "miss_distance_threshold_km": 1000,
+        "filter_co_orbital": true
+      },
+      "out": {
+        "alert_count": 35,
+        "co_orbital_in_alerts": 0,
+        "closest_miss_km": 57.486
+      },
+      "note": {
+        "ko": "최근접 경보: KNACKSAT-2 / UITMSAT-2 (57.486 km)",
+        "en": "Closest alert: KNACKSAT-2 / UITMSAT-2 (57.486 km)"
+      }
+    },
+    {
+      "in": {
+        "miss_distance_threshold_km": 5000,
+        "filter_co_orbital": true
+      },
+      "out": {
+        "alert_count": 64,
+        "co_orbital_in_alerts": 0,
+        "closest_miss_km": 57.486
+      },
+      "note": {
+        "ko": "최근접 경보: KNACKSAT-2 / UITMSAT-2 (57.486 km)",
+        "en": "Closest alert: KNACKSAT-2 / UITMSAT-2 (57.486 km)"
+      }
+    },
+    {
+      "in": {
+        "miss_distance_threshold_km": 15000,
+        "filter_co_orbital": true
+      },
+      "out": {
+        "alert_count": 179,
+        "co_orbital_in_alerts": 0,
+        "closest_miss_km": 57.486
+      },
+      "note": {
+        "ko": "최근접 경보: KNACKSAT-2 / UITMSAT-2 (57.486 km)",
+        "en": "Closest alert: KNACKSAT-2 / UITMSAT-2 (57.486 km)"
+      }
+    },
+    {
+      "in": {
+        "miss_distance_threshold_km": 0.001,
+        "filter_co_orbital": false
+      },
+      "out": {
+        "alert_count": 31,
+        "co_orbital_in_alerts": 31,
+        "closest_miss_km": 0.0
+      },
+      "note": {
+        "ko": "최근접 경보: ISS (ZARYA) / POISK (0.000 km)",
+        "en": "Closest alert: ISS (ZARYA) / POISK (0.000 km)"
+      }
+    },
+    {
+      "in": {
+        "miss_distance_threshold_km": 60,
+        "filter_co_orbital": false
+      },
+      "out": {
+        "alert_count": 32,
+        "co_orbital_in_alerts": 31,
+        "closest_miss_km": 0.0
+      },
+      "note": {
+        "ko": "최근접 경보: ISS (ZARYA) / POISK (0.000 km)",
+        "en": "Closest alert: ISS (ZARYA) / POISK (0.000 km)"
+      }
+    },
+    {
+      "in": {
+        "miss_distance_threshold_km": 100,
+        "filter_co_orbital": false
+      },
+      "out": {
+        "alert_count": 40,
+        "co_orbital_in_alerts": 31,
+        "closest_miss_km": 0.0
+      },
+      "note": {
+        "ko": "최근접 경보: ISS (ZARYA) / POISK (0.000 km)",
+        "en": "Closest alert: ISS (ZARYA) / POISK (0.000 km)"
+      }
+    },
+    {
+      "in": {
+        "miss_distance_threshold_km": 300,
+        "filter_co_orbital": false
+      },
+      "out": {
+        "alert_count": 48,
+        "co_orbital_in_alerts": 31,
+        "closest_miss_km": 0.0
+      },
+      "note": {
+        "ko": "최근접 경보: ISS (ZARYA) / POISK (0.000 km)",
+        "en": "Closest alert: ISS (ZARYA) / POISK (0.000 km)"
+      }
+    },
+    {
+      "in": {
+        "miss_distance_threshold_km": 600,
+        "filter_co_orbital": false
+      },
+      "out": {
+        "alert_count": 53,
+        "co_orbital_in_alerts": 31,
+        "closest_miss_km": 0.0
+      },
+      "note": {
+        "ko": "최근접 경보: ISS (ZARYA) / POISK (0.000 km)",
+        "en": "Closest alert: ISS (ZARYA) / POISK (0.000 km)"
+      }
+    },
+    {
+      "in": {
+        "miss_distance_threshold_km": 1000,
+        "filter_co_orbital": false
+      },
+      "out": {
+        "alert_count": 66,
+        "co_orbital_in_alerts": 31,
+        "closest_miss_km": 0.0
+      },
+      "note": {
+        "ko": "최근접 경보: ISS (ZARYA) / POISK (0.000 km)",
+        "en": "Closest alert: ISS (ZARYA) / POISK (0.000 km)"
+      }
+    },
+    {
+      "in": {
+        "miss_distance_threshold_km": 5000,
+        "filter_co_orbital": false
+      },
+      "out": {
+        "alert_count": 95,
+        "co_orbital_in_alerts": 31,
+        "closest_miss_km": 0.0
+      },
+      "note": {
+        "ko": "최근접 경보: ISS (ZARYA) / POISK (0.000 km)",
+        "en": "Closest alert: ISS (ZARYA) / POISK (0.000 km)"
+      }
+    },
+    {
+      "in": {
+        "miss_distance_threshold_km": 15000,
+        "filter_co_orbital": false
+      },
+      "out": {
+        "alert_count": 210,
+        "co_orbital_in_alerts": 31,
+        "closest_miss_km": 0.0
+      },
+      "note": {
+        "ko": "최근접 경보: ISS (ZARYA) / POISK (0.000 km)",
+        "en": "Closest alert: ISS (ZARYA) / POISK (0.000 km)"
+      }
+    }
+  ],
+  "verdict": {
+    "ko": "이 실제 궤도 데이터(ISS/CSS 정거장 그룹, 24시간 창)에서, 도킹·결합된 물체(예: ISS와 도킹된 Progress·Cygnus·Crew Dragon)는 서로 완전히 동일한 TLE를 공유해 미스거리가 정확히 0km로 나온다. co-orbital 필터를 끄면 이 31쌍의 '가짜 충돌'이 임계값 15km 미만 구간의 경보를 전부 차지해 실제로 가장 가까운 진짜 근접 접근(57.5km, KNACKSAT-2/UITMSAT-2)이 경보 목록에 아예 안 보이게 된다. 필터를 켜면 이 노이즈가 사라지고 진짜 conjunction만 남는다. 단일 위험 숫자가 아니라 근거를 남기는 이유가 여기 있다.",
+    "en": "In this real orbital data (the ISS/CSS station group, 24-hour window), docked/bolted-together objects (e.g. Progress, Cygnus, and Crew Dragon docked to the ISS) publish identical element sets and so report exactly 0 km miss distance. With the co-orbital filter off, those 31 'phantom collisions' fill every alert slot under about 15 km, burying the closest genuine conjunction (57.5 km, KNACKSAT-2/UITMSAT-2) off the list entirely. Turning the filter on removes that noise and leaves only real conjunctions, which is exactly why this system reports evidence, not a single risk number."
+  },
+  "provenance": {
+    "backend": "sgp4 (python package v2.27) propagating a live public two-line-element catalogue fetched from CelesTrak (GROUP=stations, 21 distinct objects after keeping duplicate element sets in) via orbitguard.adapters.tle.Sgp4Propagator; conjunction screening and co-orbital partitioning via orbitguard.conjunction.find_tca and orbitguard.adapters.tle.partition_co_orbital over all C(21,2)=210 pairs, 24h window, 120s coarse step, reference epoch 2026-08-15T14:22:16.509423+00:00. This is a live public catalogue fetch, not a bundled/cached snapshot -- CelesTrak's data changes as TLEs are updated, so re-running the command below will fetch the current catalogue and may return different object positions and pair counts; the threshold/filter relationship shown here is what is stable, not the exact numbers.",
+    "command": "cd flagship/orbitguard-twin && PYTHONPATH=src python scripts/real_screening.py --group stations --hours 24 --max-objects 60 --no-dedupe --out artifacts/stations.json",
+    "generated": "2026-08-15",
+    "measured": true
+  }
+}
