@@ -1370,6 +1370,15 @@
         "#MACB",
         "#ZeroNetwork"
       ]
+    },
+    "소닉 브랜딩 — 코드 로고 + 생성 편곡": {
+      "t": "Sonic Branding — a mnemonic in code, arrangements from a model",
+      "e": "A full sonic identity and a 54-second brand film built on self-managed B200s two days after the 57GB music model was released. The three-note mnemonic (root, fifth, octave) is synthesised in numpy DSP rather than generated, because a logo has to be byte-identical every time; timbre, arrangement and development are left to the model via caption. Same GPU and same weights, changing only the execution stack, measured 36 to 463 songs per hour, a 12.7x gap, at roughly $0.007 per song. Ten logo variants, six brand beds and four vocal tracks are playable on the demo page.",
+      "g": [
+        "#MusicGen",
+        "#SonicBranding",
+        "#DSP"
+      ]
     }
   },
   "fams": {

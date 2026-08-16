@@ -510,6 +510,21 @@
         "#네트워크0"
       ],
       "q": "ntfs mft 포렌식 forensics macb timestamp ads 브라우저 클라이언트"
+    },
+    {
+      "fam": "tech-media",
+      "repo": "sylvanus4/sylvanus4.github.io",
+      "title": "소닉 브랜딩 — 코드 로고 + 생성 편곡",
+      "excerpt": "공개 이틀 된 57GB 음악 생성 모델을 자체 B200에 적재해 브랜드 사운드 시스템 전체와 54초 광고 영상까지 만든 작업이다. 소닉 로고 3음(근음·5도·옥타브)은 매번 바이트가 같아야 하므로 생성 모델이 아니라 numpy DSP가 합성하고, 편곡·음색·전개는 모델이 캡션 지시로 푼다. 같은 GPU에 같은 가중치를 올리고 실행 스택만 바꿔 36곡/시간에서 463곡/시간으로 12.7배를 실측했고, 곡당 원가는 약 $0.007이다. 로고 10종·브랜드 음악 6곡·보컬 곡 4곡을 데모 페이지에서 바로 들을 수 있다.",
+      "lang": "Python",
+      "date": "2026.08.15",
+      "tags": [
+        "#음악생성",
+        "#소닉브랜딩",
+        "#DSP"
+      ],
+      "q": "소닉 브랜딩 sonic branding 음악 생성 minimax music3 b200 sglang numpy dsp 광고 영상 로고 mnemonic 마림바 배음 브랜드 사운드",
+      "url": "https://sylvanus4.github.io/demos/music3/"
     }
   ],
   "rewrite": [

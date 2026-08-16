@@ -977,6 +977,31 @@
     ]
   },
   {
+    "slug": "music3",
+    "group": "media",
+    "src": "own",
+    "title": "소닉 브랜딩 — 코드가 만든 로고, 모델이 만든 편곡",
+    "url": "https://sylvanus4.github.io/demos/music3/",
+    "repo": "https://github.com/sylvanus4/sylvanus4.github.io",
+    "blurb": "공개 이틀 된 57GB 음악 생성 모델을 자체 GPU에 올려 브랜드 사운드 시스템·54초 광고 영상·라이브 퍼포먼스 뮤직비디오 6편까지 만든 기록. 소닉 로고 3음은 매번 동일해야 하므로 생성 모델이 아니라 numpy가 합성하고, 편곡은 모델이 맡는다. 뮤직비디오는 퍼포머 스틸을 LTX-2.3 image-to-video로 움직이고 곡 BPM에 맞춰 컷을 나눴다. 로고 10종·브랜드 음악 6곡·보컬 곡 8곡·MV 6편을 페이지에서 바로 보고 들을 수 있다.",
+    "tech": [
+      "MiniMax-Music3",
+      "LTX-2.3",
+      "NVIDIA H200 · B200",
+      "numpy DSP",
+      "PIL + ffmpeg"
+    ],
+    "title_en": "Sonic Branding — a mnemonic in code, arrangements from a model",
+    "blurb_en": "A full sonic identity, a 54-second brand film and six live-performance music videos built on in-house GPUs. The three-note mnemonic is synthesised deterministically in numpy because a logo must be byte-identical every time; arrangements come from the model. The videos animate generated performer stills with LTX-2.3 image-to-video, cut to each song's BPM. Ten logo variants, six brand beds, eight vocal tracks and six music videos are playable inline.",
+    "tech_en": [
+      "MiniMax-Music3",
+      "LTX-2.3",
+      "NVIDIA H200 · B200",
+      "numpy DSP",
+      "PIL + ffmpeg"
+    ]
+  },
+  {
     "slug": "flagship",
     "group": "infra",
     "src": "hosted",
