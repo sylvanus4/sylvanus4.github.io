@@ -26,7 +26,7 @@ export const profile = {
 export const stats = [
   { value: "19", unit: "년", label: "2007년부터 공백 없이" },
   { value: "608", unit: "편", label: "공개 운영 중인 3개 언어 기술 블로그" },
-  { value: "161", unit: "개", label: "직접 만들어 굴리는 저장소" },
+  { value: "159", unit: "개", label: "직접 만들어 굴리는 저장소" },
   { value: "42", unit: "건", label: "측정값이 붙은 완성 구현" }
 ];
 
@@ -51,7 +51,7 @@ export const layers = [
     line: "여러 팀이 함께 쓰는 판을 깝니다",
     body:
       "삼성 사내 클라우드에 Kubernetes 기반 ML 플랫폼을 올려 모델 배포 시간을 며칠에서 몇 시간으로 줄였습니다. " +
-      "지금은 ThakiCloud에서 추론(Metis), 학습(Maxis), 에이전트(Paxis) 세 축을 설계합니다. " +
+      "지금은 ThakiCloud에서 추론과 학습, 에이전트 자동화 세 축을 설계합니다. " +
       "에이전트 쪽은 하네스와 루프, 그래프를 직접 엔지니어링합니다.",
     keys: ["Kubernetes", "멀티테넌시", "GPU 스케줄링", "에이전트 하네스", "GitOps"]
   },
@@ -84,7 +84,7 @@ export const layers = [
     title: "연구 · 고속 구현",
     line: "아는 분야를 훨씬 빨리 넓힙니다",
     body:
-      "오래 다뤄 온 영역을 에이전트로 확장해 곧바로 구현으로 옮깁니다. 저장소 161개를 그렇게 만들었고 " +
+      "오래 다뤄 온 영역을 에이전트로 확장해 곧바로 구현으로 옮깁니다. 저장소 159개를 그렇게 만들었고 " +
       "42건은 측정값이 붙은 완성 구현입니다. 결과는 미화하지 않고 그대로 적습니다.",
     keys: ["에이전트 리서치", "고속 프로토타이핑", "정직한 측정", "재현 가능성"]
   }
@@ -476,7 +476,7 @@ export const research = {
     "넘어갑니다. 도메인을 아는 사람이 에이전트를 쥐면 속도와 깊이가 같이 올라갑니다. " +
     "결과는 미화하지 않고 그대로 적습니다. 벽인 줄 알았던 것이 제 모델이었다고 쓴 적도 있습니다.",
   counts: [
-    { k: "직접 만든 저장소", v: "161개" },
+    { k: "직접 만든 저장소", v: "159개" },
     { k: "측정값 붙은 완성 구현", v: "42건" },
     { k: "주요 도메인", v: "최적화 · 인프라 · 추천 · 신호" }
   ],
@@ -488,7 +488,7 @@ export const research = {
 export const stack = [
   {
     group: "에이전트 하네스 · 오케스트레이션",
-    note: "Paxis",
+    note: "에이전트",
     items: [
       "하네스 엔지니어링", "루프 엔지니어링", "그래프 엔지니어링", "MCP 툴 연동",
       "스킬 라우팅 · 검색증강", "LangGraph", "Human-in-the-Loop 승인", "정책 · 감사 추적",
@@ -497,7 +497,7 @@ export const stack = [
   },
   {
     group: "학습 · 파인튜닝 · 증류",
-    note: "Maxis",
+    note: "학습",
     items: [
       "SFT", "CPT", "DPO", "GRPO", "GKD", "LoRA · QLoRA", "지식 증류",
       "FSDP · DDP", "TRL", "Unsloth", "MLflow", "평가셋 · 회귀 테스트"
@@ -505,7 +505,7 @@ export const stack = [
   },
   {
     group: "추론 · 서빙 · 압축",
-    note: "Metis",
+    note: "추론 · 서빙",
     items: [
       "vLLM", "NVIDIA Dynamo", "LMCache", "Prefill-Decode 분리", "NVFP4 · W4A16",
       "LLM Compressor", "MoE 압축 · 프루닝", "Scale-to-Zero", "KServe", "모델 라우팅"
@@ -603,7 +603,7 @@ export const reels = [
     blurb: "360만 곡 실시간 인식에서 설비 예지보전까지, 소리로 할 수 있는 일들입니다." },
   { n: "08", slug: "08-vision", cat: "비전", palette: "crimson", ready: true, dur: "0:55",
     blurb: "730만 장 사물 검색과 광학 채널. 통신이 없는 환경에서 데이터를 옮기는 방법입니다." },
-  { n: "09", slug: "09-aiplatform", cat: "Paxis · Maxis · Metis", palette: "azure", ready: true, dur: "1:13",
+  { n: "09", slug: "09-aiplatform", cat: "AI 플랫폼 · 추론 · 학습 · 에이전트", palette: "azure", ready: true, dur: "1:13",
     blurb: "지금 하는 일. 제품 방향과 기본 아키텍처를 정하고, 에이전트 빌더의 사내 연동과 모델 양자화를 직접 맡습니다." },
   { n: "10", slug: "10-mediagen", cat: "영상 · 이미지 생성", palette: "violet", ready: true, dur: "0:33",
     blurb: "소재를 사람 손 없이 반복 생산합니다. 이 영상들도 그 파이프라인으로 만들었습니다." },

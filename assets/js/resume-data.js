@@ -15,7 +15,7 @@ export const ko = {
 
   summary: [
     "2007년부터 공백 없이 19년째 컴퓨터 비전, 추천, 생성 AI, 엔터프라이즈 AI 플랫폼을 만들어 온 AI 시스템 엔지니어입니다.",
-    "현재 ThakiCloud에서 추론(Metis), 학습(Maxis), 에이전트 자동화(Paxis) 세 플랫폼의 제품 전략과 아키텍처를 설계하고 팀을 이끕니다.",
+    "현재 ThakiCloud에서 추론, 학습, 에이전트 자동화 세 플랫폼의 제품 전략과 아키텍처를 설계하고 팀을 이끕니다.",
     "생성 AI 콘텐츠 플랫폼을 직접 창업해 일본·대만·홍콩 3개 시장에서 유료 사용자 5만 명, 누적 매출 4억 원을 만든 경험이 있습니다.",
     "한국어·영어·아랍어 3개 언어 기술 블로그를 운영하며 2,260편을 쓰고 608편을 공개했습니다. 동작하는 구현 사례 42건을 독립 연구로 축적했습니다.",
     "모델부터 인프라, 제품까지 직접 만들어 본 경험을 바탕으로 방향을 정하고, 필요한 부분은 지금도 직접 구현합니다."
@@ -23,7 +23,7 @@ export const ko = {
 
   skills: [
     {
-      group: "에이전트 하네스 · 오케스트레이션 (Paxis)",
+      group: "에이전트 하네스 · 오케스트레이션",
       items: [
         "하네스 엔지니어링", "루프 엔지니어링", "그래프 엔지니어링", "MCP 툴 연동",
         "스킬 라우팅 · 검색증강", "LangGraph", "Human-in-the-Loop 승인", "정책 · 감사 추적",
@@ -31,14 +31,14 @@ export const ko = {
       ]
     },
     {
-      group: "학습 · 파인튜닝 · 증류 (Maxis)",
+      group: "학습 · 파인튜닝 · 증류",
       items: [
         "SFT", "CPT", "DPO", "GRPO", "GKD", "LoRA · QLoRA", "지식 증류",
         "FSDP · DDP", "TRL", "Unsloth", "MLflow", "평가셋 · 회귀 테스트"
       ]
     },
     {
-      group: "추론 · 서빙 · 압축 (Metis)",
+      group: "추론 · 서빙 · 압축",
       items: [
         "vLLM", "NVIDIA Dynamo", "LMCache", "Prefill-Decode 분리", "NVFP4 · W4A16",
         "LLM Compressor", "MoE 압축 · 프루닝", "Scale-to-Zero", "KServe", "모델 라우팅"
@@ -87,7 +87,7 @@ export const ko = {
         {
           name: "AI 플랫폼 3종 기획 · 아키텍처 설계 · 리딩",
           bullets: [
-            "추론(Metis) · 학습(Maxis) · 에이전트(Paxis) 세 축의 제품 방향과 기본 아키텍처를 설계하고, 실험 우선순위를 정해 개발팀을 리딩",
+            "추론 · 학습 · 에이전트 자동화 세 축의 제품 방향과 기본 아키텍처를 설계하고, 실험 우선순위를 정해 개발팀을 리딩",
             "Kubernetes GPU 스케줄링 · 멀티테넌시 · GitOps 배포 체계의 설계 방향을 잡고 구축을 총괄"
           ]
         },
@@ -238,7 +238,7 @@ export const ko = {
 
   rnd: {
     intro:
-      "비전, 신호 처리, 최적화, 추천처럼 제가 오래 다뤄 온 영역을 에이전트로 더 넓게 확장하며 직접 구현합니다. 무엇을 재야 답이 나오는지 이미 알기 때문에 논문을 읽는 자리에서 곧바로 실측 가능한 구현으로 넘어갑니다. 저장소 161개를 만들어 운영하며 그중 42건은 측정값이 붙은 완성 구현입니다.",
+      "비전, 신호 처리, 최적화, 추천처럼 제가 오래 다뤄 온 영역을 에이전트로 더 넓게 확장하며 직접 구현합니다. 무엇을 재야 답이 나오는지 이미 알기 때문에 논문을 읽는 자리에서 곧바로 실측 가능한 구현으로 넘어갑니다. 저장소 159개를 만들어 운영하며 그중 42건은 측정값이 붙은 완성 구현입니다.",
     groups: [
       {
         name: "최적화 · 스케줄링",
@@ -329,14 +329,14 @@ export const en = {
 
   summary: [
     "AI systems engineer with 19 years of continuous experience (2007-present) spanning computer vision, recommendation systems, generative AI, and enterprise AI platforms.",
-    "Currently leads product strategy and architecture for three AI platforms at ThakiCloud: inference (Metis), training (Maxis), and enterprise agent automation (Paxis).",
+    "Currently leads product strategy and architecture for three AI platforms at ThakiCloud: inference, training, and enterprise agent automation.",
     "Founded and ran a generative AI content platform that reached 50K paying users and KRW 400M in cumulative revenue across Japan, Taiwan, and Hong Kong.",
     "Runs a trilingual technical blog (Korean, English, Arabic), having written 2,260 posts since May 2024 with 608 currently public, backed by 32 working independent R&D implementations."
   ],
 
   skills: [
     {
-      group: "Agent Harness & Orchestration (Paxis)",
+      group: "Agent Harness & Orchestration",
       items: [
         "Harness Engineering", "Loop Engineering", "Graph Engineering", "MCP Tool Integration",
         "Skill Routing / RAG", "LangGraph", "Human-in-the-Loop Approval", "Policy & Audit Trail",
@@ -344,14 +344,14 @@ export const en = {
       ]
     },
     {
-      group: "Training, Fine-tuning & Distillation (Maxis)",
+      group: "Training, Fine-tuning & Distillation",
       items: [
         "SFT", "CPT", "DPO", "GRPO", "GKD", "LoRA / QLoRA", "Knowledge Distillation",
         "FSDP / DDP", "TRL", "Unsloth", "MLflow", "Eval Sets & Regression Testing"
       ]
     },
     {
-      group: "Inference, Serving & Compression (Metis)",
+      group: "Inference, Serving & Compression",
       items: [
         "vLLM", "NVIDIA Dynamo", "LMCache", "Prefill-Decode Disaggregation", "NVFP4 / W4A16",
         "LLM Compressor", "MoE Compression / Pruning", "Scale-to-Zero", "KServe", "Model Routing"
@@ -400,7 +400,7 @@ export const en = {
         {
           name: "Led strategy and architecture for three AI platforms",
           bullets: [
-            "Set product direction and designed the core architecture for inference (Metis), training (Maxis), and agent automation (Paxis), and led the engineering team by setting experiment priorities",
+            "Set product direction and designed the core architecture for inference, training, and agent automation, and led the engineering team by setting experiment priorities",
             "Directed the design of GPU scheduling, multi-tenancy, and GitOps deployment on Kubernetes, overseeing the build"
           ]
         },
@@ -551,7 +551,7 @@ export const en = {
 
   rnd: {
     intro:
-      "Extends long-held domains, computer vision, signal processing, combinatorial optimization, and recommendation, through agent-driven development. Knowing the field is what makes the speed possible: I know which measurement settles the question, so a paper becomes a measured implementation rather than a summary. Owns and operates 161 repositories, 42 of them completed implementations with measured results.",
+      "Extends long-held domains, computer vision, signal processing, combinatorial optimization, and recommendation, through agent-driven development. Knowing the field is what makes the speed possible: I know which measurement settles the question, so a paper becomes a measured implementation rather than a summary. Owns and operates 159 repositories, 42 of them completed implementations with measured results.",
     groups: [
       {
         name: "Optimization & Scheduling",

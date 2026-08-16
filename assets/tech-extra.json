@@ -82,21 +82,6 @@
       "url": "https://github.com/sylvanus4/ref2va-video-lora-lab"
     },
     {
-      "fam": "tech-media",
-      "repo": "sylvanus4/sylvanus4.github.io",
-      "title": "소닉 브랜딩 — 코드 로고 + 생성 편곡",
-      "excerpt": "공개 이틀 된 57GB 음악 생성 모델을 자체 B200에 적재해 브랜드 사운드 시스템 전체와 54초 광고 영상까지 만든 작업이다. 소닉 로고 3음(근음·5도·옥타브)은 매번 바이트가 같아야 하므로 생성 모델이 아니라 numpy DSP가 합성하고, 편곡·음색·전개는 모델이 캡션 지시로 푼다. 같은 GPU에 같은 가중치를 올리고 실행 스택만 바꿔 36곡/시간에서 463곡/시간으로 12.7배를 실측했고, 곡당 원가는 약 $0.007이다. 로고 10종·브랜드 음악 6곡·보컬 곡 4곡을 데모 페이지에서 바로 들을 수 있다.",
-      "lang": "Python",
-      "date": "2026.08.15",
-      "tags": [
-        "#음악생성",
-        "#소닉브랜딩",
-        "#DSP"
-      ],
-      "q": "소닉 브랜딩 sonic branding 음악 생성 minimax music3 b200 sglang numpy dsp 광고 영상 로고 mnemonic 마림바 배음 브랜드 사운드",
-      "url": "https://sylvanus4.github.io/demos/music3/"
-    },
-    {
       "fam": "tech-optim",
       "repo": "sylvanus4/siliconpilot-eda",
       "title": "SiliconPilot · 자율 회로 설계공간 최적화",
@@ -330,21 +315,6 @@
         "#에이전트런타임"
       ],
       "q": "companyos 급여 payroll 4대보험 법정 컴플라이언스 rulepack rust agent blueprint 임금명세서"
-    },
-    {
-      "fam": "tech-llm",
-      "repo": "sylvanus4/paxis-trajectory-lab",
-      "title": "에이전트 궤적 → 재현 가능한 학습 데이터",
-      "excerpt": "에이전트가 실제로 한 일을 학습에 쓸 수 있는 형태로 바꾸는 파이프라인이다. Episode 스키마로 궤적을 고정하고, 라이선스와 출처가 통과하지 못한 것은 거버넌스 게이트에서 떨어뜨린다. 궤적은 그냥 두면 로그일 뿐이라, 무엇을 학습에 넣어도 되는지를 코드가 판정하게 만드는 쪽이 본체다.",
-      "lang": "Python",
-      "date": "2026.08.12",
-      "private": true,
-      "tags": [
-        "#궤적학습",
-        "#Episode스키마",
-        "#거버넌스게이트"
-      ],
-      "q": "trajectory episode sft 학습 데이터 거버넌스 라이선스 paxis maxis 재현"
     },
     {
       "fam": "tech-llm",
@@ -671,7 +641,7 @@
     },
     {
       "id": "tech-aiplatform",
-      "title": "Paxis · Maxis · Metis",
+      "title": "추론 · 학습 · 에이전트 플랫폼",
       "reel": "09-aiplatform",
       "desc": "에이전트 실행 플랫폼과 그 밑을 받치는 학습·추론 기반. 서빙, GPU 스케줄링, 실험 추적, 멀티테넌시.",
       "from": [

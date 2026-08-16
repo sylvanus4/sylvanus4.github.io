@@ -1119,15 +1119,6 @@
         "#EvalGates"
       ]
     },
-    "소닉 브랜딩 — 코드 로고 + 생성 편곡": {
-      "t": "Sonic Branding — a mnemonic in code, arrangements from a model",
-      "e": "A full sonic identity and a 54-second brand film built on self-managed B200s two days after the 57GB music model was released. The three-note mnemonic (root, fifth, octave) is synthesised in numpy DSP rather than generated, because a logo has to be byte-identical every time; timbre, arrangement and development are left to the model via caption. Same GPU and same weights, changing only the execution stack, measured 36 to 463 songs per hour, a 12.7x gap, at roughly $0.007 per song. Ten logo variants, six brand beds and four vocal tracks are playable on the demo page.",
-      "g": [
-        "#MusicGen",
-        "#SonicBranding",
-        "#DSP"
-      ]
-    },
     "SiliconPilot · 자율 회로 설계공간 최적화": {
       "t": "SiliconPilot — autonomous circuit design-space optimizer",
       "e": "Give it a design goal in plain language and an RTL seed, and it closes a loop between an LLM agent, a classical optimizer, a constraint checker and synthesis feedback to improve area and timing while functional equivalence holds. Cheap gates (compile, simulate) drop invalid candidates first so only survivors are promoted to expensive physical runs. Wired to real logic synthesis, two adder architectures the simulator scored differently turned out to synthesize to identical netlists at every tested point, and one of the four tuning knobs moves nothing at all once synthesis has run.",
@@ -1261,15 +1252,6 @@
         "#Compliance",
         "#DeterministicPayroll",
         "#AgentRuntime"
-      ]
-    },
-    "에이전트 궤적 → 재현 가능한 학습 데이터": {
-      "t": "Agent Trajectories Into Reproducible Training Data",
-      "e": "A pipeline that turns what an agent actually did into something you can train on. Trajectories are pinned by an Episode schema, and anything whose license or provenance fails is dropped at a governance gate. Left alone a trajectory is just a log — the real work is making code decide what is allowed into training.",
-      "g": [
-        "#TrajectoryData",
-        "#EpisodeSchema",
-        "#GovernanceGate"
       ]
     },
     "charai · 멀티모달 AI 캐릭터 플랫폼": {
@@ -1427,7 +1409,7 @@
       "d": "Splitting off the repetitive worker tasks into small models, and reserving large models for the parts that actually need judgment."
     },
     "techt-aiplatform": {
-      "t": "Paxis · Maxis · Metis",
+      "t": "Inference, Training and Agent Platforms",
       "n": "5 repos",
       "d": "The agent execution platform and the training and inference foundation underneath it: serving, GPU scheduling, experiment tracking, multi-tenancy."
     },

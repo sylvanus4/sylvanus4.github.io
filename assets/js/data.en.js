@@ -27,7 +27,7 @@ export const profile = {
 export const stats = [
   { value: "19", unit: "yrs", label: "Building since 2007, no gaps" },
   { value: "608", unit: "posts", label: "Published across a three-language tech blog" },
-  { value: "161", unit: "repos", label: "Built and maintained personally" },
+  { value: "159", unit: "repos", label: "Built and maintained personally" },
   { value: "42", unit: "systems", label: "Finished builds with measured results" }
 ];
 
@@ -51,7 +51,7 @@ export const layers = [
     line: "I lay the ground several teams share",
     body:
       "I put a Kubernetes-based ML platform on Samsung's internal cloud and cut model deployment from days to hours. " +
-      "At ThakiCloud I design three pillars: inference (Metis), training (Maxis) and agents (Paxis). " +
+      "At ThakiCloud I design three pillars: inference, training and agent automation. " +
       "On the agent side I engineer the harness, the loops and the graphs myself.",
     keys: ["Kubernetes", "Multi-tenancy", "GPU scheduling", "Agent harness", "GitOps"]
   },
@@ -85,7 +85,7 @@ export const layers = [
     line: "I widen the fields I already know, much faster",
     body:
       "I take domains I have worked in for years and extend them with agents straight into implementation. " +
-      "That is how 161 repositories came to exist, 42 of them finished builds with measurements attached. " +
+      "That is how 159 repositories came to exist, 42 of them finished builds with measurements attached. " +
       "I report results as they came out, without dressing them up.",
     keys: ["Agent-driven research", "Rapid prototyping", "Honest measurement", "Reproducibility"]
   }
@@ -480,7 +480,7 @@ export const research = {
     "the agent, speed and depth rise together. I write results down as they came out. I have published one saying " +
     "the wall I hit turned out to be my own model.",
   counts: [
-    { k: "Repositories built", v: "161" },
+    { k: "Repositories built", v: "159" },
     { k: "Finished builds with measurements", v: "42" },
     { k: "Core domains", v: "Optimization · Infra · RecSys · Signal" }
   ],
@@ -490,7 +490,7 @@ export const research = {
 export const stack = [
   {
     group: "Agent harness · orchestration",
-    note: "Paxis",
+    note: "Agents",
     items: [
       "Harness engineering", "Loop engineering", "Graph engineering", "MCP tool integration",
       "Skill routing · retrieval augmentation", "LangGraph", "Human-in-the-loop approval", "Policy · audit trail",
@@ -499,7 +499,7 @@ export const stack = [
   },
   {
     group: "Training · fine-tuning · distillation",
-    note: "Maxis",
+    note: "Training",
     items: [
       "SFT", "CPT", "DPO", "GRPO", "GKD", "LoRA · QLoRA", "Knowledge distillation",
       "FSDP · DDP", "TRL", "Unsloth", "MLflow", "Eval sets · regression tests"
@@ -507,7 +507,7 @@ export const stack = [
   },
   {
     group: "Inference · serving · compression",
-    note: "Metis",
+    note: "Inference & Serving",
     items: [
       "vLLM", "NVIDIA Dynamo", "LMCache", "Prefill-decode disaggregation", "NVFP4 · W4A16",
       "LLM Compressor", "MoE compression · pruning", "Scale-to-zero", "KServe", "Model routing"
@@ -602,7 +602,7 @@ export const reels = [
     blurb: "From recognizing 3.6 million songs in real time to predictive maintenance. What sound can do." },
   { n: "08", slug: "08-vision", cat: "Vision", palette: "crimson", ready: true, dur: "0:55",
     blurb: "Object search across 7.3 million images, and optical channels. Moving data where there is no network." },
-  { n: "09", slug: "09-aiplatform", cat: "Paxis · Maxis · Metis", palette: "azure", ready: true, dur: "1:13",
+  { n: "09", slug: "09-aiplatform", cat: "AI Platform · Inference · Training · Agents", palette: "azure", ready: true, dur: "1:13",
     blurb: "The current work. Setting product direction and base architecture, and personally handling agent builder integration and model quantization." },
   { n: "10", slug: "10-mediagen", cat: "Video · image generation", palette: "violet", ready: true, dur: "0:33",
     blurb: "Assets produced repeatedly without hands. These reels came out of that pipeline." },
