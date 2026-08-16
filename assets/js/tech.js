@@ -37,7 +37,7 @@ async function load() {
   wireCount();
 }
 
-/* 영문 오버레이. 국문 제목을 키로 쓴다(142장 중복 0 확인됨).
+/* 영문 오버레이. 국문 제목을 키로 쓴다(161장 중복 0 확인됨).
    오버레이가 없거나 키가 빠지면 그 카드만 국문으로 남는다(fail-open) —
    전량 커버는 tools/qa.mjs 게이트가 별도 방법(파일 대조)으로 센다. */
 async function applyEnCatalog() {

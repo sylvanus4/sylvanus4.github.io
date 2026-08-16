@@ -203,12 +203,25 @@ PATCH = """
 
 
 def card_html(c: dict) -> str:
-    """원본 카드와 같은 구조로 찍는다. 클래스가 다르면 스타일이 안 먹는다."""
+    """원본 카드와 같은 구조로 찍는다. 클래스가 다르면 스타일이 안 먹는다.
+
+    `url` 이 없으면 <a> 가 아니라 <div> 로 찍고 "GitHub →" 도 떼어 낸다.
+    비공개 저장소에 GitHub 링크를 달면 방문자에게는 404 이고, 카드가 열리지도
+    않으면서 열릴 것처럼 보인다. 2i 에서 넘어온 링크 없는 카드 77장이 이미
+    이 형태라 렌더러·검색·게이트가 `.pcard` 로 둘 다 본다(2026-08-09).
+    """
     slug = c["repo"].replace("/", "__")
     tags = "".join(f"<span>{t}</span>" for t in c.get("tags", []))
+    url = c.get("url")
+    go = '<span class="pcard__go">GitHub →</span>' if url else ""
+    open_tag = (
+        f'<a class="pcard reveal" href="{url}" target="_blank" rel="noopener"'
+        if url else '<div class="pcard reveal"'
+    )
+    close_tag = "</a>" if url else "</div>"
     return (
-        f'\n      <a class="pcard reveal" href="{c["url"]}" data-cat="{c["fam"].replace("tech-", "")}"'
-        f' data-q="{c.get("q", "")} {c["repo"]} {c["title"]}" target="_blank" rel="noopener">\n'
+        f'\n      {open_tag} data-cat="{c["fam"].replace("tech-", "")}"'
+        f' data-q="{c.get("q", "")} {c["repo"]} {c["title"]}">\n'
         f'        <div class="pcard__thumb"><img src="tech/thumb/{slug}.png" alt="" loading="lazy"'
         f' width="880" height="495"></div>\n'
         f'        <div class="pcard__body">\n'
@@ -218,10 +231,10 @@ def card_html(c: dict) -> str:
         f'<span class="pcard__date">{c["date"]}</span></div>\n'
         f'          <h3 class="pcard__title">{c["title"]}</h3>\n'
         f'          <p class="pcard__excerpt">{c["excerpt"]}</p>\n'
-        f'          <div class="pcard__tags"><span>{c["repo"]}</span>{tags}'
-        f'<span class="pcard__go">GitHub →</span></div>\n'
+        f'          <div class="pcard__tags"><span>{c["repo"]}</span>{tags}{go}\n'
         f'        </div>\n'
-        f'      </a>'
+        f'        </div>\n'
+        f'      {close_tag}'
     )
 
 

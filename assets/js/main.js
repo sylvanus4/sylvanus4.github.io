@@ -189,6 +189,9 @@ function renderContact() {
     <p class="eyebrow" style="justify-content:center">${t("contact.eyebrow")}</p>
     <h2 class="h2">${contact.title}</h2>
     <p class="lede" style="margin-inline:auto">${contact.body}</p>
+    ${(contact.stance || [])
+      .map((p) => `<p class="stance">${p}</p>`)
+      .join("")}
     <div class="contact-links">
       ${contact.links
         .map(

@@ -27,7 +27,7 @@ export const profile = {
 export const stats = [
   { value: "19", unit: "yrs", label: "Building since 2007, no gaps" },
   { value: "608", unit: "posts", label: "Published across a three-language tech blog" },
-  { value: "142", unit: "repos", label: "Built and maintained personally" },
+  { value: "161", unit: "repos", label: "Built and maintained personally" },
   { value: "42", unit: "systems", label: "Finished builds with measured results" }
 ];
 
@@ -85,7 +85,7 @@ export const layers = [
     line: "I widen the fields I already know, much faster",
     body:
       "I take domains I have worked in for years and extend them with agents straight into implementation. " +
-      "That is how 142 repositories came to exist, 42 of them finished builds with measurements attached. " +
+      "That is how 161 repositories came to exist, 42 of them finished builds with measurements attached. " +
       "I report results as they came out, without dressing them up.",
     keys: ["Agent-driven research", "Rapid prototyping", "Honest measurement", "Reproducibility"]
   }
@@ -480,7 +480,7 @@ export const research = {
     "the agent, speed and depth rise together. I write results down as they came out. I have published one saying " +
     "the wall I hit turned out to be my own model.",
   counts: [
-    { k: "Repositories built", v: "142" },
+    { k: "Repositories built", v: "161" },
     { k: "Finished builds with measurements", v: "42" },
     { k: "Core domains", v: "Optimization · Infra · RecSys · Signal" }
   ],
@@ -545,10 +545,25 @@ export const stack = [
 ];
 
 export const contact = {
-  title: "If you would like to talk",
+  title: "What I want to do next",
   body:
-    "I am open to roles with real authority over technical strategy, architecture, R&D direction and product decisions. " +
-    "I prefer to exchange specifics by message first.",
+    "I want to lead a company-wide AI transformation. That is a scope no single team reaches, " +
+    "so I would like to talk with someone who can discuss that authority directly.",
+  /* Written so the reader can rule themselves out. The goal is selection, not persuasion,
+     which is why the mismatch is stated before anything else. */
+  stance: [
+    "If you run a small or mid-sized company and are weighing an AI transformation, I think I have " +
+      "answers worth your time. To be straightforward, though, the distance between where your company " +
+      "stands today and how I work may be wide enough that we are not a fit. A short conversation makes " +
+      "that clear quickly.",
+    "One thing holds regardless of that distance. If the goal is for your software to outclass your " +
+      "competitors', that is something I can help with readily. Rather than arranging a session to prove " +
+      "the methods, it is faster to look at what is already collected on this site. This is the answer.",
+    "I also think timing matters right now. The same decision made a year from now costs something " +
+      "different. A company-wide transformation moves organization, budget and priorities together, so a " +
+      "team-lead role has a clear ceiling. I am waiting to hear from a founder, CEO or someone with " +
+      "equivalent authority who can own that scope."
+  ],
   links: [
     { label: "hyojunguy@gmail.com", url: "mailto:hyojunguy@gmail.com", kind: "mail" },
     { label: "GitHub", url: "https://github.com/sylvanus4", kind: "github" },

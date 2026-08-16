@@ -255,6 +255,291 @@
       ],
       "q": "omniindex 멀티모달 검색 이미지 해시 dhash ahash 오디오 지문 코덱 크롭 임계값 threshold 색인 retrieval",
       "url": "https://sylvanus4.github.io/demos/flagship/#omniindex"
+    },
+    {
+      "fam": "tech-comms",
+      "repo": "sylvanus4/commstack",
+      "title": "물리 기반 지능형 수신기 — 신호 획득부터 O-RAN 폐루프까지",
+      "excerpt": "RF 획득 · 계측된 수신기 · 장면 구성 · RFFI/AMC 검증 · O-RAN 폐루프를 하나의 통신 시스템으로 이어 붙인 랩이다. 핵심은 수신기 자체의 지문과 채널이 만든 왜곡을 분리하는 것 — 그 둘을 섞어 학습하면 장비를 바꾸는 순간 성능이 사라진다. 스펙트럼 엔진은 Rust 로 따로 두고 서브모듈로 물린다.",
+      "lang": "Python",
+      "date": "2026.08.16",
+      "private": true,
+      "tags": [
+        "#RF지문",
+        "#수신기분리",
+        "#O-RAN"
+      ],
+      "q": "commstack rffi rf fingerprint amc 변조분류 수신기 disentanglement o-ran 스펙트럼 sigprint"
+    },
+    {
+      "fam": "tech-comms",
+      "repo": "sylvanus4/telecom-lab",
+      "title": "AI-Native 5G/6G 풀스택 텔레콤 랩",
+      "excerpt": "I/Q 샘플에서 자율 지능까지 한 층씩 직접 쌓아 올린 물리계층 스택이다. 채널 추정과 등화를 CUDA 커널로 쓰고, 같은 입력을 CPU 오라클에 통과시켜 값이 어긋나면 커널을 믿지 않는다. LEO 위성 채널 에뮬레이터와 페이딩·잡음 모델을 붙여 재현 가능한 조건에서만 수치를 낸다.",
+      "lang": "Rust",
+      "date": "2026.08.16",
+      "private": true,
+      "tags": [
+        "#PHY",
+        "#CUDA커널",
+        "#CPU오라클"
+      ],
+      "q": "telecom 5g 6g phy channel estimation equalizer cuda 오라클 leo 페이딩 i/q"
+    },
+    {
+      "fam": "tech-comms",
+      "repo": "sylvanus4/northwind-mesh",
+      "title": "Northwind Mesh · 신원 인지 제로트러스트 오버레이",
+      "excerpt": "가상의 회사 네트워크를 위한 오버레이 메시다. 제어 평면은 Go, 노드 쪽은 Rust 로 두고 하나의 프로토콜을 언어 간 상호운용 테스트로 고정했다 — 두 구현이 같은 바이트를 주고받는지 코드가 매번 확인한다. 신원이 먼저고 경로는 그다음이라, 릴레이와 AllowedIPs 에서 끝나지 않도록 데이터 경로까지 경계를 내리는 것이 남은 축이다.",
+      "lang": "Go",
+      "date": "2026.08.16",
+      "private": true,
+      "tags": [
+        "#제로트러스트",
+        "#오버레이",
+        "#상호운용"
+      ],
+      "q": "northwind mesh zero trust overlay wireguard allowedips go rust interop 신원"
+    },
+    {
+      "fam": "tech-comms",
+      "repo": "sylvanus4/realtime-phone-agent",
+      "title": "실시간 전화 음성 에이전트",
+      "excerpt": "PSTN 전화를 받아 사람과 말을 주고받는 콜센터 에이전트다. 턴 교대를 FastRTC 로 처리하고 STT · LLM · TTS 를 전부 자체 호스팅해, 어느 구간이 지연을 만드는지 외부 API 뒤에 숨지 않는다. 통화는 되돌릴 수 없으므로 끊김과 말 겹침을 지연 예산으로 관리한다.",
+      "lang": "Rust",
+      "date": "2026.08.14",
+      "private": true,
+      "tags": [
+        "#실시간음성",
+        "#턴교대",
+        "#자체호스팅"
+      ],
+      "q": "realtime phone voice agent fastrtc twilio pstn stt tts llm 콜센터 지연"
+    },
+    {
+      "fam": "tech-agent",
+      "repo": "sylvanus4/agent-companyos",
+      "title": "Agent CompanyOS · 한 문장에서 실행되는 회사 운영",
+      "excerpt": "법으로 정해진 회사 운영 업무를 자연어 한 문장에서 실행까지 끌고 가는 런타임이다. 채팅과 블루프린트 에이전트 빌더, 스킬, 커넥터를 Rust 로 두고 그 아래 한국 컴플라이언스와 결정론적 급여 코어를 깐다. 급여와 법정 신고는 그럴듯하면 안 되고 맞아야 하므로, 판정은 모델이 아니라 rulepack 이 소유한다.",
+      "lang": "Rust",
+      "date": "2026.08.16",
+      "private": true,
+      "tags": [
+        "#컴플라이언스",
+        "#결정론급여",
+        "#에이전트런타임"
+      ],
+      "q": "companyos 급여 payroll 4대보험 법정 컴플라이언스 rulepack rust agent blueprint 임금명세서"
+    },
+    {
+      "fam": "tech-llm",
+      "repo": "sylvanus4/paxis-trajectory-lab",
+      "title": "에이전트 궤적 → 재현 가능한 학습 데이터",
+      "excerpt": "에이전트가 실제로 한 일을 학습에 쓸 수 있는 형태로 바꾸는 파이프라인이다. Episode 스키마로 궤적을 고정하고, 라이선스와 출처가 통과하지 못한 것은 거버넌스 게이트에서 떨어뜨린다. 궤적은 그냥 두면 로그일 뿐이라, 무엇을 학습에 넣어도 되는지를 코드가 판정하게 만드는 쪽이 본체다.",
+      "lang": "Python",
+      "date": "2026.08.12",
+      "private": true,
+      "tags": [
+        "#궤적학습",
+        "#Episode스키마",
+        "#거버넌스게이트"
+      ],
+      "q": "trajectory episode sft 학습 데이터 거버넌스 라이선스 paxis maxis 재현"
+    },
+    {
+      "fam": "tech-llm",
+      "repo": "sylvanus4/charai-core",
+      "title": "charai · 멀티모달 AI 캐릭터 플랫폼",
+      "excerpt": "캐릭터가 자기 성격을 유지한 채 대화하도록 만드는 플랫폼을 core · data · train · eval · web 다섯 저장소로 나눠 둔 것이다. 흥미로운 결과는 실패 쪽에 있었다 — 파인튜닝한 모델이 잘 쓴 프롬프트를 이기지 못하는 구간이 반복해서 나왔고, 원인을 티처 평균회귀 가설로 좁혀 검증 중이다.",
+      "lang": "Python",
+      "date": "2026.08.13",
+      "private": true,
+      "tags": [
+        "#캐릭터일관성",
+        "#파인튜닝",
+        "#평가셋"
+      ],
+      "q": "charai character persona 멀티모달 파인튜닝 sft 평가 eval 프롬프트 티처"
+    },
+    {
+      "fam": "tech-llm",
+      "repo": "sylvanus4/multimodal-quant-lab",
+      "title": "Blackwell 멀티모달 양자화 랩 — 이미지 · 영상 · 음성",
+      "excerpt": "텍스트 모델에서만 검증된 4비트 양자화를 이미지 · 영상 · TTS 로 밀어 보는 랩이다. Blackwell 의 NVFP4/MXFP4 경로를 실제로 태워, 커널이 네이티브로 도는지 에뮬레이션으로 폴백하는지부터 확인한다. 품질 손실은 선언이 아니라 측정 대상이라 같은 프롬프트를 두 정밀도로 돌려 나란히 둔다.",
+      "lang": "Python",
+      "date": "2026.08.16",
+      "private": true,
+      "tags": [
+        "#NVFP4",
+        "#멀티모달양자화",
+        "#품질회귀"
+      ],
+      "q": "quantization nvfp4 mxfp4 blackwell b200 이미지 영상 tts 양자화 품질"
+    },
+    {
+      "fam": "tech-llm",
+      "repo": "sylvanus4/token-factory-gateway",
+      "title": "토큰 팩토리 게이트웨이 · 계량 콘솔",
+      "excerpt": "텍스트 · 이미지 · 영상 · 음성을 하나의 OpenAI 호환 표면 뒤에 두는 게이트웨이다. 모달리티마다 원가 구조가 달라 토큰 하나로 셀 수 없으므로, 계량 원장을 따로 두고 무엇을 얼마에 썼는지 콘솔에서 되짚을 수 있게 했다. 청구가 걸린 숫자라 집계는 코드가 소유한다.",
+      "lang": "TypeScript",
+      "date": "2026.08.14",
+      "private": true,
+      "tags": [
+        "#멀티모달게이트웨이",
+        "#계량원장",
+        "#OpenAI호환"
+      ],
+      "q": "gateway openai compatible multimodal metering 계량 원장 콘솔 카탈로그 토큰"
+    },
+    {
+      "fam": "tech-media",
+      "repo": "sylvanus4/music-video-lab",
+      "title": "생성 음악 + AI 뮤직비디오 랩",
+      "excerpt": "곡을 만들고 그 곡에 맞는 영상을 붙이기까지를 사내 GPU 위에서 돌리는 랩이다. 목소리가 결정되는 지점을 찾아 AR 단계 CFG 를 스윕하고, 보컬은 분리 후 F0 로 성별을 실측해 선언과 산출이 어긋나는지 본다 — 남성으로 발주한 트랙이 실제로는 아니었던 경우가 반복해서 나왔다. 음색 이상은 아직 지표로 못 잡아 사람이 듣는다.",
+      "lang": "Python",
+      "date": "2026.08.16",
+      "private": true,
+      "tags": [
+        "#음악생성",
+        "#보컬검증",
+        "#뮤직비디오"
+      ],
+      "q": "music generation minimax music3 ltx 뮤직비디오 보컬 f0 demucs cfg 스윕"
+    },
+    {
+      "fam": "tech-media",
+      "repo": "sylvanus4/character-fabric",
+      "title": "Character Fabric · 캐릭터 하나, 무한한 동작",
+      "excerpt": "레퍼런스 한 장으로 같은 캐릭터를 여러 동작·표정으로 재생성하는 파이프라인이다. 값비싸게 배운 것은 학습 데이터가 곧 상한이라는 사실이었다 — 어댑터가 A/B 를 전승했는데도 학습 클립의 79%에서 피사체가 프레임 밖으로 잘려 있었고, 일관성 지표는 그걸 가리기만 했다. 지금은 잘림·레퍼런스 품질을 학습 전에 게이트로 막는다.",
+      "lang": "Python",
+      "date": "2026.08.16",
+      "private": true,
+      "tags": [
+        "#캐릭터일관성",
+        "#학습데이터게이트",
+        "#레퍼런스조건"
+      ],
+      "q": "character fabric 마스코트 레퍼런스 lora 어댑터 실루엣 학습데이터 잘림 게이트"
+    },
+    {
+      "fam": "tech-media",
+      "repo": "sylvanus4/cineprompt-studio",
+      "title": "씨네프롬프트 스튜디오 · 영상 프롬프트 빌더",
+      "excerpt": "AI 영상 프롬프트를 감각이 아니라 촬영 용어로 쓰게 만드는 도구다. 필름 크래프트 용어 1,256개를 색인하고, 모델마다 다른 섹션 순서를 따로 두며, 렌즈 리그를 WebGL 로 띄워 초점거리와 심도를 눈으로 고르게 했다. 장면 글을 넣으면 LLM 이 읽어 초안 프롬프트를 만든다.",
+      "lang": "TypeScript",
+      "date": "2026.08.14",
+      "private": true,
+      "tags": [
+        "#프롬프트빌더",
+        "#렌즈리그",
+        "#필름용어"
+      ],
+      "q": "cineprompt 프롬프트 빌더 영상 렌즈 초점거리 webgl 필름 용어 t2v"
+    },
+    {
+      "fam": "tech-media",
+      "repo": "sylvanus4/srt-sketch-cast",
+      "title": "자막 → 화이트보드 스케치 스토리보드",
+      "excerpt": "SRT/VTT 자막을 넣으면 화이트보드 스케치 애니메이션 스토리보드와 ffmpeg 렌더 계획을 만들어 준다. 전부 브라우저 안에서 도는 클라이언트 사이드라 자막 파일이 어디로도 올라가지 않는다.",
+      "lang": "JavaScript",
+      "date": "2026.08.13",
+      "private": true,
+      "tags": [
+        "#스토리보드",
+        "#클라이언트사이드",
+        "#ffmpeg"
+      ],
+      "q": "srt vtt 자막 스케치 화이트보드 스토리보드 ffmpeg 클라이언트"
+    },
+    {
+      "fam": "tech-media",
+      "repo": "sylvanus4/oss-community-pulse",
+      "title": "오픈소스 커뮤니티 펄스 — 답 없는 스레드부터",
+      "excerpt": "내 오픈소스 프로젝트를 언급한 Reddit · Hacker News 스레드를 주간 정적 다이제스트로 모은다. 핵심은 전부 모으는 게 아니라 아직 아무도 답하지 않은 스레드를 앞으로 올리는 것 — 유지보수자가 실제로 놓치는 지점이 거기다.",
+      "lang": "Python",
+      "date": "2026.08.10",
+      "private": true,
+      "tags": [
+        "#커뮤니티모니터링",
+        "#미응답",
+        "#주간다이제스트"
+      ],
+      "q": "reddit hacker news oss 커뮤니티 다이제스트 미응답 스레드 주간"
+    },
+    {
+      "fam": "tech-product",
+      "repo": "sylvanus4/is-auditor-exam-lab",
+      "title": "감리사 서안 · 정보시스템감리사 기출 학습",
+      "excerpt": "NIA 공개 기출 제16~26회를 RAG 와 지식그래프로 엮고, SRS 간격반복과 적응형 퀴즈를 얹은 학습 랩이다. 문항을 외우는 게 아니라 논점 사이의 연결을 붙잡게 하려고 지식그래프를 넣었다.",
+      "lang": "Python",
+      "date": "2026.08.15",
+      "private": true,
+      "tags": [
+        "#기출RAG",
+        "#지식그래프",
+        "#간격반복"
+      ],
+      "q": "정보시스템감리사 기출 rag knowledge graph srs 적응형 퀴즈 nia"
+    },
+    {
+      "fam": "tech-product",
+      "repo": "sylvanus4/daily-english-lab",
+      "title": "하루 20문장 영어 암기 데스크탑 앱",
+      "excerpt": "상황 대화형 문장 20개를 매일 자동으로 생성해 넣어 주는 Tauri 데스크탑 앱이다. FSRS 간격반복 위에 능동 인출과 이중 부호화를 얹었다 — 읽어서 아는 것과 꺼내 쓸 수 있는 것은 다르므로 화면이 답을 먼저 보여주지 않는다.",
+      "lang": "TypeScript",
+      "date": "2026.08.14",
+      "private": true,
+      "tags": [
+        "#FSRS",
+        "#능동인출",
+        "#Tauri"
+      ],
+      "q": "english 영어 암기 fsrs 간격반복 tauri 데스크탑 콘텐츠 파이프라인"
+    },
+    {
+      "fam": "tech-data",
+      "repo": "sylvanus4/embedding-model-compass",
+      "title": "임베딩 모델 나침반 · RAG 선택 근거",
+      "excerpt": "RAG 에 쓸 임베딩 모델을 점수 · 크기 · 라이선스 · 언어 · VRAM 다섯 축으로 매일 갱신해 비교하는 결정 엔진이다. 벤더 중립을 지키려고 판단 기준을 전부 노출하고, GitHub Actions 가 갱신해 Pages 로 정적 서빙한다.",
+      "lang": "Python",
+      "date": "2026.08.14",
+      "private": true,
+      "tags": [
+        "#임베딩선택",
+        "#RAG",
+        "#일일갱신"
+      ],
+      "q": "embedding rag 모델 선택 mteb vram 라이선스 벤치 nightly pages"
+    },
+    {
+      "fam": "tech-devtool",
+      "repo": "sylvanus4/pronounce-forge",
+      "title": "TTS 가 정말 그렇게 읽는지 검증한다",
+      "excerpt": "합성한 음성을 다시 인식에 통과시켜(round-trip) 코드가 발음을 판정하는 도구다. 사람이 듣고 넘어가면 고유명사와 숫자에서 조용히 틀리므로, 판정을 귀가 아니라 왕복 일치로 옮겼다. 엔진에 묶이지 않는 발음 사전으로 내보낼 수 있다.",
+      "lang": "JavaScript",
+      "date": "2026.08.14",
+      "private": true,
+      "tags": [
+        "#TTS검증",
+        "#왕복일치",
+        "#발음사전"
+      ],
+      "q": "tts asr round trip 발음 pronunciation 사전 검증 로컬"
+    },
+    {
+      "fam": "tech-devtool",
+      "repo": "sylvanus4/mft-lens",
+      "title": "MFT 렌즈 · 브라우저에서 여는 NTFS 포렌식",
+      "excerpt": "덤프한 NTFS $MFT CSV 를 브라우저에 떨어뜨리면 SI/FN 타임스탬프 전량과 대체 데이터 스트림, 파일 ID 를 표로 펼치고 MACB 타임라인으로 세운다. 네트워크 요청 0건 — 조사 대상 파일이 기계 밖으로 나가지 않는다.",
+      "lang": "JavaScript",
+      "date": "2026.08.12",
+      "private": true,
+      "tags": [
+        "#NTFS포렌식",
+        "#MACB",
+        "#네트워크0"
+      ],
+      "q": "ntfs mft 포렌식 forensics macb timestamp ads 브라우저 클라이언트"
     }
   ],
   "rewrite": [

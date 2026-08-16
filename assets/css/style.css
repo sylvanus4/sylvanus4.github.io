@@ -1297,3 +1297,16 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 @media (max-width: 600px) {
   .dnav__chip, .dlink { min-height: 44px; }
 }
+
+/* 연락 섹션의 입장 문단. lede 보다 한 단 낮은 위계로 두어, 먼저 읽히는 것은
+   제목과 lede 이고 이 단락들은 판단하려는 사람만 끝까지 읽게 한다.
+   좌측 정렬인 이유: 가운데 정렬된 여러 줄 문단은 읽는 속도를 떨어뜨린다. */
+.stance {
+  color: var(--fg-3);
+  max-width: 62ch;
+  margin: 1.05rem auto 0;
+  text-align: left;
+  font-size: clamp(0.95rem, 0.92rem + 0.16vw, 1.04rem);
+  line-height: 1.75;
+}
+.stance:first-of-type { margin-top: 1.6rem; }

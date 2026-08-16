@@ -1217,6 +1217,177 @@
         "#PerceptualHashing",
         "#QueryRouting"
       ]
+    },
+    "물리 기반 지능형 수신기 — 신호 획득부터 O-RAN 폐루프까지": {
+      "t": "Physics-Guided Intelligent Receiver — From Acquisition to an O-RAN Closed Loop",
+      "e": "A lab that wires RF acquisition, an instrumented receiver, scene construction, RFFI/AMC verification and an O-RAN closed loop into one communication system. The core problem is separating the receiver's own fingerprint from distortion the channel introduced; train on the two mixed together and the model dies the moment you swap hardware. The spectrum engine is Rust, pinned as a submodule.",
+      "g": [
+        "#RFFingerprint",
+        "#Disentanglement",
+        "#ORAN"
+      ]
+    },
+    "AI-Native 5G/6G 풀스택 텔레콤 랩": {
+      "t": "AI-Native 5G/6G Full-Stack Telecom Lab",
+      "e": "A physical-layer stack built one layer at a time, from I/Q samples up to autonomous intelligence. Channel estimation and equalization run as CUDA kernels, and the same input goes through a CPU oracle — if the two disagree, the kernel is not trusted. A LEO satellite channel emulator plus fading and noise models keep every number tied to a reproducible condition.",
+      "g": [
+        "#PHY",
+        "#CUDAKernels",
+        "#CPUOracle"
+      ]
+    },
+    "Northwind Mesh · 신원 인지 제로트러스트 오버레이": {
+      "t": "Northwind Mesh · Identity-Aware Zero-Trust Overlay",
+      "e": "An overlay mesh for a fictional company network. The control plane is Go and the node side is Rust, with one protocol pinned by cross-language interop tests — code checks on every run that the two implementations exchange the same bytes. Identity comes first and routing second; pushing that boundary past the relay and AllowedIPs into the data path is the open axis.",
+      "g": [
+        "#ZeroTrust",
+        "#Overlay",
+        "#Interop"
+      ]
+    },
+    "실시간 전화 음성 에이전트": {
+      "t": "Realtime Phone Voice Agent",
+      "e": "A call-center agent that answers a PSTN line and holds a spoken conversation. Turn-taking runs on FastRTC and STT, LLM and TTS are all self-hosted, so no segment of the latency hides behind someone else's API. A live call cannot be retried, so dropouts and overlap are managed against an explicit latency budget.",
+      "g": [
+        "#RealtimeVoice",
+        "#TurnTaking",
+        "#SelfHosted"
+      ]
+    },
+    "Agent CompanyOS · 한 문장에서 실행되는 회사 운영": {
+      "t": "Agent CompanyOS · Company Operations From One Sentence",
+      "e": "A runtime that carries legally mandated company operations from a single natural-language sentence through to execution. Chat, a blueprint agent-builder, skills and connectors sit in Rust above a Korea compliance layer and a deterministic payroll core. Payroll and statutory filings must be correct rather than plausible, so the rulepack owns the verdict, not the model.",
+      "g": [
+        "#Compliance",
+        "#DeterministicPayroll",
+        "#AgentRuntime"
+      ]
+    },
+    "에이전트 궤적 → 재현 가능한 학습 데이터": {
+      "t": "Agent Trajectories Into Reproducible Training Data",
+      "e": "A pipeline that turns what an agent actually did into something you can train on. Trajectories are pinned by an Episode schema, and anything whose license or provenance fails is dropped at a governance gate. Left alone a trajectory is just a log — the real work is making code decide what is allowed into training.",
+      "g": [
+        "#TrajectoryData",
+        "#EpisodeSchema",
+        "#GovernanceGate"
+      ]
+    },
+    "charai · 멀티모달 AI 캐릭터 플랫폼": {
+      "t": "charai · Multimodal AI Character Platform",
+      "e": "A platform for characters that hold their personality across a conversation, split across five repositories — core, data, train, eval and web. The interesting result sits on the failure side: fine-tuned models repeatedly failed to beat a well-written prompt, and the cause is being narrowed against a teacher regression-to-the-mean hypothesis.",
+      "g": [
+        "#CharacterConsistency",
+        "#FineTuning",
+        "#EvalSets"
+      ]
+    },
+    "Blackwell 멀티모달 양자화 랩 — 이미지 · 영상 · 음성": {
+      "t": "Blackwell Multimodal Quantization Lab — Image, Video, Speech",
+      "e": "A lab pushing 4-bit quantization, so far only validated on text models, into image, video and TTS. It exercises Blackwell's NVFP4/MXFP4 paths for real, starting with whether the kernel runs natively or silently falls back to emulation. Quality loss is measured rather than asserted: the same prompt runs at both precisions and the outputs sit side by side.",
+      "g": [
+        "#NVFP4",
+        "#MultimodalQuant",
+        "#QualityRegression"
+      ]
+    },
+    "토큰 팩토리 게이트웨이 · 계량 콘솔": {
+      "t": "Token Factory Gateway · Metering Console",
+      "e": "A gateway that puts text, image, video and speech behind one OpenAI-compatible surface. Each modality has a different cost structure and cannot be counted in one unit of token, so a separate metering ledger records what was spent on what, traceable from the console. Billing depends on these numbers, so code owns the aggregation.",
+      "g": [
+        "#MultimodalGateway",
+        "#MeteringLedger",
+        "#OpenAICompatible"
+      ]
+    },
+    "생성 음악 + AI 뮤직비디오 랩": {
+      "t": "Generative Music + AI Music Video Lab",
+      "e": "A lab that runs from writing a track to cutting video against it, all on self-managed GPUs. It sweeps AR-stage CFG to find where the voice is actually decided, and measures vocal gender by separating the stem and reading F0 — tracks ordered as male repeatedly turned out not to be. Timbre defects still escape every metric, so a person listens.",
+      "g": [
+        "#MusicGeneration",
+        "#VocalVerification",
+        "#MusicVideo"
+      ]
+    },
+    "Character Fabric · 캐릭터 하나, 무한한 동작": {
+      "t": "Character Fabric · One Character, Infinite Actions",
+      "e": "A pipeline that regenerates the same character across many actions and expressions from a single reference. The expensive lesson was that training data is the ceiling: adapters swept an A/B comparison while 79% of the training clips had the subject cropped out of frame, and consistency metrics only hid it. Cropping and reference quality are now gated before training starts.",
+      "g": [
+        "#CharacterConsistency",
+        "#TrainingDataGate",
+        "#ReferenceConditioned"
+      ]
+    },
+    "씨네프롬프트 스튜디오 · 영상 프롬프트 빌더": {
+      "t": "CinePrompt Studio · A Prompt Builder for AI Video",
+      "e": "A tool that makes you write AI video prompts in the language of cinematography rather than by feel. It indexes 1,256 film-craft terms, keeps a separate section ordering per model, and renders a live WebGL lens rig so focal length and depth of field are chosen by eye. Paste a scene and an LLM reads it into a draft prompt.",
+      "g": [
+        "#PromptBuilder",
+        "#LensRig",
+        "#FilmCraft"
+      ]
+    },
+    "자막 → 화이트보드 스케치 스토리보드": {
+      "t": "Subtitles Into a Whiteboard Sketch Storyboard",
+      "e": "Feed it SRT/VTT subtitles and it produces a whiteboard sketch-animation storyboard plus an ffmpeg render plan. Everything runs client-side in the browser, so the subtitle file is never uploaded anywhere.",
+      "g": [
+        "#Storyboard",
+        "#ClientSide",
+        "#FFmpeg"
+      ]
+    },
+    "오픈소스 커뮤니티 펄스 — 답 없는 스레드부터": {
+      "t": "OSS Community Pulse — Unanswered Threads First",
+      "e": "A weekly static digest of Reddit and Hacker News threads mentioning your open-source project. The point is not to collect everything but to float the threads nobody has answered yet — that is where maintainers actually lose people.",
+      "g": [
+        "#CommunityMonitoring",
+        "#Unanswered",
+        "#WeeklyDigest"
+      ]
+    },
+    "감리사 서안 · 정보시스템감리사 기출 학습": {
+      "t": "IS Auditor Exam Lab · Past-Paper Study Desk",
+      "e": "A study lab that weaves NIA's public past papers (rounds 16 to 26) into RAG plus a knowledge graph, with SRS spaced repetition and adaptive quizzing on top. The graph is there so you hold the connections between issues rather than memorizing individual questions.",
+      "g": [
+        "#PastPaperRAG",
+        "#KnowledgeGraph",
+        "#SpacedRepetition"
+      ]
+    },
+    "하루 20문장 영어 암기 데스크탑 앱": {
+      "t": "Twenty Sentences a Day · An English Recall Desktop App",
+      "e": "A Tauri desktop app fed daily by an automated pipeline that writes twenty situational dialogue sentences. FSRS spaced repetition carries active recall and dual coding on top — recognizing a sentence and being able to produce it are different things, so the screen never shows the answer first.",
+      "g": [
+        "#FSRS",
+        "#ActiveRecall",
+        "#Tauri"
+      ]
+    },
+    "임베딩 모델 나침반 · RAG 선택 근거": {
+      "t": "Embedding Model Compass · A Decision Basis for RAG",
+      "e": "A daily-updated decision engine that compares embedding models for RAG across five axes — score, size, license, language and VRAM. It keeps every criterion visible to stay vendor-neutral, refreshed by GitHub Actions and served statically from Pages.",
+      "g": [
+        "#EmbeddingChoice",
+        "#RAG",
+        "#DailyRefresh"
+      ]
+    },
+    "TTS 가 정말 그렇게 읽는지 검증한다": {
+      "t": "Verify Your TTS Actually Says It Right",
+      "e": "A tool that synthesizes speech, runs it back through recognition, and lets code judge the pronunciation. Listening by ear quietly misses proper nouns and numbers, so the verdict moves from the ear to round-trip agreement. Results export as an engine-neutral pronunciation dictionary.",
+      "g": [
+        "#TTSVerification",
+        "#RoundTrip",
+        "#PronunciationDict"
+      ]
+    },
+    "MFT 렌즈 · 브라우저에서 여는 NTFS 포렌식": {
+      "t": "MFT Lens · NTFS Forensics in the Browser",
+      "e": "Drop a dumped NTFS $MFT CSV into the browser and it lays out full SI/FN timestamps, alternate data streams and file IDs as a table, then stands them up as a MACB timeline. Zero network requests — the material under investigation never leaves the machine.",
+      "g": [
+        "#NTFSForensics",
+        "#MACB",
+        "#ZeroNetwork"
+      ]
     }
   },
   "fams": {

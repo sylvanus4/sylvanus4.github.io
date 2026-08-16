@@ -1,4 +1,4 @@
-<nav class="famnav" aria-label="분류로 바로가기"><span class="famnav__k">분류</span><a class="famnav__chip" href="#tech-comms">통신·신호처리<span class="famnav__n">6</span></a><a class="famnav__chip" href="#tech-acoustic">음향·음성<span class="famnav__n">8</span></a><a class="famnav__chip" href="#tech-recsys">추천·데이터<span class="famnav__n">8</span></a><a class="famnav__chip" href="#tech-agent">에이전트·자동화 하네스<span class="famnav__n">17</span></a><a class="famnav__chip" href="#tech-optim">NP-하드 최적화·스케줄링<span class="famnav__n">9</span></a><a class="famnav__chip" href="#tech-quant">LLM 양자화<span class="famnav__n">4</span></a><a class="famnav__chip" href="#tech-distill">소형 모델 증류·파인튜닝<span class="famnav__n">4</span></a><a class="famnav__chip" href="#tech-aiplatform">Paxis · Maxis · Metis<span class="famnav__n">5</span></a><a class="famnav__chip" href="#tech-vision">비전·영상 판정<span class="famnav__n">3</span></a><a class="famnav__chip" href="#tech-mediagen">영상·이미지 생성<span class="famnav__n">16</span></a><a class="famnav__chip" href="#tech-marketing">마케팅·콘텐츠 운영<span class="famnav__n">4</span></a><a class="famnav__chip" href="#tech-storage">스토리지·데이터 내구성<span class="famnav__n">7</span></a><a class="famnav__chip" href="#tech-product">도메인 서비스·제품<span class="famnav__n">23</span></a><a class="famnav__chip" href="#tech-devtool">개발 도구·템플릿<span class="famnav__n">25</span></a><a class="famnav__chip" href="#tech-misc">기타<span class="famnav__n">3</span></a></nav>
+<nav class="famnav" aria-label="분류로 바로가기"><span class="famnav__k">분류</span><a class="famnav__chip" href="#tech-comms">통신·신호처리<span class="famnav__n">7</span></a><a class="famnav__chip" href="#tech-acoustic">음향·음성<span class="famnav__n">11</span></a><a class="famnav__chip" href="#tech-recsys">추천·데이터<span class="famnav__n">9</span></a><a class="famnav__chip" href="#tech-agent">에이전트·자동화 하네스<span class="famnav__n">18</span></a><a class="famnav__chip" href="#tech-optim">NP-하드 최적화·스케줄링<span class="famnav__n">9</span></a><a class="famnav__chip" href="#tech-quant">LLM 양자화<span class="famnav__n">5</span></a><a class="famnav__chip" href="#tech-distill">소형 모델 증류·파인튜닝<span class="famnav__n">6</span></a><a class="famnav__chip" href="#tech-aiplatform">Paxis · Maxis · Metis<span class="famnav__n">6</span></a><a class="famnav__chip" href="#tech-vision">비전·영상 판정<span class="famnav__n">3</span></a><a class="famnav__chip" href="#tech-mediagen">영상·이미지 생성<span class="famnav__n">19</span></a><a class="famnav__chip" href="#tech-marketing">마케팅·콘텐츠 운영<span class="famnav__n">6</span></a><a class="famnav__chip" href="#tech-storage">스토리지·데이터 내구성<span class="famnav__n">7</span></a><a class="famnav__chip" href="#tech-product">도메인 서비스·제품<span class="famnav__n">25</span></a><a class="famnav__chip" href="#tech-devtool">개발 도구·템플릿<span class="famnav__n">27</span></a><a class="famnav__chip" href="#tech-misc">기타<span class="famnav__n">3</span></a></nav>
     <div class="techsearch" hidden>
       <label class="techsearch__l" for="techq">이름·설명·스택으로 걸러보기</label>
       <input class="techsearch__i" id="techq" type="search" autocomplete="off"
@@ -8,7 +8,7 @@
     <div class="techboard">
       <section class="fam" id="tech-comms" aria-labelledby="techt-comms">
         <header class="fam__head">
-          <h2 class="fam__t" id="techt-comms">통신·신호처리<span class="fam__n">6개</span></h2>
+          <h2 class="fam__t" id="techt-comms">통신·신호처리<span class="fam__n">7개</span></h2>
           <p class="fam__d">RF 지문, 스펙트럼 간섭원, 물리 기반 수신기, 에어갭 광학 링크. 학습 없이 신호 자체를 다루는 축이다.</p>
         </header>
         <div class="fam__reel" data-reel="01-comms"></div>
@@ -67,11 +67,21 @@
           <div class="pcard__tags"><span>#Rust</span></div>
         </div>
       </div>
+      <div class="pcard reveal" data-cat="comms" data-q="commstack rffi rf fingerprint amc 변조분류 수신기 disentanglement o-ran 스펙트럼 sigprint sylvanus4/commstack 물리 기반 지능형 수신기 — 신호 획득부터 O-RAN 폐루프까지">
+        <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__commstack.png" alt="" loading="lazy" width="880" height="495"></div>
+        <div class="pcard__body">
+          <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.16</span></div>
+          <h3 class="pcard__title">물리 기반 지능형 수신기 — 신호 획득부터 O-RAN 폐루프까지</h3>
+          <p class="pcard__excerpt">RF 획득 · 계측된 수신기 · 장면 구성 · RFFI/AMC 검증 · O-RAN 폐루프를 하나의 통신 시스템으로 이어 붙인 랩이다. 핵심은 수신기 자체의 지문과 채널이 만든 왜곡을 분리하는 것 — 그 둘을 섞어 학습하면 장비를 바꾸는 순간 성능이 사라진다. 스펙트럼 엔진은 Rust 로 따로 두고 서브모듈로 물린다.</p>
+          <div class="pcard__tags"><span>sylvanus4/commstack</span><span>#RF지문</span><span>#수신기분리</span><span>#O-RAN</span>
+        </div>
+        </div>
+      </div>
         </div>
       </section>
       <section class="fam" id="tech-acoustic" aria-labelledby="techt-acoustic">
         <header class="fam__head">
-          <h2 class="fam__t" id="techt-acoustic">음향·음성<span class="fam__n">8개</span></h2>
+          <h2 class="fam__t" id="techt-acoustic">음향·음성<span class="fam__n">11개</span></h2>
           <p class="fam__d">음원 지문, 생태 음향, 설비 진동, 청진음, 실시간 번역. 소리로 판단하는 쪽이다.</p>
         </header>
         <div class="fam__reel" data-reel="07-acoustic"></div>
@@ -148,11 +158,41 @@
           <div class="pcard__tags"><span>#Rust</span></div>
         </div>
       </div>
+      <div class="pcard reveal" data-cat="comms" data-q="telecom 5g 6g phy channel estimation equalizer cuda 오라클 leo 페이딩 i/q sylvanus4/telecom-lab AI-Native 5G/6G 풀스택 텔레콤 랩">
+        <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__telecom-lab.png" alt="" loading="lazy" width="880" height="495"></div>
+        <div class="pcard__body">
+          <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Rust</span><span class="pcard__date">2026.08.16</span></div>
+          <h3 class="pcard__title">AI-Native 5G/6G 풀스택 텔레콤 랩</h3>
+          <p class="pcard__excerpt">I/Q 샘플에서 자율 지능까지 한 층씩 직접 쌓아 올린 물리계층 스택이다. 채널 추정과 등화를 CUDA 커널로 쓰고, 같은 입력을 CPU 오라클에 통과시켜 값이 어긋나면 커널을 믿지 않는다. LEO 위성 채널 에뮬레이터와 페이딩·잡음 모델을 붙여 재현 가능한 조건에서만 수치를 낸다.</p>
+          <div class="pcard__tags"><span>sylvanus4/telecom-lab</span><span>#PHY</span><span>#CUDA커널</span><span>#CPU오라클</span>
+        </div>
+        </div>
+      </div>
+      <div class="pcard reveal" data-cat="comms" data-q="northwind mesh zero trust overlay wireguard allowedips go rust interop 신원 sylvanus4/northwind-mesh Northwind Mesh · 신원 인지 제로트러스트 오버레이">
+        <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__northwind-mesh.png" alt="" loading="lazy" width="880" height="495"></div>
+        <div class="pcard__body">
+          <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Go</span><span class="pcard__date">2026.08.16</span></div>
+          <h3 class="pcard__title">Northwind Mesh · 신원 인지 제로트러스트 오버레이</h3>
+          <p class="pcard__excerpt">가상의 회사 네트워크를 위한 오버레이 메시다. 제어 평면은 Go, 노드 쪽은 Rust 로 두고 하나의 프로토콜을 언어 간 상호운용 테스트로 고정했다 — 두 구현이 같은 바이트를 주고받는지 코드가 매번 확인한다. 신원이 먼저고 경로는 그다음이라, 릴레이와 AllowedIPs 에서 끝나지 않도록 데이터 경로까지 경계를 내리는 것이 남은 축이다.</p>
+          <div class="pcard__tags"><span>sylvanus4/northwind-mesh</span><span>#제로트러스트</span><span>#오버레이</span><span>#상호운용</span>
+        </div>
+        </div>
+      </div>
+      <div class="pcard reveal" data-cat="comms" data-q="realtime phone voice agent fastrtc twilio pstn stt tts llm 콜센터 지연 sylvanus4/realtime-phone-agent 실시간 전화 음성 에이전트">
+        <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__realtime-phone-agent.png" alt="" loading="lazy" width="880" height="495"></div>
+        <div class="pcard__body">
+          <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Rust</span><span class="pcard__date">2026.08.14</span></div>
+          <h3 class="pcard__title">실시간 전화 음성 에이전트</h3>
+          <p class="pcard__excerpt">PSTN 전화를 받아 사람과 말을 주고받는 콜센터 에이전트다. 턴 교대를 FastRTC 로 처리하고 STT · LLM · TTS 를 전부 자체 호스팅해, 어느 구간이 지연을 만드는지 외부 API 뒤에 숨지 않는다. 통화는 되돌릴 수 없으므로 끊김과 말 겹침을 지연 예산으로 관리한다.</p>
+          <div class="pcard__tags"><span>sylvanus4/realtime-phone-agent</span><span>#실시간음성</span><span>#턴교대</span><span>#자체호스팅</span>
+        </div>
+        </div>
+      </div>
         </div>
       </section>
       <section class="fam" id="tech-recsys" aria-labelledby="techt-recsys">
         <header class="fam__head">
-          <h2 class="fam__t" id="techt-recsys">추천·데이터<span class="fam__n">8개</span></h2>
+          <h2 class="fam__t" id="techt-recsys">추천·데이터<span class="fam__n">9개</span></h2>
           <p class="fam__d">랭킹과 추천, 그리고 흩어진 기록을 하나의 판단 근거로 모으는 쪽이다.</p>
         </header>
         <div class="fam__reel" data-reel="02-recsys"></div>
@@ -220,20 +260,31 @@
           <div class="pcard__tags"><span>#Python</span></div>
         </div>
       </div>
-      <a class="pcard reveal" href="https://github.com/sylvanus4/recsys-gpu-lab" data-cat="data" data-q="추천 recsys recommendation 랭킹 ranking semantic id 인기순 대조군 baseline 재현 반증 gpu 실험 python sylvanus4/recsys-gpu-lab 추천 아키텍처 재현 · 반증 랩" target="_blank" rel="noopener">
+      <a class="pcard reveal" href="https://github.com/sylvanus4/recsys-gpu-lab" target="_blank" rel="noopener" data-cat="data" data-q="추천 recsys recommendation 랭킹 ranking semantic id 인기순 대조군 baseline 재현 반증 gpu 실험 python sylvanus4/recsys-gpu-lab 추천 아키텍처 재현 · 반증 랩">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__recsys-gpu-lab.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.05</span></div>
           <h3 class="pcard__title">추천 아키텍처 재현 · 반증 랩</h3>
           <p class="pcard__excerpt">2026년 추천시스템 논문이 내세우는 아키텍처 주장을 자체 GPU에서 다시 돌려 확인하는 실험 랩이다. 인기순 대조군을 먼저 세워 기준을 잡고, semantic ID에 위치 정보가 빠지면 무엇이 깨지는지, 시드를 바꿔도 랭킹 순위가 유지되는지를 측정한다. 시드 하나로 나온 결과로는 순위를 주장하지 않는다.</p>
-          <div class="pcard__tags"><span>sylvanus4/recsys-gpu-lab</span><span>#추천</span><span>#랭킹</span><span>#재현성</span><span class="pcard__go">GitHub →</span></div>
+          <div class="pcard__tags"><span>sylvanus4/recsys-gpu-lab</span><span>#추천</span><span>#랭킹</span><span>#재현성</span><span class="pcard__go">GitHub →</span>
+        </div>
         </div>
       </a>
+      <div class="pcard reveal" data-cat="data" data-q="embedding rag 모델 선택 mteb vram 라이선스 벤치 nightly pages sylvanus4/embedding-model-compass 임베딩 모델 나침반 · RAG 선택 근거">
+        <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__embedding-model-compass.png" alt="" loading="lazy" width="880" height="495"></div>
+        <div class="pcard__body">
+          <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.14</span></div>
+          <h3 class="pcard__title">임베딩 모델 나침반 · RAG 선택 근거</h3>
+          <p class="pcard__excerpt">RAG 에 쓸 임베딩 모델을 점수 · 크기 · 라이선스 · 언어 · VRAM 다섯 축으로 매일 갱신해 비교하는 결정 엔진이다. 벤더 중립을 지키려고 판단 기준을 전부 노출하고, GitHub Actions 가 갱신해 Pages 로 정적 서빙한다.</p>
+          <div class="pcard__tags"><span>sylvanus4/embedding-model-compass</span><span>#임베딩선택</span><span>#RAG</span><span>#일일갱신</span>
+        </div>
+        </div>
+      </div>
         </div>
       </section>
       <section class="fam" id="tech-agent" aria-labelledby="techt-agent">
         <header class="fam__head">
-          <h2 class="fam__t" id="techt-agent">에이전트·자동화 하네스<span class="fam__n">17개</span></h2>
+          <h2 class="fam__t" id="techt-agent">에이전트·자동화 하네스<span class="fam__n">18개</span></h2>
           <p class="fam__d">스킬 시스템, 오케스트레이터, 리서치와 배포 자동화. 사람이 반복하던 절차를 코드로 옮긴 것들이다.</p>
         </header>
         <div class="fam__reel" data-reel="03-agent"></div>
@@ -373,24 +424,36 @@
           <div class="pcard__tags"><span>2icorp/2i-case-14-hospital-ops-twin</span><span>#Python</span><span>#이산사건 시뮬레이션</span><span>#observe-critic-patch loop</span><span class="pcard__go">GitHub →</span></div>
         </div>
       </a>
-      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#embodied" data-cat="agent" data-q="embodied lab 로봇 정책 평가 mujoco 파지 grasp 물리 시뮬레이션 sim2real 벤치마크 평가환경 sylvanus4/embodied-lab Embodied Lab · 로봇 신뢰성 평가 플랫폼" target="_blank" rel="noopener">
+      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#embodied" target="_blank" rel="noopener" data-cat="agent" data-q="embodied lab 로봇 정책 평가 mujoco 파지 grasp 물리 시뮬레이션 sim2real 벤치마크 평가환경 sylvanus4/embodied-lab Embodied Lab · 로봇 신뢰성 평가 플랫폼">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__embodied-lab.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.15</span></div>
           <h3 class="pcard__title">Embodied Lab · 로봇 신뢰성 평가 플랫폼</h3>
           <p class="pcard__excerpt">로봇 정책을 잘 나오는 장면 몇 개로 시연하는 대신, 조명과 마찰, 가림, 센서 노이즈, 지시 모호성, 그리퍼 결함을 대규모로 주입해 정책이 무너지는 영역을 자동으로 찾아내는 평가 인프라다. 실패를 최소 재현 시나리오로 줄이고 대표 사례를 실제 로봇 팔에서 확인하는 데까지 간다. 물리 엔진을 붙이자 평가 환경 자체가 갈렸다 — 단순화한 환경에서는 두 정책이 똑같이 실패하는데 실제 물리에서는 하나가 여섯 배 성공한다.</p>
-          <div class="pcard__tags"><span>sylvanus4/embodied-lab</span><span>#로보틱스</span><span>#MuJoCo</span><span>#정책평가</span><span class="pcard__go">GitHub →</span></div>
+          <div class="pcard__tags"><span>sylvanus4/embodied-lab</span><span>#로보틱스</span><span>#MuJoCo</span><span>#정책평가</span><span class="pcard__go">GitHub →</span>
+        </div>
         </div>
       </a>
-      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#blackbox" data-cat="agent" data-q="blackbox agent runtime 기록 재생 replay 결정 안정성 순서 불변성 order invariance 감사 추적 fork sylvanus4/blackbox-agent-runtime Blackbox · 검증 가능한 에이전트 런타임" target="_blank" rel="noopener">
+      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#blackbox" target="_blank" rel="noopener" data-cat="agent" data-q="blackbox agent runtime 기록 재생 replay 결정 안정성 순서 불변성 order invariance 감사 추적 fork sylvanus4/blackbox-agent-runtime Blackbox · 검증 가능한 에이전트 런타임">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__blackbox-agent-runtime.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.15</span></div>
           <h3 class="pcard__title">Blackbox · 검증 가능한 에이전트 런타임</h3>
           <p class="pcard__excerpt">에이전트의 모든 결정과 툴 호출, 부작용, 메모리 변경을 이벤트 소싱 트레이스로 남기고 재생과 fork, 결함 주입, 정책 검증까지 수행하는 런타임이다. 관찰만 제공하는 트레이싱과 달리 특정 스텝에서 다시 실행하고 조건을 바꿔 비교할 수 있으며, 재시도와 중복 전달이 결제나 삭제 같은 부작용을 두 번 실행시키는 사고를 막는 것이 목적이다. 실제 모델을 물려 보니 재생은 어긋남 0건을 보고하는데 선택지 순서만 바꾸면 45%에서 결정이 달라졌다 — 재생 통과가 곧 기록이 이유를 설명한다는 뜻은 아니다.</p>
-          <div class="pcard__tags"><span>sylvanus4/blackbox-agent-runtime</span><span>#에이전트런타임</span><span>#재생</span><span>#결정안정성</span><span class="pcard__go">GitHub →</span></div>
+          <div class="pcard__tags"><span>sylvanus4/blackbox-agent-runtime</span><span>#에이전트런타임</span><span>#재생</span><span>#결정안정성</span><span class="pcard__go">GitHub →</span>
+        </div>
         </div>
       </a>
+      <div class="pcard reveal" data-cat="agent" data-q="companyos 급여 payroll 4대보험 법정 컴플라이언스 rulepack rust agent blueprint 임금명세서 sylvanus4/agent-companyos Agent CompanyOS · 한 문장에서 실행되는 회사 운영">
+        <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__agent-companyos.png" alt="" loading="lazy" width="880" height="495"></div>
+        <div class="pcard__body">
+          <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Rust</span><span class="pcard__date">2026.08.16</span></div>
+          <h3 class="pcard__title">Agent CompanyOS · 한 문장에서 실행되는 회사 운영</h3>
+          <p class="pcard__excerpt">법으로 정해진 회사 운영 업무를 자연어 한 문장에서 실행까지 끌고 가는 런타임이다. 채팅과 블루프린트 에이전트 빌더, 스킬, 커넥터를 Rust 로 두고 그 아래 한국 컴플라이언스와 결정론적 급여 코어를 깐다. 급여와 법정 신고는 그럴듯하면 안 되고 맞아야 하므로, 판정은 모델이 아니라 rulepack 이 소유한다.</p>
+          <div class="pcard__tags"><span>sylvanus4/agent-companyos</span><span>#컴플라이언스</span><span>#결정론급여</span><span>#에이전트런타임</span>
+        </div>
+        </div>
+      </div>
         </div>
       </section>
       <section class="fam" id="tech-optim" aria-labelledby="techt-optim">
@@ -445,47 +508,51 @@
           <div class="pcard__tags"><span>2icorp/work-scheduling-lab</span><span>#Python</span><span>#OR-Tools CP-SAT</span><span class="pcard__go">GitHub →</span></div>
         </div>
       </a>
-      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#siliconpilot" data-cat="optim" data-q="siliconpilot eda 설계공간 탐색 논리합성 yosys 넷리스트 덧셈기 ripple carry lookahead 셀 레벨 파이프라인 dse sylvanus4/siliconpilot-eda SiliconPilot · 자율 회로 설계공간 최적화" target="_blank" rel="noopener">
+      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#siliconpilot" target="_blank" rel="noopener" data-cat="optim" data-q="siliconpilot eda 설계공간 탐색 논리합성 yosys 넷리스트 덧셈기 ripple carry lookahead 셀 레벨 파이프라인 dse sylvanus4/siliconpilot-eda SiliconPilot · 자율 회로 설계공간 최적화">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__siliconpilot-eda.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.15</span></div>
           <h3 class="pcard__title">SiliconPilot · 자율 회로 설계공간 최적화</h3>
           <p class="pcard__excerpt">자연어 설계 목표와 RTL seed 를 주면 LLM 에이전트와 고전 최적화기, 제약 검사기, 합성 도구 피드백을 폐루프로 엮어 기능 동등성을 지킨 채 면적과 지연을 개선하는 설계공간 최적화기다. 값싼 게이트(컴파일·시뮬레이션)로 무효 후보를 먼저 떨어뜨리고 살아남은 후보만 비싼 물리 실행으로 승격시켜 예산을 아낀다. 실제 논리합성을 붙여 돌려 보니 시뮬레이터가 서로 다르다고 하던 두 덧셈기 구조가 시험한 모든 지점에서 같은 넷리스트로 합성됐고, 튜닝 손잡이 네 개 중 하나는 합성 뒤에는 아무것도 움직이지 않는 값이었다.</p>
-          <div class="pcard__tags"><span>sylvanus4/siliconpilot-eda</span><span>#EDA</span><span>#설계공간탐색</span><span>#논리합성</span><span class="pcard__go">GitHub →</span></div>
+          <div class="pcard__tags"><span>sylvanus4/siliconpilot-eda</span><span>#EDA</span><span>#설계공간탐색</span><span>#논리합성</span><span class="pcard__go">GitHub →</span>
+        </div>
         </div>
       </a>
-      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#orbitguard" data-cat="optim" data-q="orbitguard 궤도 위성 conjunction 근접 스크리닝 sgp4 tle 카탈로그 도킹 분리거리 우주물체 충돌 sylvanus4/orbitguard-twin OrbitGuard · 위성 충돌회피 디지털 트윈" target="_blank" rel="noopener">
+      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#orbitguard" target="_blank" rel="noopener" data-cat="optim" data-q="orbitguard 궤도 위성 conjunction 근접 스크리닝 sgp4 tle 카탈로그 도킹 분리거리 우주물체 충돌 sylvanus4/orbitguard-twin OrbitGuard · 위성 충돌회피 디지털 트윈">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__orbitguard-twin.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.15</span></div>
           <h3 class="pcard__title">OrbitGuard · 위성 충돌회피 디지털 트윈</h3>
           <p class="pcard__excerpt">공개 궤도 데이터로 다수 위성을 전파해 근접 접근을 탐지하고, 충돌 위험만이 아니라 연료와 임무 중단, 기동 이후 생기는 2차 접근까지 함께 놓고 회피기동 후보를 제안하는 디지털 트윈이다. 어느 카탈로그 스냅숏에서 출발했고 왜 그 후보가 기각됐는지를 재현 가능한 형태로 남기는 것을 시각화만큼 중요한 요구사항으로 잡았다. 실제 카탈로그를 물려 210쌍을 스크리닝하니 위험도 상위가 사건이 아니라 중복이었다 — 도킹 상태라 같은 요소를 발표하는 12개 객체가 분리거리 0으로 계산돼 진짜 접근보다 위에 올라왔다.</p>
-          <div class="pcard__tags"><span>sylvanus4/orbitguard-twin</span><span>#궤도역학</span><span>#SGP4</span><span>#근접스크리닝</span><span class="pcard__go">GitHub →</span></div>
+          <div class="pcard__tags"><span>sylvanus4/orbitguard-twin</span><span>#궤도역학</span><span>#SGP4</span><span>#근접스크리닝</span><span class="pcard__go">GitHub →</span>
+        </div>
         </div>
       </a>
-      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#gridmind" data-cat="optim" data-q="gridmind 마이크로그리드 급전 dispatch 배터리 일사량 태양광 자기상관 기상 관측 아카이브 시계열 부족 sylvanus4/gridmind-microgrid GridMind · 자율 마이크로그리드 운영" target="_blank" rel="noopener">
+      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#gridmind" target="_blank" rel="noopener" data-cat="optim" data-q="gridmind 마이크로그리드 급전 dispatch 배터리 일사량 태양광 자기상관 기상 관측 아카이브 시계열 부족 sylvanus4/gridmind-microgrid GridMind · 자율 마이크로그리드 운영">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__gridmind-microgrid.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.15</span></div>
           <h3 class="pcard__title">GridMind · 자율 마이크로그리드 운영</h3>
           <p class="pcard__excerpt">태양광과 건물 수요, 배터리, EV 충전, 전력 가격, 정전을 함께 예측하고 매 시점 제약 최적화와 MPC 로 24시간 운영계획을 다시 세우는 마이크로그리드 디지털 트윈이다. 맑은 날 평균 비용만 보지 않고 태양광 급감이나 배터리 고장, 계통 단절 같은 혼돈 시나리오에서 핵심 부하를 지키는지 같은 잣대로 잰다. 공개 기상 관측을 붙이자 합성 일사량이 구조적으로 다르다는 게 드러났다 — 실제 흐림은 이어지는데 생성기의 흐림은 매 시각 새로 뽑혀 최악 부족 구간이 15시간 대 3시간으로 갈린다.</p>
-          <div class="pcard__tags"><span>sylvanus4/gridmind-microgrid</span><span>#마이크로그리드</span><span>#급전계획</span><span>#시계열</span><span class="pcard__go">GitHub →</span></div>
+          <div class="pcard__tags"><span>sylvanus4/gridmind-microgrid</span><span>#마이크로그리드</span><span>#급전계획</span><span>#시계열</span><span class="pcard__go">GitHub →</span>
+        </div>
         </div>
       </a>
-      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#helios" data-cat="optim" data-q="helios 배치 계획 deployment planning gpu 동시성 concurrency 처리량 throughput 전력 idle 유휴 토큰당 에너지 sylvanus4/helios-ai-cloud Helios · 자율 AI 클라우드 control plane" target="_blank" rel="noopener">
+      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#helios" target="_blank" rel="noopener" data-cat="optim" data-q="helios 배치 계획 deployment planning gpu 동시성 concurrency 처리량 throughput 전력 idle 유휴 토큰당 에너지 sylvanus4/helios-ai-cloud Helios · 자율 AI 클라우드 control plane">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__helios-ai-cloud.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.15</span></div>
           <h3 class="pcard__title">Helios · 자율 AI 클라우드 control plane</h3>
           <p class="pcard__excerpt">모델과 트래픽, SLO, 예산, 가용 클러스터를 입력하면 하드웨어와 정밀도, 런타임, 병렬화, 서빙 토폴로지, replica 구성을 탐색해 근거와 불확실성, 롤백 조건을 담은 배치 계획을 내는 control plane 이다. 정적 YAML 로 배포를 정하는 대신 후보를 만들고 안전한 벤치마크로 검증해 고르는 폐루프로 문제를 다시 정의했다. 처리량과 전력을 실제로 재 보니 동시성을 16배로 올려도 토큰 사이 지연은 평평했고, 최대 부하에서도 전력의 63.8%는 요청이 없어도 나가던 몫이었다.</p>
-          <div class="pcard__tags"><span>sylvanus4/helios-ai-cloud</span><span>#배치계획</span><span>#전력실측</span><span>#서빙</span><span class="pcard__go">GitHub →</span></div>
+          <div class="pcard__tags"><span>sylvanus4/helios-ai-cloud</span><span>#배치계획</span><span>#전력실측</span><span>#서빙</span><span class="pcard__go">GitHub →</span>
+        </div>
         </div>
       </a>
         </div>
       </section>
       <section class="fam" id="tech-quant" aria-labelledby="techt-quant">
         <header class="fam__head">
-          <h2 class="fam__t" id="techt-quant">LLM 양자화<span class="fam__n">4개</span></h2>
+          <h2 class="fam__t" id="techt-quant">LLM 양자화<span class="fam__n">5개</span></h2>
           <p class="fam__d">같은 모델을 더 싸게 굴리는 쪽. 서빙까지 확인한 것만 센다.</p>
         </header>
         <div class="fam__reel" data-reel="05-quant"></div>
@@ -517,20 +584,31 @@
           <div class="pcard__tags"><span>#Shell</span><span>#Python</span></div>
         </div>
       </div>
-      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#forge" data-cat="llm" data-q="forge autotuner 서빙 오토튜너 양자화 quantization nvfp4 w4a16 int4 fp4 품질 보존 처리량 라우팅 상수표 sylvanus4/forge-autotuner Forge · 모델-서빙 오토튜너" target="_blank" rel="noopener">
+      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#forge" target="_blank" rel="noopener" data-cat="llm" data-q="forge autotuner 서빙 오토튜너 양자화 quantization nvfp4 w4a16 int4 fp4 품질 보존 처리량 라우팅 상수표 sylvanus4/forge-autotuner Forge · 모델-서빙 오토튜너">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__forge-autotuner.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.15</span></div>
           <h3 class="pcard__title">Forge · 모델-서빙 오토튜너</h3>
           <p class="pcard__excerpt">모델과 목표 GPU 를 주면 정밀도와 런타임, 병렬화, 컨텍스트·배치 프로파일을 자동으로 실험해 정확도와 지연, 메모리, 비용의 Pareto frontier 를 만들고 제3자가 같은 조건에서 재현할 수 있도록 지문을 박은 Serving Certificate 로 봉인하는 오토튜너다. 가장 빠른 구성 하나가 아니라 품질 손실까지 함께 담는 것이 산출물이다. 실측을 얹자 상수표의 4비트 한 줄에 성질이 다른 두 방식이 묶여 있었고 품질 보존율이 3포인트 벌어졌다.</p>
-          <div class="pcard__tags"><span>sylvanus4/forge-autotuner</span><span>#양자화</span><span>#서빙튜닝</span><span>#실측</span><span class="pcard__go">GitHub →</span></div>
+          <div class="pcard__tags"><span>sylvanus4/forge-autotuner</span><span>#양자화</span><span>#서빙튜닝</span><span>#실측</span><span class="pcard__go">GitHub →</span>
+        </div>
         </div>
       </a>
+      <div class="pcard reveal" data-cat="llm" data-q="quantization nvfp4 mxfp4 blackwell b200 이미지 영상 tts 양자화 품질 sylvanus4/multimodal-quant-lab Blackwell 멀티모달 양자화 랩 — 이미지 · 영상 · 음성">
+        <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__multimodal-quant-lab.png" alt="" loading="lazy" width="880" height="495"></div>
+        <div class="pcard__body">
+          <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.16</span></div>
+          <h3 class="pcard__title">Blackwell 멀티모달 양자화 랩 — 이미지 · 영상 · 음성</h3>
+          <p class="pcard__excerpt">텍스트 모델에서만 검증된 4비트 양자화를 이미지 · 영상 · TTS 로 밀어 보는 랩이다. Blackwell 의 NVFP4/MXFP4 경로를 실제로 태워, 커널이 네이티브로 도는지 에뮬레이션으로 폴백하는지부터 확인한다. 품질 손실은 선언이 아니라 측정 대상이라 같은 프롬프트를 두 정밀도로 돌려 나란히 둔다.</p>
+          <div class="pcard__tags"><span>sylvanus4/multimodal-quant-lab</span><span>#NVFP4</span><span>#멀티모달양자화</span><span>#품질회귀</span>
+        </div>
+        </div>
+      </div>
         </div>
       </section>
       <section class="fam" id="tech-distill" aria-labelledby="techt-distill">
         <header class="fam__head">
-          <h2 class="fam__t" id="techt-distill">소형 모델 증류·파인튜닝<span class="fam__n">4개</span></h2>
+          <h2 class="fam__t" id="techt-distill">소형 모델 증류·파인튜닝<span class="fam__n">6개</span></h2>
           <p class="fam__d">반복 워커만 떼어 작은 모델로 옮기고, 판단이 필요한 곳에만 큰 모델을 쓴다.</p>
         </header>
         <div class="fam__reel" data-reel="06-distill"></div>
@@ -571,11 +649,31 @@
           <div class="pcard__tags"><span>#Python</span><span>#Shell</span></div>
         </div>
       </div>
+      <div class="pcard reveal" data-cat="llm" data-q="trajectory episode sft 학습 데이터 거버넌스 라이선스 paxis maxis 재현 sylvanus4/paxis-trajectory-lab 에이전트 궤적 → 재현 가능한 학습 데이터">
+        <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__paxis-trajectory-lab.png" alt="" loading="lazy" width="880" height="495"></div>
+        <div class="pcard__body">
+          <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.12</span></div>
+          <h3 class="pcard__title">에이전트 궤적 → 재현 가능한 학습 데이터</h3>
+          <p class="pcard__excerpt">에이전트가 실제로 한 일을 학습에 쓸 수 있는 형태로 바꾸는 파이프라인이다. Episode 스키마로 궤적을 고정하고, 라이선스와 출처가 통과하지 못한 것은 거버넌스 게이트에서 떨어뜨린다. 궤적은 그냥 두면 로그일 뿐이라, 무엇을 학습에 넣어도 되는지를 코드가 판정하게 만드는 쪽이 본체다.</p>
+          <div class="pcard__tags"><span>sylvanus4/paxis-trajectory-lab</span><span>#궤적학습</span><span>#Episode스키마</span><span>#거버넌스게이트</span>
+        </div>
+        </div>
+      </div>
+      <div class="pcard reveal" data-cat="llm" data-q="charai character persona 멀티모달 파인튜닝 sft 평가 eval 프롬프트 티처 sylvanus4/charai-core charai · 멀티모달 AI 캐릭터 플랫폼">
+        <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__charai-core.png" alt="" loading="lazy" width="880" height="495"></div>
+        <div class="pcard__body">
+          <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.13</span></div>
+          <h3 class="pcard__title">charai · 멀티모달 AI 캐릭터 플랫폼</h3>
+          <p class="pcard__excerpt">캐릭터가 자기 성격을 유지한 채 대화하도록 만드는 플랫폼을 core · data · train · eval · web 다섯 저장소로 나눠 둔 것이다. 흥미로운 결과는 실패 쪽에 있었다 — 파인튜닝한 모델이 잘 쓴 프롬프트를 이기지 못하는 구간이 반복해서 나왔고, 원인을 티처 평균회귀 가설로 좁혀 검증 중이다.</p>
+          <div class="pcard__tags"><span>sylvanus4/charai-core</span><span>#캐릭터일관성</span><span>#파인튜닝</span><span>#평가셋</span>
+        </div>
+        </div>
+      </div>
         </div>
       </section>
       <section class="fam" id="tech-aiplatform" aria-labelledby="techt-aiplatform">
         <header class="fam__head">
-          <h2 class="fam__t" id="techt-aiplatform">Paxis · Maxis · Metis<span class="fam__n">5개</span></h2>
+          <h2 class="fam__t" id="techt-aiplatform">Paxis · Maxis · Metis<span class="fam__n">6개</span></h2>
           <p class="fam__d">에이전트 실행 플랫폼과 그 밑을 받치는 학습·추론 기반. 서빙, GPU 스케줄링, 실험 추적, 멀티테넌시.</p>
         </header>
         <div class="fam__reel" data-reel="09-aiplatform"></div>
@@ -625,6 +723,16 @@
           <div class="pcard__tags"><span>#Python</span><span>#JavaScript</span><span>#GitHub Actions</span></div>
         </div>
       </div>
+      <div class="pcard reveal" data-cat="llm" data-q="gateway openai compatible multimodal metering 계량 원장 콘솔 카탈로그 토큰 sylvanus4/token-factory-gateway 토큰 팩토리 게이트웨이 · 계량 콘솔">
+        <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__token-factory-gateway.png" alt="" loading="lazy" width="880" height="495"></div>
+        <div class="pcard__body">
+          <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">TypeScript</span><span class="pcard__date">2026.08.14</span></div>
+          <h3 class="pcard__title">토큰 팩토리 게이트웨이 · 계량 콘솔</h3>
+          <p class="pcard__excerpt">텍스트 · 이미지 · 영상 · 음성을 하나의 OpenAI 호환 표면 뒤에 두는 게이트웨이다. 모달리티마다 원가 구조가 달라 토큰 하나로 셀 수 없으므로, 계량 원장을 따로 두고 무엇을 얼마에 썼는지 콘솔에서 되짚을 수 있게 했다. 청구가 걸린 숫자라 집계는 코드가 소유한다.</p>
+          <div class="pcard__tags"><span>sylvanus4/token-factory-gateway</span><span>#멀티모달게이트웨이</span><span>#계량원장</span><span>#OpenAI호환</span>
+        </div>
+        </div>
+      </div>
         </div>
       </section>
       <section class="fam" id="tech-vision" aria-labelledby="techt-vision">
@@ -652,20 +760,21 @@
           <div class="pcard__tags"><span>2icorp/2i-case-13-medimg-loop-agent</span><span>#Python</span><span>#의료영상 분할</span><span>#observe-critic-patch loop</span><span class="pcard__go">GitHub →</span></div>
         </div>
       </a>
-      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#omniindex" data-cat="vision" data-q="omniindex 멀티모달 검색 이미지 해시 dhash ahash 오디오 지문 코덱 크롭 임계값 threshold 색인 retrieval sylvanus4/omniindex-search OmniIndex · 통합 지각 검색 엔진" target="_blank" rel="noopener">
+      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#omniindex" target="_blank" rel="noopener" data-cat="vision" data-q="omniindex 멀티모달 검색 이미지 해시 dhash ahash 오디오 지문 코덱 크롭 임계값 threshold 색인 retrieval sylvanus4/omniindex-search OmniIndex · 통합 지각 검색 엔진">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__omniindex-search.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.15</span></div>
           <h3 class="pcard__title">OmniIndex · 통합 지각 검색 엔진</h3>
           <p class="pcard__excerpt">텍스트와 이미지, 영상, 음성, 음악을 정확·지각 지문과 멀티모달 임베딩으로 함께 색인하고, 질의 라우터가 '이게 정확히 그것인가'와 '이것과 비슷한 게 뭔가'를 갈라 통합 검색하는 엔진이다. 결과가 어떤 영상인지가 아니라 그 영상의 몇 초 지점인지까지 가리키도록 시간·공간 계보를 색인 설계 단계부터 보존한다. 실제 코덱을 통과시켜 보니 지문은 압축과 축소를 견디고 크롭에서 무너졌으며, 진짜 짝과 남의 것을 가를 임계값이 존재하지 않는 구간이 드러났다.</p>
-          <div class="pcard__tags"><span>sylvanus4/omniindex-search</span><span>#멀티모달검색</span><span>#지각해시</span><span>#임계값</span><span class="pcard__go">GitHub →</span></div>
+          <div class="pcard__tags"><span>sylvanus4/omniindex-search</span><span>#멀티모달검색</span><span>#지각해시</span><span>#임계값</span><span class="pcard__go">GitHub →</span>
+        </div>
         </div>
       </a>
         </div>
       </section>
       <section class="fam" id="tech-mediagen" aria-labelledby="techt-mediagen">
         <header class="fam__head">
-          <h2 class="fam__t" id="techt-mediagen">영상·이미지 생성<span class="fam__n">16개</span></h2>
+          <h2 class="fam__t" id="techt-mediagen">영상·이미지 생성<span class="fam__n">19개</span></h2>
           <p class="fam__d">영상, 이미지, 음성 합성. 소재를 사람 손 없이 반복 생산한다.</p>
         </header>
         <div class="fam__reel" data-reel="10-mediagen"></div>
@@ -796,29 +905,61 @@
           <div class="pcard__tags"><span>#JavaScript</span><span>#HTML</span><span>#CSS</span></div>
         </div>
       </div>
-      <a class="pcard reveal" href="https://github.com/sylvanus4/ref2va-video-lora-lab" data-cat="media" data-q="레퍼런스 조건 영상 lora ref2va wan2.2 moe dit subject 일관성 identity arcface clip-t vace zero-shot 광고 캐릭터 video lora reference conditioning diffusion b200 sylvanus4/ref2va-video-lora-lab 레퍼런스 조건 영상 LoRA 랩" target="_blank" rel="noopener">
+      <a class="pcard reveal" href="https://github.com/sylvanus4/ref2va-video-lora-lab" target="_blank" rel="noopener" data-cat="media" data-q="레퍼런스 조건 영상 lora ref2va wan2.2 moe dit subject 일관성 identity arcface clip-t vace zero-shot 광고 캐릭터 video lora reference conditioning diffusion b200 sylvanus4/ref2va-video-lora-lab 레퍼런스 조건 영상 LoRA 랩">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__ref2va-video-lora-lab.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.12</span></div>
           <h3 class="pcard__title">레퍼런스 조건 영상 LoRA 랩</h3>
           <p class="pcard__excerpt">상용 API 뒤에 있던 subject 일관성 학습 레시피를 오픈 가중치 Wan2.2(MoE DiT)에 이식해 자체 GPU에서 재현한 실험 랩이다. 합성 인물 데이터셋 생성, per-token timestep 등 MoE 이식 계약을 GPU 없이 잡는 스모크 하네스, 사전등록 게이트 평가(ArcFace·CLIP-T), zero-shot 비교군(VACE)까지 담았다. identity +70%와 그 대가인 추종 하락 곡선을 함께 기록했고, 학습된 캐릭터로 43초 광고 한 편을 완성했다. 학습·평가 코드와 잡 로그가 실려 저장소는 비공개다.</p>
-          <div class="pcard__tags"><span>sylvanus4/ref2va-video-lora-lab</span><span>#영상생성</span><span>#LoRA</span><span>#평가게이트</span><span class="pcard__go">GitHub →</span></div>
+          <div class="pcard__tags"><span>sylvanus4/ref2va-video-lora-lab</span><span>#영상생성</span><span>#LoRA</span><span>#평가게이트</span><span class="pcard__go">GitHub →</span>
+        </div>
         </div>
       </a>
-      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/music3/" data-cat="media" data-q="소닉 브랜딩 sonic branding 음악 생성 minimax music3 b200 sglang numpy dsp 광고 영상 로고 mnemonic 마림바 배음 브랜드 사운드 sylvanus4/sylvanus4.github.io 소닉 브랜딩 — 코드 로고 + 생성 편곡" target="_blank" rel="noopener">
+      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/music3/" target="_blank" rel="noopener" data-cat="media" data-q="소닉 브랜딩 sonic branding 음악 생성 minimax music3 b200 sglang numpy dsp 광고 영상 로고 mnemonic 마림바 배음 브랜드 사운드 sylvanus4/sylvanus4.github.io 소닉 브랜딩 — 코드 로고 + 생성 편곡">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__sylvanus4.github.io.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.15</span></div>
           <h3 class="pcard__title">소닉 브랜딩 — 코드 로고 + 생성 편곡</h3>
           <p class="pcard__excerpt">공개 이틀 된 57GB 음악 생성 모델을 자체 B200에 적재해 브랜드 사운드 시스템 전체와 54초 광고 영상까지 만든 작업이다. 소닉 로고 3음(근음·5도·옥타브)은 매번 바이트가 같아야 하므로 생성 모델이 아니라 numpy DSP가 합성하고, 편곡·음색·전개는 모델이 캡션 지시로 푼다. 같은 GPU에 같은 가중치를 올리고 실행 스택만 바꿔 36곡/시간에서 463곡/시간으로 12.7배를 실측했고, 곡당 원가는 약 $0.007이다. 로고 10종·브랜드 음악 6곡·보컬 곡 4곡을 데모 페이지에서 바로 들을 수 있다.</p>
-          <div class="pcard__tags"><span>sylvanus4/sylvanus4.github.io</span><span>#음악생성</span><span>#소닉브랜딩</span><span>#DSP</span><span class="pcard__go">GitHub →</span></div>
+          <div class="pcard__tags"><span>sylvanus4/sylvanus4.github.io</span><span>#음악생성</span><span>#소닉브랜딩</span><span>#DSP</span><span class="pcard__go">GitHub →</span>
+        </div>
         </div>
       </a>
+      <div class="pcard reveal" data-cat="media" data-q="music generation minimax music3 ltx 뮤직비디오 보컬 f0 demucs cfg 스윕 sylvanus4/music-video-lab 생성 음악 + AI 뮤직비디오 랩">
+        <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__music-video-lab.png" alt="" loading="lazy" width="880" height="495"></div>
+        <div class="pcard__body">
+          <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.16</span></div>
+          <h3 class="pcard__title">생성 음악 + AI 뮤직비디오 랩</h3>
+          <p class="pcard__excerpt">곡을 만들고 그 곡에 맞는 영상을 붙이기까지를 사내 GPU 위에서 돌리는 랩이다. 목소리가 결정되는 지점을 찾아 AR 단계 CFG 를 스윕하고, 보컬은 분리 후 F0 로 성별을 실측해 선언과 산출이 어긋나는지 본다 — 남성으로 발주한 트랙이 실제로는 아니었던 경우가 반복해서 나왔다. 음색 이상은 아직 지표로 못 잡아 사람이 듣는다.</p>
+          <div class="pcard__tags"><span>sylvanus4/music-video-lab</span><span>#음악생성</span><span>#보컬검증</span><span>#뮤직비디오</span>
+        </div>
+        </div>
+      </div>
+      <div class="pcard reveal" data-cat="media" data-q="cineprompt 프롬프트 빌더 영상 렌즈 초점거리 webgl 필름 용어 t2v sylvanus4/cineprompt-studio 씨네프롬프트 스튜디오 · 영상 프롬프트 빌더">
+        <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__cineprompt-studio.png" alt="" loading="lazy" width="880" height="495"></div>
+        <div class="pcard__body">
+          <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">TypeScript</span><span class="pcard__date">2026.08.14</span></div>
+          <h3 class="pcard__title">씨네프롬프트 스튜디오 · 영상 프롬프트 빌더</h3>
+          <p class="pcard__excerpt">AI 영상 프롬프트를 감각이 아니라 촬영 용어로 쓰게 만드는 도구다. 필름 크래프트 용어 1,256개를 색인하고, 모델마다 다른 섹션 순서를 따로 두며, 렌즈 리그를 WebGL 로 띄워 초점거리와 심도를 눈으로 고르게 했다. 장면 글을 넣으면 LLM 이 읽어 초안 프롬프트를 만든다.</p>
+          <div class="pcard__tags"><span>sylvanus4/cineprompt-studio</span><span>#프롬프트빌더</span><span>#렌즈리그</span><span>#필름용어</span>
+        </div>
+        </div>
+      </div>
+      <div class="pcard reveal" data-cat="media" data-q="srt vtt 자막 스케치 화이트보드 스토리보드 ffmpeg 클라이언트 sylvanus4/srt-sketch-cast 자막 → 화이트보드 스케치 스토리보드">
+        <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__srt-sketch-cast.png" alt="" loading="lazy" width="880" height="495"></div>
+        <div class="pcard__body">
+          <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">JavaScript</span><span class="pcard__date">2026.08.13</span></div>
+          <h3 class="pcard__title">자막 → 화이트보드 스케치 스토리보드</h3>
+          <p class="pcard__excerpt">SRT/VTT 자막을 넣으면 화이트보드 스케치 애니메이션 스토리보드와 ffmpeg 렌더 계획을 만들어 준다. 전부 브라우저 안에서 도는 클라이언트 사이드라 자막 파일이 어디로도 올라가지 않는다.</p>
+          <div class="pcard__tags"><span>sylvanus4/srt-sketch-cast</span><span>#스토리보드</span><span>#클라이언트사이드</span><span>#ffmpeg</span>
+        </div>
+        </div>
+      </div>
         </div>
       </section>
       <section class="fam" id="tech-marketing" aria-labelledby="techt-marketing">
         <header class="fam__head">
-          <h2 class="fam__t" id="techt-marketing">마케팅·콘텐츠 운영<span class="fam__n">4개</span></h2>
+          <h2 class="fam__t" id="techt-marketing">마케팅·콘텐츠 운영<span class="fam__n">6개</span></h2>
           <p class="fam__d">블로그 발행, 뉴스 인텔, 캠페인 소재. 게시까지 자동으로 간다.</p>
         </header>
         <div class="fam__reel" data-reel="11-marketing"></div>
@@ -859,6 +1000,26 @@
           <div class="pcard__tags"><span>2icorp/sd-service</span><span>#Python</span><span>#Stable Diffusion WebUI</span><span class="pcard__go">GitHub →</span></div>
         </div>
       </a>
+      <div class="pcard reveal" data-cat="media" data-q="character fabric 마스코트 레퍼런스 lora 어댑터 실루엣 학습데이터 잘림 게이트 sylvanus4/character-fabric Character Fabric · 캐릭터 하나, 무한한 동작">
+        <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__character-fabric.png" alt="" loading="lazy" width="880" height="495"></div>
+        <div class="pcard__body">
+          <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.16</span></div>
+          <h3 class="pcard__title">Character Fabric · 캐릭터 하나, 무한한 동작</h3>
+          <p class="pcard__excerpt">레퍼런스 한 장으로 같은 캐릭터를 여러 동작·표정으로 재생성하는 파이프라인이다. 값비싸게 배운 것은 학습 데이터가 곧 상한이라는 사실이었다 — 어댑터가 A/B 를 전승했는데도 학습 클립의 79%에서 피사체가 프레임 밖으로 잘려 있었고, 일관성 지표는 그걸 가리기만 했다. 지금은 잘림·레퍼런스 품질을 학습 전에 게이트로 막는다.</p>
+          <div class="pcard__tags"><span>sylvanus4/character-fabric</span><span>#캐릭터일관성</span><span>#학습데이터게이트</span><span>#레퍼런스조건</span>
+        </div>
+        </div>
+      </div>
+      <div class="pcard reveal" data-cat="media" data-q="reddit hacker news oss 커뮤니티 다이제스트 미응답 스레드 주간 sylvanus4/oss-community-pulse 오픈소스 커뮤니티 펄스 — 답 없는 스레드부터">
+        <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__oss-community-pulse.png" alt="" loading="lazy" width="880" height="495"></div>
+        <div class="pcard__body">
+          <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.10</span></div>
+          <h3 class="pcard__title">오픈소스 커뮤니티 펄스 — 답 없는 스레드부터</h3>
+          <p class="pcard__excerpt">내 오픈소스 프로젝트를 언급한 Reddit · Hacker News 스레드를 주간 정적 다이제스트로 모은다. 핵심은 전부 모으는 게 아니라 아직 아무도 답하지 않은 스레드를 앞으로 올리는 것 — 유지보수자가 실제로 놓치는 지점이 거기다.</p>
+          <div class="pcard__tags"><span>sylvanus4/oss-community-pulse</span><span>#커뮤니티모니터링</span><span>#미응답</span><span>#주간다이제스트</span>
+        </div>
+        </div>
+      </div>
         </div>
       </section>
       <section class="fam" id="tech-storage" aria-labelledby="techt-storage">
@@ -935,7 +1096,7 @@
       </section>
       <section class="fam" id="tech-product" aria-labelledby="techt-product">
         <header class="fam__head">
-          <h2 class="fam__t" id="techt-product">도메인 서비스·제품<span class="fam__n">23개</span></h2>
+          <h2 class="fam__t" id="techt-product">도메인 서비스·제품<span class="fam__n">25개</span></h2>
           <p class="fam__d">법률, 교육, 의료, 금융, 생활 영역에서 끝단 사용자가 쓰는 형태로 만든 것들이다.</p>
         </header>
         <div class="fam__reel" data-reel="13-product"></div>
@@ -1120,38 +1281,61 @@
           <div class="pcard__tags"><span>2icorp/2i-webapp</span><span>#TypeScript</span><span>#Next.js</span><span class="pcard__go">GitHub →</span></div>
         </div>
       </a>
-      <a class="pcard reveal" href="https://github.com/sylvanus4/hanji" data-cat="product" data-q="hanji 한지 hwp hwpx 한글 문서 변환 converter viewer 뷰어 pdf 이미지 동영상 gif 로컬 local-first 업로드없음 no-upload privacy 프라이버시 wasm tauri 데스크탑 desktop offline 오프라인 typescript rhwp sylvanus4/hanji 업로드 없이 도는 한국어 문서 뷰어 · 변환기" target="_blank" rel="noopener">
+      <a class="pcard reveal" href="https://github.com/sylvanus4/hanji" target="_blank" rel="noopener" data-cat="product" data-q="hanji 한지 hwp hwpx 한글 문서 변환 converter viewer 뷰어 pdf 이미지 동영상 gif 로컬 local-first 업로드없음 no-upload privacy 프라이버시 wasm tauri 데스크탑 desktop offline 오프라인 typescript rhwp sylvanus4/hanji 업로드 없이 도는 한국어 문서 뷰어 · 변환기">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__hanji.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">공개</span><span class="pcard__rt">TypeScript</span><span class="pcard__date">2026.08.08</span></div>
           <h3 class="pcard__title">업로드 없이 도는 한국어 문서 뷰어 · 변환기</h3>
           <p class="pcard__excerpt">HWP·HWPX·PDF·이미지·동영상을 한 자리에서 열고 바꾸는 도구다. 파일이 기기를 떠나지 않는 것이 유일한 주장이라, 실제 브라우저로 문서를 통과시키며 외부 요청이 0건인지 검사 40개로 매번 확인한다. 웹과 데스크탑이 같은 번들을 쓰고 데스크탑 바이너리에는 네트워크 라이브러리를 넣지 않았다. HWP 표가 우측 단을 넘던 결함은 상위 엔진 358커밋을 이분 탐색해 회귀 지점을 찾고 패치해 해결했다.</p>
-          <div class="pcard__tags"><span>sylvanus4/hanji</span><span>#문서</span><span>#로컬우선</span><span>#WASM</span><span class="pcard__go">GitHub →</span></div>
+          <div class="pcard__tags"><span>sylvanus4/hanji</span><span>#문서</span><span>#로컬우선</span><span>#WASM</span><span class="pcard__go">GitHub →</span>
+        </div>
         </div>
       </a>
-      <a class="pcard reveal" href="https://github.com/sylvanus4/korean-history-exam-lab" data-cat="product" data-q="한능검 한국사 기출 지식그래프 srs 간격반복 앰기 tauri 오프라인 혼동쌍 유사문항 생성 게이트 quiz knowledge graph spaced repetition sylvanus4/korean-history-exam-lab 기출 서안 · 한능검 심화 기출 학습 앱" target="_blank" rel="noopener">
+      <a class="pcard reveal" href="https://github.com/sylvanus4/korean-history-exam-lab" target="_blank" rel="noopener" data-cat="product" data-q="한능검 한국사 기출 지식그래프 srs 간격반복 앰기 tauri 오프라인 혼동쌍 유사문항 생성 게이트 quiz knowledge graph spaced repetition sylvanus4/korean-history-exam-lab 기출 서안 · 한능검 심화 기출 학습 앱">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__korean-history-exam-lab.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python · Rust</span><span class="pcard__date">2026.08.10</span></div>
           <h3 class="pcard__title">기출 서안 · 한능검 심화 기출 학습 앱</h3>
           <p class="pcard__excerpt">한국사능력검정시험 심화 기출 스무 회차 1,000문항을 전수 파싱해 지식 그래프(노드 963 · 오답 교정 4,001)로 뒤집고, 그 위에 SM-2 암기 카드 2,072장·설명 채점 627개·혼동쌍 기반 유사문항 생성을 얹은 오프라인 데스크탑 앱이다. 생성 문항은 코드 소유 3중 게이트(구조·자료 누설·사실 반증)를 통과한 것만 실린다. 기출 원문 저작권(공공누리 제4유형) 때문에 배포판과 저장소는 비공개다.</p>
-          <div class="pcard__tags"><span>sylvanus4/korean-history-exam-lab</span><span>#지식그래프</span><span>#간격반복</span><span>#Tauri</span><span class="pcard__go">GitHub →</span></div>
+          <div class="pcard__tags"><span>sylvanus4/korean-history-exam-lab</span><span>#지식그래프</span><span>#간격반복</span><span>#Tauri</span><span class="pcard__go">GitHub →</span>
+        </div>
         </div>
       </a>
-      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#vaultai" data-cat="product" data-q="vaultai 망분리 airgap 에어갭 문서 rag 근거 faithfulness 재현율 정밀도 유출 탐지 egress 로컬 모델 sylvanus4/vaultai-workstation VaultAI · 망분리 AI 작업대" target="_blank" rel="noopener">
+      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#vaultai" target="_blank" rel="noopener" data-cat="product" data-q="vaultai 망분리 airgap 에어갭 문서 rag 근거 faithfulness 재현율 정밀도 유출 탐지 egress 로컬 모델 sylvanus4/vaultai-workstation VaultAI · 망분리 AI 작업대">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__vaultai-workstation.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.15</span></div>
           <h3 class="pcard__title">VaultAI · 망분리 AI 작업대</h3>
           <p class="pcard__excerpt">문서와 이미지, 음성, 영상의 분석과 OCR, 임베딩 검색, 음성 인식, 개인정보 마스킹, 로컬 요약을 전부 기기 안에서 처리하고 외부 네트워크 요청이 0건임을 오프라인 E2E 테스트로 반복 증명하는 작업대다. '서버에 안 보낸다'는 설명이 아니라 망을 끊은 상태에서 업무가 끝까지 도는지를 증거로 삼는다. 발췌형 응답과 로컬 모델을 같은 질문에 붙여 보니 근거 없는 수치 0건은 잘해서가 아니라 원문을 통째로 돌려주기 때문이었고, 정밀도는 12.6% 였다.</p>
-          <div class="pcard__tags"><span>sylvanus4/vaultai-workstation</span><span>#망분리</span><span>#근거검증</span><span>#로컬LLM</span><span class="pcard__go">GitHub →</span></div>
+          <div class="pcard__tags"><span>sylvanus4/vaultai-workstation</span><span>#망분리</span><span>#근거검증</span><span>#로컬LLM</span><span class="pcard__go">GitHub →</span>
+        </div>
         </div>
       </a>
+      <div class="pcard reveal" data-cat="product" data-q="정보시스템감리사 기출 rag knowledge graph srs 적응형 퀴즈 nia sylvanus4/is-auditor-exam-lab 감리사 서안 · 정보시스템감리사 기출 학습">
+        <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__is-auditor-exam-lab.png" alt="" loading="lazy" width="880" height="495"></div>
+        <div class="pcard__body">
+          <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.15</span></div>
+          <h3 class="pcard__title">감리사 서안 · 정보시스템감리사 기출 학습</h3>
+          <p class="pcard__excerpt">NIA 공개 기출 제16~26회를 RAG 와 지식그래프로 엮고, SRS 간격반복과 적응형 퀴즈를 얹은 학습 랩이다. 문항을 외우는 게 아니라 논점 사이의 연결을 붙잡게 하려고 지식그래프를 넣었다.</p>
+          <div class="pcard__tags"><span>sylvanus4/is-auditor-exam-lab</span><span>#기출RAG</span><span>#지식그래프</span><span>#간격반복</span>
+        </div>
+        </div>
+      </div>
+      <div class="pcard reveal" data-cat="product" data-q="english 영어 암기 fsrs 간격반복 tauri 데스크탑 콘텐츠 파이프라인 sylvanus4/daily-english-lab 하루 20문장 영어 암기 데스크탑 앱">
+        <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__daily-english-lab.png" alt="" loading="lazy" width="880" height="495"></div>
+        <div class="pcard__body">
+          <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">TypeScript</span><span class="pcard__date">2026.08.14</span></div>
+          <h3 class="pcard__title">하루 20문장 영어 암기 데스크탑 앱</h3>
+          <p class="pcard__excerpt">상황 대화형 문장 20개를 매일 자동으로 생성해 넣어 주는 Tauri 데스크탑 앱이다. FSRS 간격반복 위에 능동 인출과 이중 부호화를 얹었다 — 읽어서 아는 것과 꺼내 쓸 수 있는 것은 다르므로 화면이 답을 먼저 보여주지 않는다.</p>
+          <div class="pcard__tags"><span>sylvanus4/daily-english-lab</span><span>#FSRS</span><span>#능동인출</span><span>#Tauri</span>
+        </div>
+        </div>
+      </div>
         </div>
       </section>
       <section class="fam" id="tech-devtool" aria-labelledby="techt-devtool">
         <header class="fam__head">
-          <h2 class="fam__t" id="techt-devtool">개발 도구·템플릿<span class="fam__n">25개</span></h2>
+          <h2 class="fam__t" id="techt-devtool">개발 도구·템플릿<span class="fam__n">27개</span></h2>
           <p class="fam__d">레포 템플릿, 품질 검사기, 문서화, 사이트 저작 도구. 나머지 전부를 빠르게 만드는 바닥이다.</p>
         </header>
         <div class="fam__reel" data-reel="14-devtool"></div>
@@ -1372,15 +1556,36 @@
           <div class="pcard__tags"><span>#Jupyter Notebook</span><span>#Python</span></div>
         </div>
       </div>
-      <a class="pcard reveal" href="https://github.com/sylvanus4/algorithms-polyglot" data-cat="devtool" data-q="algorithms polyglot 알고리즘 교차검증 cross-validation conformance 상호일치 golden file 골든파일 dijkstra knapsack lcs lis mergesort quicksort backtracking dp greedy graph mst flow 벤치마크 benchmark 재현성 reproducibility 타이브레이크 tiebreak go c cpp rust python java erickson 코딩테스트 인터뷰 mutation testing 뮤테이션 sylvanus4/algorithms-polyglot 여섯 언어 교차 검증 알고리즘 랩" target="_blank" rel="noopener">
+      <a class="pcard reveal" href="https://github.com/sylvanus4/algorithms-polyglot" target="_blank" rel="noopener" data-cat="devtool" data-q="algorithms polyglot 알고리즘 교차검증 cross-validation conformance 상호일치 golden file 골든파일 dijkstra knapsack lcs lis mergesort quicksort backtracking dp greedy graph mst flow 벤치마크 benchmark 재현성 reproducibility 타이브레이크 tiebreak go c cpp rust python java erickson 코딩테스트 인터뷰 mutation testing 뮤테이션 sylvanus4/algorithms-polyglot 여섯 언어 교차 검증 알고리즘 랩">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__algorithms-polyglot.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">공개</span><span class="pcard__rt">Polyglot</span><span class="pcard__date">2026.08.09</span></div>
           <h3 class="pcard__title">여섯 언어 교차 검증 알고리즘 랩</h3>
           <p class="pcard__excerpt">알고리즘 26개와 새로 쓴 문제 8개를 Go·C·C++·Rust·Python·Java 여섯 벌로 독립 구현하고 공유 벡터 232개로 교차 검증한다. 기준 구현 하나를 정답으로 삼지 않고 여섯 출력이 서로 바이트 단위로 일치하는지를 본다. 기준 구현도 검사 대상이라, 거기서 타이브레이크가 거꾸로 돼 있으면 나머지 다섯을 같은 오답으로 교정하고도 테스트는 초록으로 통과하기 때문이다. 기록된 결함 15건 중 컴파일러와 타입 검사기, 린터가 잡은 것은 0건이고 나머지는 브루트포스 대조와 상호일치 게이트, 일부러 망가뜨린 구현으로 찾았다. 저장소 소스에서 생성되는 학습 사이트와 51쪽 한국어 해설서가 같이 나온다.</p>
-          <div class="pcard__tags"><span>sylvanus4/algorithms-polyglot</span><span>#알고리즘</span><span>#교차검증</span><span>#재현성</span><span class="pcard__go">GitHub →</span></div>
+          <div class="pcard__tags"><span>sylvanus4/algorithms-polyglot</span><span>#알고리즘</span><span>#교차검증</span><span>#재현성</span><span class="pcard__go">GitHub →</span>
+        </div>
         </div>
       </a>
+      <div class="pcard reveal" data-cat="devtool" data-q="tts asr round trip 발음 pronunciation 사전 검증 로컬 sylvanus4/pronounce-forge TTS 가 정말 그렇게 읽는지 검증한다">
+        <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__pronounce-forge.png" alt="" loading="lazy" width="880" height="495"></div>
+        <div class="pcard__body">
+          <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">JavaScript</span><span class="pcard__date">2026.08.14</span></div>
+          <h3 class="pcard__title">TTS 가 정말 그렇게 읽는지 검증한다</h3>
+          <p class="pcard__excerpt">합성한 음성을 다시 인식에 통과시켜(round-trip) 코드가 발음을 판정하는 도구다. 사람이 듣고 넘어가면 고유명사와 숫자에서 조용히 틀리므로, 판정을 귀가 아니라 왕복 일치로 옮겼다. 엔진에 묶이지 않는 발음 사전으로 내보낼 수 있다.</p>
+          <div class="pcard__tags"><span>sylvanus4/pronounce-forge</span><span>#TTS검증</span><span>#왕복일치</span><span>#발음사전</span>
+        </div>
+        </div>
+      </div>
+      <div class="pcard reveal" data-cat="devtool" data-q="ntfs mft 포렌식 forensics macb timestamp ads 브라우저 클라이언트 sylvanus4/mft-lens MFT 렌즈 · 브라우저에서 여는 NTFS 포렌식">
+        <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__mft-lens.png" alt="" loading="lazy" width="880" height="495"></div>
+        <div class="pcard__body">
+          <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">JavaScript</span><span class="pcard__date">2026.08.12</span></div>
+          <h3 class="pcard__title">MFT 렌즈 · 브라우저에서 여는 NTFS 포렌식</h3>
+          <p class="pcard__excerpt">덤프한 NTFS $MFT CSV 를 브라우저에 떨어뜨리면 SI/FN 타임스탬프 전량과 대체 데이터 스트림, 파일 ID 를 표로 펼치고 MACB 타임라인으로 세운다. 네트워크 요청 0건 — 조사 대상 파일이 기계 밖으로 나가지 않는다.</p>
+          <div class="pcard__tags"><span>sylvanus4/mft-lens</span><span>#NTFS포렌식</span><span>#MACB</span><span>#네트워크0</span>
+        </div>
+        </div>
+      </div>
         </div>
       </section>
       <section class="fam" id="tech-misc" aria-labelledby="techt-misc">
@@ -1407,13 +1612,14 @@
           <div class="pcard__tags"><span>#TypeScript</span><span>#Swift</span><span>#Capacitor</span></div>
         </div>
       </div>
-      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#bioproof" data-cat="misc" data-q="bioproof 단백질 구조 예측 pldd 신뢰도 보정 calibration ece rmsd 폴딩 folding 아카이브 gpu sylvanus4/bioproof-lab BioProof · 생체분자 예측 신뢰도 QA" target="_blank" rel="noopener">
+      <a class="pcard reveal" href="https://sylvanus4.github.io/demos/flagship/#bioproof" target="_blank" rel="noopener" data-cat="misc" data-q="bioproof 단백질 구조 예측 pldd 신뢰도 보정 calibration ece rmsd 폴딩 folding 아카이브 gpu sylvanus4/bioproof-lab BioProof · 생체분자 예측 신뢰도 QA">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__bioproof-lab.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.15</span></div>
           <h3 class="pcard__title">BioProof · 생체분자 예측 신뢰도 QA</h3>
           <p class="pcard__excerpt">공개 벤치마크 단백질을 여러 예측기로 반복 실행해 구조와 신뢰도의 모델 간 일치도, 실험 구조 대비 오차, 섭동 민감도, 버전과 하드웨어 재현성을 한 파이프라인에서 평가하고 신뢰도 리포트를 내는 과학 AI QA 플랫폼이다. 신약을 설계하지도 임상 결론을 내지도 않는다. 자체 GPU 로 접어 보니 실패한 표적에서 모델의 신뢰도는 절반으로 내려가는데 실제 정확도는 열네 배 떨어졌다 — 실패를 감지는 하되 그 크기만큼 보고하지는 못한다.</p>
-          <div class="pcard__tags"><span>sylvanus4/bioproof-lab</span><span>#구조예측</span><span>#신뢰도보정</span><span>#단백질</span><span class="pcard__go">GitHub →</span></div>
+          <div class="pcard__tags"><span>sylvanus4/bioproof-lab</span><span>#구조예측</span><span>#신뢰도보정</span><span>#단백질</span><span class="pcard__go">GitHub →</span>
+        </div>
         </div>
       </a>
         </div>
