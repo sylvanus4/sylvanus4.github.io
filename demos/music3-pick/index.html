@@ -45,6 +45,19 @@ padding-top:20px}
 <div class=grp><h3>정통 트로트</h3><div class="row"><div class="lbl">inst-neg / s4002</div><audio controls preload="none" src="audio/inst__mv-trot-classic__inst-neg__s4002.m4a"></audio><div class="meta"><span class="m">무보컬</span></div></div>
 <div class="row"><div class="lbl">inst-pos / s4002</div><audio controls preload="none" src="audio/inst__mv-trot-classic__inst-pos__s4002.m4a"></audio><div class="meta"><span class="m">무보컬</span></div></div></div>
 <div class=grp><h3>일본 시티팝</h3><div class="row"><div class="lbl">inst-neg / s4002</div><audio controls preload="none" src="audio/inst__viral-05-citypop-nostalgia__inst-neg__s4002.m4a"></audio><div class="meta"><span class="m">무보컬</span></div></div></div>
+<h2>스텝 포화 탐색 — 80 / 120 / 160 / 200<span class="n">12곡</span></h2><p class=note>스텝 80 이 30 보다 낫다고 하셔서 위쪽 끝을 찾습니다. 같은 곡·같은 시드에서 스텝만 다릅니다. 80 에서 200 까지 생성 시간은 72초에서 114초로 1.6배 늘 뿐이니, 어디까지 좋아지다 멈추는지가 중요합니다. ⚠️ 공식 문서·SGLang·ComfyUI 셋 다 30 을 기본값으로 쓰고 위로 올리라는 언급은 어디에도 없습니다 — 미보고 영역입니다.</p>
+<div class=grp><h3>한국 발라드</h3><div class="row"><div class="lbl">steps120</div><audio controls preload="none" src="audio/hi__hello-ko-60s__steps120.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">steps160</div><audio controls preload="none" src="audio/hi__hello-ko-60s__steps160.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">steps200</div><audio controls preload="none" src="audio/hi__hello-ko-60s__steps200.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">steps80</div><audio controls preload="none" src="audio/hi__hello-ko-60s__steps80.m4a"></audio><div class="meta"></div></div></div>
+<div class=grp><h3>일본 재즈팝</h3><div class="row"><div class="lbl">steps120</div><audio controls preload="none" src="audio/hi__mv-jp-jazzpop__steps120.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">steps160</div><audio controls preload="none" src="audio/hi__mv-jp-jazzpop__steps160.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">steps200</div><audio controls preload="none" src="audio/hi__mv-jp-jazzpop__steps200.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">steps80</div><audio controls preload="none" src="audio/hi__mv-jp-jazzpop__steps80.m4a"></audio><div class="meta"></div></div></div>
+<div class=grp><h3>정통 트로트</h3><div class="row"><div class="lbl">steps120</div><audio controls preload="none" src="audio/hi__mv-trot-classic__steps120.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">steps160</div><audio controls preload="none" src="audio/hi__mv-trot-classic__steps160.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">steps200</div><audio controls preload="none" src="audio/hi__mv-trot-classic__steps200.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">steps80</div><audio controls preload="none" src="audio/hi__mv-trot-classic__steps80.m4a"></audio><div class="meta"></div></div></div>
 <h2>공식 캡션 형식<span class="n">8곡</span></h2><p class=note>MiniMax 공식 재현 스크립트의 캡션 문법을 그대로 따랐습니다 — 섹션 헤더를 줄바꿈하고 하위 필드에 이름을 붙이고, 성별은 'Singer A (Male).' 전용 문법으로 선언합니다. 우리가 쓰던 캡션의 3배 길이입니다. 스텝 30과 80을 함께 뒀습니다.</p>
 <div class=grp><h3>off-female</h3><div class="row"><div class="lbl">st30 / s5001</div><audio controls preload="none" src="audio/off__off-female__st30__s5001.m4a"></audio><div class="meta"></div></div>
 <div class="row"><div class="lbl">st30 / s5002</div><audio controls preload="none" src="audio/off__off-female__st30__s5002.m4a"></audio><div class="meta"></div></div>
@@ -85,59 +98,59 @@ padding-top:20px}
 <div class=grp><h3>정통 트로트</h3><div class="row"><div class="lbl">steps30</div><audio controls preload="none" src="audio/ab__mv-trot-classic__steps30.m4a"></audio><div class="meta"></div></div>
 <div class="row"><div class="lbl">steps80</div><audio controls preload="none" src="audio/ab__mv-trot-classic__steps80.m4a"></audio><div class="meta"></div></div></div>
 <h2>캡션 교정 A/B<span class="n">30곡</span></h2><p class=note>같은 곡·같은 시드에서 캡션만 다릅니다. orig = 교정 전, fixed = 성별을 맨 앞으로 올리고 음역을 Hz 로 명시, fixed-g4 = 거기에 guidance 4.0. 측정상으로는 성별 적중이 안 움직였는데, 귀로는 다르게 들리는지 궁금합니다.</p>
-<div class=grp><h3>ko-trot-60s</h3><div class="row"><div class="lbl">fixed / s101</div><audio controls preload="none" src="audio/ko-trot-60s__fixed__s101.m4a"></audio><div class="meta">음고 378Hz</div></div>
-<div class="row"><div class="lbl">fixed / s202</div><audio controls preload="none" src="audio/ko-trot-60s__fixed__s202.m4a"></audio><div class="meta">음고 283Hz</div></div>
-<div class="row"><div class="lbl">fixed / s303</div><audio controls preload="none" src="audio/ko-trot-60s__fixed__s303.m4a"></audio><div class="meta">음고 162Hz</div></div>
-<div class="row"><div class="lbl">fixed / s404</div><audio controls preload="none" src="audio/ko-trot-60s__fixed__s404.m4a"></audio><div class="meta">음고 200Hz</div></div>
-<div class="row"><div class="lbl">fixed / s505</div><audio controls preload="none" src="audio/ko-trot-60s__fixed__s505.m4a"></audio><div class="meta">음고 282Hz</div></div>
-<div class="row"><div class="lbl">fixed-g4 / s101</div><audio controls preload="none" src="audio/ko-trot-60s__fixed-g4__s101.m4a"></audio><div class="meta">음고 285Hz</div></div>
-<div class="row"><div class="lbl">fixed-g4 / s202</div><audio controls preload="none" src="audio/ko-trot-60s__fixed-g4__s202.m4a"></audio><div class="meta">음고 254Hz</div></div>
-<div class="row"><div class="lbl">fixed-g4 / s303</div><audio controls preload="none" src="audio/ko-trot-60s__fixed-g4__s303.m4a"></audio><div class="meta">음고 217Hz</div></div>
-<div class="row"><div class="lbl">fixed-g4 / s404</div><audio controls preload="none" src="audio/ko-trot-60s__fixed-g4__s404.m4a"></audio><div class="meta">음고 195Hz</div></div>
-<div class="row"><div class="lbl">fixed-g4 / s505</div><audio controls preload="none" src="audio/ko-trot-60s__fixed-g4__s505.m4a"></audio><div class="meta">음고 228Hz</div></div>
-<div class="row"><div class="lbl">orig / s101</div><audio controls preload="none" src="audio/ko-trot-60s__orig__s101.m4a"></audio><div class="meta">음고 194Hz</div></div>
-<div class="row"><div class="lbl">orig / s202</div><audio controls preload="none" src="audio/ko-trot-60s__orig__s202.m4a"></audio><div class="meta">음고 236Hz</div></div>
-<div class="row"><div class="lbl">orig / s303</div><audio controls preload="none" src="audio/ko-trot-60s__orig__s303.m4a"></audio><div class="meta">음고 166Hz</div></div>
-<div class="row"><div class="lbl">orig / s404</div><audio controls preload="none" src="audio/ko-trot-60s__orig__s404.m4a"></audio><div class="meta">음고 182Hz</div></div>
-<div class="row"><div class="lbl">orig / s505</div><audio controls preload="none" src="audio/ko-trot-60s__orig__s505.m4a"></audio><div class="meta">음고 240Hz</div></div></div>
-<div class=grp><h3>정통 트로트</h3><div class="row"><div class="lbl">fixed / s101</div><audio controls preload="none" src="audio/mv-trot-classic__fixed__s101.m4a"></audio><div class="meta">음고 285Hz</div></div>
-<div class="row"><div class="lbl">fixed / s202</div><audio controls preload="none" src="audio/mv-trot-classic__fixed__s202.m4a"></audio><div class="meta">음고 285Hz</div></div>
-<div class="row"><div class="lbl">fixed / s303</div><audio controls preload="none" src="audio/mv-trot-classic__fixed__s303.m4a"></audio><div class="meta">음고 316Hz</div></div>
-<div class="row"><div class="lbl">fixed / s404</div><audio controls preload="none" src="audio/mv-trot-classic__fixed__s404.m4a"></audio><div class="meta">음고 220Hz</div></div>
-<div class="row"><div class="lbl">fixed / s505</div><audio controls preload="none" src="audio/mv-trot-classic__fixed__s505.m4a"></audio><div class="meta">음고 221Hz</div></div>
-<div class="row"><div class="lbl">fixed-g4 / s101</div><audio controls preload="none" src="audio/mv-trot-classic__fixed-g4__s101.m4a"></audio><div class="meta">음고 238Hz</div></div>
-<div class="row"><div class="lbl">fixed-g4 / s202</div><audio controls preload="none" src="audio/mv-trot-classic__fixed-g4__s202.m4a"></audio><div class="meta">음고 293Hz</div></div>
-<div class="row"><div class="lbl">fixed-g4 / s303</div><audio controls preload="none" src="audio/mv-trot-classic__fixed-g4__s303.m4a"></audio><div class="meta">음고 283Hz</div></div>
-<div class="row"><div class="lbl">fixed-g4 / s404</div><audio controls preload="none" src="audio/mv-trot-classic__fixed-g4__s404.m4a"></audio><div class="meta">음고 260Hz</div></div>
-<div class="row"><div class="lbl">fixed-g4 / s505</div><audio controls preload="none" src="audio/mv-trot-classic__fixed-g4__s505.m4a"></audio><div class="meta">음고 208Hz</div></div>
-<div class="row"><div class="lbl">orig / s101</div><audio controls preload="none" src="audio/mv-trot-classic__orig__s101.m4a"></audio><div class="meta">음고 241Hz</div></div>
-<div class="row"><div class="lbl">orig / s202</div><audio controls preload="none" src="audio/mv-trot-classic__orig__s202.m4a"></audio><div class="meta">음고 256Hz</div></div>
-<div class="row"><div class="lbl">orig / s303</div><audio controls preload="none" src="audio/mv-trot-classic__orig__s303.m4a"></audio><div class="meta">음고 238Hz</div></div>
-<div class="row"><div class="lbl">orig / s404</div><audio controls preload="none" src="audio/mv-trot-classic__orig__s404.m4a"></audio><div class="meta">음고 240Hz</div></div>
-<div class="row"><div class="lbl">orig / s505</div><audio controls preload="none" src="audio/mv-trot-classic__orig__s505.m4a"></audio><div class="meta">음고 236Hz</div></div></div>
+<div class=grp><h3>ko-trot-60s</h3><div class="row"><div class="lbl">fixed / s101</div><audio controls preload="none" src="audio/ko-trot-60s__fixed__s101.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">fixed / s202</div><audio controls preload="none" src="audio/ko-trot-60s__fixed__s202.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">fixed / s303</div><audio controls preload="none" src="audio/ko-trot-60s__fixed__s303.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">fixed / s404</div><audio controls preload="none" src="audio/ko-trot-60s__fixed__s404.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">fixed / s505</div><audio controls preload="none" src="audio/ko-trot-60s__fixed__s505.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">fixed-g4 / s101</div><audio controls preload="none" src="audio/ko-trot-60s__fixed-g4__s101.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">fixed-g4 / s202</div><audio controls preload="none" src="audio/ko-trot-60s__fixed-g4__s202.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">fixed-g4 / s303</div><audio controls preload="none" src="audio/ko-trot-60s__fixed-g4__s303.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">fixed-g4 / s404</div><audio controls preload="none" src="audio/ko-trot-60s__fixed-g4__s404.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">fixed-g4 / s505</div><audio controls preload="none" src="audio/ko-trot-60s__fixed-g4__s505.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">orig / s101</div><audio controls preload="none" src="audio/ko-trot-60s__orig__s101.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">orig / s202</div><audio controls preload="none" src="audio/ko-trot-60s__orig__s202.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">orig / s303</div><audio controls preload="none" src="audio/ko-trot-60s__orig__s303.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">orig / s404</div><audio controls preload="none" src="audio/ko-trot-60s__orig__s404.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">orig / s505</div><audio controls preload="none" src="audio/ko-trot-60s__orig__s505.m4a"></audio><div class="meta"></div></div></div>
+<div class=grp><h3>정통 트로트</h3><div class="row"><div class="lbl">fixed / s101</div><audio controls preload="none" src="audio/mv-trot-classic__fixed__s101.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">fixed / s202</div><audio controls preload="none" src="audio/mv-trot-classic__fixed__s202.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">fixed / s303</div><audio controls preload="none" src="audio/mv-trot-classic__fixed__s303.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">fixed / s404</div><audio controls preload="none" src="audio/mv-trot-classic__fixed__s404.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">fixed / s505</div><audio controls preload="none" src="audio/mv-trot-classic__fixed__s505.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">fixed-g4 / s101</div><audio controls preload="none" src="audio/mv-trot-classic__fixed-g4__s101.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">fixed-g4 / s202</div><audio controls preload="none" src="audio/mv-trot-classic__fixed-g4__s202.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">fixed-g4 / s303</div><audio controls preload="none" src="audio/mv-trot-classic__fixed-g4__s303.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">fixed-g4 / s404</div><audio controls preload="none" src="audio/mv-trot-classic__fixed-g4__s404.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">fixed-g4 / s505</div><audio controls preload="none" src="audio/mv-trot-classic__fixed-g4__s505.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">orig / s101</div><audio controls preload="none" src="audio/mv-trot-classic__orig__s101.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">orig / s202</div><audio controls preload="none" src="audio/mv-trot-classic__orig__s202.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">orig / s303</div><audio controls preload="none" src="audio/mv-trot-classic__orig__s303.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">orig / s404</div><audio controls preload="none" src="audio/mv-trot-classic__orig__s404.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">orig / s505</div><audio controls preload="none" src="audio/mv-trot-classic__orig__s505.m4a"></audio><div class="meta"></div></div></div>
 <h2>남성 보컬 — 어느 장르에서 되나<span class="n">24곡</span></h2><p class=note>캡션 형식을 완전히 고정하고 장르와 가사 언어만 바꿨습니다. 모델은 여성 목소리를 95% 안정적으로 내지만 남성은 23%뿐이고, 장르를 탑니다.</p>
-<div class=grp><h3>델타 블루스</h3><div class="row"><div class="lbl">s11</div><audio controls preload="none" src="audio/male__en-blues__s11.m4a"></audio><div class="meta">음고 256Hz</div></div>
-<div class="row"><div class="lbl">s22</div><audio controls preload="none" src="audio/male__en-blues__s22.m4a"></audio><div class="meta">음고 320Hz</div></div>
-<div class="row"><div class="lbl">s33</div><audio controls preload="none" src="audio/male__en-blues__s33.m4a"></audio><div class="meta">음고 195Hz</div></div></div>
-<div class=grp><h3>아웃로 컨트리</h3><div class="row"><div class="lbl">s11</div><audio controls preload="none" src="audio/male__en-country__s11.m4a"></audio><div class="meta">음고 174Hz</div></div>
-<div class="row"><div class="lbl">s22</div><audio controls preload="none" src="audio/male__en-country__s22.m4a"></audio><div class="meta">음고 161Hz</div></div>
-<div class="row"><div class="lbl">s33</div><audio controls preload="none" src="audio/male__en-country__s33.m4a"></audio><div class="meta">음고 184Hz</div></div></div>
-<div class=grp><h3>영어 인디록</h3><div class="row"><div class="lbl">s11</div><audio controls preload="none" src="audio/male__en-indie__s11.m4a"></audio><div class="meta">음고 258Hz</div></div>
+<div class=grp><h3>델타 블루스</h3><div class="row"><div class="lbl">s11</div><audio controls preload="none" src="audio/male__en-blues__s11.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">s22</div><audio controls preload="none" src="audio/male__en-blues__s22.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">s33</div><audio controls preload="none" src="audio/male__en-blues__s33.m4a"></audio><div class="meta"></div></div></div>
+<div class=grp><h3>아웃로 컨트리</h3><div class="row"><div class="lbl">s11</div><audio controls preload="none" src="audio/male__en-country__s11.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">s22</div><audio controls preload="none" src="audio/male__en-country__s22.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">s33</div><audio controls preload="none" src="audio/male__en-country__s33.m4a"></audio><div class="meta"></div></div></div>
+<div class=grp><h3>영어 인디록</h3><div class="row"><div class="lbl">s11</div><audio controls preload="none" src="audio/male__en-indie__s11.m4a"></audio><div class="meta"></div></div>
 <div class="row"><div class="lbl">s22</div><audio controls preload="none" src="audio/male__en-indie__s22.m4a"></audio><div class="meta"></div></div>
-<div class="row"><div class="lbl">s33</div><audio controls preload="none" src="audio/male__en-indie__s33.m4a"></audio><div class="meta">음고 183Hz</div></div></div>
-<div class=grp><h3>일본 엔카</h3><div class="row"><div class="lbl">s11</div><audio controls preload="none" src="audio/male__ja-enka__s11.m4a"></audio><div class="meta">음고 159Hz</div></div>
-<div class="row"><div class="lbl">s22</div><audio controls preload="none" src="audio/male__ja-enka__s22.m4a"></audio><div class="meta">음고 144Hz</div></div>
-<div class="row"><div class="lbl">s33</div><audio controls preload="none" src="audio/male__ja-enka__s33.m4a"></audio><div class="meta">음고 196Hz</div></div></div>
-<div class=grp><h3>한국 발라드</h3><div class="row"><div class="lbl">s11</div><audio controls preload="none" src="audio/male__ko-ballad__s11.m4a"></audio><div class="meta">음고 165Hz</div></div>
-<div class="row"><div class="lbl">s22</div><audio controls preload="none" src="audio/male__ko-ballad__s22.m4a"></audio><div class="meta">음고 252Hz</div></div>
-<div class="row"><div class="lbl">s33</div><audio controls preload="none" src="audio/male__ko-ballad__s33.m4a"></audio><div class="meta">음고 212Hz</div></div></div>
-<div class=grp><h3>한국 힙합</h3><div class="row"><div class="lbl">s11</div><audio controls preload="none" src="audio/male__ko-hiphop__s11.m4a"></audio><div class="meta">음고 287Hz</div></div>
-<div class="row"><div class="lbl">s22</div><audio controls preload="none" src="audio/male__ko-hiphop__s22.m4a"></audio><div class="meta">음고 198Hz</div></div>
-<div class="row"><div class="lbl">s33</div><audio controls preload="none" src="audio/male__ko-hiphop__s33.m4a"></audio><div class="meta">음고 143Hz</div></div></div>
-<div class=grp><h3>한국 록</h3><div class="row"><div class="lbl">s11</div><audio controls preload="none" src="audio/male__ko-rock__s11.m4a"></audio><div class="meta">음고 263Hz</div></div>
-<div class="row"><div class="lbl">s22</div><audio controls preload="none" src="audio/male__ko-rock__s22.m4a"></audio><div class="meta">음고 179Hz</div></div>
-<div class="row"><div class="lbl">s33</div><audio controls preload="none" src="audio/male__ko-rock__s33.m4a"></audio><div class="meta">음고 221Hz</div></div></div>
-<div class=grp><h3>한국 트로트</h3><div class="row"><div class="lbl">s11</div><audio controls preload="none" src="audio/male__ko-trot__s11.m4a"></audio><div class="meta">음고 257Hz</div></div>
-<div class="row"><div class="lbl">s22</div><audio controls preload="none" src="audio/male__ko-trot__s22.m4a"></audio><div class="meta">음고 322Hz</div></div>
-<div class="row"><div class="lbl">s33</div><audio controls preload="none" src="audio/male__ko-trot__s33.m4a"></audio><div class="meta">음고 280Hz</div></div></div>
+<div class="row"><div class="lbl">s33</div><audio controls preload="none" src="audio/male__en-indie__s33.m4a"></audio><div class="meta"></div></div></div>
+<div class=grp><h3>일본 엔카</h3><div class="row"><div class="lbl">s11</div><audio controls preload="none" src="audio/male__ja-enka__s11.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">s22</div><audio controls preload="none" src="audio/male__ja-enka__s22.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">s33</div><audio controls preload="none" src="audio/male__ja-enka__s33.m4a"></audio><div class="meta"></div></div></div>
+<div class=grp><h3>한국 발라드</h3><div class="row"><div class="lbl">s11</div><audio controls preload="none" src="audio/male__ko-ballad__s11.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">s22</div><audio controls preload="none" src="audio/male__ko-ballad__s22.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">s33</div><audio controls preload="none" src="audio/male__ko-ballad__s33.m4a"></audio><div class="meta"></div></div></div>
+<div class=grp><h3>한국 힙합</h3><div class="row"><div class="lbl">s11</div><audio controls preload="none" src="audio/male__ko-hiphop__s11.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">s22</div><audio controls preload="none" src="audio/male__ko-hiphop__s22.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">s33</div><audio controls preload="none" src="audio/male__ko-hiphop__s33.m4a"></audio><div class="meta"></div></div></div>
+<div class=grp><h3>한국 록</h3><div class="row"><div class="lbl">s11</div><audio controls preload="none" src="audio/male__ko-rock__s11.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">s22</div><audio controls preload="none" src="audio/male__ko-rock__s22.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">s33</div><audio controls preload="none" src="audio/male__ko-rock__s33.m4a"></audio><div class="meta"></div></div></div>
+<div class=grp><h3>한국 트로트</h3><div class="row"><div class="lbl">s11</div><audio controls preload="none" src="audio/male__ko-trot__s11.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">s22</div><audio controls preload="none" src="audio/male__ko-trot__s22.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">s33</div><audio controls preload="none" src="audio/male__ko-trot__s33.m4a"></audio><div class="meta"></div></div></div>
 <footer>등장 인물과 목소리는 모두 가공입니다. 실존 아티스트의 이름도 얼굴 참조도 프롬프트에 넣지 않았습니다.</footer></div>
