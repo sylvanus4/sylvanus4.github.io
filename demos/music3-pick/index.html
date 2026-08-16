@@ -29,6 +29,23 @@ padding-top:20px}
 </style><div class=wrap>
 <h1>Music3 청취 후보</h1>
 <p class=lede>기계가 잴 수 있는 것은 목소리의 성별과 음고뿐입니다. "좋은가"는 사람이 들어야 합니다. 같은 축끼리만 나란히 놓았으니 들어 보시고 좋은 것을 알려 주세요.</p>
+<h2>⭐⭐ AR 단계 CFG — 목소리가 결정되는 곳<span class="n">16곡</span></h2><p class=note>이 모델은 두 단계입니다. AR 단계가 '무엇을 부를지'(음색 포함)를 정하고 flow-matching 단계가 오디오로 렌더합니다. 지금까지 바꾼 스텝 200과 guidance 1.7→4.0은 전부 두 번째 단계라 음질만 좋아지고 목소리는 안 바뀌었습니다. AR 단계 CFG는 코드에 1.5로 하드코딩돼 있어 인자로 못 바꾸는데, 런타임에 덮어써서 처음으로 건드렸습니다. f = 여성 요청, m = 남성 요청. 측정상 CFG 5.0에서 남녀 음역 격차가 102Hz → 192Hz로 두 배 벌어졌지만, 성도 지표(F4)는 여전히 붙어 있습니다 — 다른 사람인지 같은 사람이 다르게 부르는 것인지는 들으셔야 압니다.</p>
+<div class=grp><h3>arcfg15</h3><div class="row"><div class="lbl">f / s21001</div><audio controls preload="none" src="audio/ar__arcfg15__f__s21001.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">f / s21002</div><audio controls preload="none" src="audio/ar__arcfg15__f__s21002.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">m / s21001</div><audio controls preload="none" src="audio/ar__arcfg15__m__s21001.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">m / s21002</div><audio controls preload="none" src="audio/ar__arcfg15__m__s21002.m4a"></audio><div class="meta"></div></div></div>
+<div class=grp><h3>arcfg30</h3><div class="row"><div class="lbl">f / s21001</div><audio controls preload="none" src="audio/ar__arcfg30__f__s21001.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">f / s21002</div><audio controls preload="none" src="audio/ar__arcfg30__f__s21002.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">m / s21001</div><audio controls preload="none" src="audio/ar__arcfg30__m__s21001.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">m / s21002</div><audio controls preload="none" src="audio/ar__arcfg30__m__s21002.m4a"></audio><div class="meta"></div></div></div>
+<div class=grp><h3>arcfg30k200</h3><div class="row"><div class="lbl">f / s21001</div><audio controls preload="none" src="audio/ar__arcfg30k200__f__s21001.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">f / s21002</div><audio controls preload="none" src="audio/ar__arcfg30k200__f__s21002.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">m / s21001</div><audio controls preload="none" src="audio/ar__arcfg30k200__m__s21001.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">m / s21002</div><audio controls preload="none" src="audio/ar__arcfg30k200__m__s21002.m4a"></audio><div class="meta"></div></div></div>
+<div class=grp><h3>arcfg50</h3><div class="row"><div class="lbl">f / s21001</div><audio controls preload="none" src="audio/ar__arcfg50__f__s21001.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">f / s21002</div><audio controls preload="none" src="audio/ar__arcfg50__f__s21002.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">m / s21001</div><audio controls preload="none" src="audio/ar__arcfg50__m__s21001.m4a"></audio><div class="meta"></div></div>
+<div class="row"><div class="lbl">m / s21002</div><audio controls preload="none" src="audio/ar__arcfg50__m__s21002.m4a"></audio><div class="meta"></div></div></div>
 <h2>⭐ 가사 언어가 목소리를 정하는가<span class="n">10곡</span></h2><p class=note>캡션·편곡·BPM·믹스를 완전히 고정하고 가사 언어만 바꿨습니다. 캡션은 전부 영어이고 여성을 강하게 요구합니다(never dropping into a male register). ko-rom 은 같은 한국어를 로마자로 적은 것이라 언어와 문자를 분리합니다 — ko-rom 이 여성으로 나오면 한글 문자가 원인이고, 남성이면 한국어 자체가 원인입니다.</p>
 <div class=grp><h3>en</h3><div class="row"><div class="lbl">s11001</div><audio controls preload="none" src="audio/lang__en__s11001.m4a"></audio><div class="meta"></div></div>
 <div class="row"><div class="lbl">s11500</div><audio controls preload="none" src="audio/lang__en__s11500.m4a"></audio><div class="meta"></div></div></div>
