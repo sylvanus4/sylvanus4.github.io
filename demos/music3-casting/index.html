@@ -1,0 +1,248 @@
+<title>음색 오디션</title>
+<style>
+  :root{
+    --bg:#F3F3F1; --panel:#FFFFFF; --edge:#DEDDD8; --edge-soft:#EBEAE6;
+    --ink:#1A1A18; --ink-2:#5C5A54; --ink-3:#8A877E;
+    --amber:#B4761A; --amber-soft:#F2E3C9; --teal:#1F6E6B;
+    --shadow:0 1px 2px rgba(20,18,14,.05), 0 8px 24px rgba(20,18,14,.06);
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,-apple-system,"Helvetica Neue","Apple SD Gothic Neo",sans-serif;
+    --serif:ui-serif,Georgia,"Apple SD Gothic Neo",serif;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --bg:#131311; --panel:#1C1C19; --edge:#302F2B; --edge-soft:#262521;
+    --ink:#F0EEE8; --ink-2:#A8A49A; --ink-3:#78746B;
+    --amber:#DFA046; --amber-soft:#3A2C15; --teal:#5FB3AE;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.35);}}
+  :root[data-theme="dark"]{
+    --bg:#131311; --panel:#1C1C19; --edge:#302F2B; --edge-soft:#262521;
+    --ink:#F0EEE8; --ink-2:#A8A49A; --ink-3:#78746B;
+    --amber:#DFA046; --amber-soft:#3A2C15; --teal:#5FB3AE;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.35);}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+       font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:64rem;margin:0 auto;padding:clamp(1.5rem,1rem + 3vw,3.5rem) 1.25rem 5rem;
+        display:flex;flex-direction:column;gap:2rem}
+  .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.13em;
+           text-transform:uppercase;color:var(--ink-3);margin:0 0 .6rem}
+  h1{font-family:var(--serif);font-weight:600;letter-spacing:-.015em;
+     font-size:clamp(1.8rem,1.4rem + 2vw,2.7rem);line-height:1.1;margin:0 0 .7rem;
+     text-wrap:balance}
+  .lede{margin:0;max-width:46ch;color:var(--ink-2)}
+
+  .deck{position:sticky;top:0;z-index:5;background:var(--panel);
+        border:1px solid var(--edge);border-radius:12px;box-shadow:var(--shadow);
+        padding:.9rem 1.1rem;display:flex;align-items:center;gap:1rem}
+  .play{appearance:none;border:1px solid var(--edge);background:var(--bg);color:var(--ink);
+        width:2.75rem;height:2.75rem;border-radius:50%;cursor:pointer;flex:none;
+        display:grid;place-items:center;transition:border-color .16s ease}
+  .play:hover{border-color:var(--amber)}
+  .play:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+  .play svg{width:1rem;height:1rem;fill:var(--ink)}
+  .deck-mid{flex:1;min-width:0;display:flex;flex-direction:column;gap:.35rem}
+  .deck-now{font-size:.9rem;font-weight:640;white-space:nowrap;overflow:hidden;
+            text-overflow:ellipsis}
+  .deck-now b{color:var(--amber)}
+  .deck-rec{font-family:var(--mono);font-size:.7rem;color:var(--ink-3);
+            white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  input[type=range]{width:100%;accent-color:var(--amber);height:1rem;margin:0}
+  .t{font-family:var(--mono);font-size:.7rem;color:var(--ink-3);
+     font-variant-numeric:tabular-nums;flex:none}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(13rem,1fr));gap:.6rem}
+  .chip{appearance:none;text-align:left;background:var(--panel);color:var(--ink);
+        border:1px solid var(--edge);border-radius:10px;padding:.7rem .85rem;
+        cursor:pointer;display:flex;flex-direction:column;gap:.2rem;position:relative;
+        transition:border-color .14s ease,background .14s ease}
+  .chip:hover{border-color:var(--ink-3)}
+  .chip:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+  .chip.is-current{background:var(--amber-soft);border-color:var(--amber)}
+  .chip.is-ref .chip-l{color:var(--amber)}
+  .chip-l{font-weight:640;font-size:.9rem;padding-right:1.5rem}
+  .chip-r{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
+          overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .star{position:absolute;top:.5rem;right:.55rem;font-size:1rem;line-height:1;
+        color:var(--ink-3);cursor:pointer;user-select:none;padding:.1rem}
+  .star:hover{color:var(--amber)}
+  .star.on{color:var(--amber)}
+  .star:focus-visible{outline:2px solid var(--teal);outline-offset:1px;border-radius:3px}
+
+  .picks{background:var(--panel);border:1px solid var(--edge);border-radius:12px;
+         padding:1rem 1.15rem;display:flex;flex-direction:column;gap:.5rem}
+  .picks h2{margin:0;font-size:.95rem;font-weight:650}
+  #picklist{font-family:var(--mono);font-size:.82rem;color:var(--ink-2);margin:0;
+            white-space:pre-wrap;word-break:break-word}
+  section h2{font-family:var(--serif);font-size:1.25rem;font-weight:600;margin:0 0 .5rem}
+  section p{margin:0 0 .75rem;color:var(--ink-2);max-width:58ch}
+  .note{border-left:2px solid var(--edge);padding-left:1rem;color:var(--ink-2);
+        font-size:.92rem;max-width:58ch}
+  .note b{color:var(--ink)}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Music3 · 음색 후보 · 39종</p>
+    <h1>마음에 드는 목소리 고르기</h1>
+    <p class="lede">라이선스를 가진 화자들의 음색을 <b>섞어서</b> 만든 후보입니다.
+      어느 실존 인물의 목소리도 아닙니다. 같은 22초 구절이 반복되니 위 재생을 켜두고
+      칩만 눌러 가며 넘기세요 — 위치가 유지됩니다.</p>
+  </header>
+
+  <div class="deck">
+    <button class="play" id="play" aria-label="재생">
+      <svg viewBox="0 0 24 24" id="icon"><path d="M8 5v14l11-7z"/></svg>
+    </button>
+    <div class="deck-mid">
+      <div class="deck-now">재생 중 · <b id="nowname">원본</b><span id="err"></span></div>
+      <input type="range" id="seek" min="0" max="1000" value="0" aria-label="재생 위치">
+      <div class="deck-rec" id="nowrec">Music3 가 낸 그대로</div>
+    </div>
+    <span class="t" id="cur">0:00</span>
+  </div>
+
+  <div class="grid" role="tablist" aria-label="음색 후보"><button class="chip is-current" data-i="0" role="tab" aria-selected="true"><span class="star" data-star="0" role="checkbox" aria-checked="false" aria-label="한국 발라드 · ko_Aiden 고르기" tabindex="0">☆</span><span class="chip-l">한국 발라드 · ko_Aiden</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="1" role="tab" aria-selected="false"><span class="star" data-star="1" role="checkbox" aria-checked="false" aria-label="한국 발라드 · ko_Dylan 고르기" tabindex="0">☆</span><span class="chip-l">한국 발라드 · ko_Dylan</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="2" role="tab" aria-selected="false"><span class="star" data-star="2" role="checkbox" aria-checked="false" aria-label="한국 발라드 · ko_Eric 고르기" tabindex="0">☆</span><span class="chip-l">한국 발라드 · ko_Eric</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="3" role="tab" aria-selected="false"><span class="star" data-star="3" role="checkbox" aria-checked="false" aria-label="한국 발라드 · ko_Ono_Anna 고르기" tabindex="0">☆</span><span class="chip-l">한국 발라드 · ko_Ono_Anna</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="4" role="tab" aria-selected="false"><span class="star" data-star="4" role="checkbox" aria-checked="false" aria-label="한국 발라드 · ko_Ryan 고르기" tabindex="0">☆</span><span class="chip-l">한국 발라드 · ko_Ryan</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="5" role="tab" aria-selected="false"><span class="star" data-star="5" role="checkbox" aria-checked="false" aria-label="한국 발라드 · ko_Serena 고르기" tabindex="0">☆</span><span class="chip-l">한국 발라드 · ko_Serena</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="6" role="tab" aria-selected="false"><span class="star" data-star="6" role="checkbox" aria-checked="false" aria-label="한국 발라드 · ko_Sohee 고르기" tabindex="0">☆</span><span class="chip-l">한국 발라드 · ko_Sohee</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="7" role="tab" aria-selected="false"><span class="star" data-star="7" role="checkbox" aria-checked="false" aria-label="한국 발라드 · ko_Uncle_Fu 고르기" tabindex="0">☆</span><span class="chip-l">한국 발라드 · ko_Uncle_Fu</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="8" role="tab" aria-selected="false"><span class="star" data-star="8" role="checkbox" aria-checked="false" aria-label="한국 발라드 · ko_Vivian 고르기" tabindex="0">☆</span><span class="chip-l">한국 발라드 · ko_Vivian</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="9" role="tab" aria-selected="false"><span class="star" data-star="9" role="checkbox" aria-checked="false" aria-label="한국 발라드 · 원본 고르기" tabindex="0">☆</span><span class="chip-l">한국 발라드 · 원본</span><span class="chip-r">Music3 가 낸 그대로</span></button>
+<button class="chip" data-i="10" role="tab" aria-selected="false"><span class="star" data-star="10" role="checkbox" aria-checked="false" aria-label="일본 재즈팝 · ko_Aiden 고르기" tabindex="0">☆</span><span class="chip-l">일본 재즈팝 · ko_Aiden</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="11" role="tab" aria-selected="false"><span class="star" data-star="11" role="checkbox" aria-checked="false" aria-label="일본 재즈팝 · ko_Dylan 고르기" tabindex="0">☆</span><span class="chip-l">일본 재즈팝 · ko_Dylan</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="12" role="tab" aria-selected="false"><span class="star" data-star="12" role="checkbox" aria-checked="false" aria-label="일본 재즈팝 · ko_Eric 고르기" tabindex="0">☆</span><span class="chip-l">일본 재즈팝 · ko_Eric</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="13" role="tab" aria-selected="false"><span class="star" data-star="13" role="checkbox" aria-checked="false" aria-label="일본 재즈팝 · ko_Ono_Anna 고르기" tabindex="0">☆</span><span class="chip-l">일본 재즈팝 · ko_Ono_Anna</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="14" role="tab" aria-selected="false"><span class="star" data-star="14" role="checkbox" aria-checked="false" aria-label="일본 재즈팝 · ko_Ryan 고르기" tabindex="0">☆</span><span class="chip-l">일본 재즈팝 · ko_Ryan</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="15" role="tab" aria-selected="false"><span class="star" data-star="15" role="checkbox" aria-checked="false" aria-label="일본 재즈팝 · ko_Serena 고르기" tabindex="0">☆</span><span class="chip-l">일본 재즈팝 · ko_Serena</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="16" role="tab" aria-selected="false"><span class="star" data-star="16" role="checkbox" aria-checked="false" aria-label="일본 재즈팝 · ko_Sohee 고르기" tabindex="0">☆</span><span class="chip-l">일본 재즈팝 · ko_Sohee</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="17" role="tab" aria-selected="false"><span class="star" data-star="17" role="checkbox" aria-checked="false" aria-label="일본 재즈팝 · ko_Uncle_Fu 고르기" tabindex="0">☆</span><span class="chip-l">일본 재즈팝 · ko_Uncle_Fu</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="18" role="tab" aria-selected="false"><span class="star" data-star="18" role="checkbox" aria-checked="false" aria-label="일본 재즈팝 · ko_Vivian 고르기" tabindex="0">☆</span><span class="chip-l">일본 재즈팝 · ko_Vivian</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="19" role="tab" aria-selected="false"><span class="star" data-star="19" role="checkbox" aria-checked="false" aria-label="일본 재즈팝 · 원본 고르기" tabindex="0">☆</span><span class="chip-l">일본 재즈팝 · 원본</span><span class="chip-r">Music3 가 낸 그대로</span></button>
+<button class="chip" data-i="20" role="tab" aria-selected="false"><span class="star" data-star="20" role="checkbox" aria-checked="false" aria-label="힙합 트렌드 팝 · ko_Aiden 고르기" tabindex="0">☆</span><span class="chip-l">힙합 트렌드 팝 · ko_Aiden</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="21" role="tab" aria-selected="false"><span class="star" data-star="21" role="checkbox" aria-checked="false" aria-label="힙합 트렌드 팝 · ko_Dylan 고르기" tabindex="0">☆</span><span class="chip-l">힙합 트렌드 팝 · ko_Dylan</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="22" role="tab" aria-selected="false"><span class="star" data-star="22" role="checkbox" aria-checked="false" aria-label="힙합 트렌드 팝 · ko_Eric 고르기" tabindex="0">☆</span><span class="chip-l">힙합 트렌드 팝 · ko_Eric</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="23" role="tab" aria-selected="false"><span class="star" data-star="23" role="checkbox" aria-checked="false" aria-label="힙합 트렌드 팝 · ko_Ono_Anna 고르기" tabindex="0">☆</span><span class="chip-l">힙합 트렌드 팝 · ko_Ono_Anna</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="24" role="tab" aria-selected="false"><span class="star" data-star="24" role="checkbox" aria-checked="false" aria-label="힙합 트렌드 팝 · ko_Ryan 고르기" tabindex="0">☆</span><span class="chip-l">힙합 트렌드 팝 · ko_Ryan</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="25" role="tab" aria-selected="false"><span class="star" data-star="25" role="checkbox" aria-checked="false" aria-label="힙합 트렌드 팝 · ko_Serena 고르기" tabindex="0">☆</span><span class="chip-l">힙합 트렌드 팝 · ko_Serena</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="26" role="tab" aria-selected="false"><span class="star" data-star="26" role="checkbox" aria-checked="false" aria-label="힙합 트렌드 팝 · ko_Sohee 고르기" tabindex="0">☆</span><span class="chip-l">힙합 트렌드 팝 · ko_Sohee</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="27" role="tab" aria-selected="false"><span class="star" data-star="27" role="checkbox" aria-checked="false" aria-label="힙합 트렌드 팝 · ko_Uncle_Fu 고르기" tabindex="0">☆</span><span class="chip-l">힙합 트렌드 팝 · ko_Uncle_Fu</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="28" role="tab" aria-selected="false"><span class="star" data-star="28" role="checkbox" aria-checked="false" aria-label="힙합 트렌드 팝 · ko_Vivian 고르기" tabindex="0">☆</span><span class="chip-l">힙합 트렌드 팝 · ko_Vivian</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="29" role="tab" aria-selected="false"><span class="star" data-star="29" role="checkbox" aria-checked="false" aria-label="힙합 트렌드 팝 · 원본 고르기" tabindex="0">☆</span><span class="chip-l">힙합 트렌드 팝 · 원본</span><span class="chip-r">Music3 가 낸 그대로</span></button>
+<button class="chip" data-i="30" role="tab" aria-selected="false"><span class="star" data-star="30" role="checkbox" aria-checked="false" aria-label="정통 트로트 · ko_Aiden 고르기" tabindex="0">☆</span><span class="chip-l">정통 트로트 · ko_Aiden</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="31" role="tab" aria-selected="false"><span class="star" data-star="31" role="checkbox" aria-checked="false" aria-label="정통 트로트 · ko_Dylan 고르기" tabindex="0">☆</span><span class="chip-l">정통 트로트 · ko_Dylan</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="32" role="tab" aria-selected="false"><span class="star" data-star="32" role="checkbox" aria-checked="false" aria-label="정통 트로트 · ko_Eric 고르기" tabindex="0">☆</span><span class="chip-l">정통 트로트 · ko_Eric</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="33" role="tab" aria-selected="false"><span class="star" data-star="33" role="checkbox" aria-checked="false" aria-label="정통 트로트 · ko_Ono_Anna 고르기" tabindex="0">☆</span><span class="chip-l">정통 트로트 · ko_Ono_Anna</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="34" role="tab" aria-selected="false"><span class="star" data-star="34" role="checkbox" aria-checked="false" aria-label="정통 트로트 · ko_Ryan 고르기" tabindex="0">☆</span><span class="chip-l">정통 트로트 · ko_Ryan</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="35" role="tab" aria-selected="false"><span class="star" data-star="35" role="checkbox" aria-checked="false" aria-label="정통 트로트 · ko_Serena 고르기" tabindex="0">☆</span><span class="chip-l">정통 트로트 · ko_Serena</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="36" role="tab" aria-selected="false"><span class="star" data-star="36" role="checkbox" aria-checked="false" aria-label="정통 트로트 · ko_Sohee 고르기" tabindex="0">☆</span><span class="chip-l">정통 트로트 · ko_Sohee</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="37" role="tab" aria-selected="false"><span class="star" data-star="37" role="checkbox" aria-checked="false" aria-label="정통 트로트 · ko_Uncle_Fu 고르기" tabindex="0">☆</span><span class="chip-l">정통 트로트 · ko_Uncle_Fu</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="38" role="tab" aria-selected="false"><span class="star" data-star="38" role="checkbox" aria-checked="false" aria-label="정통 트로트 · ko_Vivian 고르기" tabindex="0">☆</span><span class="chip-l">정통 트로트 · ko_Vivian</span><span class="chip-r">chatterbox · 원본 음역 (반주와 정확히 일치)</span></button>
+<button class="chip" data-i="39" role="tab" aria-selected="false"><span class="star" data-star="39" role="checkbox" aria-checked="false" aria-label="정통 트로트 · 원본 고르기" tabindex="0">☆</span><span class="chip-l">정통 트로트 · 원본</span><span class="chip-r">Music3 가 낸 그대로</span></button></div>
+
+  <div class="picks">
+    <h2>고른 것 <span style="font-weight:400;color:var(--ink-3);font-size:.8rem">
+      — 별을 눌러 표시하고, 아래 줄을 그대로 알려주세요</span></h2>
+    <p id="picklist">아직 없음</p>
+  </div>
+
+  <section>
+    <h2>왜 섞었나</h2>
+    <p>후보를 "서로 가장 다른 것"으로 골랐더니 구별은 되는데 끌리지 않았습니다.
+      다름은 기준이었지만 <b>좋음은 기준이 아니었습니다</b>. 그래서 이번엔 화자
+      임베딩을 가중합해 후보를 연속 공간으로 넓혔습니다 — 앵커 10종에서 조합은
+      사실상 무한합니다.</p>
+    <div class="note">
+      <p>⛔ 앵커는 <b>우리가 라이선스를 가진 목소리만</b> 씁니다(Qwen3-TTS 화자,
+        OpenVoice 내장 화자). 실존 가수의 음색은 넣지 않습니다 — 목소리는 여러
+        관할에서 퍼블리시티권으로 보호되고, 음색을 뽑으려면 원반을 써야 합니다.
+        섞더라도 한 사람 비중이 60%를 넘으면 버리도록 코드가 막습니다.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>고르신 뒤</h2>
+    <p>마음에 드는 것 두엇을 알려주시면 그 <b>주변을 다시 좁혀</b> 뽑겠습니다
+      (둘 사이를 보간하거나, 섞는 비율을 흔들거나, 변환 강도 k 를 조정). 좁아지면
+      그 음색으로 전곡을 만들어 드리겠습니다.</p>
+  </section>
+</div>
+
+<script>
+(function(){
+  var SRCS=["audio/hello-ko-60s__ko_Aiden.mp3", "audio/hello-ko-60s__ko_Dylan.mp3", "audio/hello-ko-60s__ko_Eric.mp3", "audio/hello-ko-60s__ko_Ono_Anna.mp3", "audio/hello-ko-60s__ko_Ryan.mp3", "audio/hello-ko-60s__ko_Serena.mp3", "audio/hello-ko-60s__ko_Sohee.mp3", "audio/hello-ko-60s__ko_Uncle_Fu.mp3", "audio/hello-ko-60s__ko_Vivian.mp3", "audio/hello-ko-60s__orig.mp3", "audio/mv-jp-jazzpop__ko_Aiden.mp3", "audio/mv-jp-jazzpop__ko_Dylan.mp3", "audio/mv-jp-jazzpop__ko_Eric.mp3", "audio/mv-jp-jazzpop__ko_Ono_Anna.mp3", "audio/mv-jp-jazzpop__ko_Ryan.mp3", "audio/mv-jp-jazzpop__ko_Serena.mp3", "audio/mv-jp-jazzpop__ko_Sohee.mp3", "audio/mv-jp-jazzpop__ko_Uncle_Fu.mp3", "audio/mv-jp-jazzpop__ko_Vivian.mp3", "audio/mv-jp-jazzpop__orig.mp3", "audio/mv-trend-hiphop-pop__ko_Aiden.mp3", "audio/mv-trend-hiphop-pop__ko_Dylan.mp3", "audio/mv-trend-hiphop-pop__ko_Eric.mp3", "audio/mv-trend-hiphop-pop__ko_Ono_Anna.mp3", "audio/mv-trend-hiphop-pop__ko_Ryan.mp3", "audio/mv-trend-hiphop-pop__ko_Serena.mp3", "audio/mv-trend-hiphop-pop__ko_Sohee.mp3", "audio/mv-trend-hiphop-pop__ko_Uncle_Fu.mp3", "audio/mv-trend-hiphop-pop__ko_Vivian.mp3", "audio/mv-trend-hiphop-pop__orig.mp3", "audio/mv-trot-classic__ko_Aiden.mp3", "audio/mv-trot-classic__ko_Dylan.mp3", "audio/mv-trot-classic__ko_Eric.mp3", "audio/mv-trot-classic__ko_Ono_Anna.mp3", "audio/mv-trot-classic__ko_Ryan.mp3", "audio/mv-trot-classic__ko_Serena.mp3", "audio/mv-trot-classic__ko_Sohee.mp3", "audio/mv-trot-classic__ko_Uncle_Fu.mp3", "audio/mv-trot-classic__ko_Vivian.mp3", "audio/mv-trot-classic__orig.mp3"], NAMES=["\ud55c\uad6d \ubc1c\ub77c\ub4dc \u00b7 ko_Aiden", "\ud55c\uad6d \ubc1c\ub77c\ub4dc \u00b7 ko_Dylan", "\ud55c\uad6d \ubc1c\ub77c\ub4dc \u00b7 ko_Eric", "\ud55c\uad6d \ubc1c\ub77c\ub4dc \u00b7 ko_Ono_Anna", "\ud55c\uad6d \ubc1c\ub77c\ub4dc \u00b7 ko_Ryan", "\ud55c\uad6d \ubc1c\ub77c\ub4dc \u00b7 ko_Serena", "\ud55c\uad6d \ubc1c\ub77c\ub4dc \u00b7 ko_Sohee", "\ud55c\uad6d \ubc1c\ub77c\ub4dc \u00b7 ko_Uncle_Fu", "\ud55c\uad6d \ubc1c\ub77c\ub4dc \u00b7 ko_Vivian", "\ud55c\uad6d \ubc1c\ub77c\ub4dc \u00b7 \uc6d0\ubcf8", "\uc77c\ubcf8 \uc7ac\uc988\ud31d \u00b7 ko_Aiden", "\uc77c\ubcf8 \uc7ac\uc988\ud31d \u00b7 ko_Dylan", "\uc77c\ubcf8 \uc7ac\uc988\ud31d \u00b7 ko_Eric", "\uc77c\ubcf8 \uc7ac\uc988\ud31d \u00b7 ko_Ono_Anna", "\uc77c\ubcf8 \uc7ac\uc988\ud31d \u00b7 ko_Ryan", "\uc77c\ubcf8 \uc7ac\uc988\ud31d \u00b7 ko_Serena", "\uc77c\ubcf8 \uc7ac\uc988\ud31d \u00b7 ko_Sohee", "\uc77c\ubcf8 \uc7ac\uc988\ud31d \u00b7 ko_Uncle_Fu", "\uc77c\ubcf8 \uc7ac\uc988\ud31d \u00b7 ko_Vivian", "\uc77c\ubcf8 \uc7ac\uc988\ud31d \u00b7 \uc6d0\ubcf8", "\ud799\ud569 \ud2b8\ub80c\ub4dc \ud31d \u00b7 ko_Aiden", "\ud799\ud569 \ud2b8\ub80c\ub4dc \ud31d \u00b7 ko_Dylan", "\ud799\ud569 \ud2b8\ub80c\ub4dc \ud31d \u00b7 ko_Eric", "\ud799\ud569 \ud2b8\ub80c\ub4dc \ud31d \u00b7 ko_Ono_Anna", "\ud799\ud569 \ud2b8\ub80c\ub4dc \ud31d \u00b7 ko_Ryan", "\ud799\ud569 \ud2b8\ub80c\ub4dc \ud31d \u00b7 ko_Serena", "\ud799\ud569 \ud2b8\ub80c\ub4dc \ud31d \u00b7 ko_Sohee", "\ud799\ud569 \ud2b8\ub80c\ub4dc \ud31d \u00b7 ko_Uncle_Fu", "\ud799\ud569 \ud2b8\ub80c\ub4dc \ud31d \u00b7 ko_Vivian", "\ud799\ud569 \ud2b8\ub80c\ub4dc \ud31d \u00b7 \uc6d0\ubcf8", "\uc815\ud1b5 \ud2b8\ub85c\ud2b8 \u00b7 ko_Aiden", "\uc815\ud1b5 \ud2b8\ub85c\ud2b8 \u00b7 ko_Dylan", "\uc815\ud1b5 \ud2b8\ub85c\ud2b8 \u00b7 ko_Eric", "\uc815\ud1b5 \ud2b8\ub85c\ud2b8 \u00b7 ko_Ono_Anna", "\uc815\ud1b5 \ud2b8\ub85c\ud2b8 \u00b7 ko_Ryan", "\uc815\ud1b5 \ud2b8\ub85c\ud2b8 \u00b7 ko_Serena", "\uc815\ud1b5 \ud2b8\ub85c\ud2b8 \u00b7 ko_Sohee", "\uc815\ud1b5 \ud2b8\ub85c\ud2b8 \u00b7 ko_Uncle_Fu", "\uc815\ud1b5 \ud2b8\ub85c\ud2b8 \u00b7 ko_Vivian", "\uc815\ud1b5 \ud2b8\ub85c\ud2b8 \u00b7 \uc6d0\ubcf8"], KEYS=["hello-ko-60s__ko_Aiden", "hello-ko-60s__ko_Dylan", "hello-ko-60s__ko_Eric", "hello-ko-60s__ko_Ono_Anna", "hello-ko-60s__ko_Ryan", "hello-ko-60s__ko_Serena", "hello-ko-60s__ko_Sohee", "hello-ko-60s__ko_Uncle_Fu", "hello-ko-60s__ko_Vivian", "hello-ko-60s__orig", "mv-jp-jazzpop__ko_Aiden", "mv-jp-jazzpop__ko_Dylan", "mv-jp-jazzpop__ko_Eric", "mv-jp-jazzpop__ko_Ono_Anna", "mv-jp-jazzpop__ko_Ryan", "mv-jp-jazzpop__ko_Serena", "mv-jp-jazzpop__ko_Sohee", "mv-jp-jazzpop__ko_Uncle_Fu", "mv-jp-jazzpop__ko_Vivian", "mv-jp-jazzpop__orig", "mv-trend-hiphop-pop__ko_Aiden", "mv-trend-hiphop-pop__ko_Dylan", "mv-trend-hiphop-pop__ko_Eric", "mv-trend-hiphop-pop__ko_Ono_Anna", "mv-trend-hiphop-pop__ko_Ryan", "mv-trend-hiphop-pop__ko_Serena", "mv-trend-hiphop-pop__ko_Sohee", "mv-trend-hiphop-pop__ko_Uncle_Fu", "mv-trend-hiphop-pop__ko_Vivian", "mv-trend-hiphop-pop__orig", "mv-trot-classic__ko_Aiden", "mv-trot-classic__ko_Dylan", "mv-trot-classic__ko_Eric", "mv-trot-classic__ko_Ono_Anna", "mv-trot-classic__ko_Ryan", "mv-trot-classic__ko_Serena", "mv-trot-classic__ko_Sohee", "mv-trot-classic__ko_Uncle_Fu", "mv-trot-classic__ko_Vivian", "mv-trot-classic__orig"], RECS=["chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "Music3 \uac00 \ub0b8 \uadf8\ub300\ub85c", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "Music3 \uac00 \ub0b8 \uadf8\ub300\ub85c", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "Music3 \uac00 \ub0b8 \uadf8\ub300\ub85c", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "chatterbox \u00b7 \uc6d0\ubcf8 \uc74c\uc5ed (\ubc18\uc8fc\uc640 \uc815\ud655\ud788 \uc77c\uce58)", "Music3 \uac00 \ub0b8 \uadf8\ub300\ub85c"];
+  var chips=[].slice.call(document.querySelectorAll('.chip'));
+  var a=new Audio(); a.preload='auto'; a.src=SRCS[0]; a.loop=true;
+  var idx=0, playing=false, picks=[];
+  var play=document.getElementById('play'), icon=document.getElementById('icon');
+  var seek=document.getElementById('seek'), cur=document.getElementById('cur');
+  var nowname=document.getElementById('nowname'), nowrec=document.getElementById('nowrec');
+  var err=document.getElementById('err'), picklist=document.getElementById('picklist');
+  var seeking=false;
+
+  function fmt(s){ if(!isFinite(s))return '0:00';
+    var m=Math.floor(s/60),r=Math.floor(s%60); return m+':'+(r<10?'0':'')+r; }
+  function setIcon(){ icon.innerHTML = playing
+    ? '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>' : '<path d="M8 5v14l11-7z"/>'; }
+
+  function select(i){
+    if(i===idx) return;
+    var t=a.currentTime, was=playing;
+    idx=i; a.src=SRCS[i];
+    a.addEventListener('loadedmetadata', function once(){
+      a.removeEventListener('loadedmetadata', once);
+      a.currentTime=Math.min(t, a.duration||0);
+      if(was) a.play();
+    });
+    chips.forEach(function(c,k){ c.classList.toggle('is-current',k===i);
+      c.setAttribute('aria-selected',k===i?'true':'false'); });
+    nowname.textContent=NAMES[i]; nowrec.textContent=RECS[i];
+  }
+
+  function toggleStar(i, el){
+    var k=KEYS[i], at=picks.indexOf(k);
+    if(at>=0){ picks.splice(at,1); el.classList.remove('on');
+      el.textContent='☆'; el.setAttribute('aria-checked','false'); }
+    else { picks.push(k); el.classList.add('on');
+      el.textContent='★'; el.setAttribute('aria-checked','true'); }
+    picklist.textContent = picks.length ? picks.join(', ') : '아직 없음';
+  }
+
+  chips.forEach(function(c){
+    c.addEventListener('click',function(e){
+      if(e.target.classList.contains('star')) return;
+      select(+c.dataset.i);
+    });
+  });
+  [].slice.call(document.querySelectorAll('.star')).forEach(function(s){
+    s.addEventListener('click',function(e){ e.stopPropagation(); toggleStar(+s.dataset.star,s); });
+    s.addEventListener('keydown',function(e){
+      if(e.key===' '||e.key==='Enter'){ e.preventDefault(); e.stopPropagation();
+        toggleStar(+s.dataset.star,s); } });
+  });
+
+  play.addEventListener('click',function(){ playing?a.pause():a.play(); });
+  a.addEventListener('error',function(){
+    err.textContent=' · ⛔ 재생 불가 (code '+(a.error?a.error.code:0)+')';
+    playing=false; setIcon(); });
+  a.addEventListener('canplay',function(){ err.textContent=''; });
+  a.addEventListener('play',function(){ playing=true; setIcon(); });
+  a.addEventListener('pause',function(){ playing=false; setIcon(); });
+  a.addEventListener('timeupdate',function(){
+    if(seeking) return;
+    cur.textContent=fmt(a.currentTime);
+    if(a.duration) seek.value=Math.round(a.currentTime/a.duration*1000); });
+  seek.addEventListener('input',function(){ seeking=true; });
+  seek.addEventListener('change',function(){
+    if(a.duration) a.currentTime=seek.value/1000*a.duration; seeking=false; });
+  document.addEventListener('keydown',function(e){
+    if(e.target.tagName==='INPUT'||e.target.classList.contains('star')) return;
+    if(e.code==='Space'){ playing?a.pause():a.play(); e.preventDefault(); }
+    else if(e.key==='ArrowRight'){ select(Math.min(idx+1,SRCS.length-1)); e.preventDefault(); }
+    else if(e.key==='ArrowLeft'){ select(Math.max(idx-1,0)); e.preventDefault(); }
+  });
+})();
+</script>
