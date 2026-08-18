@@ -1,0 +1,212 @@
+<title>방 보컬 2라운드 — 앵커 바꿔 다시</title>
+<style>
+  :root{
+    --bg:#F3F3F1; --panel:#FFFFFF; --edge:#DEDDD8; --edge-soft:#EBEAE6;
+    --ink:#1A1A18; --ink-2:#5C5A54; --ink-3:#8A877E;
+    --amber:#B4761A; --amber-soft:#F2E3C9; --teal:#1F6E6B;
+    --shadow:0 1px 2px rgba(20,18,14,.05), 0 8px 24px rgba(20,18,14,.06);
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,-apple-system,"Helvetica Neue","Apple SD Gothic Neo",sans-serif;
+    --serif:ui-serif,Georgia,"Apple SD Gothic Neo",serif;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --bg:#131311; --panel:#1C1C19; --edge:#302F2B; --edge-soft:#262521;
+    --ink:#F0EEE8; --ink-2:#A8A49A; --ink-3:#78746B;
+    --amber:#DFA046; --amber-soft:#3A2C15; --teal:#5FB3AE;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.35);}}
+  :root[data-theme="dark"]{
+    --bg:#131311; --panel:#1C1C19; --edge:#302F2B; --edge-soft:#262521;
+    --ink:#F0EEE8; --ink-2:#A8A49A; --ink-3:#78746B;
+    --amber:#DFA046; --amber-soft:#3A2C15; --teal:#5FB3AE;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.35);}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+       font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:64rem;margin:0 auto;padding:clamp(1.5rem,1rem + 3vw,3.5rem) 1.25rem 5rem;
+        display:flex;flex-direction:column;gap:2rem}
+  .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.13em;
+           text-transform:uppercase;color:var(--ink-3);margin:0 0 .6rem}
+  h1{font-family:var(--serif);font-weight:600;letter-spacing:-.015em;
+     font-size:clamp(1.8rem,1.4rem + 2vw,2.7rem);line-height:1.1;margin:0 0 .7rem;
+     text-wrap:balance}
+  .lede{margin:0;max-width:46ch;color:var(--ink-2)}
+
+  .deck{position:sticky;top:0;z-index:5;background:var(--panel);
+        border:1px solid var(--edge);border-radius:12px;box-shadow:var(--shadow);
+        padding:.9rem 1.1rem;display:flex;align-items:center;gap:1rem}
+  .play{appearance:none;border:1px solid var(--edge);background:var(--bg);color:var(--ink);
+        width:2.75rem;height:2.75rem;border-radius:50%;cursor:pointer;flex:none;
+        display:grid;place-items:center;transition:border-color .16s ease}
+  .play:hover{border-color:var(--amber)}
+  .play:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+  .play svg{width:1rem;height:1rem;fill:var(--ink)}
+  .deck-mid{flex:1;min-width:0;display:flex;flex-direction:column;gap:.35rem}
+  .deck-now{font-size:.9rem;font-weight:640;white-space:nowrap;overflow:hidden;
+            text-overflow:ellipsis}
+  .deck-now b{color:var(--amber)}
+  .deck-rec{font-family:var(--mono);font-size:.7rem;color:var(--ink-3);
+            white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  input[type=range]{width:100%;accent-color:var(--amber);height:1rem;margin:0}
+  .t{font-family:var(--mono);font-size:.7rem;color:var(--ink-3);
+     font-variant-numeric:tabular-nums;flex:none}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(13rem,1fr));gap:.6rem}
+  .chip{appearance:none;text-align:left;background:var(--panel);color:var(--ink);
+        border:1px solid var(--edge);border-radius:10px;padding:.7rem .85rem;
+        cursor:pointer;display:flex;flex-direction:column;gap:.2rem;position:relative;
+        transition:border-color .14s ease,background .14s ease}
+  .chip:hover{border-color:var(--ink-3)}
+  .chip:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+  .chip.is-current{background:var(--amber-soft);border-color:var(--amber)}
+  .chip.is-ref .chip-l{color:var(--amber)}
+  .chip-l{font-weight:640;font-size:.9rem;padding-right:1.5rem}
+  .chip-r{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
+          overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .star{position:absolute;top:.5rem;right:.55rem;font-size:1rem;line-height:1;
+        color:var(--ink-3);cursor:pointer;user-select:none;padding:.1rem}
+  .star:hover{color:var(--amber)}
+  .star.on{color:var(--amber)}
+  .star:focus-visible{outline:2px solid var(--teal);outline-offset:1px;border-radius:3px}
+
+  .picks{background:var(--panel);border:1px solid var(--edge);border-radius:12px;
+         padding:1rem 1.15rem;display:flex;flex-direction:column;gap:.5rem}
+  .picks h2{margin:0;font-size:.95rem;font-weight:650}
+  #picklist{font-family:var(--mono);font-size:.82rem;color:var(--ink-2);margin:0;
+            white-space:pre-wrap;word-break:break-word}
+  section h2{font-family:var(--serif);font-size:1.25rem;font-weight:600;margin:0 0 .5rem}
+  section p{margin:0 0 .75rem;color:var(--ink-2);max-width:58ch}
+  .note{border-left:2px solid var(--edge);padding-left:1rem;color:var(--ink-2);
+        font-size:.92rem;max-width:58ch}
+  .note b{color:var(--ink)}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">다방 1979 · 워크맨 1999 · 5슬롯 × 앵커 3종</p>
+    <h1>이번엔 음정을 안 옮겼습니다</h1>
+    <p class="lede">곡은 1라운드와 같은 테이크입니다 — 반려 사유가 목소리였으니 다시 만들지 않았습니다. 바뀐 것은 둘입니다. 성별을 조옮김이 아니라 앵커로 만들어 **음정을 전혀 옮기지 않았고**, 장르 궁합표를 실제로 적용해 트로트에는 그 표의 승자만 썼습니다. ⛔ 괄호 안 Hz는 앵커 목소리를 잰 값이지 이 트랙을 잰 값이 아닙니다 — 음정을 안 옮겼으니 트랙의 음고는 원곡 그대로입니다. 성별이 들리는지는 귀로만 압니다.</p>
+  </header>
+
+  <div class="deck">
+    <button class="play" id="play" aria-label="재생">
+      <svg viewBox="0 0 24 24" id="icon"><path d="M8 5v14l11-7z"/></svg>
+    </button>
+    <div class="deck-mid">
+      <div class="deck-now">재생 중 · <b id="nowname">원본</b><span id="err"></span></div>
+      <input type="range" id="seek" min="0" max="1000" value="0" aria-label="재생 위치">
+      <div class="deck-rec" id="nowrec">Music3 가 낸 그대로</div>
+    </div>
+    <span class="t" id="cur">0:00</span>
+  </div>
+
+  <div class="grid" role="tablist" aria-label="음색 후보"><button class="chip is-current" data-i="0" role="tab" aria-selected="true"><span class="star" data-star="0" role="checkbox" aria-checked="false" aria-label="다방 1979 · 마감 무렵 고르기" tabindex="0">☆</span><span class="chip-l">다방 1979 · 마감 무렵</span><span class="chip-r">Dylan (남, 앵커 124Hz)</span></button>
+<button class="chip" data-i="1" role="tab" aria-selected="false"><span class="star" data-star="1" role="checkbox" aria-checked="false" aria-label="다방 1979 · 마감 무렵 고르기" tabindex="0">☆</span><span class="chip-l">다방 1979 · 마감 무렵</span><span class="chip-r">Ryan (남, 앵커 153Hz)</span></button>
+<button class="chip" data-i="2" role="tab" aria-selected="false"><span class="star" data-star="2" role="checkbox" aria-checked="false" aria-label="다방 1979 · 마감 무렵 고르기" tabindex="0">☆</span><span class="chip-l">다방 1979 · 마감 무렵</span><span class="chip-r">Sohee (여, 앵커 213Hz)</span></button>
+<button class="chip" data-i="3" role="tab" aria-selected="false"><span class="star" data-star="3" role="checkbox" aria-checked="false" aria-label="다방 1979 · 신청곡 1 고르기" tabindex="0">☆</span><span class="chip-l">다방 1979 · 신청곡 1</span><span class="chip-r">Dylan (남, 앵커 124Hz)</span></button>
+<button class="chip" data-i="4" role="tab" aria-selected="false"><span class="star" data-star="4" role="checkbox" aria-checked="false" aria-label="다방 1979 · 신청곡 1 고르기" tabindex="0">☆</span><span class="chip-l">다방 1979 · 신청곡 1</span><span class="chip-r">Ryan (남, 앵커 153Hz)</span></button>
+<button class="chip" data-i="5" role="tab" aria-selected="false"><span class="star" data-star="5" role="checkbox" aria-checked="false" aria-label="다방 1979 · 신청곡 1 고르기" tabindex="0">☆</span><span class="chip-l">다방 1979 · 신청곡 1</span><span class="chip-r">Vivian (여, 앵커 274Hz)</span></button>
+<button class="chip" data-i="6" role="tab" aria-selected="false"><span class="star" data-star="6" role="checkbox" aria-checked="false" aria-label="워크맨 1999 · 되감기 후 다시 고르기" tabindex="0">☆</span><span class="chip-l">워크맨 1999 · 되감기 후 다시</span><span class="chip-r">Aiden (남, 앵커 125Hz)</span></button>
+<button class="chip" data-i="7" role="tab" aria-selected="false"><span class="star" data-star="7" role="checkbox" aria-checked="false" aria-label="워크맨 1999 · 되감기 후 다시 고르기" tabindex="0">☆</span><span class="chip-l">워크맨 1999 · 되감기 후 다시</span><span class="chip-r">Dylan (남, 앵커 124Hz)</span></button>
+<button class="chip" data-i="8" role="tab" aria-selected="false"><span class="star" data-star="8" role="checkbox" aria-checked="false" aria-label="워크맨 1999 · 되감기 후 다시 고르기" tabindex="0">☆</span><span class="chip-l">워크맨 1999 · 되감기 후 다시</span><span class="chip-r">Vivian (여, 앵커 274Hz)</span></button>
+<button class="chip" data-i="9" role="tab" aria-selected="false"><span class="star" data-star="9" role="checkbox" aria-checked="false" aria-label="워크맨 1999 · A면 1번 고르기" tabindex="0">☆</span><span class="chip-l">워크맨 1999 · A면 1번</span><span class="chip-r">Aiden (남, 앵커 125Hz)</span></button>
+<button class="chip" data-i="10" role="tab" aria-selected="false"><span class="star" data-star="10" role="checkbox" aria-checked="false" aria-label="워크맨 1999 · A면 1번 고르기" tabindex="0">☆</span><span class="chip-l">워크맨 1999 · A면 1번</span><span class="chip-r">Dylan (남, 앵커 124Hz)</span></button>
+<button class="chip" data-i="11" role="tab" aria-selected="false"><span class="star" data-star="11" role="checkbox" aria-checked="false" aria-label="워크맨 1999 · A면 1번 고르기" tabindex="0">☆</span><span class="chip-l">워크맨 1999 · A면 1번</span><span class="chip-r">Ryan (남, 앵커 153Hz)</span></button>
+<button class="chip" data-i="12" role="tab" aria-selected="false"><span class="star" data-star="12" role="checkbox" aria-checked="false" aria-label="워크맨 1999 · B면 (늘어진 테이프) 고르기" tabindex="0">☆</span><span class="chip-l">워크맨 1999 · B면 (늘어진 테이프)</span><span class="chip-r">Serena (여, 앵커 306Hz)</span></button>
+<button class="chip" data-i="13" role="tab" aria-selected="false"><span class="star" data-star="13" role="checkbox" aria-checked="false" aria-label="워크맨 1999 · B면 (늘어진 테이프) 고르기" tabindex="0">☆</span><span class="chip-l">워크맨 1999 · B면 (늘어진 테이프)</span><span class="chip-r">Sohee (여, 앵커 213Hz)</span></button>
+<button class="chip" data-i="14" role="tab" aria-selected="false"><span class="star" data-star="14" role="checkbox" aria-checked="false" aria-label="워크맨 1999 · B면 (늘어진 테이프) 고르기" tabindex="0">☆</span><span class="chip-l">워크맨 1999 · B면 (늘어진 테이프)</span><span class="chip-r">Vivian (여, 앵커 274Hz)</span></button></div>
+
+  <div class="picks">
+    <h2>고른 것 <span style="font-weight:400;color:var(--ink-3);font-size:.8rem">
+      — 별을 누르면 여기 모입니다. 그대로 읽어 주세요.</span></h2>
+    <p id="picklist">아직 없음</p>
+  </div>
+
+  <section>
+    <h2>왜 섞었나</h2>
+    <p>후보를 "서로 가장 다른 것"으로 골랐더니 구별은 되는데 끌리지 않았습니다.
+      다름은 기준이었지만 <b>좋음은 기준이 아니었습니다</b>. 그래서 이번엔 화자
+      임베딩을 가중합해 후보를 연속 공간으로 넓혔습니다 — 앵커 10종에서 조합은
+      사실상 무한합니다.</p>
+    <div class="note">
+      <p>⛔ 앵커는 <b>우리가 라이선스를 가진 목소리만</b> 씁니다(Qwen3-TTS 화자,
+        OpenVoice 내장 화자). 실존 가수의 음색은 넣지 않습니다.</p>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  var SRCS=["audio/dabang-1979__last-call__s3__ko_Dylan.mp3", "audio/dabang-1979__last-call__s3__ko_Ryan.mp3", "audio/dabang-1979__last-call__s3__ko_Sohee.mp3", "audio/dabang-1979__request-1__s5__ko_Dylan.mp3", "audio/dabang-1979__request-1__s5__ko_Ryan.mp3", "audio/dabang-1979__request-1__s5__ko_Vivian.mp3", "audio/walkman-1999__rewind__s1__ko_Aiden.mp3", "audio/walkman-1999__rewind__s1__ko_Dylan.mp3", "audio/walkman-1999__rewind__s1__ko_Vivian.mp3", "audio/walkman-1999__side-a__s2__ko_Aiden.mp3", "audio/walkman-1999__side-a__s2__ko_Dylan.mp3", "audio/walkman-1999__side-a__s2__ko_Ryan.mp3", "audio/walkman-1999__side-b__s1__ko_Serena.mp3", "audio/walkman-1999__side-b__s1__ko_Sohee.mp3", "audio/walkman-1999__side-b__s1__ko_Vivian.mp3"], NAMES=["\ub2e4\ubc29 1979 \u00b7 \ub9c8\uac10 \ubb34\ub835", "\ub2e4\ubc29 1979 \u00b7 \ub9c8\uac10 \ubb34\ub835", "\ub2e4\ubc29 1979 \u00b7 \ub9c8\uac10 \ubb34\ub835", "\ub2e4\ubc29 1979 \u00b7 \uc2e0\uccad\uace1 1", "\ub2e4\ubc29 1979 \u00b7 \uc2e0\uccad\uace1 1", "\ub2e4\ubc29 1979 \u00b7 \uc2e0\uccad\uace1 1", "\uc6cc\ud06c\ub9e8 1999 \u00b7 \ub418\uac10\uae30 \ud6c4 \ub2e4\uc2dc", "\uc6cc\ud06c\ub9e8 1999 \u00b7 \ub418\uac10\uae30 \ud6c4 \ub2e4\uc2dc", "\uc6cc\ud06c\ub9e8 1999 \u00b7 \ub418\uac10\uae30 \ud6c4 \ub2e4\uc2dc", "\uc6cc\ud06c\ub9e8 1999 \u00b7 A\uba74 1\ubc88", "\uc6cc\ud06c\ub9e8 1999 \u00b7 A\uba74 1\ubc88", "\uc6cc\ud06c\ub9e8 1999 \u00b7 A\uba74 1\ubc88", "\uc6cc\ud06c\ub9e8 1999 \u00b7 B\uba74 (\ub298\uc5b4\uc9c4 \ud14c\uc774\ud504)", "\uc6cc\ud06c\ub9e8 1999 \u00b7 B\uba74 (\ub298\uc5b4\uc9c4 \ud14c\uc774\ud504)", "\uc6cc\ud06c\ub9e8 1999 \u00b7 B\uba74 (\ub298\uc5b4\uc9c4 \ud14c\uc774\ud504)"], KEYS=["dabang-1979__last-call__s3__ko_Dylan", "dabang-1979__last-call__s3__ko_Ryan", "dabang-1979__last-call__s3__ko_Sohee", "dabang-1979__request-1__s5__ko_Dylan", "dabang-1979__request-1__s5__ko_Ryan", "dabang-1979__request-1__s5__ko_Vivian", "walkman-1999__rewind__s1__ko_Aiden", "walkman-1999__rewind__s1__ko_Dylan", "walkman-1999__rewind__s1__ko_Vivian", "walkman-1999__side-a__s2__ko_Aiden", "walkman-1999__side-a__s2__ko_Dylan", "walkman-1999__side-a__s2__ko_Ryan", "walkman-1999__side-b__s1__ko_Serena", "walkman-1999__side-b__s1__ko_Sohee", "walkman-1999__side-b__s1__ko_Vivian"], RECS=["Dylan (\ub0a8, \uc575\ucee4 124Hz)", "Ryan (\ub0a8, \uc575\ucee4 153Hz)", "Sohee (\uc5ec, \uc575\ucee4 213Hz)", "Dylan (\ub0a8, \uc575\ucee4 124Hz)", "Ryan (\ub0a8, \uc575\ucee4 153Hz)", "Vivian (\uc5ec, \uc575\ucee4 274Hz)", "Aiden (\ub0a8, \uc575\ucee4 125Hz)", "Dylan (\ub0a8, \uc575\ucee4 124Hz)", "Vivian (\uc5ec, \uc575\ucee4 274Hz)", "Aiden (\ub0a8, \uc575\ucee4 125Hz)", "Dylan (\ub0a8, \uc575\ucee4 124Hz)", "Ryan (\ub0a8, \uc575\ucee4 153Hz)", "Serena (\uc5ec, \uc575\ucee4 306Hz)", "Sohee (\uc5ec, \uc575\ucee4 213Hz)", "Vivian (\uc5ec, \uc575\ucee4 274Hz)"];
+  var chips=[].slice.call(document.querySelectorAll('.chip'));
+  var a=new Audio(); a.preload='auto'; a.src=SRCS[0]; a.loop=true;
+  var idx=0, playing=false, picks=[];
+  var play=document.getElementById('play'), icon=document.getElementById('icon');
+  var seek=document.getElementById('seek'), cur=document.getElementById('cur');
+  var nowname=document.getElementById('nowname'), nowrec=document.getElementById('nowrec');
+  var err=document.getElementById('err'), picklist=document.getElementById('picklist');
+  var seeking=false;
+
+  function fmt(s){ if(!isFinite(s))return '0:00';
+    var m=Math.floor(s/60),r=Math.floor(s%60); return m+':'+(r<10?'0':'')+r; }
+  function setIcon(){ icon.innerHTML = playing
+    ? '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>' : '<path d="M8 5v14l11-7z"/>'; }
+
+  function select(i){
+    if(i===idx) return;
+    var t=a.currentTime, was=playing;
+    idx=i; a.src=SRCS[i];
+    a.addEventListener('loadedmetadata', function once(){
+      a.removeEventListener('loadedmetadata', once);
+      a.currentTime=Math.min(t, a.duration||0);
+      if(was) a.play();
+    });
+    chips.forEach(function(c,k){ c.classList.toggle('is-current',k===i);
+      c.setAttribute('aria-selected',k===i?'true':'false'); });
+    nowname.textContent=NAMES[i]; nowrec.textContent=RECS[i];
+  }
+
+  function toggleStar(i, el){
+    var k=KEYS[i], at=picks.indexOf(k);
+    if(at>=0){ picks.splice(at,1); el.classList.remove('on');
+      el.textContent='☆'; el.setAttribute('aria-checked','false'); }
+    else { picks.push(k); el.classList.add('on');
+      el.textContent='★'; el.setAttribute('aria-checked','true'); }
+    picklist.textContent = picks.length ? picks.join(', ') : '아직 없음';
+  }
+
+  chips.forEach(function(c){
+    c.addEventListener('click',function(e){
+      if(e.target.classList.contains('star')) return;
+      select(+c.dataset.i);
+    });
+  });
+  [].slice.call(document.querySelectorAll('.star')).forEach(function(s){
+    s.addEventListener('click',function(e){ e.stopPropagation(); toggleStar(+s.dataset.star,s); });
+    s.addEventListener('keydown',function(e){
+      if(e.key===' '||e.key==='Enter'){ e.preventDefault(); e.stopPropagation();
+        toggleStar(+s.dataset.star,s); } });
+  });
+
+  play.addEventListener('click',function(){ playing?a.pause():a.play(); });
+  a.addEventListener('error',function(){
+    err.textContent=' · ⛔ 재생 불가 (code '+(a.error?a.error.code:0)+')';
+    playing=false; setIcon(); });
+  a.addEventListener('canplay',function(){ err.textContent=''; });
+  a.addEventListener('play',function(){ playing=true; setIcon(); });
+  a.addEventListener('pause',function(){ playing=false; setIcon(); });
+  a.addEventListener('timeupdate',function(){
+    if(seeking) return;
+    cur.textContent=fmt(a.currentTime);
+    if(a.duration) seek.value=Math.round(a.currentTime/a.duration*1000); });
+  seek.addEventListener('input',function(){ seeking=true; });
+  seek.addEventListener('change',function(){
+    if(a.duration) a.currentTime=seek.value/1000*a.duration; seeking=false; });
+  document.addEventListener('keydown',function(e){
+    if(e.target.tagName==='INPUT'||e.target.classList.contains('star')) return;
+    if(e.code==='Space'){ playing?a.pause():a.play(); e.preventDefault(); }
+    else if(e.key==='ArrowRight'){ select(Math.min(idx+1,SRCS.length-1)); e.preventDefault(); }
+    else if(e.key==='ArrowLeft'){ select(Math.max(idx-1,0)); e.preventDefault(); }
+  });
+})();
+</script>
