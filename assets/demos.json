@@ -905,21 +905,23 @@
     "slug": "rooms",
     "group": "media",
     "src": "own",
-    "title": "여섯 개의 방",
+    "title": "일곱 개의 방",
     "url": "https://sylvanus4.github.io/rooms/",
     "repo": "https://github.com/sylvanus4/rooms",
-    "blurb": "1979년 다방부터 2004년 피시방까지, 한국인이 공유하는 기억 여섯 개를 소리로 세웠습니다. 상단 탭으로 바로 옮겨 다닐 수 있고, 각 방의 앰비언스는 녹음이 아니라 브라우저가 그 자리에서 합성합니다. 음악만 파일인데 그마저 방 안의 물건을 거쳐 나옵니다. FM 수신기, 벽 너머 라디오, 천장 스피커처럼 그 시대 그 자리에 있었을 매질을 모델링해서 통과시킵니다.",
+    "blurb": "1927년 뉴올리언스 클럽부터 2004년 피시방까지, 소리로 세운 방 일곱 개입니다. 상단 탭으로 바로 옮겨 다닐 수 있고, 각 방의 앰비언스는 녹음이 아니라 브라우저가 그 자리에서 합성합니다. 음악만 파일인데 그마저 방 안의 물건을 거쳐 나옵니다 — FM 수신기, 벽 너머 라디오, 천장 스피커처럼 그 시대 그 자리에 있었을 매질을 모델링해서 통과시킵니다. 1927년 클럽에서는 그 매질이 장치가 아니라 앉은 자리입니다. 같은 연주가 무대 앞·바·뒷자리·계단 네 청취 위치를 따로 지나고, 자리를 옮기면 그 넷의 게인이 교차합니다.",
     "tech": [
       "Web Audio 합성",
       "매질 DSP 모델링",
+      "좌석 매질 크로스페이드",
       "자체 GPU 음악 생성",
       "iframe 격리"
     ],
-    "title_en": "Six Rooms",
-    "blurb_en": "Six shared Korean memories built out of sound, from a 1979 tea room to a 2004 internet cafe, with tabs to move between them. Every room's ambience is synthesised in the browser rather than recorded. Only the music is a file, and even that comes out of an object in the room: each track is filtered through a modelled medium, an FM receiver, a radio through a wall, a ceiling PA, so it belongs to the place instead of sitting on top of it.",
+    "title_en": "Seven Rooms",
+    "blurb_en": "Seven rooms built out of sound, from a 1927 New Orleans club to a 2004 internet cafe, with tabs to move between them. Every room's ambience is synthesised in the browser rather than recorded. Only the music is a file, and even that comes out of an object in the room: an FM receiver, a radio through a wall, a ceiling PA. In the 1927 club the medium is not a device but where you are sitting — one take runs through four modelled listening positions at once and moving crosses their gains.",
     "tech_en": [
       "Web Audio synthesis",
       "Medium DSP modelling",
+      "Seat-medium crossfade",
       "Music generated on my own GPU",
       "iframe isolation"
     ],
