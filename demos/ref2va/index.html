@@ -7,6 +7,7 @@
 <meta name="description" content="상용 API 뒤에 있던 subject 일관성 학습 레시피를 오픈 가중치 Wan2.2에 이식해 사내 GPU에서 학습·측정·추론·광고 제작까지 실측한 데모. identity +70%, 트레이드오프 곡선, 43초 광고 완성본.">
 <style>
   :root{
+  color-scheme:dark;  /* 다크 페이지에 흰 네이티브 컨트롤이 박히던 것 (2026-08-18 감사) */
     --bg:oklch(13% .022 265); --bg-2:oklch(16% .026 265);
     --panel:oklch(17.5% .024 265 / .72); --panel-solid:oklch(17.5% .024 265);
     --fg:oklch(95% .008 265); --fg-2:oklch(82% .012 265); --fg-3:oklch(71% .014 265);
@@ -30,8 +31,8 @@
   .refnote{background:var(--panel);border:1px solid var(--line-soft);border-radius:14px;
            padding:1rem 1.2rem;margin:1.4rem 0;color:var(--fg-2)}
   .refnote strong{color:var(--fg)}
-  .grid{display:grid;gap:1.3rem;grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
-  .grid.two{grid-template-columns:repeat(auto-fill,minmax(420px,1fr))}
+  .grid{display:grid;gap:1.3rem;grid-template-columns:repeat(auto-fill,minmax(min(330px,100%),1fr))}
+  .grid.two{grid-template-columns:repeat(auto-fill,minmax(min(420px,100%),1fr))}
   .card{background:var(--panel-solid);border:1px solid var(--line-soft);border-radius:16px;overflow:hidden;
         display:flex;flex-direction:column}
   .card video,.card img{width:100%;background:#000;display:block}

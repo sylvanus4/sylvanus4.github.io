@@ -1,3 +1,11 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<!-- ⛔ 이게 없으면 폰이 이 페이지를 데스크톱 폭(980px)으로 렌더한 뒤 축소한다 — 글자가
+     읽을 수 없게 작아지고 탭이 손톱만해진다. 2026-08-18 모바일 감사에서 이 템플릿으로
+     만든 청취판 두 장이 그 상태로 배포돼 있었다. 템플릿에 head 자체가 없었다. -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>방 보컬 2라운드 — 앵커 바꿔 다시</title>
 <style>
   :root{
@@ -80,6 +88,8 @@
   .note b{color:var(--ink)}
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
+</head>
+<body>
 
 <div class="wrap">
   <header>
@@ -210,3 +220,5 @@
   });
 })();
 </script>
+</body>
+</html>
