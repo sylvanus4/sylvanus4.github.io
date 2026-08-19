@@ -210,7 +210,7 @@ def card_html(c: dict) -> str:
     않으면서 열릴 것처럼 보인다. 2i 에서 넘어온 링크 없는 카드 77장이 이미
     이 형태라 렌더러·검색·게이트가 `.pcard` 로 둘 다 본다(2026-08-09).
     """
-    slug = c["repo"].replace("/", "__")
+    slug = (c.get("key") or c["repo"]).replace("/", "__")
     tags = "".join(f"<span>{t}</span>" for t in c.get("tags", []))
     url = c.get("url")
     go = '<span class="pcard__go">GitHub →</span>' if url else ""
@@ -221,7 +221,7 @@ def card_html(c: dict) -> str:
     close_tag = "</a>" if url else "</div>"
     return (
         f'\n      {open_tag} data-cat="{c["fam"].replace("tech-", "")}"'
-        f' data-q="{c.get("q", "")} {c["repo"]} {c["title"]}">\n'
+        f' data-q="{c.get("q", "")} {c.get("key") or c["repo"]} {c["title"]}">\n'
         f'        <div class="pcard__thumb"><img src="tech/thumb/{slug}.png" alt="" loading="lazy"'
         f' width="880" height="495"></div>\n'
         f'        <div class="pcard__body">\n'
@@ -231,7 +231,7 @@ def card_html(c: dict) -> str:
         f'<span class="pcard__date">{c["date"]}</span></div>\n'
         f'          <h3 class="pcard__title">{c["title"]}</h3>\n'
         f'          <p class="pcard__excerpt">{c["excerpt"]}</p>\n'
-        f'          <div class="pcard__tags"><span>{c["repo"]}</span>{tags}{go}\n'
+        f'          <div class="pcard__tags"><span>{c.get("key") or c["repo"]}</span>{tags}{go}\n'
         f'        </div>\n'
         f'        </div>\n'
         f'      {close_tag}'

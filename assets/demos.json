@@ -879,6 +879,29 @@
     ]
   },
   {
+    "slug": "gamrisa-seoan",
+    "group": "doc",
+    "src": "private",
+    "title": "감리사 서안, 정보시스템감리사 기출 학습 데스크탑 앱",
+    "blurb": "공개 기출 열한 회차(제16~26회) 1,084문항을 전수 파싱해 지식 노드 1,267개로 뒤집은 오프라인 앱입니다. 뒤집고 나서야 보인 것은 이 시험이 같은 지식을 거의 재활용하지 않는다는 사실이었습니다 — 노드 1,267개 중 1,201개가 단 한 문항에만 나오고, 회차 간 평균 재등장률은 5.8%입니다. 그래서 진도의 분모를 기출이 아니라 공식 출제기준 686토픽으로 옮겼고, 기출이 닿은 259토픽과 그 바깥 427토픽을 화면에서 갈라 보여줍니다. 기출 원문이 번들에 실려 배포판과 저장소를 공개하지 않습니다 — 화면과 설계 기록만 남깁니다.",
+    "tech": [
+      "Tauri",
+      "완전 오프라인",
+      "SM-2 간격 반복",
+      "지식 그래프",
+      "출제기준 커버리지"
+    ],
+    "title_en": "Gamrisa Seoan, an offline desktop app for the Korean IS Auditor exam",
+    "blurb_en": "Eleven public rounds of the Korean Information Systems Auditor exam — 1,084 questions — parsed in full and inverted into 1,267 knowledge nodes. Inverting them showed what the exam actually does: it barely reuses knowledge. 1,201 of the 1,267 nodes appear in exactly one question, and the mean round-to-round recurrence is 5.8%. So the denominator for progress moved off the past papers and onto the official 686-topic syllabus, and the app separates the 259 topics the papers touch from the 427 they never do. The bundle carries original exam text under a no-redistribution licence, so the build and repo stay private — only the screens and design record are shown.",
+    "tech_en": [
+      "Tauri",
+      "Fully offline",
+      "SM-2 spaced repetition",
+      "Knowledge graph",
+      "Syllabus coverage"
+    ]
+  },
+  {
     "slug": "algorithms-polyglot",
     "group": "doc",
     "src": "own",
@@ -1001,6 +1024,30 @@
       "NVIDIA H200 · B200",
       "numpy DSP",
       "PIL + ffmpeg"
+    ]
+  },
+  {
+    "slug": "comms",
+    "group": "signal",
+    "src": "hosted",
+    "title": "통신 스택 5종 — 물리계층에서 재밍 판별까지",
+    "url": "https://sylvanus4.github.io/demos/comms/",
+    "blurb": "변조 인식, LDPC 복호 커널, 채널추정 처리량, 송신기 지문, 재밍 유형 판별. 다섯 갈래를 각각 조작해 볼 수 있습니다. SNR을 올리면 판정이, 배치를 키우면 처리량이, 시드를 바꾸면 결론이 그 자리에서 달라집니다. 화면의 숫자는 전부 실제로 돌려 나온 조회표이고 브라우저는 조회만 합니다. 재현되지 않은 결과와 합성 벤치에서 잰 값은 그렇게 적어 두었습니다. 구현 코드는 비공개입니다.",
+    "tech": [
+      "실측 조회표",
+      "GPU 커널 대 공개 레퍼런스",
+      "LightGBM",
+      "합성 RF 벤치",
+      "의존성 0"
+    ],
+    "title_en": "Five comms measurements, from the physical layer to jammer taxonomy",
+    "blurb_en": "Modulation recognition, an LDPC decode kernel, channel estimation throughput, transmitter fingerprinting, jammer taxonomy. Each one is operable here: raise the SNR and the verdict moves, grow the batch and the throughput stops climbing, change the seed and the conclusion holds. Every number is a lookup into a table produced by really running it, and the browser only looks things up. Results that failed to reproduce, and figures taken on synthetic benches, say so. The implementations stay private.",
+    "tech_en": [
+      "Measured lookup tables",
+      "GPU kernel vs public references",
+      "LightGBM",
+      "Synthetic RF bench",
+      "Zero dependencies"
     ]
   },
   {

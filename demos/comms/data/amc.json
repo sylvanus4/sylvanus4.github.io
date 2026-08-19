@@ -1,0 +1,553 @@
+{
+ "id": "amc",
+ "product": {
+  "ko": "수신한 파형이 어떤 변조인지 판정합니다. 딥러닝 없이 6차원 누적률 특징만 쓰고, 그 특징 계산은 실제 출하 코드에서 그대로 옮겨 왔습니다. 8종 변조를 16단계 SNR에서 각각 평가했습니다.",
+  "en": "Decides which modulation a received waveform is, using six cumulant features and no deep learning. The feature code is a numeric port of what actually ships. Eight modulations, evaluated at sixteen SNR levels."
+ },
+ "howto": {
+  "ko": "SNR 을 올려 가며 두 분류기를 비교해 보세요. 신호가 좋아질수록 나아질 것 같지만 한쪽은 그러지 않습니다.",
+  "en": "Raise the SNR and compare the two classifiers. Better signal should mean better answers. One of them disagrees."
+ },
+ "controls": [
+  {
+   "key": "snr",
+   "label": {
+    "ko": "수신 SNR",
+    "en": "Receive SNR"
+   },
+   "type": "select",
+   "default_index": 10,
+   "options": [
+    {
+     "value": -10,
+     "label": {
+      "ko": "-10 dB",
+      "en": "-10 dB"
+     }
+    },
+    {
+     "value": -8,
+     "label": {
+      "ko": "-8 dB",
+      "en": "-8 dB"
+     }
+    },
+    {
+     "value": -6,
+     "label": {
+      "ko": "-6 dB",
+      "en": "-6 dB"
+     }
+    },
+    {
+     "value": -4,
+     "label": {
+      "ko": "-4 dB",
+      "en": "-4 dB"
+     }
+    },
+    {
+     "value": -2,
+     "label": {
+      "ko": "-2 dB",
+      "en": "-2 dB"
+     }
+    },
+    {
+     "value": 0,
+     "label": {
+      "ko": "0 dB",
+      "en": "0 dB"
+     }
+    },
+    {
+     "value": 2,
+     "label": {
+      "ko": "2 dB",
+      "en": "2 dB"
+     }
+    },
+    {
+     "value": 4,
+     "label": {
+      "ko": "4 dB",
+      "en": "4 dB"
+     }
+    },
+    {
+     "value": 6,
+     "label": {
+      "ko": "6 dB",
+      "en": "6 dB"
+     }
+    },
+    {
+     "value": 8,
+     "label": {
+      "ko": "8 dB",
+      "en": "8 dB"
+     }
+    },
+    {
+     "value": 10,
+     "label": {
+      "ko": "10 dB",
+      "en": "10 dB"
+     }
+    },
+    {
+     "value": 12,
+     "label": {
+      "ko": "12 dB",
+      "en": "12 dB"
+     }
+    },
+    {
+     "value": 14,
+     "label": {
+      "ko": "14 dB",
+      "en": "14 dB"
+     }
+    },
+    {
+     "value": 16,
+     "label": {
+      "ko": "16 dB",
+      "en": "16 dB"
+     }
+    },
+    {
+     "value": 18,
+     "label": {
+      "ko": "18 dB",
+      "en": "18 dB"
+     }
+    },
+    {
+     "value": 20,
+     "label": {
+      "ko": "20 dB",
+      "en": "20 dB"
+     }
+    }
+   ]
+  },
+  {
+   "key": "clf",
+   "label": {
+    "ko": "분류기",
+    "en": "Classifier"
+   },
+   "type": "select",
+   "options": [
+    {
+     "value": "gbm",
+     "label": {
+      "ko": "그래디언트 부스팅",
+      "en": "Gradient boosting"
+     }
+    },
+    {
+     "value": "centroid",
+     "label": {
+      "ko": "최근접 중심 (출하 기준)",
+      "en": "Nearest centroid (shipped)"
+     }
+    }
+   ]
+  }
+ ],
+ "outputs": [
+  {
+   "key": "acc",
+   "label": {
+    "ko": "8종 판정 정확도",
+    "en": "8-way accuracy"
+   },
+   "unit": "",
+   "better": "higher"
+  },
+  {
+   "key": "vs_chance",
+   "label": {
+    "ko": "무작위 대비",
+    "en": "Versus chance"
+   },
+   "unit": "x",
+   "better": "higher"
+  },
+  {
+   "key": "n_eval",
+   "label": {
+    "ko": "평가 표본",
+    "en": "Evaluated windows"
+   },
+   "unit": "",
+   "better": "higher"
+  }
+ ],
+ "runs": [
+  {
+   "in": {
+    "snr": -10,
+    "clf": "gbm"
+   },
+   "out": {
+    "acc": 0.307,
+    "vs_chance": 2.456,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": -8,
+    "clf": "gbm"
+   },
+   "out": {
+    "acc": 0.456,
+    "vs_chance": 3.644,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": -6,
+    "clf": "gbm"
+   },
+   "out": {
+    "acc": 0.618,
+    "vs_chance": 4.944,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": -4,
+    "clf": "gbm"
+   },
+   "out": {
+    "acc": 0.711,
+    "vs_chance": 5.689,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": -2,
+    "clf": "gbm"
+   },
+   "out": {
+    "acc": 0.725,
+    "vs_chance": 5.8,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": 0,
+    "clf": "gbm"
+   },
+   "out": {
+    "acc": 0.637,
+    "vs_chance": 5.1,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": 2,
+    "clf": "gbm"
+   },
+   "out": {
+    "acc": 0.629,
+    "vs_chance": 5.033,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": 4,
+    "clf": "gbm"
+   },
+   "out": {
+    "acc": 0.718,
+    "vs_chance": 5.744,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": 6,
+    "clf": "gbm"
+   },
+   "out": {
+    "acc": 0.794,
+    "vs_chance": 6.356,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": 8,
+    "clf": "gbm"
+   },
+   "out": {
+    "acc": 0.856,
+    "vs_chance": 6.844,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": 10,
+    "clf": "gbm"
+   },
+   "out": {
+    "acc": 0.871,
+    "vs_chance": 6.967,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": 12,
+    "clf": "gbm"
+   },
+   "out": {
+    "acc": 0.879,
+    "vs_chance": 7.033,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": 14,
+    "clf": "gbm"
+   },
+   "out": {
+    "acc": 0.869,
+    "vs_chance": 6.956,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": 16,
+    "clf": "gbm"
+   },
+   "out": {
+    "acc": 0.863,
+    "vs_chance": 6.9,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": 18,
+    "clf": "gbm"
+   },
+   "out": {
+    "acc": 0.885,
+    "vs_chance": 7.078,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": 20,
+    "clf": "gbm"
+   },
+   "out": {
+    "acc": 0.844,
+    "vs_chance": 6.756,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": -10,
+    "clf": "centroid"
+   },
+   "out": {
+    "acc": 0.126,
+    "vs_chance": 1.011,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": -8,
+    "clf": "centroid"
+   },
+   "out": {
+    "acc": 0.126,
+    "vs_chance": 1.011,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": -6,
+    "clf": "centroid"
+   },
+   "out": {
+    "acc": 0.125,
+    "vs_chance": 1.0,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": -4,
+    "clf": "centroid"
+   },
+   "out": {
+    "acc": 0.126,
+    "vs_chance": 1.011,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": -2,
+    "clf": "centroid"
+   },
+   "out": {
+    "acc": 0.329,
+    "vs_chance": 2.633,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": 0,
+    "clf": "centroid"
+   },
+   "out": {
+    "acc": 0.643,
+    "vs_chance": 5.144,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": 2,
+    "clf": "centroid"
+   },
+   "out": {
+    "acc": 0.651,
+    "vs_chance": 5.211,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": 4,
+    "clf": "centroid"
+   },
+   "out": {
+    "acc": 0.711,
+    "vs_chance": 5.689,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": 6,
+    "clf": "centroid"
+   },
+   "out": {
+    "acc": 0.644,
+    "vs_chance": 5.156,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": 8,
+    "clf": "centroid"
+   },
+   "out": {
+    "acc": 0.443,
+    "vs_chance": 3.544,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": 10,
+    "clf": "centroid"
+   },
+   "out": {
+    "acc": 0.442,
+    "vs_chance": 3.533,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": 12,
+    "clf": "centroid"
+   },
+   "out": {
+    "acc": 0.418,
+    "vs_chance": 3.344,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": 14,
+    "clf": "centroid"
+   },
+   "out": {
+    "acc": 0.41,
+    "vs_chance": 3.278,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": 16,
+    "clf": "centroid"
+   },
+   "out": {
+    "acc": 0.411,
+    "vs_chance": 3.289,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": 18,
+    "clf": "centroid"
+   },
+   "out": {
+    "acc": 0.401,
+    "vs_chance": 3.211,
+    "n_eval": 720
+   }
+  },
+  {
+   "in": {
+    "snr": 20,
+    "clf": "centroid"
+   },
+   "out": {
+    "acc": 0.403,
+    "vs_chance": 3.222,
+    "n_eval": 720
+   }
+  }
+ ],
+ "verdict": {
+  "ko": "출하 기준인 최근접 중심 분류기는 4 dB 에서 0.711 로 정점을 찍고, 신호가 더 깨끗해지는 20 dB 에서 0.403 까지 떨어집니다. 누적률 공간에서 QPSK 와 8PSK, FSK, AM 이 서로 크게 겹친다는 것은 벤치가 그대로 보고하는 사실이고, 겹친 자리에서는 중심까지의 거리로만 고르는 규칙이 잡음보다 그 겹침에 더 휘둘립니다. 같은 특징을 쓰는 부스팅 분류기는 전 구간 0.729 로 그 함정을 피합니다. 특징이 아니라 결정 규칙이 문제였습니다.",
+  "en": "The shipped nearest-centroid rule peaks at 4 dB with 0.711 and falls to 0.403 at 20 dB, where the signal is cleanest. As noise drops, the per-class cumulants converge toward each other, so a rule that only measures distance to a centroid gets less stable, not more. Boosting on the identical features holds 0.729 overall. The features were fine. The decision rule was not."
+ },
+ "provenance": {
+  "backend": "Synthetic RRC bench, not captured RF. Transmit RRC, residual timing and carrier offset, AWGN, matched receive filter, symbol-rate decimation. Features are a numeric port of the shipped Rust cumulant routine, so this measures the feature set that actually ships rather than a stronger one. 300 windows per class per SNR, seed 1337, test fraction 0.3.",
+  "command": "amc-bench --snr -10:20:2 --per-class 300 --seed 1337 --out amc-bench-metrics.json",
+  "generated": "2026-08",
+  "measured": true
+ }
+}

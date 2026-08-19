@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>통신 스택 5종 — 물리계층에서 재밍 판별까지 눌러 봅니다</title>
+<meta name="description" content="변조 인식, 재밍 유형 판별, LDPC 복호 커널, 채널추정 처리량, 송신기 지문까지 직접 만든 통신 스택 다섯 갈래를 브라우저에서 조작해 볼 수 있습니다. 화면의 숫자는 전부 실제로 돌려 나온 측정값입니다.">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="통신 스택 5종 — 물리계층에서 재밍 판별까지 눌러 봅니다">
+<meta property="og:description" content="SNR을 올리면 판정이, 배치를 키우면 처리량이, 시드를 바꾸면 결론이 그 자리에서 달라집니다. 전부 실측 조회표입니다.">
+<meta property="og:url" content="https://sylvanus4.github.io/demos/comms/">
+<style>
+  :root{
+    --bg:oklch(13% .022 265); --bg-2:oklch(16% .026 265);
+    --panel:oklch(17.5% .024 265 / .72); --panel-solid:oklch(17.5% .024 265);
+    --fg:oklch(95% .008 265); --fg-2:oklch(84% .012 265); --fg-3:oklch(73% .014 265);
+    --line:oklch(32% .02 265); --line-soft:oklch(25% .018 265);
+    --cy:oklch(80% .145 195); --am:oklch(80% .15 78); --vi:oklch(72% .175 300);
+    --ok:oklch(78% .15 155); --bad:oklch(72% .19 25);
+    --accent:var(--cy);
+    --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --mono:"JetBrains Mono","IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --r:14px;
+  }
+  *{box-sizing:border-box;margin:0;min-width:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.65;
+       padding:0 clamp(1rem,4vw,3rem) 4rem;overflow-x:hidden}
+  main{max-width:1160px;margin:0 auto}
+  a{color:var(--cy);text-underline-offset:.2em}
+  :focus-visible{outline:3px solid var(--am);outline-offset:3px;border-radius:4px}
+  .skip{position:absolute;left:-9999px;min-height:44px}
+  .skip:focus{position:static;display:inline-flex;align-items:center;min-height:44px;
+              margin:.6rem 0;padding:.6rem 1rem;
+              background:var(--panel-solid);border:1px solid var(--line);border-radius:8px}
+
+  /* ---- hero ---- */
+  header.hero{padding:clamp(2.2rem,5vw,3.8rem) 0 1.4rem}
+  .toprow{display:flex;flex-wrap:wrap;gap:.8rem;align-items:center;justify-content:space-between}
+  .kicker{font-family:var(--mono);font-size:.76rem;letter-spacing:.14em;color:var(--am);text-transform:uppercase}
+  h1{font-size:clamp(1.65rem,1.1rem+2.5vw,2.8rem);line-height:1.2;margin:.55rem 0 .9rem;letter-spacing:-.01em}
+  .lede{color:var(--fg-2);max-width:66ch}
+  .proof{display:grid;gap:.7rem;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));
+         margin:1.5rem 0 1rem;padding:0;list-style:none}
+  .proof a{display:block;min-height:44px;text-decoration:none;color:inherit;
+           background:var(--panel-solid);border:1px solid var(--line-soft);border-radius:12px;
+           padding:.85rem 1rem;transition:border-color .16s ease,background-color .16s ease}
+  .proof a:hover{border-color:var(--fg-3);background:var(--bg-2)}
+  .proof .n{display:block;font-family:var(--mono);font-size:clamp(1.35rem,1.1rem+1vw,1.75rem);
+            color:var(--fg);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+  .proof .w{display:block;color:var(--fg-2);font-size:.86rem;margin-top:.2rem}
+  .proof .go{display:block;font-family:var(--mono);font-size:.7rem;color:var(--fg-3);margin-top:.35rem}
+  .facts{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 .2rem;padding:0;list-style:none}
+  .facts li{font-family:var(--mono);font-size:.74rem;color:var(--fg-3);
+            border:1px solid var(--line-soft);border-radius:999px;padding:.3rem .8rem;background:var(--panel)}
+  .facts b{color:var(--fg)}
+  .langbtn{font-family:var(--mono);font-size:.76rem;color:var(--fg-2);background:var(--panel-solid);
+           border:1px solid var(--line);border-radius:999px;padding:.55rem 1rem;cursor:pointer;min-height:44px}
+  .langbtn:hover{color:var(--fg);border-color:var(--fg-3)}
+
+  /* ---- tabs ---- */
+  .railwrap{position:sticky;top:0;z-index:5;background:linear-gradient(var(--bg) 72%,transparent);
+            padding:.7rem 0 .9rem;margin-top:1.6rem;overflow:hidden}
+  .rail{display:flex;gap:.4rem;overflow-x:auto;overflow-y:hidden;max-width:100%;
+        scrollbar-width:thin;padding-bottom:.25rem}
+  .rail::-webkit-scrollbar{height:6px}
+  .rail::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px}
+  .tab{flex:0 0 auto;min-height:44px;padding:.55rem .95rem;cursor:pointer;white-space:nowrap;
+       background:var(--panel-solid);border:1px solid var(--line-soft);border-radius:999px;
+       color:var(--fg-3);font-family:var(--sans);font-size:.88rem;
+       transition:color .16s ease,border-color .16s ease,background-color .16s ease}
+  .tab:hover{color:var(--fg-2);border-color:var(--fg-3)}
+  .tab[aria-selected="true"]{color:var(--fg);border-color:var(--accent);background:var(--bg-2);font-weight:600}
+  .tab[aria-selected="true"]::before{content:"";display:inline-block;width:.5rem;height:.5rem;border-radius:50%;
+       background:var(--accent);margin-right:.5rem;vertical-align:.06em}
+
+  /* ---- stage ---- */
+  .split{display:grid;gap:1.4rem;align-items:start}
+  @media (min-width:1000px){ .split{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1.8rem} }
+  .stage{background:var(--panel-solid);border:1px solid var(--line-soft);border-radius:var(--r);
+         overflow:hidden;position:relative;min-width:0}
+  /* 폭을 먼저 정하고 높이를 비율로 얻는다. min-height 를 먼저 주면 높이에서 폭이
+     역산되어 부모보다 넓어진 채 잘린다. */
+  .stage canvas{display:block;width:100%;aspect-ratio:4/3;max-height:58vh;background:var(--bg-2)}
+  .legend{padding:.75rem 1rem .85rem;border-top:1px solid var(--line-soft);color:var(--fg-2);font-size:.86rem}
+  .legend .hint{font-family:var(--mono);font-size:.72rem;color:var(--fg-3);display:block;margin-top:.3rem}
+  .nogl{padding:1.2rem;color:var(--fg-2);font-size:.9rem}
+
+  /* ---- panel ---- */
+  .panel{min-width:0}
+  @media (max-width:999px){ .panel{margin-top:.2rem} }
+  .eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;
+           color:var(--accent);display:flex;flex-wrap:wrap;gap:.5rem .9rem;align-items:center}
+  .eyebrow .be{color:var(--fg-3);letter-spacing:.06em;text-transform:none}
+  h2{font-size:clamp(1.3rem,1rem+1.4vw,1.9rem);line-height:1.3;margin:.5rem 0 .1rem}
+  .product{color:var(--fg);font-size:clamp(1.02rem,.96rem+.42vw,1.22rem);line-height:1.55;margin:.6rem 0 1.1rem;max-width:60ch}
+  .headline{color:var(--fg);font-size:1rem;font-weight:600;margin:.7rem 0 .55rem}
+  .finding{color:var(--fg-2);max-width:72ch}
+  .stats{display:grid;gap:.7rem;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin:1.3rem 0}
+  .stat{background:var(--panel-solid);border:1px solid var(--line-soft);border-radius:12px;padding:.8rem .95rem}
+  .stat dt{font-family:var(--mono);font-size:.72rem;color:var(--fg-3);letter-spacing:.04em}
+  .stat dd{font-family:var(--mono);font-size:1.05rem;color:var(--fg);margin-top:.25rem;
+           font-variant-numeric:tabular-nums;overflow-wrap:anywhere;min-height:2.6em}
+  h3{font-size:1rem;margin:1.6rem 0 .7rem;color:var(--fg)}
+
+  /* ---- 조작 패널 ---- */
+  .demo{background:var(--panel-solid);border:1px solid var(--line-soft);border-radius:var(--r);
+        padding:1.1rem clamp(.8rem,3vw,1.2rem) 1rem;overflow:hidden}
+  .dhow{color:var(--fg-2);font-size:.92rem;margin-bottom:1rem}
+  .ctl{margin-bottom:.85rem}
+  .ctl-l{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;
+         text-transform:uppercase;color:var(--fg-3);margin-bottom:.4rem}
+  .opts{display:flex;flex-wrap:wrap;gap:.4rem}
+  .opt{min-height:44px;padding:.5rem .85rem;cursor:pointer;border-radius:10px;max-width:100%;
+       overflow-wrap:anywhere;
+       background:var(--bg-2);border:1px solid var(--line-soft);color:var(--fg-2);
+       font-family:var(--sans);font-size:.88rem;
+       transition:color .14s ease,border-color .14s ease,background-color .14s ease}
+  .opt:hover{color:var(--fg);border-color:var(--fg-3)}
+  .opt.on{background:var(--panel-solid);border-color:var(--accent);color:var(--fg);font-weight:600}
+  .outs{display:grid;gap:.6rem;grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr));
+        margin:1.1rem 0 .2rem;padding-top:1rem;border-top:1px solid var(--line-soft)}
+  .oc{display:flex;flex-direction:column;gap:.15rem}
+  .ok{font-family:var(--mono);font-size:.7rem;letter-spacing:.05em;color:var(--fg-3)}
+  .ov{font-family:var(--mono);font-size:clamp(1.02rem,.9rem+.5vw,1.28rem);color:var(--fg);
+      font-variant-numeric:tabular-nums;overflow-wrap:anywhere;word-break:break-word;line-height:1.25}
+  .ov i{font-style:normal;font-size:.78rem;color:var(--fg-3);margin-left:.2rem}
+  .otag{font-family:var(--mono);font-size:.66rem;color:var(--fg-3);
+        border:1px solid var(--line-soft);border-radius:999px;padding:.05rem .45rem;align-self:flex-start}
+  .dnote{color:var(--fg-2);font-size:.88rem;margin-top:.9rem;padding-left:.75rem;
+         border-left:2px solid var(--accent)}
+  .hole{color:var(--am);font-size:.9rem}
+  .dprov{font-family:var(--mono);font-size:.68rem;color:var(--fg-3);margin-top:1rem;
+         padding-top:.7rem;border-top:1px solid var(--line-soft)}
+  .dprov span{color:var(--ok)}
+  .verdict{color:var(--fg-2);margin:1.2rem 0 0;max-width:68ch}
+  .more{margin-top:1.1rem;border-top:1px solid var(--line-soft);padding-top:.9rem}
+  .more summary{cursor:pointer;min-height:44px;display:flex;align-items:center;
+                font-family:var(--mono);font-size:.76rem;color:var(--fg-3);letter-spacing:.04em}
+  .more summary:hover{color:var(--fg-2)}
+  .more[open] summary{color:var(--fg-2);margin-bottom:.3rem}
+  .prov{margin-top:1rem;display:grid;gap:.3rem}
+  .prov dt{font-family:var(--mono);font-size:.7rem;letter-spacing:.05em;color:var(--fg-3);
+           text-transform:uppercase;margin-top:.6rem}
+  .prov dd{color:var(--fg-2);font-size:.85rem;overflow-wrap:anywhere}
+  .prov code{font-family:var(--mono);font-size:.78rem;color:var(--fg-2);background:var(--bg-2);
+             border:1px solid var(--line-soft);border-radius:6px;padding:.15rem .4rem;display:inline-block}
+  .open{list-style:none;padding:0;display:grid;gap:.65rem}
+  .open li{background:var(--panel);border:1px solid var(--line-soft);border-left:3px solid var(--line);
+           border-radius:10px;padding:.75rem .95rem;color:var(--fg-2);font-size:.93rem;
+           display:flex;gap:.8rem;align-items:flex-start;flex-wrap:wrap}
+  .open li.k-gap{border-left-color:var(--am)}
+  .open li.k-coverage{border-left-color:var(--cy)}
+  .open li.k-declared{border-left-color:var(--ok)}
+  .open li.k-caveat{border-left-color:var(--fg-3)}
+  .chip{flex:0 0 auto;font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;
+        border:1px solid var(--line);border-radius:999px;padding:.15rem .6rem;color:var(--fg-3)}
+  /* 칩 글자는 분류 이름을 이미 담고 있다. 색까지 실으면 프로젝트 액센트와 부딪힌다. */
+
+  /* ---- notes ---- */
+  .note{background:var(--panel);border:1px solid var(--line-soft);border-radius:var(--r);
+        padding:1.1rem 1.3rem;margin:2.6rem 0 0;color:var(--fg-2);max-width:76ch}
+  .note strong{color:var(--fg)}
+  footer{margin-top:2.4rem;padding-top:1.1rem;border-top:1px solid var(--line-soft);
+         font-family:var(--mono);font-size:.74rem;color:var(--fg-2);
+         display:flex;flex-wrap:wrap;gap:.6rem 1.2rem;justify-content:space-between;align-items:center}
+  footer span{max-width:70ch}
+  footer a{display:inline-flex;align-items:center;min-height:44px;padding:0 .2rem}
+  @media (max-width:999px){
+    .split{display:flex;flex-direction:column;align-items:stretch}
+    .panel{order:1}
+    .stage{order:2}
+    .stage canvas{aspect-ratio:16/10;max-height:42vh}
+    .railwrap{margin-top:1.1rem}
+    .proof{grid-template-columns:1fr;gap:.55rem}
+    .proof .n{font-size:1.25rem}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{transition-duration:.01ms !important}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#panel">본문으로 건너뛰기</a>
+<main>
+  <header class="hero">
+    <div class="toprow">
+      <span class="kicker" id="kicker">Comms stack · 5 measurements</span>
+      <button class="langbtn" id="lang" type="button">English</button>
+    </div>
+    <h1 id="title">직접 만든 통신 스택</h1>
+    <p class="lede" id="lede"></p>
+    <ul class="facts" id="facts"></ul>
+  </header>
+
+  <div class="railwrap">
+    <div class="rail" id="rail" role="tablist" aria-label="프로젝트"></div>
+  </div>
+
+  <div class="split">
+  <section class="stage" aria-labelledby="proj-name">
+    <canvas id="plot" role="img"></canvas>
+    <p class="legend" id="legend"></p>
+  </section>
+
+  <section class="panel" id="panel" tabindex="-1">
+    <p class="eyebrow"><span id="domain"></span><span class="be" id="backend"></span></p>
+    <h2 id="proj-name"></h2>
+    <p class="product" id="product"></p>
+    <div id="demo"></div>
+    <p class="verdict" id="verdict"></p>
+    <details class="more" id="more">
+      <summary id="more-s"></summary>
+      <p class="headline" id="headline"></p>
+      <p class="finding" id="finding"></p>
+      <dl class="stats" id="stats"></dl>
+      <dl class="prov" id="prov"></dl>
+    </details>
+  </section>
+  </div>
+
+  <p class="note" id="note"></p>
+
+  <footer>
+    <span id="foot"></span>
+    <a href="/demos.html">← 데모 목록</a>
+  </footer>
+</main>
+<script type="module" src="./app.js"></script>
+</body>
+</html>

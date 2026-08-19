@@ -525,6 +525,156 @@
       ],
       "q": "소닉 브랜딩 sonic branding 음악 생성 minimax music3 b200 sglang numpy dsp 광고 영상 로고 mnemonic 마림바 배음 브랜드 사운드",
       "url": "https://sylvanus4.github.io/demos/music3/"
+    },
+    {
+      "fam": "tech-comms",
+      "repo": "sylvanus4/astra-net",
+      "private": true,
+      "lang": "Rust",
+      "date": "2026.08.14",
+      "title": "ASTRA-NET · 지상망과 위성망을 한 제어면에",
+      "excerpt": "지상 RAN 과 재생형 위성, 위성 간 라우팅, 우주 엣지 추론, 지연 허용 네트워킹을 하나의 정책 제어면 아래에 두는 5G NTN · 사전표준 6G 연구 플랫폼이다. 연결이 있다고 가정하지 않고 언제 끊길지를 예측해 계산을 미리 옮긴다는 것이 설계 전제다.",
+      "tags": [
+        "#5G_NTN",
+        "#6G",
+        "#위성라우팅"
+      ],
+      "q": "ntn 위성 leo 6g ran 라우팅 dtn 디지털트윈 astra"
+    },
+    {
+      "fam": "tech-agent",
+      "private": true,
+      "lang": "Python",
+      "date": "2026.08.19",
+      "title": "에이전트 궤적을 학습 데이터로 바꾸는 랩",
+      "excerpt": "에이전트가 실제로 실행한 궤적을 재현 가능하고 사용권이 명시된 학습 데이터로 바꾼다. 이 저장소의 1급 산출물은 학습된 체크포인트가 아니라 스키마와 거버넌스 게이트다. 모델은 반년마다 바뀌지만 실행 가능한 과제와 검증기 자산은 남기 때문이다.",
+      "tags": [
+        "#궤적데이터",
+        "#거버넌스게이트",
+        "#SFT"
+      ],
+      "q": "trajectory 궤적 episode 학습데이터 sft 거버넌스 라이선스 검증기",
+      "key": "agent-trajectory-lab"
+    },
+    {
+      "fam": "tech-llm",
+      "repo": "sylvanus4/agentic-data-factory",
+      "private": true,
+      "lang": "Python",
+      "date": "2026.08.19",
+      "title": "약점을 스스로 찾아 학습 데이터를 만드는 공장",
+      "excerpt": "모델의 약한 자리를 찾아 필요한 데이터를 설계하고 생성하고 검증한 뒤 학습시키고, 그 결과를 다시 분석해 다음 데이터를 만드는 닫힌 루프다. 사람이 라벨링 업체에 던지던 단계를 루프 안으로 넣은 것이 요점이고, 판정은 모델이 아니라 검증기가 한다.",
+      "tags": [
+        "#합성데이터",
+        "#닫힌루프",
+        "#검증기"
+      ],
+      "q": "synthetic data 합성데이터 weakness 약점 judge 검증 파인튜닝 루프"
+    },
+    {
+      "fam": "tech-devtool",
+      "repo": "sylvanus4/model-arch-lens",
+      "private": true,
+      "lang": "JavaScript",
+      "date": "2026.08.18",
+      "title": "config.json 하나로 모델 구조를 펼치는 렌즈",
+      "excerpt": "허깅페이스 형식 config.json 을 붙여 넣으면 레이어 스택과 어텐션 방식, 전문가 배치, 대략의 파라미터 수, 토큰당 KV 캐시를 블록 지도로 펼친다. 새 모델이 나왔는데 80쪽짜리 논문을 읽을 시간이 없을 때 구조만 몇 분에 설명하려고 만들었다. 전부 브라우저 안에서 파싱한다.",
+      "tags": [
+        "#모델구조",
+        "#KV캐시",
+        "#클라이언트전용"
+      ],
+      "q": "config json 모델 아키텍처 gqa mqa mla moe kv cache 블록 다이어그램"
+    },
+    {
+      "fam": "tech-devtool",
+      "repo": "sylvanus4/quant-ladder-cards",
+      "private": true,
+      "lang": "JavaScript",
+      "date": "2026.08.17",
+      "title": "양자화 사다리를 공유 가능한 카드로",
+      "excerpt": "모델 크기와 양자화 단계 목록을 넣으면 단계마다 파일 크기와 예상 메모리, 품질, 상대 속도를 담은 비교 카드를 한 장씩 뽑아 준다. 새 오픈 모델이 다섯 가지 양자화로 나올 때마다 모두가 같은 표를 손으로 다시 만들던 자리를 겨냥했다.",
+      "tags": [
+        "#양자화",
+        "#비교카드",
+        "#클라이언트전용"
+      ],
+      "q": "quantization 양자화 gguf 카드 이미지 비교 vram 사다리"
+    },
+    {
+      "fam": "tech-media",
+      "repo": "sylvanus4/one-millimeter",
+      "private": true,
+      "lang": "Python",
+      "date": "2026.08.17",
+      "title": "AI 쇼츠 IP 다섯 편 · 세계관이 이어지는 숏폼",
+      "excerpt": "1mm 문명, 보이지 않는 세계, 끝까지 가보면, 물리법칙이 고장난 세계, 그날의 60초. 다섯 개의 세계관을 각각 저장소로 두고 캐논과 로어 그래프를 따로 관리한다. 한 편이 다음 편의 세계를 구속하기 때문에 에피소드마다 캐논 위반을 코드가 검사한다. 파이프라인은 부모 저장소가 소유하고 여기에는 IP 자산만 둔다.",
+      "tags": [
+        "#쇼츠IP",
+        "#캐논게이트",
+        "#로어그래프"
+      ],
+      "q": "shorts ip 숏폼 세계관 캐논 로어 에피소드 1mm 시리즈"
+    },
+    {
+      "fam": "tech-media",
+      "repo": "sylvanus4/examprep-lab",
+      "private": true,
+      "lang": "Python",
+      "date": "2026.08.08",
+      "title": "이해 구멍 하나에 30초 영상을 처방하는 파이프라인",
+      "excerpt": "전 과목 강의를 AI 로 만들지 않는다. 논점 하나 단위로 루브릭과 스크립트, 생성 영상, 텍스트 오버레이, 품질 게이트, 발행, 퀴즈 정답률 수집까지 돌리고 그 정답률이 다음에 만들 논점을 정한다. 학습 콘텐츠에서 값비싼 것은 분량이 아니라 어디가 막혔는지를 아는 것이라는 판단이다.",
+      "tags": [
+        "#수험콘텐츠",
+        "#논점단위",
+        "#정답률피드백"
+      ],
+      "q": "공무원 수험 논점 영상 쇼츠 퀴즈 루브릭 파이프라인 행정법"
+    },
+    {
+      "fam": "tech-agent",
+      "repo": "sylvanus4/claude-todo",
+      "private": true,
+      "lang": "Python",
+      "date": "2026.08.19",
+      "title": "에이전트가 읽고 집어가는 트리형 작업 보드",
+      "excerpt": "사람이 쓰는 투두 앱이 아니라 코딩 에이전트가 지금 무엇을 하고 있는지 남기는 자리다. 집과 회사 사이를 git 으로 따라다니고, 커밋이 나면 훅이 그 태스크에 자동으로 기록한다. 상태를 세션 안에만 두면 다음 세션과 다른 기계가 그것을 모른다는 문제를 겨냥했다.",
+      "tags": [
+        "#작업보드",
+        "#멀티머신",
+        "#훅자동기록"
+      ],
+      "q": "todo board 작업보드 에이전트 태스크 git 동기화 훅"
+    },
+    {
+      "fam": "tech-media",
+      "repo": "sylvanus4/rooms",
+      "url": "https://github.com/sylvanus4/rooms",
+      "lang": "JavaScript",
+      "date": "2026.08.18",
+      "title": "일곱 개의 방 · 전부 코드로 합성한 소리",
+      "excerpt": "1927년 뉴올리언스 클럽부터 2004년 PC방까지 방 일곱 개를 한 복도에 모았다. 소리가 본체이고, 샘플 파일이 한 개도 없다는 것이 이 작업의 요점이다. 매미는 대역통과 잡음의 진폭변조이고 잔향은 절차 생성 임펄스 응답이라, 네트워크를 끊어도 완전히 돌아간다.",
+      "tags": [
+        "#WebAudio",
+        "#샘플0",
+        "#노스탤지어"
+      ],
+      "q": "web audio 합성 방 노스탤지어 pc방 다방 라디오 오락실 소리"
+    },
+    {
+      "fam": "tech-product",
+      "repo": "sylvanus4/ai-vocabcards",
+      "private": true,
+      "lang": "TypeScript",
+      "date": "2026.08.14",
+      "title": "아이용 영어 단어장 · 카드도 그림도 생성",
+      "excerpt": "영어 단어를 넣으면 발음과 뜻, 유의어, 반의어, 예문을 만들고 그에 맞는 플래시카드 그림까지 생성한다. 한국 어린이가 쓰는 것을 전제로 화면과 인쇄물을 함께 설계했고, 암기는 카드 뒤집기와 발음 듣기로 돌린다.",
+      "tags": [
+        "#영어학습",
+        "#플래시카드",
+        "#이미지생성"
+      ],
+      "q": "영어 단어장 어린이 플래시카드 tts 이미지 생성 학습"
     }
   ],
   "rewrite": [

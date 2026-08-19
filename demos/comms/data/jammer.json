@@ -1,0 +1,711 @@
+{
+ "id": "jammer",
+ "product": {
+  "ko": "무선 대역을 방해하는 신호가 어떤 종류인지 가려냅니다. 대응이 종류마다 다르기 때문에 있다 없다보다 무엇인가가 중요합니다. 여섯 종류를 JSR 아홉 단계에서 각각 평가했습니다.",
+  "en": "Tells apart what kind of signal is jamming a band. The response differs by type, so the useful question is which one, not whether. Six types, evaluated across nine jam-to-signal ratios."
+ },
+ "howto": {
+  "ko": "재밍 종류와 세기를 바꿔 보세요. 약한 쪽 끝에서만 흔들립니다.",
+  "en": "Change the jammer type and its strength. Only the weak end wobbles."
+ },
+ "controls": [
+  {
+   "key": "cls",
+   "label": {
+    "ko": "재밍 종류",
+    "en": "Jammer type"
+   },
+   "type": "select",
+   "options": [
+    {
+     "value": "cw_tone",
+     "label": {
+      "ko": "연속파 톤",
+      "en": "CW tone"
+     }
+    },
+    {
+     "value": "sweep_chirp",
+     "label": {
+      "ko": "스윕 처프",
+      "en": "Swept chirp"
+     }
+    },
+    {
+     "value": "partial_band_noise",
+     "label": {
+      "ko": "부분대역 잡음",
+      "en": "Partial-band noise"
+     }
+    },
+    {
+     "value": "barrage_noise",
+     "label": {
+      "ko": "전대역 잡음",
+      "en": "Barrage noise"
+     }
+    },
+    {
+     "value": "pulsed_low_duty",
+     "label": {
+      "ko": "저듀티 펄스",
+      "en": "Pulsed low duty"
+     }
+    },
+    {
+     "value": "fhss_jammer",
+     "label": {
+      "ko": "주파수도약",
+      "en": "Frequency hopping"
+     }
+    }
+   ]
+  },
+  {
+   "key": "jsr",
+   "label": {
+    "ko": "재밍 대 신호비",
+    "en": "Jam-to-signal ratio"
+   },
+   "type": "select",
+   "default_index": 2,
+   "options": [
+    {
+     "value": -10.0,
+     "label": {
+      "ko": "-10 dB",
+      "en": "-10 dB"
+     }
+    },
+    {
+     "value": -5.0,
+     "label": {
+      "ko": "-5 dB",
+      "en": "-5 dB"
+     }
+    },
+    {
+     "value": 0.0,
+     "label": {
+      "ko": "0 dB",
+      "en": "0 dB"
+     }
+    },
+    {
+     "value": 5.0,
+     "label": {
+      "ko": "5 dB",
+      "en": "5 dB"
+     }
+    },
+    {
+     "value": 10.0,
+     "label": {
+      "ko": "10 dB",
+      "en": "10 dB"
+     }
+    },
+    {
+     "value": 15.0,
+     "label": {
+      "ko": "15 dB",
+      "en": "15 dB"
+     }
+    },
+    {
+     "value": 20.0,
+     "label": {
+      "ko": "20 dB",
+      "en": "20 dB"
+     }
+    },
+    {
+     "value": 25.0,
+     "label": {
+      "ko": "25 dB",
+      "en": "25 dB"
+     }
+    },
+    {
+     "value": 30.0,
+     "label": {
+      "ko": "30 dB",
+      "en": "30 dB"
+     }
+    }
+   ]
+  }
+ ],
+ "outputs": [
+  {
+   "key": "acc",
+   "label": {
+    "ko": "이 종류를 맞힌 비율",
+    "en": "Accuracy for this type"
+   },
+   "unit": "",
+   "better": "higher"
+  },
+  {
+   "key": "n_eval",
+   "label": {
+    "ko": "이 칸의 표본",
+    "en": "Samples in this cell"
+   },
+   "unit": "",
+   "better": "higher"
+  }
+ ],
+ "runs": [
+  {
+   "in": {
+    "cls": "cw_tone",
+    "jsr": -10.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 4
+   }
+  },
+  {
+   "in": {
+    "cls": "cw_tone",
+    "jsr": -5.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 19
+   }
+  },
+  {
+   "in": {
+    "cls": "cw_tone",
+    "jsr": 0.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 26
+   }
+  },
+  {
+   "in": {
+    "cls": "cw_tone",
+    "jsr": 5.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 20
+   }
+  },
+  {
+   "in": {
+    "cls": "cw_tone",
+    "jsr": 10.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 25
+   }
+  },
+  {
+   "in": {
+    "cls": "cw_tone",
+    "jsr": 15.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 13
+   }
+  },
+  {
+   "in": {
+    "cls": "cw_tone",
+    "jsr": 20.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 23
+   }
+  },
+  {
+   "in": {
+    "cls": "cw_tone",
+    "jsr": 25.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 18
+   }
+  },
+  {
+   "in": {
+    "cls": "cw_tone",
+    "jsr": 30.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 14
+   }
+  },
+  {
+   "in": {
+    "cls": "sweep_chirp",
+    "jsr": -10.0
+   },
+   "out": {
+    "acc": 0.714,
+    "n_eval": 7
+   }
+  },
+  {
+   "in": {
+    "cls": "sweep_chirp",
+    "jsr": -5.0
+   },
+   "out": {
+    "acc": 0.909,
+    "n_eval": 22
+   }
+  },
+  {
+   "in": {
+    "cls": "sweep_chirp",
+    "jsr": 0.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 16
+   }
+  },
+  {
+   "in": {
+    "cls": "sweep_chirp",
+    "jsr": 5.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 23
+   }
+  },
+  {
+   "in": {
+    "cls": "sweep_chirp",
+    "jsr": 10.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 18
+   }
+  },
+  {
+   "in": {
+    "cls": "sweep_chirp",
+    "jsr": 15.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 18
+   }
+  },
+  {
+   "in": {
+    "cls": "sweep_chirp",
+    "jsr": 20.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 21
+   }
+  },
+  {
+   "in": {
+    "cls": "sweep_chirp",
+    "jsr": 25.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 20
+   }
+  },
+  {
+   "in": {
+    "cls": "sweep_chirp",
+    "jsr": 30.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 17
+   }
+  },
+  {
+   "in": {
+    "cls": "partial_band_noise",
+    "jsr": -10.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 15
+   }
+  },
+  {
+   "in": {
+    "cls": "partial_band_noise",
+    "jsr": -5.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 17
+   }
+  },
+  {
+   "in": {
+    "cls": "partial_band_noise",
+    "jsr": 0.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 19
+   }
+  },
+  {
+   "in": {
+    "cls": "partial_band_noise",
+    "jsr": 5.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 19
+   }
+  },
+  {
+   "in": {
+    "cls": "partial_band_noise",
+    "jsr": 10.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 27
+   }
+  },
+  {
+   "in": {
+    "cls": "partial_band_noise",
+    "jsr": 15.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 21
+   }
+  },
+  {
+   "in": {
+    "cls": "partial_band_noise",
+    "jsr": 20.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 14
+   }
+  },
+  {
+   "in": {
+    "cls": "partial_band_noise",
+    "jsr": 25.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 19
+   }
+  },
+  {
+   "in": {
+    "cls": "partial_band_noise",
+    "jsr": 30.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 11
+   }
+  },
+  {
+   "in": {
+    "cls": "barrage_noise",
+    "jsr": -10.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 9
+   }
+  },
+  {
+   "in": {
+    "cls": "barrage_noise",
+    "jsr": -5.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 26
+   }
+  },
+  {
+   "in": {
+    "cls": "barrage_noise",
+    "jsr": 0.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 18
+   }
+  },
+  {
+   "in": {
+    "cls": "barrage_noise",
+    "jsr": 5.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 24
+   }
+  },
+  {
+   "in": {
+    "cls": "barrage_noise",
+    "jsr": 10.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 23
+   }
+  },
+  {
+   "in": {
+    "cls": "barrage_noise",
+    "jsr": 15.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 18
+   }
+  },
+  {
+   "in": {
+    "cls": "barrage_noise",
+    "jsr": 20.0
+   },
+   "out": {
+    "acc": 0.938,
+    "n_eval": 16
+   }
+  },
+  {
+   "in": {
+    "cls": "barrage_noise",
+    "jsr": 25.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 16
+   }
+  },
+  {
+   "in": {
+    "cls": "barrage_noise",
+    "jsr": 30.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 12
+   }
+  },
+  {
+   "in": {
+    "cls": "pulsed_low_duty",
+    "jsr": -10.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 11
+   }
+  },
+  {
+   "in": {
+    "cls": "pulsed_low_duty",
+    "jsr": -5.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 15
+   }
+  },
+  {
+   "in": {
+    "cls": "pulsed_low_duty",
+    "jsr": 0.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 19
+   }
+  },
+  {
+   "in": {
+    "cls": "pulsed_low_duty",
+    "jsr": 5.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 25
+   }
+  },
+  {
+   "in": {
+    "cls": "pulsed_low_duty",
+    "jsr": 10.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 20
+   }
+  },
+  {
+   "in": {
+    "cls": "pulsed_low_duty",
+    "jsr": 15.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 17
+   }
+  },
+  {
+   "in": {
+    "cls": "pulsed_low_duty",
+    "jsr": 20.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 19
+   }
+  },
+  {
+   "in": {
+    "cls": "pulsed_low_duty",
+    "jsr": 25.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 20
+   }
+  },
+  {
+   "in": {
+    "cls": "pulsed_low_duty",
+    "jsr": 30.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 16
+   }
+  },
+  {
+   "in": {
+    "cls": "fhss_jammer",
+    "jsr": -10.0
+   },
+   "out": {
+    "acc": 0.833,
+    "n_eval": 12
+   }
+  },
+  {
+   "in": {
+    "cls": "fhss_jammer",
+    "jsr": -5.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 25
+   }
+  },
+  {
+   "in": {
+    "cls": "fhss_jammer",
+    "jsr": 0.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 19
+   }
+  },
+  {
+   "in": {
+    "cls": "fhss_jammer",
+    "jsr": 5.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 14
+   }
+  },
+  {
+   "in": {
+    "cls": "fhss_jammer",
+    "jsr": 10.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 30
+   }
+  },
+  {
+   "in": {
+    "cls": "fhss_jammer",
+    "jsr": 15.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 17
+   }
+  },
+  {
+   "in": {
+    "cls": "fhss_jammer",
+    "jsr": 20.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 25
+   }
+  },
+  {
+   "in": {
+    "cls": "fhss_jammer",
+    "jsr": 25.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 16
+   }
+  },
+  {
+   "in": {
+    "cls": "fhss_jammer",
+    "jsr": 30.0
+   },
+   "out": {
+    "acc": 1.0,
+    "n_eval": 4
+   }
+  }
+ ],
+ "verdict": {
+  "ko": "여섯 종류 전체 매크로 F1 은 0.9928 이고, 정확도가 0.6 아래로 무너지는 JSR 구간은 한 종류에도 없었습니다. 남은 오류는 두 곳뿐입니다. 신호가 잡음에 묻히는 -10 dB 에서 스윕 처프가 주파수도약으로, 주파수도약이 저듀티 펄스로 새는 것인데, 둘 다 시간축에서 실제로 닮은 쌍입니다. 쉬운 문제라서 잘 나온 것이므로, 이 수치는 합성 대역에서만 유효하고 실제 포착 신호로는 다시 재야 합니다.",
+  "en": "Macro F1 across the six types is 0.9928, and no type collapses below 0.6 at any ratio tested. Two errors remain, both at -10 dB where the jammer is buried in noise: swept chirp leaking to frequency hopping, and frequency hopping to pulsed low duty. Those pairs genuinely resemble each other in time. This is a synthetic bank, so the number says the problem is easy here, not that it is solved on captured signals."
+ },
+ "provenance": {
+  "backend": "Synthetic jammer bank, physics-motivated generators only, no captured electronic-warfare data and no real hardware signatures. Twenty-four imported features, gradient boosting, 540 samples per class, seed 1337, test split 0.3. A seventh reactive class was left out rather than faked, because sense-and-react behaviour needs a paired victim simulation this bench does not model.",
+  "command": "jammer-taxonomy --jsr -10:30:5 --per-class 540 --seed 1337 --out jammer-taxonomy-metrics.json",
+  "generated": "2026-08",
+  "measured": true
+ }
+}

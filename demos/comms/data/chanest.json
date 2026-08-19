@@ -1,0 +1,292 @@
+{
+ "id": "chanest",
+ "product": {
+  "ko": "다중경로가 심한 조건에서 채널을 추정하는 GPU 커널입니다. 커널 하나만 재면 아주 빠른데, 실제로 쓰이려면 데이터가 GPU 를 오가야 합니다. 그 둘을 같은 표에 나란히 두었습니다.",
+  "en": "A GPU kernel that estimates the channel under severe multipath. Timed on its own it is very fast, but using it means moving data on and off the device. Both are in the same table here."
+ },
+ "howto": {
+  "ko": "배치를 키우면서 커널만 잰 값과 전송까지 포함한 값을 번갈아 보세요.",
+  "en": "Grow the batch and switch between the kernel-only timing and the whole pipeline."
+ },
+ "controls": [
+  {
+   "key": "batch",
+   "label": {
+    "ko": "한 번에 처리하는 배치",
+    "en": "Batch size"
+   },
+   "type": "select",
+   "default_index": 4,
+   "options": [
+    {
+     "value": 1,
+     "label": {
+      "ko": "1",
+      "en": "1"
+     }
+    },
+    {
+     "value": 4,
+     "label": {
+      "ko": "4",
+      "en": "4"
+     }
+    },
+    {
+     "value": 16,
+     "label": {
+      "ko": "16",
+      "en": "16"
+     }
+    },
+    {
+     "value": 64,
+     "label": {
+      "ko": "64",
+      "en": "64"
+     }
+    },
+    {
+     "value": 256,
+     "label": {
+      "ko": "256",
+      "en": "256"
+     }
+    },
+    {
+     "value": 1024,
+     "label": {
+      "ko": "1024",
+      "en": "1024"
+     }
+    },
+    {
+     "value": 4096,
+     "label": {
+      "ko": "4096",
+      "en": "4096"
+     }
+    }
+   ]
+  },
+  {
+   "key": "stage",
+   "label": {
+    "ko": "무엇을 재나",
+    "en": "What is being timed"
+   },
+   "type": "select",
+   "options": [
+    {
+     "value": "kernel",
+     "label": {
+      "ko": "커널만",
+      "en": "Kernel only"
+     }
+    },
+    {
+     "value": "e2e",
+     "label": {
+      "ko": "전송 포함 전체",
+      "en": "Whole pipeline"
+     }
+    }
+   ]
+  }
+ ],
+ "outputs": [
+  {
+   "key": "ms",
+   "label": {
+    "ko": "걸린 시간",
+    "en": "Elapsed"
+   },
+   "unit": "ms",
+   "better": "lower"
+  },
+  {
+   "key": "mre",
+   "label": {
+    "ko": "처리량",
+    "en": "Throughput"
+   },
+   "unit": "Mre/s",
+   "better": "higher"
+  },
+  {
+   "key": "move_ms",
+   "label": {
+    "ko": "이 배치의 전송 시간",
+    "en": "Transfer time at this batch"
+   },
+   "unit": "ms",
+   "better": "lower"
+  }
+ ],
+ "runs": [
+  {
+   "in": {
+    "stage": "kernel",
+    "batch": 1
+   },
+   "out": {
+    "ms": 0.057,
+    "mre": 803.6,
+    "move_ms": 0.101
+   }
+  },
+  {
+   "in": {
+    "stage": "kernel",
+    "batch": 4
+   },
+   "out": {
+    "ms": 0.059,
+    "mre": 3134.8,
+    "move_ms": 0.259
+   }
+  },
+  {
+   "in": {
+    "stage": "kernel",
+    "batch": 16
+   },
+   "out": {
+    "ms": 0.062,
+    "mre": 11900.7,
+    "move_ms": 0.811
+   }
+  },
+  {
+   "in": {
+    "stage": "kernel",
+    "batch": 64
+   },
+   "out": {
+    "ms": 0.082,
+    "mre": 35590.3,
+    "move_ms": 3.016
+   }
+  },
+  {
+   "in": {
+    "stage": "kernel",
+    "batch": 256
+   },
+   "out": {
+    "ms": 0.222,
+    "mre": 52914.2,
+    "move_ms": 11.839
+   }
+  },
+  {
+   "in": {
+    "stage": "kernel",
+    "batch": 1024
+   },
+   "out": {
+    "ms": 0.741,
+    "mre": 63420.9,
+    "move_ms": 79.373
+   }
+  },
+  {
+   "in": {
+    "stage": "kernel",
+    "batch": 4096
+   },
+   "out": {
+    "ms": 2.8,
+    "mre": 67084.4,
+    "move_ms": 306.782
+   }
+  },
+  {
+   "in": {
+    "stage": "e2e",
+    "batch": 1
+   },
+   "out": {
+    "ms": 0.166,
+    "mre": 276.3,
+    "move_ms": 0.101
+   }
+  },
+  {
+   "in": {
+    "stage": "e2e",
+    "batch": 4
+   },
+   "out": {
+    "ms": 0.342,
+    "mre": 536.3,
+    "move_ms": 0.259
+   }
+  },
+  {
+   "in": {
+    "stage": "e2e",
+    "batch": 16
+   },
+   "out": {
+    "ms": 0.88,
+    "mre": 833.4,
+    "move_ms": 0.811
+   }
+  },
+  {
+   "in": {
+    "stage": "e2e",
+    "batch": 64
+   },
+   "out": {
+    "ms": 3.497,
+    "mre": 839.5,
+    "move_ms": 3.016
+   }
+  },
+  {
+   "in": {
+    "stage": "e2e",
+    "batch": 256
+   },
+   "out": {
+    "ms": 11.851,
+    "mre": 990.7,
+    "move_ms": 11.839
+   }
+  },
+  {
+   "in": {
+    "stage": "e2e",
+    "batch": 1024
+   },
+   "out": {
+    "ms": 66.786,
+    "mre": 703.2,
+    "move_ms": 79.373
+   }
+  },
+  {
+   "in": {
+    "stage": "e2e",
+    "batch": 4096
+   },
+   "out": {
+    "ms": 341.611,
+    "mre": 549.9,
+    "move_ms": 306.782
+   }
+  }
+ ],
+ "verdict": {
+  "ko": "커널만 재면 배치 4096 에서 초당 67,084 Mre 까지 올라갑니다. 그런데 전송을 포함한 실제 처리량은 배치 256 에서 991 Mre 로 천장을 치고 그 뒤로는 오히려 내려갑니다. 예순여덟 배 차이입니다. 커널을 더 빠르게 깎는 일은 이 지점부터 아무것도 바꾸지 못하고, 남은 개선은 전부 데이터를 옮기지 않는 쪽에 있습니다. 커널 시간만 보고했다면 정반대 결론을 냈을 것입니다.",
+  "en": "Timed alone, the kernel reaches 67,084 Mre per second at batch 4096. Include the transfers and real throughput tops out at 991 Mre per second at batch 256, then falls. That is a factor of sixty-eight. Past this point, making the kernel faster changes nothing, and every remaining gain is in not moving the data. Reporting kernel time alone would have argued the opposite."
+ },
+ "provenance": {
+  "backend": "Case multipath-severe-4096: 3276 used subcarriers across 14 symbols, 45864 resource elements per batch item. One Blackwell-class GPU (148 SMs). Vectors generated by the reference generator and replayed against the CPU implementation, so the GPU result is checked against a non-GPU oracle rather than trusted.",
+  "command": "phy_chanest_crossover_bench <vectors> multipath-severe-4096 out.json",
+  "generated": "2026-08",
+  "measured": true
+ }
+}

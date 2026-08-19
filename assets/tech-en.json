@@ -1379,6 +1379,96 @@
         "#SonicBranding",
         "#DSP"
       ]
+    },
+    "ASTRA-NET · 지상망과 위성망을 한 제어면에": {
+      "t": "ASTRA-NET · Terrestrial and Satellite Under One Control Plane",
+      "e": "A 5G NTN and pre-standard 6G research platform that unifies terrestrial RAN, regenerative satellite networking, inter-satellite routing, space-edge inference and delay tolerant networking under one policy-governed control plane. The premise is that the network never assumes connectivity: it predicts it and moves the computation ahead of it.",
+      "g": [
+        "#5G_NTN",
+        "#6G",
+        "#SatelliteRouting"
+      ]
+    },
+    "에이전트 궤적을 학습 데이터로 바꾸는 랩": {
+      "t": "Turning Agent Trajectories into Training Data",
+      "e": "Converts what an agent actually did into reproducible, licence-cleared training data. The first-class output of this repository is not a checkpoint but the schema and the governance gates: models turn over every six months, while runnable tasks, environments and verifiers accumulate.",
+      "g": [
+        "#TrajectoryData",
+        "#GovernanceGates",
+        "#SFT"
+      ]
+    },
+    "약점을 스스로 찾아 학습 데이터를 만드는 공장": {
+      "t": "A Factory That Finds Its Own Weaknesses and Builds the Data",
+      "e": "Finds where a model is weak, designs and generates the data it needs, verifies it, trains on it, then reads the result to decide what to build next. The point is that the step normally outsourced to a labelling vendor moves inside the loop, and that verifiers rather than models issue the verdicts.",
+      "g": [
+        "#SyntheticData",
+        "#ClosedLoop",
+        "#Verifiers"
+      ]
+    },
+    "config.json 하나로 모델 구조를 펼치는 렌즈": {
+      "t": "A Lens That Unfolds a Model From One config.json",
+      "e": "Paste a HuggingFace-style config.json and it lays out the layer stack, attention variant, expert layout, approximate parameter count and per-token KV cache as a block map. Built for the moment a new open model ships and there is no time to read the eighty-page paper. Everything is parsed in the browser.",
+      "g": [
+        "#ModelArchitecture",
+        "#KVCache",
+        "#ClientOnly"
+      ]
+    },
+    "양자화 사다리를 공유 가능한 카드로": {
+      "t": "A Quantization Ladder as Shareable Cards",
+      "e": "Give it a model size and a list of quantization levels and it renders one comparison card per level: file size, estimated memory, quality and relative speed. Aimed at the moment a new open model ships in five quantizations and everyone hand-builds the same table.",
+      "g": [
+        "#Quantization",
+        "#ComparisonCards",
+        "#ClientOnly"
+      ]
+    },
+    "AI 쇼츠 IP 다섯 편 · 세계관이 이어지는 숏폼": {
+      "t": "Five AI Shorts IPs With a Continuing Canon",
+      "e": "Five worlds, each in its own repository with its own canon and lore graph. Because one episode constrains the world the next one inherits, canon violations are checked by code rather than by memory. The pipeline lives in the parent repository; these hold the IP assets only.",
+      "g": [
+        "#ShortsIP",
+        "#CanonGate",
+        "#LoreGraph"
+      ]
+    },
+    "이해 구멍 하나에 30초 영상을 처방하는 파이프라인": {
+      "t": "Prescribing Thirty Seconds of Video for One Gap",
+      "e": "It does not generate a whole curriculum. One sticking point at a time, it runs a rubric, a script, a generated clip, a text overlay, quality gates, publication and quiz accuracy collection, and that accuracy decides what gets made next. The expensive thing in study material is not volume, it is knowing where the learner is stuck.",
+      "g": [
+        "#ExamPrep",
+        "#PerConcept",
+        "#AccuracyFeedback"
+      ]
+    },
+    "에이전트가 읽고 집어가는 트리형 작업 보드": {
+      "t": "A Tree-Shaped Task Board an Agent Reads and Claims",
+      "e": "Not a to-do app for people: the place a coding agent records what it is doing. It travels between home and office over git, and a hook writes each commit back onto the claimed task. Aimed at the problem that state kept inside a session is invisible to the next session and to the other machine.",
+      "g": [
+        "#TaskBoard",
+        "#MultiMachine",
+        "#CommitHooks"
+      ]
+    },
+    "일곱 개의 방 · 전부 코드로 합성한 소리": {
+      "t": "Seven Rooms, Every Sound Synthesized in Code",
+      "e": "Seven rooms in one corridor, from a 1927 New Orleans club to a 2004 Korean internet cafe. The sound is the work, and the point is that there is not a single sample file: the cicadas are amplitude-modulated band-passed noise and the reverb is a procedurally generated impulse response, so it runs with the network unplugged.",
+      "g": [
+        "#WebAudio",
+        "#ZeroSamples",
+        "#Nostalgia"
+      ]
+    },
+    "아이용 영어 단어장 · 카드도 그림도 생성": {
+      "t": "An English Vocabulary Deck for Children, Cards and Art Generated",
+      "e": "Type an English word and it produces pronunciation, meanings, synonyms, antonyms and example sentences, then generates the flashcard artwork to match. Designed for Korean children, with screen and print laid out together, and drilled by flipping cards and hearing the word.",
+      "g": [
+        "#EnglishLearning",
+        "#Flashcards",
+        "#ImageGeneration"
+      ]
     }
   },
   "fams": {

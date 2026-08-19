@@ -49,8 +49,11 @@ def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     cfg = json.loads(CFG.read_text(encoding="utf-8"))
     for c in cfg.get("cards", []):
-        p = OUT / f'{c["repo"].replace("/", "__")}.png'
-        draw(c["repo"]).save(p, "PNG", optimize=True)
+        # 저장소 이름 자체가 공개면에 실리면 안 되는 카드가 있다(회사 제품명 등).
+        # 그런 카드는 key 로 중립 슬러그를 준다.
+        ident = c.get("key") or c["repo"]
+        p = OUT / f'{ident.replace("/", "__")}.png'
+        draw(ident).save(p, "PNG", optimize=True)
         print(f"  {p.name}  {p.stat().st_size // 1024}KB")
 
 

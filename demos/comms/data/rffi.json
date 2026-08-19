@@ -1,0 +1,514 @@
+{
+ "id": "rffi",
+ "product": {
+  "ko": "송신기 여덟 대를 그 하드웨어 지문만으로 구별합니다. 어려운 부분은 구별이 아니라, 학습할 때와 다른 수신기로 들었을 때도 같은 답이 나오게 하는 것입니다. 수신기 지문이 송신기 지문에 섞여 들어오기 때문입니다. 프리앰블 나눗셈은 그 섞임을 지우자는 처방이고, 한 논문이 이걸로 교차 수신기 정확도를 15.5 에서 28.45 퍼센트포인트 올렸다고 보고했습니다. 이 표는 그 보고를 우리 합성 데이터에서 다시 돌려 본 기록입니다.",
+  "en": "Tells eight transmitters apart by their hardware fingerprint alone. The hard part is not telling them apart, it is getting the same answer when a different receiver is listening, because the receiver's own fingerprint rides along with the transmitter's. Preamble division is one prescription for removing it, and a paper reports it lifting cross-receiver accuracy by 15.5 to 28.45 points. This table is that report, run again on our synthetic data."
+ },
+ "howto": {
+  "ko": "처방을 바꾸고 시드도 바꿔 보세요. 같은 수신기 정확도와 다른 수신기 정확도를 나란히 봅니다.",
+  "en": "Change the prescription, then change the seed. Watch same-receiver and cross-receiver accuracy side by side."
+ },
+ "controls": [
+  {
+   "key": "variant",
+   "label": {
+    "ko": "적용한 처방",
+    "en": "Prescription applied"
+   },
+   "type": "select",
+   "options": [
+    {
+     "value": "control",
+     "label": {
+      "ko": "정규화 없음",
+      "en": "No normalization"
+     }
+    },
+    {
+     "value": "div_global",
+     "label": {
+      "ko": "전역 프리앰블 나눗셈",
+      "en": "Global preamble division"
+     }
+    },
+    {
+     "value": "div_perdomain",
+     "label": {
+      "ko": "수신기별 프리앰블 나눗셈",
+      "en": "Per-receiver preamble division"
+     }
+    }
+   ]
+  },
+  {
+   "key": "probe",
+   "label": {
+    "ko": "프로브 지점",
+    "en": "Probe point"
+   },
+   "type": "select",
+   "options": [
+    {
+     "value": "P0",
+     "label": {
+      "ko": "P0",
+      "en": "P0"
+     }
+    },
+    {
+     "value": "P1",
+     "label": {
+      "ko": "P1",
+      "en": "P1"
+     }
+    }
+   ]
+  },
+  {
+   "key": "seed",
+   "label": {
+    "ko": "난수 시드",
+    "en": "Random seed"
+   },
+   "type": "select",
+   "options": [
+    {
+     "value": 42,
+     "label": {
+      "ko": "42",
+      "en": "42"
+     }
+    },
+    {
+     "value": 43,
+     "label": {
+      "ko": "43",
+      "en": "43"
+     }
+    },
+    {
+     "value": 44,
+     "label": {
+      "ko": "44",
+      "en": "44"
+     }
+    },
+    {
+     "value": 45,
+     "label": {
+      "ko": "45",
+      "en": "45"
+     }
+    },
+    {
+     "value": 46,
+     "label": {
+      "ko": "46",
+      "en": "46"
+     }
+    }
+   ]
+  }
+ ],
+ "outputs": [
+  {
+   "key": "same_rx",
+   "label": {
+    "ko": "학습과 같은 수신기",
+    "en": "Same receiver as training"
+   },
+   "unit": "",
+   "better": "higher"
+  },
+  {
+   "key": "cross_rx",
+   "label": {
+    "ko": "다른 수신기",
+    "en": "Held out receiver"
+   },
+   "unit": "",
+   "better": "higher"
+  },
+  {
+   "key": "drop",
+   "label": {
+    "ko": "수신기가 바뀔 때 손실",
+    "en": "Loss when the receiver changes"
+   },
+   "unit": "",
+   "better": "lower"
+  }
+ ],
+ "runs": [
+  {
+   "in": {
+    "probe": "P0",
+    "variant": "control",
+    "seed": 42
+   },
+   "out": {
+    "same_rx": 0.233,
+    "cross_rx": 0.219,
+    "drop": 0.014
+   }
+  },
+  {
+   "in": {
+    "probe": "P0",
+    "variant": "control",
+    "seed": 43
+   },
+   "out": {
+    "same_rx": 0.233,
+    "cross_rx": 0.213,
+    "drop": 0.019
+   }
+  },
+  {
+   "in": {
+    "probe": "P0",
+    "variant": "control",
+    "seed": 44
+   },
+   "out": {
+    "same_rx": 0.226,
+    "cross_rx": 0.23,
+    "drop": -0.004
+   }
+  },
+  {
+   "in": {
+    "probe": "P0",
+    "variant": "control",
+    "seed": 45
+   },
+   "out": {
+    "same_rx": 0.215,
+    "cross_rx": 0.207,
+    "drop": 0.008
+   }
+  },
+  {
+   "in": {
+    "probe": "P0",
+    "variant": "control",
+    "seed": 46
+   },
+   "out": {
+    "same_rx": 0.24,
+    "cross_rx": 0.227,
+    "drop": 0.013
+   }
+  },
+  {
+   "in": {
+    "probe": "P0",
+    "variant": "div_global",
+    "seed": 42
+   },
+   "out": {
+    "same_rx": 0.184,
+    "cross_rx": 0.229,
+    "drop": -0.045
+   }
+  },
+  {
+   "in": {
+    "probe": "P0",
+    "variant": "div_global",
+    "seed": 43
+   },
+   "out": {
+    "same_rx": 0.285,
+    "cross_rx": 0.219,
+    "drop": 0.066
+   }
+  },
+  {
+   "in": {
+    "probe": "P0",
+    "variant": "div_global",
+    "seed": 44
+   },
+   "out": {
+    "same_rx": 0.246,
+    "cross_rx": 0.224,
+    "drop": 0.023
+   }
+  },
+  {
+   "in": {
+    "probe": "P0",
+    "variant": "div_global",
+    "seed": 45
+   },
+   "out": {
+    "same_rx": 0.243,
+    "cross_rx": 0.229,
+    "drop": 0.014
+   }
+  },
+  {
+   "in": {
+    "probe": "P0",
+    "variant": "div_global",
+    "seed": 46
+   },
+   "out": {
+    "same_rx": 0.229,
+    "cross_rx": 0.215,
+    "drop": 0.015
+   }
+  },
+  {
+   "in": {
+    "probe": "P0",
+    "variant": "div_perdomain",
+    "seed": 42
+   },
+   "out": {
+    "same_rx": 0.184,
+    "cross_rx": 0.22,
+    "drop": -0.036
+   }
+  },
+  {
+   "in": {
+    "probe": "P0",
+    "variant": "div_perdomain",
+    "seed": 43
+   },
+   "out": {
+    "same_rx": 0.285,
+    "cross_rx": 0.221,
+    "drop": 0.064
+   }
+  },
+  {
+   "in": {
+    "probe": "P0",
+    "variant": "div_perdomain",
+    "seed": 44
+   },
+   "out": {
+    "same_rx": 0.246,
+    "cross_rx": 0.225,
+    "drop": 0.021
+   }
+  },
+  {
+   "in": {
+    "probe": "P0",
+    "variant": "div_perdomain",
+    "seed": 45
+   },
+   "out": {
+    "same_rx": 0.243,
+    "cross_rx": 0.219,
+    "drop": 0.024
+   }
+  },
+  {
+   "in": {
+    "probe": "P0",
+    "variant": "div_perdomain",
+    "seed": 46
+   },
+   "out": {
+    "same_rx": 0.229,
+    "cross_rx": 0.215,
+    "drop": 0.015
+   }
+  },
+  {
+   "in": {
+    "probe": "P1",
+    "variant": "control",
+    "seed": 42
+   },
+   "out": {
+    "same_rx": 0.226,
+    "cross_rx": 0.201,
+    "drop": 0.025
+   }
+  },
+  {
+   "in": {
+    "probe": "P1",
+    "variant": "control",
+    "seed": 43
+   },
+   "out": {
+    "same_rx": 0.215,
+    "cross_rx": 0.197,
+    "drop": 0.018
+   }
+  },
+  {
+   "in": {
+    "probe": "P1",
+    "variant": "control",
+    "seed": 44
+   },
+   "out": {
+    "same_rx": 0.24,
+    "cross_rx": 0.204,
+    "drop": 0.035
+   }
+  },
+  {
+   "in": {
+    "probe": "P1",
+    "variant": "control",
+    "seed": 45
+   },
+   "out": {
+    "same_rx": 0.205,
+    "cross_rx": 0.195,
+    "drop": 0.01
+   }
+  },
+  {
+   "in": {
+    "probe": "P1",
+    "variant": "control",
+    "seed": 46
+   },
+   "out": {
+    "same_rx": 0.222,
+    "cross_rx": 0.208,
+    "drop": 0.014
+   }
+  },
+  {
+   "in": {
+    "probe": "P1",
+    "variant": "div_global",
+    "seed": 42
+   },
+   "out": {
+    "same_rx": 0.236,
+    "cross_rx": 0.2,
+    "drop": 0.036
+   }
+  },
+  {
+   "in": {
+    "probe": "P1",
+    "variant": "div_global",
+    "seed": 43
+   },
+   "out": {
+    "same_rx": 0.191,
+    "cross_rx": 0.192,
+    "drop": -0.001
+   }
+  },
+  {
+   "in": {
+    "probe": "P1",
+    "variant": "div_global",
+    "seed": 44
+   },
+   "out": {
+    "same_rx": 0.215,
+    "cross_rx": 0.202,
+    "drop": 0.013
+   }
+  },
+  {
+   "in": {
+    "probe": "P1",
+    "variant": "div_global",
+    "seed": 45
+   },
+   "out": {
+    "same_rx": 0.181,
+    "cross_rx": 0.211,
+    "drop": -0.031
+   }
+  },
+  {
+   "in": {
+    "probe": "P1",
+    "variant": "div_global",
+    "seed": 46
+   },
+   "out": {
+    "same_rx": 0.219,
+    "cross_rx": 0.206,
+    "drop": 0.013
+   }
+  },
+  {
+   "in": {
+    "probe": "P1",
+    "variant": "div_perdomain",
+    "seed": 42
+   },
+   "out": {
+    "same_rx": 0.236,
+    "cross_rx": 0.208,
+    "drop": 0.028
+   }
+  },
+  {
+   "in": {
+    "probe": "P1",
+    "variant": "div_perdomain",
+    "seed": 43
+   },
+   "out": {
+    "same_rx": 0.191,
+    "cross_rx": 0.201,
+    "drop": -0.01
+   }
+  },
+  {
+   "in": {
+    "probe": "P1",
+    "variant": "div_perdomain",
+    "seed": 44
+   },
+   "out": {
+    "same_rx": 0.215,
+    "cross_rx": 0.197,
+    "drop": 0.018
+   }
+  },
+  {
+   "in": {
+    "probe": "P1",
+    "variant": "div_perdomain",
+    "seed": 45
+   },
+   "out": {
+    "same_rx": 0.181,
+    "cross_rx": 0.209,
+    "drop": -0.029
+   }
+  },
+  {
+   "in": {
+    "probe": "P1",
+    "variant": "div_perdomain",
+    "seed": 46
+   },
+   "out": {
+    "same_rx": 0.219,
+    "cross_rx": 0.207,
+    "drop": 0.011
+   }
+  }
+ ],
+ "verdict": {
+  "ko": "여덟 대 중 하나를 찍으면 0.125 입니다. 어느 처방을 걸어도, 어느 시드를 써도 다른 수신기 정확도는 0.19 에서 0.23 사이를 벗어나지 않았습니다. 처방이 만든 개선폭은 최대 0.38 퍼센트포인트로, 그 변형 자신의 시드 간 표준편차 3.3 퍼센트포인트보다 작습니다. 그러니 재현되지 않았다고는 말할 수 있어도 논문이 틀렸다고는 말할 수 없습니다. 여기서는 같은 수신기 정확도조차 0.22 근처라 지문 신호 자체가 약했고, 신호가 약한 자리에서는 전처리 하나가 만들 수 있는 개선의 상한도 낮습니다. 이 조건에 검출할 파워가 없었다는 쪽이 정확한 설명입니다.",
+  "en": "Guessing one of eight scores 0.125. No prescription and no seed moved cross-receiver accuracy out of the 0.19 to 0.23 band. The largest gain any prescription produced was 0.38 points, smaller than that same variant's own spread across seeds, 3.3 points. So this says the result did not reproduce here. It does not say the paper is wrong. Same-receiver accuracy sits near 0.22 in this setup, meaning the fingerprint signal itself is weak, and where the signal is weak the ceiling on what any single preprocessing step can add is low as well. The honest reading is that these conditions had no power to detect the effect."
+ },
+ "provenance": {
+  "backend": "Eight transmitters heard by two receivers in a SYNTHETIC fleet generator, not captured RF. LightGBM on a 256 sample window, 5 seeds per cell, two probe points in the chain. Training uses one receiver and the held out column is a receiver the model never saw. The generator has no shared known preamble, so the reference spectrum was approximated by a per domain magnitude envelope, which leaves phase distortion in place and is weaker than the method the paper describes. Every cell is one real training run, 30 runs in total, 237 seconds of compute.",
+  "command": "preamble_division_crossrx --probes P0,P1 --seeds 5 --win 256",
+  "generated": "2026-07",
+  "measured": true
+ }
+}
