@@ -902,6 +902,90 @@
     ]
   },
   {
+    "slug": "mft-lens",
+    "group": "data",
+    "src": "private",
+    "title": "MFT 렌즈, 브라우저에서 여는 NTFS 포렌식",
+    "blurb": "덤프한 NTFS $MFT CSV 를 떨어뜨리면 $STANDARD_INFORMATION 과 $FILE_NAME 타임스탬프 여덟 개를 전부 펼치고, 둘이 어긋난 레코드를 짚어 MACB 타임라인으로 세웁니다. 파일 생성 시각을 손댄 흔적은 이 두 벌이 갈라지는 자리에서만 보입니다. 파싱은 전부 탭 안에서 일어나고 네트워크 요청이 0건이라 조사 대상이 기계 밖으로 나가지 않습니다. 그 성질 자체가 제품이라 저장소는 공개하지 않고 화면만 남깁니다.",
+    "tech": [
+      "NTFS $MFT",
+      "SI/FN 불일치",
+      "MACB 타임라인",
+      "네트워크 0"
+    ],
+    "title_en": "MFT Lens, NTFS forensics that runs in the browser",
+    "blurb_en": "Drop a dumped NTFS $MFT CSV and it unfolds all eight $STANDARD_INFORMATION and $FILE_NAME timestamps, flags the records where the two disagree, and stands them up as a MACB timeline. A tampered creation time is only visible where those two sets diverge. Parsing happens entirely in the tab with zero network requests, so the material under investigation never leaves the machine. That property is the product, so the repository stays closed and only the screen is shown.",
+    "tech_en": [
+      "NTFS $MFT",
+      "SI/FN mismatch",
+      "MACB timeline",
+      "Zero network"
+    ]
+  },
+  {
+    "slug": "model-arch-lens",
+    "group": "serve",
+    "src": "private",
+    "title": "Model Arch Lens, config.json 하나로 읽는 모델 구조",
+    "blurb": "허깅페이스 형식 config.json 을 붙여 넣으면 레이어 스택과 어텐션 방식, 전문가 배치, 대략의 파라미터 수, 토큰당 KV 캐시를 블록 지도로 펼칩니다. 새 오픈 모델이 나왔는데 80쪽 논문을 읽을 시간이 없을 때, 구조만 몇 분에 동료에게 설명하려고 만들었습니다. 화면의 MQA 나 top-2 같은 판정은 전부 config 필드에서 나온 것이고 파일은 브라우저를 떠나지 않습니다.",
+    "tech": [
+      "MHA·GQA·MQA·MLA 판정",
+      "MoE 배치",
+      "KV 캐시 추정",
+      "클라이언트 전용"
+    ],
+    "title_en": "Model Arch Lens, reading a model from one config.json",
+    "blurb_en": "Paste a HuggingFace-style config.json and it unfolds the layer stack, attention variant, expert layout, approximate parameter count and per-token KV cache as a block map. Built for the moment a new open model ships and there is no time for the eighty-page paper: enough to explain the shape to a colleague in a couple of minutes. Every verdict on screen, MQA or top-2 routing, comes out of a config field, and the file never leaves the browser.",
+    "tech_en": [
+      "MHA/GQA/MQA/MLA detection",
+      "MoE layout",
+      "KV cache estimate",
+      "Client only"
+    ]
+  },
+  {
+    "slug": "srt-sketch-cast",
+    "group": "media",
+    "src": "private",
+    "title": "자막을 화이트보드 스케치 스토리보드로",
+    "blurb": "SRT 나 VTT 자막을 붙여 넣으면 장면을 나누고 손그림 아이콘을 붙여 그려지는 타이밍까지 계산해 스토리보드를 만듭니다. 미리보기로 흐름을 확인하고 장면별 여유 시간을 손본 뒤, MP4 를 로컬에서 뽑을 수 있는 렌더 계획과 ffmpeg 스크립트를 내려받는 구조입니다. 영상을 서버에서 굽지 않고 계획만 넘긴다는 것이 설계 선택이고, 자막 파일은 어디로도 올라가지 않습니다.",
+    "tech": [
+      "장면 분할",
+      "키워드 아이콘",
+      "드로잉 타이밍",
+      "ffmpeg 렌더 계획"
+    ],
+    "title_en": "Subtitles into a whiteboard sketch storyboard",
+    "blurb_en": "Paste SRT or VTT subtitles and it splits scenes, attaches hand-drawn keyword icons and computes the draw-on timing into a storyboard. Preview the flow, tune the hold per scene, then download a render plan and an ffmpeg script that produce the MP4 locally. Handing over the plan rather than burning video on a server is the design choice, and the subtitle file is never uploaded.",
+    "tech_en": [
+      "Scene splitting",
+      "Keyword icons",
+      "Draw-on timing",
+      "ffmpeg render plan"
+    ]
+  },
+  {
+    "slug": "pronounce-forge",
+    "group": "media",
+    "src": "private",
+    "title": "TTS 가 정말 그렇게 읽는지 코드가 판정합니다",
+    "blurb": "고유명사와 숫자는 사람이 듣고 넘어가면 조용히 틀립니다. 그래서 판정을 귀에서 왕복 일치로 옮겼습니다. 용어와 원하는 읽기를 등록하면 로컬 TTS 로 합성하고 그 소리를 다시 인식에 통과시켜, 돌아온 문자열이 기준을 넘을 때만 통과로 칩니다. 화면의 미검증 표시가 요점입니다. 검증을 통과한 항목만 사전으로 내보내지고, 실패했거나 아직 확인하지 않은 항목은 절대 실려 나가지 않습니다.",
+    "tech": [
+      "왕복 검증",
+      "로컬 TTS·STT",
+      "임계 기반 판정",
+      "검증분만 내보내기"
+    ],
+    "title_en": "Code, not your ears, decides whether the TTS said it right",
+    "blurb_en": "Proper nouns and numbers fail quietly when a person listens and moves on, so the verdict moved off the ear and onto a round trip. Register a term and the reading you want, and it synthesizes with a local TTS, transcribes the result back, and passes only when the returned string clears the threshold. The unverified badges on screen are the point: only entries that passed get exported, and a failed or unchecked one never ships.",
+    "tech_en": [
+      "Round-trip verification",
+      "Local TTS and STT",
+      "Threshold verdict",
+      "Exports verified only"
+    ]
+  },
+  {
     "slug": "algorithms-polyglot",
     "group": "doc",
     "src": "own",
