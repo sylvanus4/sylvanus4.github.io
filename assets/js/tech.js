@@ -2,6 +2,7 @@
    여기서 하는 일은 검색 필터와 카운트뿐이다. */
 
 import { wireBurger } from "./main-nav.js";
+import { wireSiteSearch } from "./search.js";
 import { isEn, t, applyStatic, renderLangToggle } from "./i18n.js";
 import { renderLeadReel } from "./reel-lead.js";
 
@@ -33,7 +34,8 @@ async function load() {
   }
   if (isEn) await applyEnCatalog();
   mountReels();
-  wireSearch();
+  wireSearch();      // 이 페이지의 카드 필터
+  wireSiteSearch();  // 헤더의 전역 검색
   wireCount();
 }
 
@@ -136,6 +138,15 @@ function wireSearch() {
     timer = setTimeout(apply, 120);
   });
   input.addEventListener("search", apply);
+
+  /* 전역 검색 결과에서 tech.html?q=... 로 들어오면 그 카드가 바로 걸러져 보여야 한다.
+     안 그러면 173장 한가운데에 떨어뜨려 놓고 다시 찾으라는 셈이다. */
+  const deep = new URLSearchParams(location.search).get("q");
+  if (deep) {
+    input.value = deep;
+    apply();
+    board.querySelector(".pcard:not([hidden])")?.scrollIntoView({ block: "center" });
+  }
 }
 
 load();

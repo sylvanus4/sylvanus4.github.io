@@ -1310,3 +1310,68 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   line-height: 1.75;
 }
 .stance:first-of-type { margin-top: 1.6rem; }
+
+/* ── 사이트 전역 검색 ─────────────────────────────────────────────────────
+   카탈로그·데모·작업·이력이 한 곳에서 걸린다. 인덱스는 처음 열 때만 받는다. */
+.nav-search {
+  display: inline-flex; align-items: center; gap: .4rem;
+  min-height: 44px; padding: 0 .85rem;
+  background: transparent; color: var(--fg-3);
+  border: 1px solid var(--line); border-radius: var(--radius-lg, 10px);
+  font: inherit; font-size: .86rem; cursor: pointer;
+  transition: color var(--dur, .2s) var(--ease, ease), border-color var(--dur, .2s) var(--ease, ease);
+}
+.nav-search:hover { color: var(--fg); border-color: var(--line-bright); }
+.nav-search:focus-visible { outline: 2px solid var(--cy); outline-offset: 2px; }
+
+html.srch-on { overflow: hidden; }
+.srch { position: fixed; inset: 0; z-index: 900; display: grid; place-items: start center; }
+.srch[hidden] { display: none; }
+.srch__scrim { position: absolute; inset: 0; background: rgba(6, 9, 14, .72); }
+.srch__panel {
+  position: relative; width: min(680px, calc(100vw - 2rem)); margin-top: 12vh;
+  background: var(--panel-solid, var(--panel)); border: 1px solid var(--line-bright);
+  border-radius: var(--radius-lg, 12px); box-shadow: 0 24px 70px rgba(0, 0, 0, .5);
+  max-height: 74vh; display: flex; flex-direction: column; overflow: hidden;
+}
+.srch__bar { display: flex; align-items: center; gap: .5rem; padding: .6rem .7rem; border-bottom: 1px solid var(--line); }
+.srch__input {
+  flex: 1; min-height: 44px; padding: 0 .6rem;
+  background: transparent; border: 0; color: var(--fg); font: inherit; font-size: 1.02rem;
+}
+.srch__input:focus { outline: none; }
+.srch__x {
+  min-width: 44px; min-height: 44px; background: transparent; border: 0;
+  color: var(--fg-4); font-size: 1rem; cursor: pointer; border-radius: 8px;
+}
+.srch__x:hover { color: var(--fg); }
+.srch__x:focus-visible { outline: 2px solid var(--cy); outline-offset: 2px; }
+.srch__hint { margin: 0; padding: .5rem .95rem; font-size: .76rem; color: var(--fg-4); border-bottom: 1px solid var(--line-soft); }
+.srch__res { overflow-y: auto; padding: .35rem 0 .6rem; }
+.srch__count, .srch__k { margin: 0; padding: .55rem .95rem .2rem; font-size: .72rem; color: var(--fg-4); letter-spacing: .04em; }
+.srch__k { text-transform: uppercase; }
+.srch__empty { margin: 0; padding: 1.6rem .95rem; color: var(--fg-3); font-size: .9rem; }
+.srch__row {
+  display: block; padding: .6rem .95rem; text-decoration: none; color: inherit;
+  border-left: 2px solid transparent;
+}
+.srch__row.on, .srch__row:hover { background: var(--bg-3); border-left-color: var(--cy); }
+.srch__row:focus-visible { outline: 2px solid var(--cy); outline-offset: -2px; }
+.srch__rt { display: block; color: var(--fg); font-size: .93rem; }
+.srch__rb { display: block; margin-top: .15rem; color: var(--fg-4); font-size: .78rem;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+@media (max-width: 720px) {
+  .srch__panel { margin-top: 6vh; max-height: 86vh; }
+  .nav-search__l { display: none; }
+  .nav-search { padding: 0 .7rem; }
+}
+
+/* 검색 버튼이 한 칸 늘어난 만큼 아주 좁은 화면에서 헤더가 넘쳤다(320px 에서 16px).
+   버튼을 지우면 모바일에는 검색 진입점이 사라지므로 — 단축키는 키보드가 있어야 한다 —
+   간격과 테두리를 줄여 자리를 만든다. */
+@media (max-width: 420px) {
+  .nav-in { gap: .45rem; }
+  .nav-search { padding: 0 .45rem; border-color: transparent; }
+  .nav-search:hover { border-color: var(--line); }
+}

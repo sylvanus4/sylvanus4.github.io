@@ -6,6 +6,7 @@
    분류 이동은 자바스크립트 필터가 아니라 앵커다. 스크립트가 죽어도 목록은 남아야 한다. */
 
 import { wireBurger } from "./main-nav.js";
+import { wireSiteSearch } from "./search.js";
 import { isEn, t, applyStatic, renderLangToggle } from "./i18n.js";
 
 const GROUPS = [
@@ -24,7 +25,8 @@ const famnav = document.getElementById("demonav");
 
 applyStatic();
 renderLangToggle(document.getElementById("langpick"));
-wireBurger();
+wireBurger()
+wireSiteSearch();
 
 const esc = (s) =>
   String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -61,7 +63,7 @@ function card(d) {
         ${d.repo ? `<a class="dlink dlink--ghost" href="${esc(d.repo)}" target="_blank" rel="noopener">${t("demos.source")} ↗</a>` : ""}`;
 
   return `
-  <article class="dcard">
+  <article class="dcard" id="${esc(d.slug)}">
     ${shot}
     <div class="dcard__body">
       <p class="dcard__badges">
@@ -118,3 +120,12 @@ async function load() {
 }
 
 load();
+
+/* 카드는 fetch 뒤에 그려지므로 브라우저의 기본 해시 점프는 빈 화면에서 일어난다.
+   렌더가 끝난 뒤 한 번 더 맞춰 준다 — 전역 검색이 demos.html#slug 로 보낸다. */
+addEventListener("load", () => {
+  const id = decodeURIComponent(location.hash.slice(1));
+  if (!id) return;
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ block: "center" });
+});

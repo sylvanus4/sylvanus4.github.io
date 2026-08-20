@@ -450,6 +450,30 @@ await leadReelGate();
 /* ---- 데모 목록 ----
    카드의 값어치는 전부 "화면과 링크가 실제와 맞는가" 하나에 달려 있다.
    개수만 세면 깨진 액자 44개도 통과하므로 이미지 로드까지 본다. */
+/* 검색 인덱스는 원천이 바뀌면 다시 구워야 한다. 안 그러면 새 카드·새 데모가
+   검색에서만 조용히 빠지고, 그건 화면 어디에도 드러나지 않는다.
+   재생성: python3 tools/build_search_index.py */
+function searchIndexGate() {
+  console.log("\n[search]");
+  const idx = JSON.parse(readFileSync("assets/search-index.json", "utf8"));
+  const demos = JSON.parse(readFileSync("assets/demos.json", "utf8"));
+  const body = readFileSync("assets/tech-body.html", "utf8");
+  const cards = (body.match(/class="pcard reveal"/g) || []).length;
+
+  const n = (k) => idx.docs.filter((d) => d.k === k).length;
+  n("catalog") === cards
+    ? ok(`카탈로그 색인 ${n("catalog")} = 카드 ${cards}`)
+    : bad(`카탈로그 색인 ${n("catalog")} ≠ 카드 ${cards} — 인덱스가 낡았다`);
+  n("demo") === demos.length
+    ? ok(`데모 색인 ${n("demo")} = 매니페스트 ${demos.length}`)
+    : bad(`데모 색인 ${n("demo")} ≠ 매니페스트 ${demos.length} — 인덱스가 낡았다`);
+
+  const noTitle = idx.docs.filter((d) => !d.t || !d.t.trim()).length;
+  noTitle === 0 ? ok(`색인 ${idx.docs.length}건 전부 제목 있음`) : bad(`제목 없는 색인 ${noTitle}건`);
+  const kb = Buffer.byteLength(JSON.stringify(idx)) / 1024;
+  kb < 600 ? ok(`인덱스 ${kb.toFixed(0)}KB`) : bad(`인덱스 ${kb.toFixed(0)}KB — 너무 크다`);
+}
+
 async function demosGate() {
   console.log("\n[demos]");
   const manifest = JSON.parse(readFileSync("assets/demos.json", "utf8"));
@@ -559,6 +583,7 @@ async function demosGate() {
     }
   }
 }
+searchIndexGate();
 await demosGate();
 
 /* ---- 두 언어의 숫자 일치 ----

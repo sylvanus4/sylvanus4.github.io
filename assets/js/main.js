@@ -2,6 +2,7 @@
    three.js 는 동적 import 로만 부른다. CDN 이 죽어도 페이지는 그대로 뜬다. */
 
 import { wireBurger } from "./main-nav.js";
+import { wireSiteSearch } from "./search.js";
 import { isEn, t, applyStatic, renderLangToggle } from "./i18n.js";
 import { renderLeadReel } from "./reel-lead.js";
 
@@ -447,7 +448,8 @@ async function boot() {
   wireCards();
   wireCursor();
   wireNav();
-  wireBurger();
+  wireBurger()
+wireSiteSearch();
   wireScene();
 
   document.body.dataset.ready = "1";
