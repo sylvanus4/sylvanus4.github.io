@@ -1469,6 +1469,33 @@
         "#Flashcards",
         "#ImageGeneration"
       ]
+    },
+    "ClipAgent · 같은 영상을 사람마다 다시 분석하지 않는다": {
+      "t": "ClipAgent, so the same video is not re-analysed per viewer",
+      "e": "One multimodal pass per piece of content lands in an event ledger; each user request then only reorders events and renders within limits. Amortising the expensive VLM work across viewers is what brings the marginal cost of personalisation down. Models are treated as replaceable parts, so the work started with what can be verified without one: the event ontology, clip-boundary optimisation, edit policy and quality gates.",
+      "g": [
+        "#video-agents",
+        "#event-ledger",
+        "#marginal-cost"
+      ]
+    },
+    "코드 조각에 라이선스와 출처를 붙여 공유한다": {
+      "t": "Code snippets shared with a licence and an origin attached",
+      "e": "Paste code, pick an SPDX licence, and it inserts the header in that language's comment syntax, encodes the snippet into the URL hash as base64url for an account-free permalink, and draws a README badge SVG inside the page. No server, no build step, no dependencies.",
+      "g": [
+        "#SPDX",
+        "#licensing",
+        "#permalink"
+      ]
+    },
+    "논문 초록에서 과장 없는 홍보 스레드를": {
+      "t": "A promotion thread from a paper abstract, without the hype",
+      "e": "Paste an abstract and a results summary and it produces a neutral-tone X thread draft, a LinkedIn summary, and four carousel cards: cover, contributions, a results bar chart and a closing. Every sentence in the output comes verbatim from your input, and inventing nothing is the contract of this tool.",
+      "g": [
+        "#paper-promotion",
+        "#thread",
+        "#no-fabrication"
+      ]
     }
   },
   "fams": {

@@ -675,6 +675,51 @@
         "#이미지생성"
       ],
       "q": "영어 단어장 어린이 플래시카드 tts 이미지 생성 학습"
+    },
+    {
+      "fam": "tech-media",
+      "repo": "sylvanus4/clipagent",
+      "private": true,
+      "lang": "Python",
+      "date": "2026.08.05",
+      "title": "ClipAgent · 같은 영상을 사람마다 다시 분석하지 않는다",
+      "excerpt": "콘텐츠당 한 번 수행한 멀티모달 분석을 이벤트 원장에 넣어 두고, 사용자 요청마다는 이벤트 재정렬과 제한된 렌더링만 한다. 비싼 VLM 작업을 콘텐츠 단위로 상각해 개인화의 한계비용을 낮추는 구조다. 모델은 교체 가능한 부품으로 두고 이벤트 온톨로지와 클립 경계 최적화, 편집 정책, 품질 게이트처럼 모델 없이 검증 가능한 부분부터 만들었다.",
+      "tags": [
+        "#영상에이전트",
+        "#이벤트원장",
+        "#한계비용"
+      ],
+      "q": "clipagent 실시간 영상 video agent saas 이벤트 원장 event ledger vlm 개인화 personalization 클립 clip edl 하이라이트 품질 게이트"
+    },
+    {
+      "fam": "tech-devtool",
+      "repo": "sylvanus4/snippet-commons",
+      "private": true,
+      "lang": "JavaScript",
+      "date": "2026.08.03",
+      "title": "코드 조각에 라이선스와 출처를 붙여 공유한다",
+      "excerpt": "코드를 붙여넣고 SPDX 라이선스를 고르면 그 언어의 주석 문법으로 헤더를 삽입하고, 조각을 base64url로 URL 해시에 담아 계정 없는 퍼머링크를 만들며, README에 붙일 배지 SVG를 페이지 안에서 그려 준다. 서버도 빌드도 의존성도 없다.",
+      "tags": [
+        "#SPDX",
+        "#라이선스",
+        "#퍼머링크"
+      ],
+      "q": "code snippet 코드 조각 spdx license 라이선스 헤더 header 배지 badge permalink 퍼머링크 base64url 출처"
+    },
+    {
+      "fam": "tech-devtool",
+      "repo": "sylvanus4/paper-promo-kit",
+      "private": true,
+      "lang": "JavaScript",
+      "date": "2026.08.20",
+      "title": "논문 초록에서 과장 없는 홍보 스레드를",
+      "excerpt": "초록과 결과표를 붙여넣으면 중립적인 어조의 스레드 초안과 링크드인 요약, 그리고 표지와 기여, 결과 막대차트, 마무리 네 장짜리 캐러셀 카드를 만든다. 출력의 모든 문장은 입력에서 그대로 가져온 것이고 지어내지 않는다는 것이 이 도구의 계약이다.",
+      "tags": [
+        "#논문홍보",
+        "#스레드",
+        "#날조없음"
+      ],
+      "q": "paper arxiv 논문 초록 abstract 홍보 promo thread 스레드 linkedin 캐러셀 carousel 결과 요약"
     }
   ],
   "rewrite": [
