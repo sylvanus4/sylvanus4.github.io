@@ -173,6 +173,8 @@ PATCH = """
 .tech2i .pcard__excerpt, .tech2i .pcard__tags { color: var(--fg-3); }
 .tech2i .pcard__cat, .tech2i .pcard__date, .tech2i .pcard__rt { color: var(--fg-4); }
 .tech2i .pcard__go { color: var(--cy); }
+/* 비공개 저장소는 소유자만 열린다. 공개 링크와 같은 색이면 방문자가 열릴 것으로 읽는다. */
+.tech2i .pcard__go--priv { color: var(--fg-4); }
 .tech2i .fam__t { color: var(--fg); }
 .tech2i .fam__d { color: var(--fg-3); }
 .tech2i .fam__n { color: var(--cy); }
@@ -205,20 +207,30 @@ PATCH = """
 def card_html(c: dict) -> str:
     """원본 카드와 같은 구조로 찍는다. 클래스가 다르면 스타일이 안 먹는다.
 
-    `url` 이 없으면 <a> 가 아니라 <div> 로 찍고 "GitHub →" 도 떼어 낸다.
-    비공개 저장소에 GitHub 링크를 달면 방문자에게는 404 이고, 카드가 열리지도
-    않으면서 열릴 것처럼 보인다. 2i 에서 넘어온 링크 없는 카드 77장이 이미
-    이 형태라 렌더러·검색·게이트가 `.pcard` 로 둘 다 본다(2026-08-09).
+    2026-08-20 부터 비공개 저장소에도 링크를 단다(사용자 지시 — 소유자 본인이
+    카드에서 코드로 가는 경로로 쓴다). 방문자에게는 GitHub 404 이므로 링크 문구를
+    "비공개 저장소 →" 로 두어 **누르기 전에** 열리지 않는다는 사실을 밝힌다.
+    `repo` 조차 없는 카드(회사 제품명이 슬러그로 새는 것을 막으려 `key` 만 둔 것)는
+    여전히 <div> 로 찍는다 — 링크를 달 대상 자체가 없다.
+    2i 에서 넘어온 링크 없는 카드 77장도 이 형태라 렌더러·검색·게이트가 `.pcard` 로
+    둘 다 본다(2026-08-09).
     """
     slug = (c.get("key") or c["repo"]).replace("/", "__")
     tags = "".join(f"<span>{t}</span>" for t in c.get("tags", []))
     url = c.get("url")
-    go = '<span class="pcard__go">GitHub →</span>' if url else ""
+    repo = c.get("repo")
+    href = url or (f"https://github.com/{repo}" if repo else None)
+    if url:
+        go = '<span class="pcard__go">GitHub →</span>'
+    elif href:
+        go = '<span class="pcard__go pcard__go--priv">비공개 저장소 →</span>'
+    else:
+        go = ""
     open_tag = (
-        f'<a class="pcard reveal" href="{url}" target="_blank" rel="noopener"'
-        if url else '<div class="pcard reveal"'
+        f'<a class="pcard reveal" href="{href}" target="_blank" rel="noopener"'
+        if href else '<div class="pcard reveal"'
     )
-    close_tag = "</a>" if url else "</div>"
+    close_tag = "</a>" if href else "</div>"
     return (
         f'\n      {open_tag} data-cat="{c["fam"].replace("tech-", "")}"'
         f' data-q="{c.get("q", "")} {c.get("key") or c["repo"]} {c["title"]}">\n'

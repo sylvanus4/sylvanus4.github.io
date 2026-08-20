@@ -505,10 +505,15 @@ async function demosGate() {
         repoLinks: document.querySelectorAll(".dlink--ghost").length,
         ownBadges: document.querySelectorAll(".dbadge--own").length,
         privBadges: document.querySelectorAll(".dbadge--priv").length,
-        // 비공개 카드가 링크(캡처 앵커·CTA·저장소)를 하나라도 달면 죽은 링크가 된다.
-        privLinks: [...document.querySelectorAll(".dcard")].filter(
-          (c) => c.querySelector(".dbadge--priv") && c.querySelector("a[href]")
-        ).length,
+        /* 비공개 카드는 저장소 링크 하나만 허용한다(소유자용). 데모 CTA 나 캡처
+           앵커가 붙으면 방문자가 열리는 줄 알고 누른다 — 그건 여전히 금지다. */
+        privBadLinks: [...document.querySelectorAll(".dcard")]
+          .filter((c) => c.querySelector(".dbadge--priv"))
+          .flatMap((c) => [...c.querySelectorAll("a[href]")])
+          .filter((a) => !/^https:\/\/github\.com\//.test(a.getAttribute("href") || "")).length,
+        privRepoLinks: [...document.querySelectorAll(".dcard")]
+          .filter((c) => c.querySelector(".dbadge--priv"))
+          .filter((c) => c.querySelector("a.dlink--ghost[href]")).length,
         overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
         hangul: [...document.querySelectorAll(".dcard__title, .dcard__blurb, .dfam__h")]
           .map((n) => n.textContent.trim())
@@ -528,18 +533,22 @@ async function demosGate() {
       ? ok(`${tag} 로드된 캡처 중 깨진 것 없음`)
       : bad(`${tag} 깨진 이미지 ${r.broken}건`);
     r.noAlt === 0 ? ok(`${tag} alt 전부 있음`) : bad(`${tag} alt 없는 이미지 ${r.noAlt}건`);
-    // 소스가 공개된 것만 저장소 링크를 단다. 둘이 어긋나면 배지가 거짓말이 된다.
-    r.ownBadges === r.repoLinks
-      ? ok(`${tag} 소스공개 배지 ${r.ownBadges} = 저장소 링크 ${r.repoLinks}`)
-      : bad(`${tag} 배지 ${r.ownBadges} ≠ 저장소 링크 ${r.repoLinks}`);
+    /* 공개·비공개 모두 저장소 링크를 단다. 공개는 눌러서 코드가 열리고, 비공개는
+       소유자만 열린다 — 어느 쪽이든 카드 하나에 저장소 링크 하나가 대응해야 한다. */
+    r.ownBadges + r.privRepoLinks === r.repoLinks
+      ? ok(`${tag} 저장소 링크 ${r.repoLinks} = 공개 ${r.ownBadges} + 비공개 ${r.privRepoLinks}`)
+      : bad(`${tag} 저장소 링크 ${r.repoLinks} ≠ 공개 ${r.ownBadges} + 비공개 ${r.privRepoLinks}`);
     // 비공개는 manifest 가 정본이고, 비공개 카드에는 어떤 링크도 없어야 한다.
     const privManifest = manifest.filter((d) => d.src === "private").length;
     r.privBadges === privManifest
       ? ok(`${tag} 비공개 배지 ${r.privBadges} = 매니페스트 ${privManifest}`)
       : bad(`${tag} 비공개 배지 ${r.privBadges} ≠ 매니페스트 ${privManifest}`);
-    r.privLinks === 0
-      ? ok(`${tag} 비공개 카드에 링크 없음`)
-      : bad(`${tag} 비공개 카드에 링크 ${r.privLinks}건 — 죽은 링크가 된다`);
+    r.privBadLinks === 0
+      ? ok(`${tag} 비공개 카드에 저장소 외 링크 없음`)
+      : bad(`${tag} 비공개 카드에 데모/캡처 링크 ${r.privBadLinks}건 — 열리지 않는데 열릴 것처럼 보인다`);
+    r.privRepoLinks === privManifest
+      ? ok(`${tag} 비공개 저장소 링크 ${r.privRepoLinks}건 전부 있음`)
+      : bad(`${tag} 비공개 저장소 링크 ${r.privRepoLinks} ≠ 매니페스트 ${privManifest}`);
     r.overflow <= 0 ? ok(`${tag} 가로 넘침 없음`) : bad(`${tag} 가로 넘침 ${r.overflow}px`);
     errs.length === 0 ? ok(`${tag} 콘솔 에러 0`) : bad(`${tag} 콘솔 에러: ${errs[0]}`);
 

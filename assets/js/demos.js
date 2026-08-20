@@ -50,8 +50,13 @@ function card(d) {
     : `<a class="dcard__shot" href="${esc(d.url)}" target="_blank" rel="noopener"
        aria-label="${esc(title)}${isEn ? "" : " 데모 열기"}">${shotImg}</a>`;
 
+  /* 비공개 카드에도 저장소 링크를 단다. 방문자에게는 GitHub 404 이지만 소유자에게는
+     카드에서 코드로 가는 유일한 경로라, 링크 문구를 "비공개 저장소" 로 두어 눌러도
+     열리지 않는다는 사실을 누르기 전에 밝힌다(2026-08-20 사용자 지시). */
+  const note = pick(d, "note") || t("demos.privateNote");
   const links = priv
-    ? `<span class="dlink dlink--muted">${t("demos.privateNote")}</span>`
+    ? `<span class="dlink dlink--muted">${esc(note)}</span>
+        ${d.repo ? `<a class="dlink dlink--ghost" href="${esc(d.repo)}" target="_blank" rel="noopener">${t("demos.privateRepo")} ↗</a>` : ""}`
     : `<a class="dlink" href="${esc(d.url)}" target="_blank" rel="noopener">${esc(pick(d, "cta") || t("demos.open"))} ↗</a>
         ${d.repo ? `<a class="dlink dlink--ghost" href="${esc(d.repo)}" target="_blank" rel="noopener">${t("demos.source")} ↗</a>` : ""}`;
 

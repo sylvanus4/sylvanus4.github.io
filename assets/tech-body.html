@@ -67,16 +67,16 @@
           <div class="pcard__tags"><span>#Rust</span></div>
         </div>
       </div>
-      <div class="pcard reveal" data-cat="comms" data-q="commstack rffi rf fingerprint amc 변조분류 수신기 disentanglement o-ran 스펙트럼 sigprint sylvanus4/commstack 물리 기반 지능형 수신기 — 신호 획득부터 O-RAN 폐루프까지">
+      <a class="pcard reveal" href="https://github.com/sylvanus4/commstack" target="_blank" rel="noopener" data-cat="comms" data-q="commstack rffi rf fingerprint amc 변조분류 수신기 disentanglement o-ran 스펙트럼 sigprint sylvanus4/commstack 물리 기반 지능형 수신기 — 신호 획득부터 O-RAN 폐루프까지">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__commstack.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.16</span></div>
           <h3 class="pcard__title">물리 기반 지능형 수신기 — 신호 획득부터 O-RAN 폐루프까지</h3>
           <p class="pcard__excerpt">RF 획득 · 계측된 수신기 · 장면 구성 · RFFI/AMC 검증 · O-RAN 폐루프를 하나의 통신 시스템으로 이어 붙인 랩이다. 핵심은 수신기 자체의 지문과 채널이 만든 왜곡을 분리하는 것 — 그 둘을 섞어 학습하면 장비를 바꾸는 순간 성능이 사라진다. 스펙트럼 엔진은 Rust 로 따로 두고 서브모듈로 물린다.</p>
-          <div class="pcard__tags"><span>sylvanus4/commstack</span><span>#RF지문</span><span>#수신기분리</span><span>#O-RAN</span>
+          <div class="pcard__tags"><span>sylvanus4/commstack</span><span>#RF지문</span><span>#수신기분리</span><span>#O-RAN</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
+      </a>
         </div>
       </section>
       <section class="fam" id="tech-acoustic" aria-labelledby="techt-acoustic">
@@ -158,46 +158,46 @@
           <div class="pcard__tags"><span>#Rust</span></div>
         </div>
       </div>
-      <div class="pcard reveal" data-cat="comms" data-q="telecom 5g 6g phy channel estimation equalizer cuda 오라클 leo 페이딩 i/q sylvanus4/telecom-lab AI-Native 5G/6G 풀스택 텔레콤 랩">
+      <a class="pcard reveal" href="https://github.com/sylvanus4/telecom-lab" target="_blank" rel="noopener" data-cat="comms" data-q="telecom 5g 6g phy channel estimation equalizer cuda 오라클 leo 페이딩 i/q sylvanus4/telecom-lab AI-Native 5G/6G 풀스택 텔레콤 랩">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__telecom-lab.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Rust</span><span class="pcard__date">2026.08.16</span></div>
           <h3 class="pcard__title">AI-Native 5G/6G 풀스택 텔레콤 랩</h3>
           <p class="pcard__excerpt">I/Q 샘플에서 자율 지능까지 한 층씩 직접 쌓아 올린 물리계층 스택이다. 채널 추정과 등화를 CUDA 커널로 쓰고, 같은 입력을 CPU 오라클에 통과시켜 값이 어긋나면 커널을 믿지 않는다. LEO 위성 채널 에뮬레이터와 페이딩·잡음 모델을 붙여 재현 가능한 조건에서만 수치를 낸다.</p>
-          <div class="pcard__tags"><span>sylvanus4/telecom-lab</span><span>#PHY</span><span>#CUDA커널</span><span>#CPU오라클</span>
+          <div class="pcard__tags"><span>sylvanus4/telecom-lab</span><span>#PHY</span><span>#CUDA커널</span><span>#CPU오라클</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
-      <div class="pcard reveal" data-cat="comms" data-q="northwind mesh zero trust overlay wireguard allowedips go rust interop 신원 sylvanus4/northwind-mesh Northwind Mesh · 신원 인지 제로트러스트 오버레이">
+      </a>
+      <a class="pcard reveal" href="https://github.com/sylvanus4/northwind-mesh" target="_blank" rel="noopener" data-cat="comms" data-q="northwind mesh zero trust overlay wireguard allowedips go rust interop 신원 sylvanus4/northwind-mesh Northwind Mesh · 신원 인지 제로트러스트 오버레이">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__northwind-mesh.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Go</span><span class="pcard__date">2026.08.16</span></div>
           <h3 class="pcard__title">Northwind Mesh · 신원 인지 제로트러스트 오버레이</h3>
           <p class="pcard__excerpt">가상의 회사 네트워크를 위한 오버레이 메시다. 제어 평면은 Go, 노드 쪽은 Rust 로 두고 하나의 프로토콜을 언어 간 상호운용 테스트로 고정했다 — 두 구현이 같은 바이트를 주고받는지 코드가 매번 확인한다. 신원이 먼저고 경로는 그다음이라, 릴레이와 AllowedIPs 에서 끝나지 않도록 데이터 경로까지 경계를 내리는 것이 남은 축이다.</p>
-          <div class="pcard__tags"><span>sylvanus4/northwind-mesh</span><span>#제로트러스트</span><span>#오버레이</span><span>#상호운용</span>
+          <div class="pcard__tags"><span>sylvanus4/northwind-mesh</span><span>#제로트러스트</span><span>#오버레이</span><span>#상호운용</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
-      <div class="pcard reveal" data-cat="comms" data-q="realtime phone voice agent fastrtc twilio pstn stt tts llm 콜센터 지연 sylvanus4/realtime-phone-agent 실시간 전화 음성 에이전트">
+      </a>
+      <a class="pcard reveal" href="https://github.com/sylvanus4/realtime-phone-agent" target="_blank" rel="noopener" data-cat="comms" data-q="realtime phone voice agent fastrtc twilio pstn stt tts llm 콜센터 지연 sylvanus4/realtime-phone-agent 실시간 전화 음성 에이전트">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__realtime-phone-agent.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Rust</span><span class="pcard__date">2026.08.14</span></div>
           <h3 class="pcard__title">실시간 전화 음성 에이전트</h3>
           <p class="pcard__excerpt">PSTN 전화를 받아 사람과 말을 주고받는 콜센터 에이전트다. 턴 교대를 FastRTC 로 처리하고 STT · LLM · TTS 를 전부 자체 호스팅해, 어느 구간이 지연을 만드는지 외부 API 뒤에 숨지 않는다. 통화는 되돌릴 수 없으므로 끊김과 말 겹침을 지연 예산으로 관리한다.</p>
-          <div class="pcard__tags"><span>sylvanus4/realtime-phone-agent</span><span>#실시간음성</span><span>#턴교대</span><span>#자체호스팅</span>
+          <div class="pcard__tags"><span>sylvanus4/realtime-phone-agent</span><span>#실시간음성</span><span>#턴교대</span><span>#자체호스팅</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
-      <div class="pcard reveal" data-cat="comms" data-q="ntn 위성 leo 6g ran 라우팅 dtn 디지털트윈 astra sylvanus4/astra-net ASTRA-NET · 지상망과 위성망을 한 제어면에">
+      </a>
+      <a class="pcard reveal" href="https://github.com/sylvanus4/astra-net" target="_blank" rel="noopener" data-cat="comms" data-q="ntn 위성 leo 6g ran 라우팅 dtn 디지털트윈 astra sylvanus4/astra-net ASTRA-NET · 지상망과 위성망을 한 제어면에">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__astra-net.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Rust</span><span class="pcard__date">2026.08.14</span></div>
           <h3 class="pcard__title">ASTRA-NET · 지상망과 위성망을 한 제어면에</h3>
           <p class="pcard__excerpt">지상 RAN 과 재생형 위성, 위성 간 라우팅, 우주 엣지 추론, 지연 허용 네트워킹을 하나의 정책 제어면 아래에 두는 5G NTN · 사전표준 6G 연구 플랫폼이다. 연결이 있다고 가정하지 않고 언제 끊길지를 예측해 계산을 미리 옮긴다는 것이 설계 전제다.</p>
-          <div class="pcard__tags"><span>sylvanus4/astra-net</span><span>#5G_NTN</span><span>#6G</span><span>#위성라우팅</span>
+          <div class="pcard__tags"><span>sylvanus4/astra-net</span><span>#5G_NTN</span><span>#6G</span><span>#위성라우팅</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
+      </a>
         </div>
       </section>
       <section class="fam" id="tech-recsys" aria-labelledby="techt-recsys">
@@ -280,16 +280,16 @@
         </div>
         </div>
       </a>
-      <div class="pcard reveal" data-cat="data" data-q="embedding rag 모델 선택 mteb vram 라이선스 벤치 nightly pages sylvanus4/embedding-model-compass 임베딩 모델 나침반 · RAG 선택 근거">
+      <a class="pcard reveal" href="https://github.com/sylvanus4/embedding-model-compass" target="_blank" rel="noopener" data-cat="data" data-q="embedding rag 모델 선택 mteb vram 라이선스 벤치 nightly pages sylvanus4/embedding-model-compass 임베딩 모델 나침반 · RAG 선택 근거">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__embedding-model-compass.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.14</span></div>
           <h3 class="pcard__title">임베딩 모델 나침반 · RAG 선택 근거</h3>
           <p class="pcard__excerpt">RAG 에 쓸 임베딩 모델을 점수 · 크기 · 라이선스 · 언어 · VRAM 다섯 축으로 매일 갱신해 비교하는 결정 엔진이다. 벤더 중립을 지키려고 판단 기준을 전부 노출하고, GitHub Actions 가 갱신해 Pages 로 정적 서빙한다.</p>
-          <div class="pcard__tags"><span>sylvanus4/embedding-model-compass</span><span>#임베딩선택</span><span>#RAG</span><span>#일일갱신</span>
+          <div class="pcard__tags"><span>sylvanus4/embedding-model-compass</span><span>#임베딩선택</span><span>#RAG</span><span>#일일갱신</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
+      </a>
         </div>
       </section>
       <section class="fam" id="tech-agent" aria-labelledby="techt-agent">
@@ -454,16 +454,16 @@
         </div>
         </div>
       </a>
-      <div class="pcard reveal" data-cat="agent" data-q="companyos 급여 payroll 4대보험 법정 컴플라이언스 rulepack rust agent blueprint 임금명세서 sylvanus4/agent-companyos Agent CompanyOS · 한 문장에서 실행되는 회사 운영">
+      <a class="pcard reveal" href="https://github.com/sylvanus4/agent-companyos" target="_blank" rel="noopener" data-cat="agent" data-q="companyos 급여 payroll 4대보험 법정 컴플라이언스 rulepack rust agent blueprint 임금명세서 sylvanus4/agent-companyos Agent CompanyOS · 한 문장에서 실행되는 회사 운영">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__agent-companyos.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Rust</span><span class="pcard__date">2026.08.16</span></div>
           <h3 class="pcard__title">Agent CompanyOS · 한 문장에서 실행되는 회사 운영</h3>
           <p class="pcard__excerpt">법으로 정해진 회사 운영 업무를 자연어 한 문장에서 실행까지 끌고 가는 런타임이다. 채팅과 블루프린트 에이전트 빌더, 스킬, 커넥터를 Rust 로 두고 그 아래 한국 컴플라이언스와 결정론적 급여 코어를 깐다. 급여와 법정 신고는 그럴듯하면 안 되고 맞아야 하므로, 판정은 모델이 아니라 rulepack 이 소유한다.</p>
-          <div class="pcard__tags"><span>sylvanus4/agent-companyos</span><span>#컴플라이언스</span><span>#결정론급여</span><span>#에이전트런타임</span>
+          <div class="pcard__tags"><span>sylvanus4/agent-companyos</span><span>#컴플라이언스</span><span>#결정론급여</span><span>#에이전트런타임</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
+      </a>
       <div class="pcard reveal" data-cat="agent" data-q="trajectory 궤적 episode 학습데이터 sft 거버넌스 라이선스 검증기 agent-trajectory-lab 에이전트 궤적을 학습 데이터로 바꾸는 랩">
         <div class="pcard__thumb"><img src="tech/thumb/agent-trajectory-lab.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
@@ -474,16 +474,16 @@
         </div>
         </div>
       </div>
-      <div class="pcard reveal" data-cat="agent" data-q="todo board 작업보드 에이전트 태스크 git 동기화 훅 sylvanus4/claude-todo 에이전트가 읽고 집어가는 트리형 작업 보드">
+      <a class="pcard reveal" href="https://github.com/sylvanus4/claude-todo" target="_blank" rel="noopener" data-cat="agent" data-q="todo board 작업보드 에이전트 태스크 git 동기화 훅 sylvanus4/claude-todo 에이전트가 읽고 집어가는 트리형 작업 보드">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__claude-todo.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.19</span></div>
           <h3 class="pcard__title">에이전트가 읽고 집어가는 트리형 작업 보드</h3>
           <p class="pcard__excerpt">사람이 쓰는 투두 앱이 아니라 코딩 에이전트가 지금 무엇을 하고 있는지 남기는 자리다. 집과 회사 사이를 git 으로 따라다니고, 커밋이 나면 훅이 그 태스크에 자동으로 기록한다. 상태를 세션 안에만 두면 다음 세션과 다른 기계가 그것을 모른다는 문제를 겨냥했다.</p>
-          <div class="pcard__tags"><span>sylvanus4/claude-todo</span><span>#작업보드</span><span>#멀티머신</span><span>#훅자동기록</span>
+          <div class="pcard__tags"><span>sylvanus4/claude-todo</span><span>#작업보드</span><span>#멀티머신</span><span>#훅자동기록</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
+      </a>
         </div>
       </section>
       <section class="fam" id="tech-optim" aria-labelledby="techt-optim">
@@ -624,16 +624,16 @@
         </div>
         </div>
       </a>
-      <div class="pcard reveal" data-cat="llm" data-q="quantization nvfp4 mxfp4 blackwell b200 이미지 영상 tts 양자화 품질 sylvanus4/multimodal-quant-lab Blackwell 멀티모달 양자화 랩 — 이미지 · 영상 · 음성">
+      <a class="pcard reveal" href="https://github.com/sylvanus4/multimodal-quant-lab" target="_blank" rel="noopener" data-cat="llm" data-q="quantization nvfp4 mxfp4 blackwell b200 이미지 영상 tts 양자화 품질 sylvanus4/multimodal-quant-lab Blackwell 멀티모달 양자화 랩 — 이미지 · 영상 · 음성">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__multimodal-quant-lab.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.16</span></div>
           <h3 class="pcard__title">Blackwell 멀티모달 양자화 랩 — 이미지 · 영상 · 음성</h3>
           <p class="pcard__excerpt">텍스트 모델에서만 검증된 4비트 양자화를 이미지 · 영상 · TTS 로 밀어 보는 랩이다. Blackwell 의 NVFP4/MXFP4 경로를 실제로 태워, 커널이 네이티브로 도는지 에뮬레이션으로 폴백하는지부터 확인한다. 품질 손실은 선언이 아니라 측정 대상이라 같은 프롬프트를 두 정밀도로 돌려 나란히 둔다.</p>
-          <div class="pcard__tags"><span>sylvanus4/multimodal-quant-lab</span><span>#NVFP4</span><span>#멀티모달양자화</span><span>#품질회귀</span>
+          <div class="pcard__tags"><span>sylvanus4/multimodal-quant-lab</span><span>#NVFP4</span><span>#멀티모달양자화</span><span>#품질회귀</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
+      </a>
         </div>
       </section>
       <section class="fam" id="tech-distill" aria-labelledby="techt-distill">
@@ -679,26 +679,26 @@
           <div class="pcard__tags"><span>#Python</span><span>#Shell</span></div>
         </div>
       </div>
-      <div class="pcard reveal" data-cat="llm" data-q="charai character persona 멀티모달 파인튜닝 sft 평가 eval 프롬프트 티처 sylvanus4/charai-core charai · 멀티모달 AI 캐릭터 플랫폼">
+      <a class="pcard reveal" href="https://github.com/sylvanus4/charai-core" target="_blank" rel="noopener" data-cat="llm" data-q="charai character persona 멀티모달 파인튜닝 sft 평가 eval 프롬프트 티처 sylvanus4/charai-core charai · 멀티모달 AI 캐릭터 플랫폼">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__charai-core.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.13</span></div>
           <h3 class="pcard__title">charai · 멀티모달 AI 캐릭터 플랫폼</h3>
           <p class="pcard__excerpt">캐릭터가 자기 성격을 유지한 채 대화하도록 만드는 플랫폼을 core · data · train · eval · web 다섯 저장소로 나눠 둔 것이다. 흥미로운 결과는 실패 쪽에 있었다 — 파인튜닝한 모델이 잘 쓴 프롬프트를 이기지 못하는 구간이 반복해서 나왔고, 원인을 티처 평균회귀 가설로 좁혀 검증 중이다.</p>
-          <div class="pcard__tags"><span>sylvanus4/charai-core</span><span>#캐릭터일관성</span><span>#파인튜닝</span><span>#평가셋</span>
+          <div class="pcard__tags"><span>sylvanus4/charai-core</span><span>#캐릭터일관성</span><span>#파인튜닝</span><span>#평가셋</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
-      <div class="pcard reveal" data-cat="llm" data-q="synthetic data 합성데이터 weakness 약점 judge 검증 파인튜닝 루프 sylvanus4/agentic-data-factory 약점을 스스로 찾아 학습 데이터를 만드는 공장">
+      </a>
+      <a class="pcard reveal" href="https://github.com/sylvanus4/agentic-data-factory" target="_blank" rel="noopener" data-cat="llm" data-q="synthetic data 합성데이터 weakness 약점 judge 검증 파인튜닝 루프 sylvanus4/agentic-data-factory 약점을 스스로 찾아 학습 데이터를 만드는 공장">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__agentic-data-factory.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.19</span></div>
           <h3 class="pcard__title">약점을 스스로 찾아 학습 데이터를 만드는 공장</h3>
           <p class="pcard__excerpt">모델의 약한 자리를 찾아 필요한 데이터를 설계하고 생성하고 검증한 뒤 학습시키고, 그 결과를 다시 분석해 다음 데이터를 만드는 닫힌 루프다. 사람이 라벨링 업체에 던지던 단계를 루프 안으로 넣은 것이 요점이고, 판정은 모델이 아니라 검증기가 한다.</p>
-          <div class="pcard__tags"><span>sylvanus4/agentic-data-factory</span><span>#합성데이터</span><span>#닫힌루프</span><span>#검증기</span>
+          <div class="pcard__tags"><span>sylvanus4/agentic-data-factory</span><span>#합성데이터</span><span>#닫힌루프</span><span>#검증기</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
+      </a>
         </div>
       </section>
       <section class="fam" id="tech-aiplatform" aria-labelledby="techt-aiplatform">
@@ -753,16 +753,16 @@
           <div class="pcard__tags"><span>#Python</span><span>#JavaScript</span><span>#GitHub Actions</span></div>
         </div>
       </div>
-      <div class="pcard reveal" data-cat="llm" data-q="gateway openai compatible multimodal metering 계량 원장 콘솔 카탈로그 토큰 sylvanus4/token-factory-gateway 토큰 팩토리 게이트웨이 · 계량 콘솔">
+      <a class="pcard reveal" href="https://github.com/sylvanus4/token-factory-gateway" target="_blank" rel="noopener" data-cat="llm" data-q="gateway openai compatible multimodal metering 계량 원장 콘솔 카탈로그 토큰 sylvanus4/token-factory-gateway 토큰 팩토리 게이트웨이 · 계량 콘솔">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__token-factory-gateway.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">TypeScript</span><span class="pcard__date">2026.08.14</span></div>
           <h3 class="pcard__title">토큰 팩토리 게이트웨이 · 계량 콘솔</h3>
           <p class="pcard__excerpt">텍스트 · 이미지 · 영상 · 음성을 하나의 OpenAI 호환 표면 뒤에 두는 게이트웨이다. 모달리티마다 원가 구조가 달라 토큰 하나로 셀 수 없으므로, 계량 원장을 따로 두고 무엇을 얼마에 썼는지 콘솔에서 되짚을 수 있게 했다. 청구가 걸린 숫자라 집계는 코드가 소유한다.</p>
-          <div class="pcard__tags"><span>sylvanus4/token-factory-gateway</span><span>#멀티모달게이트웨이</span><span>#계량원장</span><span>#OpenAI호환</span>
+          <div class="pcard__tags"><span>sylvanus4/token-factory-gateway</span><span>#멀티모달게이트웨이</span><span>#계량원장</span><span>#OpenAI호환</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
+      </a>
         </div>
       </section>
       <section class="fam" id="tech-vision" aria-labelledby="techt-vision">
@@ -945,36 +945,36 @@
         </div>
         </div>
       </a>
-      <div class="pcard reveal" data-cat="media" data-q="music generation minimax music3 ltx 뮤직비디오 보컬 f0 demucs cfg 스윕 sylvanus4/music-video-lab 생성 음악 + AI 뮤직비디오 랩">
+      <a class="pcard reveal" href="https://github.com/sylvanus4/music-video-lab" target="_blank" rel="noopener" data-cat="media" data-q="music generation minimax music3 ltx 뮤직비디오 보컬 f0 demucs cfg 스윕 sylvanus4/music-video-lab 생성 음악 + AI 뮤직비디오 랩">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__music-video-lab.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.16</span></div>
           <h3 class="pcard__title">생성 음악 + AI 뮤직비디오 랩</h3>
           <p class="pcard__excerpt">곡을 만들고 그 곡에 맞는 영상을 붙이기까지를 사내 GPU 위에서 돌리는 랩이다. 목소리가 결정되는 지점을 찾아 AR 단계 CFG 를 스윕하고, 보컬은 분리 후 F0 로 성별을 실측해 선언과 산출이 어긋나는지 본다 — 남성으로 발주한 트랙이 실제로는 아니었던 경우가 반복해서 나왔다. 음색 이상은 아직 지표로 못 잡아 사람이 듣는다.</p>
-          <div class="pcard__tags"><span>sylvanus4/music-video-lab</span><span>#음악생성</span><span>#보컬검증</span><span>#뮤직비디오</span>
+          <div class="pcard__tags"><span>sylvanus4/music-video-lab</span><span>#음악생성</span><span>#보컬검증</span><span>#뮤직비디오</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
-      <div class="pcard reveal" data-cat="media" data-q="cineprompt 프롬프트 빌더 영상 렌즈 초점거리 webgl 필름 용어 t2v sylvanus4/cineprompt-studio 씨네프롬프트 스튜디오 · 영상 프롬프트 빌더">
+      </a>
+      <a class="pcard reveal" href="https://github.com/sylvanus4/cineprompt-studio" target="_blank" rel="noopener" data-cat="media" data-q="cineprompt 프롬프트 빌더 영상 렌즈 초점거리 webgl 필름 용어 t2v sylvanus4/cineprompt-studio 씨네프롬프트 스튜디오 · 영상 프롬프트 빌더">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__cineprompt-studio.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">TypeScript</span><span class="pcard__date">2026.08.14</span></div>
           <h3 class="pcard__title">씨네프롬프트 스튜디오 · 영상 프롬프트 빌더</h3>
           <p class="pcard__excerpt">AI 영상 프롬프트를 감각이 아니라 촬영 용어로 쓰게 만드는 도구다. 필름 크래프트 용어 1,256개를 색인하고, 모델마다 다른 섹션 순서를 따로 두며, 렌즈 리그를 WebGL 로 띄워 초점거리와 심도를 눈으로 고르게 했다. 장면 글을 넣으면 LLM 이 읽어 초안 프롬프트를 만든다.</p>
-          <div class="pcard__tags"><span>sylvanus4/cineprompt-studio</span><span>#프롬프트빌더</span><span>#렌즈리그</span><span>#필름용어</span>
+          <div class="pcard__tags"><span>sylvanus4/cineprompt-studio</span><span>#프롬프트빌더</span><span>#렌즈리그</span><span>#필름용어</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
-      <div class="pcard reveal" data-cat="media" data-q="srt vtt 자막 스케치 화이트보드 스토리보드 ffmpeg 클라이언트 sylvanus4/srt-sketch-cast 자막 → 화이트보드 스케치 스토리보드">
+      </a>
+      <a class="pcard reveal" href="https://github.com/sylvanus4/srt-sketch-cast" target="_blank" rel="noopener" data-cat="media" data-q="srt vtt 자막 스케치 화이트보드 스토리보드 ffmpeg 클라이언트 sylvanus4/srt-sketch-cast 자막 → 화이트보드 스케치 스토리보드">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__srt-sketch-cast.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">JavaScript</span><span class="pcard__date">2026.08.13</span></div>
           <h3 class="pcard__title">자막 → 화이트보드 스케치 스토리보드</h3>
           <p class="pcard__excerpt">SRT/VTT 자막을 넣으면 화이트보드 스케치 애니메이션 스토리보드와 ffmpeg 렌더 계획을 만들어 준다. 전부 브라우저 안에서 도는 클라이언트 사이드라 자막 파일이 어디로도 올라가지 않는다.</p>
-          <div class="pcard__tags"><span>sylvanus4/srt-sketch-cast</span><span>#스토리보드</span><span>#클라이언트사이드</span><span>#ffmpeg</span>
+          <div class="pcard__tags"><span>sylvanus4/srt-sketch-cast</span><span>#스토리보드</span><span>#클라이언트사이드</span><span>#ffmpeg</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
+      </a>
       <a class="pcard reveal" href="https://sylvanus4.github.io/demos/music3/" target="_blank" rel="noopener" data-cat="media" data-q="소닉 브랜딩 sonic branding 음악 생성 minimax music3 b200 sglang numpy dsp 광고 영상 로고 mnemonic 마림바 배음 브랜드 사운드 sylvanus4/sylvanus4.github.io 소닉 브랜딩 — 코드 로고 + 생성 편곡">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__sylvanus4.github.io.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
@@ -985,26 +985,26 @@
         </div>
         </div>
       </a>
-      <div class="pcard reveal" data-cat="media" data-q="공무원 수험 논점 영상 쇼츠 퀴즈 루브릭 파이프라인 행정법 sylvanus4/examprep-lab 이해 구멍 하나에 30초 영상을 처방하는 파이프라인">
+      <a class="pcard reveal" href="https://github.com/sylvanus4/examprep-lab" target="_blank" rel="noopener" data-cat="media" data-q="공무원 수험 논점 영상 쇼츠 퀴즈 루브릭 파이프라인 행정법 sylvanus4/examprep-lab 이해 구멍 하나에 30초 영상을 처방하는 파이프라인">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__examprep-lab.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.08</span></div>
           <h3 class="pcard__title">이해 구멍 하나에 30초 영상을 처방하는 파이프라인</h3>
           <p class="pcard__excerpt">전 과목 강의를 AI 로 만들지 않는다. 논점 하나 단위로 루브릭과 스크립트, 생성 영상, 텍스트 오버레이, 품질 게이트, 발행, 퀴즈 정답률 수집까지 돌리고 그 정답률이 다음에 만들 논점을 정한다. 학습 콘텐츠에서 값비싼 것은 분량이 아니라 어디가 막혔는지를 아는 것이라는 판단이다.</p>
-          <div class="pcard__tags"><span>sylvanus4/examprep-lab</span><span>#수험콘텐츠</span><span>#논점단위</span><span>#정답률피드백</span>
+          <div class="pcard__tags"><span>sylvanus4/examprep-lab</span><span>#수험콘텐츠</span><span>#논점단위</span><span>#정답률피드백</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
-      <div class="pcard reveal" data-cat="media" data-q="clipagent 실시간 영상 video agent saas 이벤트 원장 event ledger vlm 개인화 personalization 클립 clip edl 하이라이트 품질 게이트 sylvanus4/clipagent ClipAgent · 같은 영상을 사람마다 다시 분석하지 않는다">
+      </a>
+      <a class="pcard reveal" href="https://github.com/sylvanus4/clipagent" target="_blank" rel="noopener" data-cat="media" data-q="clipagent 실시간 영상 video agent saas 이벤트 원장 event ledger vlm 개인화 personalization 클립 clip edl 하이라이트 품질 게이트 sylvanus4/clipagent ClipAgent · 같은 영상을 사람마다 다시 분석하지 않는다">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__clipagent.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.05</span></div>
           <h3 class="pcard__title">ClipAgent · 같은 영상을 사람마다 다시 분석하지 않는다</h3>
           <p class="pcard__excerpt">콘텐츠당 한 번 수행한 멀티모달 분석을 이벤트 원장에 넣어 두고, 사용자 요청마다는 이벤트 재정렬과 제한된 렌더링만 한다. 비싼 VLM 작업을 콘텐츠 단위로 상각해 개인화의 한계비용을 낮추는 구조다. 모델은 교체 가능한 부품으로 두고 이벤트 온톨로지와 클립 경계 최적화, 편집 정책, 품질 게이트처럼 모델 없이 검증 가능한 부분부터 만들었다.</p>
-          <div class="pcard__tags"><span>sylvanus4/clipagent</span><span>#영상에이전트</span><span>#이벤트원장</span><span>#한계비용</span>
+          <div class="pcard__tags"><span>sylvanus4/clipagent</span><span>#영상에이전트</span><span>#이벤트원장</span><span>#한계비용</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
+      </a>
         </div>
       </section>
       <section class="fam" id="tech-marketing" aria-labelledby="techt-marketing">
@@ -1050,36 +1050,36 @@
           <div class="pcard__tags"><span>2icorp/sd-service</span><span>#Python</span><span>#Stable Diffusion WebUI</span><span class="pcard__go">GitHub →</span></div>
         </div>
       </a>
-      <div class="pcard reveal" data-cat="media" data-q="character fabric 마스코트 레퍼런스 lora 어댑터 실루엣 학습데이터 잘림 게이트 sylvanus4/character-fabric Character Fabric · 캐릭터 하나, 무한한 동작">
+      <a class="pcard reveal" href="https://github.com/sylvanus4/character-fabric" target="_blank" rel="noopener" data-cat="media" data-q="character fabric 마스코트 레퍼런스 lora 어댑터 실루엣 학습데이터 잘림 게이트 sylvanus4/character-fabric Character Fabric · 캐릭터 하나, 무한한 동작">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__character-fabric.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.16</span></div>
           <h3 class="pcard__title">Character Fabric · 캐릭터 하나, 무한한 동작</h3>
           <p class="pcard__excerpt">레퍼런스 한 장으로 같은 캐릭터를 여러 동작·표정으로 재생성하는 파이프라인이다. 값비싸게 배운 것은 학습 데이터가 곧 상한이라는 사실이었다 — 어댑터가 A/B 를 전승했는데도 학습 클립의 79%에서 피사체가 프레임 밖으로 잘려 있었고, 일관성 지표는 그걸 가리기만 했다. 지금은 잘림·레퍼런스 품질을 학습 전에 게이트로 막는다.</p>
-          <div class="pcard__tags"><span>sylvanus4/character-fabric</span><span>#캐릭터일관성</span><span>#학습데이터게이트</span><span>#레퍼런스조건</span>
+          <div class="pcard__tags"><span>sylvanus4/character-fabric</span><span>#캐릭터일관성</span><span>#학습데이터게이트</span><span>#레퍼런스조건</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
-      <div class="pcard reveal" data-cat="media" data-q="reddit hacker news oss 커뮤니티 다이제스트 미응답 스레드 주간 sylvanus4/oss-community-pulse 오픈소스 커뮤니티 펄스 — 답 없는 스레드부터">
+      </a>
+      <a class="pcard reveal" href="https://github.com/sylvanus4/oss-community-pulse" target="_blank" rel="noopener" data-cat="media" data-q="reddit hacker news oss 커뮤니티 다이제스트 미응답 스레드 주간 sylvanus4/oss-community-pulse 오픈소스 커뮤니티 펄스 — 답 없는 스레드부터">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__oss-community-pulse.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.10</span></div>
           <h3 class="pcard__title">오픈소스 커뮤니티 펄스 — 답 없는 스레드부터</h3>
           <p class="pcard__excerpt">내 오픈소스 프로젝트를 언급한 Reddit · Hacker News 스레드를 주간 정적 다이제스트로 모은다. 핵심은 전부 모으는 게 아니라 아직 아무도 답하지 않은 스레드를 앞으로 올리는 것 — 유지보수자가 실제로 놓치는 지점이 거기다.</p>
-          <div class="pcard__tags"><span>sylvanus4/oss-community-pulse</span><span>#커뮤니티모니터링</span><span>#미응답</span><span>#주간다이제스트</span>
+          <div class="pcard__tags"><span>sylvanus4/oss-community-pulse</span><span>#커뮤니티모니터링</span><span>#미응답</span><span>#주간다이제스트</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
-      <div class="pcard reveal" data-cat="media" data-q="shorts ip 숏폼 세계관 캐논 로어 에피소드 1mm 시리즈 sylvanus4/one-millimeter AI 쇼츠 IP 다섯 편 · 세계관이 이어지는 숏폼">
+      </a>
+      <a class="pcard reveal" href="https://github.com/sylvanus4/one-millimeter" target="_blank" rel="noopener" data-cat="media" data-q="shorts ip 숏폼 세계관 캐논 로어 에피소드 1mm 시리즈 sylvanus4/one-millimeter AI 쇼츠 IP 다섯 편 · 세계관이 이어지는 숏폼">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__one-millimeter.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.17</span></div>
           <h3 class="pcard__title">AI 쇼츠 IP 다섯 편 · 세계관이 이어지는 숏폼</h3>
           <p class="pcard__excerpt">1mm 문명, 보이지 않는 세계, 끝까지 가보면, 물리법칙이 고장난 세계, 그날의 60초. 다섯 개의 세계관을 각각 저장소로 두고 캐논과 로어 그래프를 따로 관리한다. 한 편이 다음 편의 세계를 구속하기 때문에 에피소드마다 캐논 위반을 코드가 검사한다. 파이프라인은 부모 저장소가 소유하고 여기에는 IP 자산만 둔다.</p>
-          <div class="pcard__tags"><span>sylvanus4/one-millimeter</span><span>#쇼츠IP</span><span>#캐논게이트</span><span>#로어그래프</span>
+          <div class="pcard__tags"><span>sylvanus4/one-millimeter</span><span>#쇼츠IP</span><span>#캐논게이트</span><span>#로어그래프</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
+      </a>
       <a class="pcard reveal" href="https://github.com/sylvanus4/rooms" target="_blank" rel="noopener" data-cat="media" data-q="web audio 합성 방 노스탤지어 pc방 다방 라디오 오락실 소리 sylvanus4/rooms 일곱 개의 방 · 전부 코드로 합성한 소리">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__rooms.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
@@ -1381,36 +1381,36 @@
         </div>
         </div>
       </a>
-      <div class="pcard reveal" data-cat="product" data-q="정보시스템감리사 기출 rag knowledge graph srs 적응형 퀴즈 nia sylvanus4/is-auditor-exam-lab 감리사 서안 · 정보시스템감리사 기출 학습">
+      <a class="pcard reveal" href="https://github.com/sylvanus4/is-auditor-exam-lab" target="_blank" rel="noopener" data-cat="product" data-q="정보시스템감리사 기출 rag knowledge graph srs 적응형 퀴즈 nia sylvanus4/is-auditor-exam-lab 감리사 서안 · 정보시스템감리사 기출 학습">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__is-auditor-exam-lab.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">Python</span><span class="pcard__date">2026.08.15</span></div>
           <h3 class="pcard__title">감리사 서안 · 정보시스템감리사 기출 학습</h3>
           <p class="pcard__excerpt">NIA 공개 기출 제16~26회를 RAG 와 지식그래프로 엮고, SRS 간격반복과 적응형 퀴즈를 얹은 학습 랩이다. 문항을 외우는 게 아니라 논점 사이의 연결을 붙잡게 하려고 지식그래프를 넣었다.</p>
-          <div class="pcard__tags"><span>sylvanus4/is-auditor-exam-lab</span><span>#기출RAG</span><span>#지식그래프</span><span>#간격반복</span>
+          <div class="pcard__tags"><span>sylvanus4/is-auditor-exam-lab</span><span>#기출RAG</span><span>#지식그래프</span><span>#간격반복</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
-      <div class="pcard reveal" data-cat="product" data-q="english 영어 암기 fsrs 간격반복 tauri 데스크탑 콘텐츠 파이프라인 sylvanus4/daily-english-lab 하루 20문장 영어 암기 데스크탑 앱">
+      </a>
+      <a class="pcard reveal" href="https://github.com/sylvanus4/daily-english-lab" target="_blank" rel="noopener" data-cat="product" data-q="english 영어 암기 fsrs 간격반복 tauri 데스크탑 콘텐츠 파이프라인 sylvanus4/daily-english-lab 하루 20문장 영어 암기 데스크탑 앱">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__daily-english-lab.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">TypeScript</span><span class="pcard__date">2026.08.14</span></div>
           <h3 class="pcard__title">하루 20문장 영어 암기 데스크탑 앱</h3>
           <p class="pcard__excerpt">상황 대화형 문장 20개를 매일 자동으로 생성해 넣어 주는 Tauri 데스크탑 앱이다. FSRS 간격반복 위에 능동 인출과 이중 부호화를 얹었다 — 읽어서 아는 것과 꺼내 쓸 수 있는 것은 다르므로 화면이 답을 먼저 보여주지 않는다.</p>
-          <div class="pcard__tags"><span>sylvanus4/daily-english-lab</span><span>#FSRS</span><span>#능동인출</span><span>#Tauri</span>
+          <div class="pcard__tags"><span>sylvanus4/daily-english-lab</span><span>#FSRS</span><span>#능동인출</span><span>#Tauri</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
-      <div class="pcard reveal" data-cat="product" data-q="영어 단어장 어린이 플래시카드 tts 이미지 생성 학습 sylvanus4/ai-vocabcards 아이용 영어 단어장 · 카드도 그림도 생성">
+      </a>
+      <a class="pcard reveal" href="https://github.com/sylvanus4/ai-vocabcards" target="_blank" rel="noopener" data-cat="product" data-q="영어 단어장 어린이 플래시카드 tts 이미지 생성 학습 sylvanus4/ai-vocabcards 아이용 영어 단어장 · 카드도 그림도 생성">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__ai-vocabcards.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">TypeScript</span><span class="pcard__date">2026.08.14</span></div>
           <h3 class="pcard__title">아이용 영어 단어장 · 카드도 그림도 생성</h3>
           <p class="pcard__excerpt">영어 단어를 넣으면 발음과 뜻, 유의어, 반의어, 예문을 만들고 그에 맞는 플래시카드 그림까지 생성한다. 한국 어린이가 쓰는 것을 전제로 화면과 인쇄물을 함께 설계했고, 암기는 카드 뒤집기와 발음 듣기로 돌린다.</p>
-          <div class="pcard__tags"><span>sylvanus4/ai-vocabcards</span><span>#영어학습</span><span>#플래시카드</span><span>#이미지생성</span>
+          <div class="pcard__tags"><span>sylvanus4/ai-vocabcards</span><span>#영어학습</span><span>#플래시카드</span><span>#이미지생성</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
+      </a>
         </div>
       </section>
       <section class="fam" id="tech-devtool" aria-labelledby="techt-devtool">
@@ -1646,66 +1646,66 @@
         </div>
         </div>
       </a>
-      <div class="pcard reveal" data-cat="devtool" data-q="tts asr round trip 발음 pronunciation 사전 검증 로컬 sylvanus4/pronounce-forge TTS 가 정말 그렇게 읽는지 검증한다">
+      <a class="pcard reveal" href="https://github.com/sylvanus4/pronounce-forge" target="_blank" rel="noopener" data-cat="devtool" data-q="tts asr round trip 발음 pronunciation 사전 검증 로컬 sylvanus4/pronounce-forge TTS 가 정말 그렇게 읽는지 검증한다">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__pronounce-forge.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">JavaScript</span><span class="pcard__date">2026.08.14</span></div>
           <h3 class="pcard__title">TTS 가 정말 그렇게 읽는지 검증한다</h3>
           <p class="pcard__excerpt">합성한 음성을 다시 인식에 통과시켜(round-trip) 코드가 발음을 판정하는 도구다. 사람이 듣고 넘어가면 고유명사와 숫자에서 조용히 틀리므로, 판정을 귀가 아니라 왕복 일치로 옮겼다. 엔진에 묶이지 않는 발음 사전으로 내보낼 수 있다.</p>
-          <div class="pcard__tags"><span>sylvanus4/pronounce-forge</span><span>#TTS검증</span><span>#왕복일치</span><span>#발음사전</span>
+          <div class="pcard__tags"><span>sylvanus4/pronounce-forge</span><span>#TTS검증</span><span>#왕복일치</span><span>#발음사전</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
-      <div class="pcard reveal" data-cat="devtool" data-q="ntfs mft 포렌식 forensics macb timestamp ads 브라우저 클라이언트 sylvanus4/mft-lens MFT 렌즈 · 브라우저에서 여는 NTFS 포렌식">
+      </a>
+      <a class="pcard reveal" href="https://github.com/sylvanus4/mft-lens" target="_blank" rel="noopener" data-cat="devtool" data-q="ntfs mft 포렌식 forensics macb timestamp ads 브라우저 클라이언트 sylvanus4/mft-lens MFT 렌즈 · 브라우저에서 여는 NTFS 포렌식">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__mft-lens.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">JavaScript</span><span class="pcard__date">2026.08.12</span></div>
           <h3 class="pcard__title">MFT 렌즈 · 브라우저에서 여는 NTFS 포렌식</h3>
           <p class="pcard__excerpt">덤프한 NTFS $MFT CSV 를 브라우저에 떨어뜨리면 SI/FN 타임스탬프 전량과 대체 데이터 스트림, 파일 ID 를 표로 펼치고 MACB 타임라인으로 세운다. 네트워크 요청 0건 — 조사 대상 파일이 기계 밖으로 나가지 않는다.</p>
-          <div class="pcard__tags"><span>sylvanus4/mft-lens</span><span>#NTFS포렌식</span><span>#MACB</span><span>#네트워크0</span>
+          <div class="pcard__tags"><span>sylvanus4/mft-lens</span><span>#NTFS포렌식</span><span>#MACB</span><span>#네트워크0</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
-      <div class="pcard reveal" data-cat="devtool" data-q="config json 모델 아키텍처 gqa mqa mla moe kv cache 블록 다이어그램 sylvanus4/model-arch-lens config.json 하나로 모델 구조를 펼치는 렌즈">
+      </a>
+      <a class="pcard reveal" href="https://github.com/sylvanus4/model-arch-lens" target="_blank" rel="noopener" data-cat="devtool" data-q="config json 모델 아키텍처 gqa mqa mla moe kv cache 블록 다이어그램 sylvanus4/model-arch-lens config.json 하나로 모델 구조를 펼치는 렌즈">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__model-arch-lens.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">JavaScript</span><span class="pcard__date">2026.08.18</span></div>
           <h3 class="pcard__title">config.json 하나로 모델 구조를 펼치는 렌즈</h3>
           <p class="pcard__excerpt">허깅페이스 형식 config.json 을 붙여 넣으면 레이어 스택과 어텐션 방식, 전문가 배치, 대략의 파라미터 수, 토큰당 KV 캐시를 블록 지도로 펼친다. 새 모델이 나왔는데 80쪽짜리 논문을 읽을 시간이 없을 때 구조만 몇 분에 설명하려고 만들었다. 전부 브라우저 안에서 파싱한다.</p>
-          <div class="pcard__tags"><span>sylvanus4/model-arch-lens</span><span>#모델구조</span><span>#KV캐시</span><span>#클라이언트전용</span>
+          <div class="pcard__tags"><span>sylvanus4/model-arch-lens</span><span>#모델구조</span><span>#KV캐시</span><span>#클라이언트전용</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
-      <div class="pcard reveal" data-cat="devtool" data-q="quantization 양자화 gguf 카드 이미지 비교 vram 사다리 sylvanus4/quant-ladder-cards 양자화 사다리를 공유 가능한 카드로">
+      </a>
+      <a class="pcard reveal" href="https://github.com/sylvanus4/quant-ladder-cards" target="_blank" rel="noopener" data-cat="devtool" data-q="quantization 양자화 gguf 카드 이미지 비교 vram 사다리 sylvanus4/quant-ladder-cards 양자화 사다리를 공유 가능한 카드로">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__quant-ladder-cards.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">JavaScript</span><span class="pcard__date">2026.08.17</span></div>
           <h3 class="pcard__title">양자화 사다리를 공유 가능한 카드로</h3>
           <p class="pcard__excerpt">모델 크기와 양자화 단계 목록을 넣으면 단계마다 파일 크기와 예상 메모리, 품질, 상대 속도를 담은 비교 카드를 한 장씩 뽑아 준다. 새 오픈 모델이 다섯 가지 양자화로 나올 때마다 모두가 같은 표를 손으로 다시 만들던 자리를 겨냥했다.</p>
-          <div class="pcard__tags"><span>sylvanus4/quant-ladder-cards</span><span>#양자화</span><span>#비교카드</span><span>#클라이언트전용</span>
+          <div class="pcard__tags"><span>sylvanus4/quant-ladder-cards</span><span>#양자화</span><span>#비교카드</span><span>#클라이언트전용</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
-      <div class="pcard reveal" data-cat="devtool" data-q="code snippet 코드 조각 spdx license 라이선스 헤더 header 배지 badge permalink 퍼머링크 base64url 출처 sylvanus4/snippet-commons 코드 조각에 라이선스와 출처를 붙여 공유한다">
+      </a>
+      <a class="pcard reveal" href="https://github.com/sylvanus4/snippet-commons" target="_blank" rel="noopener" data-cat="devtool" data-q="code snippet 코드 조각 spdx license 라이선스 헤더 header 배지 badge permalink 퍼머링크 base64url 출처 sylvanus4/snippet-commons 코드 조각에 라이선스와 출처를 붙여 공유한다">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__snippet-commons.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">JavaScript</span><span class="pcard__date">2026.08.03</span></div>
           <h3 class="pcard__title">코드 조각에 라이선스와 출처를 붙여 공유한다</h3>
           <p class="pcard__excerpt">코드를 붙여넣고 SPDX 라이선스를 고르면 그 언어의 주석 문법으로 헤더를 삽입하고, 조각을 base64url로 URL 해시에 담아 계정 없는 퍼머링크를 만들며, README에 붙일 배지 SVG를 페이지 안에서 그려 준다. 서버도 빌드도 의존성도 없다.</p>
-          <div class="pcard__tags"><span>sylvanus4/snippet-commons</span><span>#SPDX</span><span>#라이선스</span><span>#퍼머링크</span>
+          <div class="pcard__tags"><span>sylvanus4/snippet-commons</span><span>#SPDX</span><span>#라이선스</span><span>#퍼머링크</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
-      <div class="pcard reveal" data-cat="devtool" data-q="paper arxiv 논문 초록 abstract 홍보 promo thread 스레드 linkedin 캐러셀 carousel 결과 요약 sylvanus4/paper-promo-kit 논문 초록에서 과장 없는 홍보 스레드를">
+      </a>
+      <a class="pcard reveal" href="https://github.com/sylvanus4/paper-promo-kit" target="_blank" rel="noopener" data-cat="devtool" data-q="paper arxiv 논문 초록 abstract 홍보 promo thread 스레드 linkedin 캐러셀 carousel 결과 요약 sylvanus4/paper-promo-kit 논문 초록에서 과장 없는 홍보 스레드를">
         <div class="pcard__thumb"><img src="tech/thumb/sylvanus4__paper-promo-kit.png" alt="" loading="lazy" width="880" height="495"></div>
         <div class="pcard__body">
           <div class="pcard__meta"><span class="pcard__cat">비공개</span><span class="pcard__rt">JavaScript</span><span class="pcard__date">2026.08.20</span></div>
           <h3 class="pcard__title">논문 초록에서 과장 없는 홍보 스레드를</h3>
           <p class="pcard__excerpt">초록과 결과표를 붙여넣으면 중립적인 어조의 스레드 초안과 링크드인 요약, 그리고 표지와 기여, 결과 막대차트, 마무리 네 장짜리 캐러셀 카드를 만든다. 출력의 모든 문장은 입력에서 그대로 가져온 것이고 지어내지 않는다는 것이 이 도구의 계약이다.</p>
-          <div class="pcard__tags"><span>sylvanus4/paper-promo-kit</span><span>#논문홍보</span><span>#스레드</span><span>#날조없음</span>
+          <div class="pcard__tags"><span>sylvanus4/paper-promo-kit</span><span>#논문홍보</span><span>#스레드</span><span>#날조없음</span><span class="pcard__go pcard__go--priv">비공개 저장소 →</span>
         </div>
         </div>
-      </div>
+      </a>
         </div>
       </section>
       <section class="fam" id="tech-misc" aria-labelledby="techt-misc">

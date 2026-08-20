@@ -121,7 +121,8 @@ const UI = {
     "demos.badgeOwn": "소스 공개",
     "demos.badgeHosted": "배포 화면",
     "demos.badgePrivate": "비공개",
-    "demos.privateNote": "저작권 있는 기출 원문이 실려 있어 배포판을 공개하지 않습니다",
+    "demos.privateNote": "소스를 공개하지 않아 화면만 싣습니다",
+    "demos.privateRepo": "비공개 저장소",
     "demos.shotAlt": "화면 캡처",
 
     "foot.where": "ThakiCloud · 서울 역삼",
@@ -217,7 +218,8 @@ const UI = {
     "demos.badgeOwn": "Source open",
     "demos.badgeHosted": "Running screen",
     "demos.badgePrivate": "Private",
-    "demos.privateNote": "Ships copyrighted exam text, so the build is not distributed",
+    "demos.privateNote": "The source stays private, so only the screens are shown",
+    "demos.privateRepo": "Private repo",
     "demos.shotAlt": "screenshot",
 
     "foot.where": "ThakiCloud · Yeoksam, Seoul",

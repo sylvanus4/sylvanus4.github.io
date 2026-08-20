@@ -252,6 +252,8 @@
 .tech2i .pcard__excerpt, .tech2i .pcard__tags { color: var(--fg-3); }
 .tech2i .pcard__cat, .tech2i .pcard__date, .tech2i .pcard__rt { color: var(--fg-4); }
 .tech2i .pcard__go { color: var(--cy); }
+/* 비공개 저장소는 소유자만 열린다. 공개 링크와 같은 색이면 방문자가 열릴 것으로 읽는다. */
+.tech2i .pcard__go--priv { color: var(--fg-4); }
 .tech2i .fam__t { color: var(--fg); }
 .tech2i .fam__d { color: var(--fg-3); }
 .tech2i .fam__n { color: var(--cy); }
