@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>게이트가 데이터를 걸러도 학생이 좋아지지 않았다</title>
+<style>
+  :root { color-scheme: dark; --bg:#0e1013; --fg:#e8eaed; --dim:#9aa0a6; --line:#272b31; --acc:#7cc4ff; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font:16px/1.65 -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; }
+  main { max-width: 62rem; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  h1 { font-size: 1.55rem; margin: 0 0 .5rem; }
+  p.lede { color: var(--dim); margin: 0 0 2rem; }
+  section { border-top: 1px solid var(--line); padding: 1.75rem 0; }
+  h2 { font-size: 1.1rem; margin: 0 0 .75rem; }
+  .ctl { display:flex; flex-wrap:wrap; gap:1rem; margin:.75rem 0 1.25rem; }
+  label { display:block; font-size:.82rem; color:var(--dim); margin-bottom:.3rem; }
+  select { min-height:44px; min-width:11rem; background:#161a1f; color:var(--fg);
+           border:1px solid var(--line); border-radius:8px; padding:.4rem .6rem; font:inherit; }
+  table { width:100%; border-collapse:collapse; }
+  td, th { text-align:left; padding:.55rem .4rem; border-bottom:1px solid var(--line); }
+  td.v { font-variant-numeric: tabular-nums; font-weight:600; color:var(--acc); }
+  .verdict { background:#141a20; border-left:3px solid var(--acc); padding:1rem 1.1rem; border-radius:0 8px 8px 0; }
+  details { margin-top:1rem; color:var(--dim); font-size:.9rem; }
+  code { font-family: ui-monospace, Menlo, monospace; font-size:.85em; }
+  .miss { color:#ffb4a2; }
+</style>
+</head>
+<body>
+<main>
+  <h1>게이트가 데이터를 걸러도 학생이 좋아지지 않았다</h1>
+  <p class="lede">검증 게이트를 통과한 데이터로 학습한 팔과 안 거른 팔을 5시드로 비교한 704칸. 실제 SQLite 실행으로 채점했다.</p>
+  <div id="board"></div>
+</main>
+<script type="module">
+  import { mount } from "./app.js";
+  mount(["gate-vs-data.json"]);
+</script>
+</body>
+</html>
