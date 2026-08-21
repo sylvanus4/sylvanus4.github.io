@@ -795,6 +795,22 @@
     [
       "qwen3-tts 1.7b 기반 콜센터 상담사향 음성합성 시스템으로 한국어 텍스트 정규화, 스트리밍 추론, grpo·dpo 사후학습을 포함한다. 추론 서버와 테스트 스위트가 함께 제공된다.",
       "qwen3-tts 1.7b 기반 콜센터 상담사향 음성합성 시스템 설계로, 한국어 텍스트 정규화·스트리밍 추론·grpo·dpo 사후학습 파이프라인 코드를 구현했다. 추론 서버와 테스트 스위트는 있으나, 실제 학습을 돌리거나 평가한 결과는 아직 없다."
+    ],
+    [
+      "PostgreSQL, MySQL, SQL Server, SQLite를 지원하는 가볍고 빠른 AI 기반 질의 데스크톱 SQL 클라이언트이다. 자연어를 SQL로 변환하고 ER 다이어그램과 차트를 생성한다.",
+      "PostgreSQL, MySQL, SQL Server, SQLite를 지원하는 AI 기반 질의 데스크톱 SQL 클라이언트다. Rohithgilla12/data-peek 오픈소스 저장소를 수정 없이 미러링한 사본으로, 이 코드는 내가 작성하지 않았다."
+    ],
+    [
+      "postgresql, mysql, sql server, sqlite를 지원하는 가볍고 빠른 ai 기반 질의 데스크톱 sql 클라이언트이다. 자연어를 sql로 변환하고 er 다이어그램과 차트를 생성한다.",
+      "postgresql, mysql, sql server, sqlite를 지원하는 ai 기반 질의 데스크톱 sql 클라이언트다. rohithgilla12/data-peek 오픈소스 저장소를 수정 없이 미러링한 사본으로, 이 코드는 내가 작성하지 않았다."
+    ],
+    [
+      "OpenAI Realtime Translation API를 사용해 마이크 음성을 그 자리에서 번역해 텍스트와 음성으로 출력하는 PySide6 기반 데스크톱 앱이다. Silero VAD를 로컬에서 구동해 수백 밀리초 수준의 지연을 낸다.",
+      "OpenAI Realtime Translation API로 마이크 음성을 그 자리에서 번역해 텍스트·음성으로 출력하는 PySide6 데스크톱 앱이다. nanameru 프로젝트(MIT 라이선스)를 한국어로 번역해 포크한 것으로, 원 저작권은 nanameru에 있다."
+    ],
+    [
+      "openai realtime translation api를 사용해 마이크 음성을 그 자리에서 번역해 텍스트와 음성으로 출력하는 pyside6 기반 데스크톱 앱이다. silero vad를 로컬에서 구동해 수백 밀리초 수준의 지연을 낸다.",
+      "openai realtime translation api로 마이크 음성을 그 자리에서 번역해 텍스트·음성으로 출력하는 pyside6 데스크톱 앱이다. nanameru 프로젝트(mit 라이선스)를 한국어로 번역해 포크한 것으로, 원 저작권은 nanameru에 있다."
     ]
   ],
   "_taxonomy_note": "영상 15편과 같은 축으로 카탈로그를 다시 나눈다. 카드는 하나도 버리지 않고 버킷만 옮긴다. rules 는 위에서부터 먼저 맞는 것이 이긴다(첫 매치 승).",
